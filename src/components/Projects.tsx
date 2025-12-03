@@ -8,7 +8,7 @@ export const Projects = () => {
   const [activeProject, setActiveProject] = useState(projects[0].id);
 
   return (
-    <section id="projects" className="py-16 md:py-24 px-4">
+    <section id="projects" className="py-10 md:py-14 px-4">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">

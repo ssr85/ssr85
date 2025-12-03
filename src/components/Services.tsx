@@ -16,7 +16,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export const Services = ({ onOpenEnquiry }: ServicesProps) => {
   return (
-    <section id="services" className="py-16 md:py-24 px-4 bg-muted/30">
+    <section id="services" className="py-10 md:py-14 px-4 bg-gradient-to-l from-primary/5 via-muted/30 to-accent/5">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -35,7 +35,7 @@ export const Services = ({ onOpenEnquiry }: ServicesProps) => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardContent className="p-6">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 text-primary flex items-center justify-center mb-4">
                   {iconMap[service.icon]}
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">
