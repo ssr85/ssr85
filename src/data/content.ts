@@ -5,8 +5,8 @@ export const siteConfig = {
   initials: "SR",
   tagline: "Strategic Operations Leader | Sustainable Business Builder",
   location: "India",
-  email: "sarabjeet@example.com",
-  linkedin: "https://linkedin.com/in/sarabjeet-rattan",
+  email: "sarabjit.rattan@gmail.com",
+  linkedin: "https://www.linkedin.com/in/sarabjeetrattan/",
 };
 
 export const snapshotCards = [
@@ -17,12 +17,13 @@ export const snapshotCards = [
   },
   {
     title: "Technical Expertise",
-    description: "Web applications, automation systems, and data-driven decision making",
+    description:
+      "Web applications, automation systems, and data-driven decision making. Landing pages & System Integrations",
     icon: "Code",
   },
   {
     title: "Track Record",
-    description: "Successfully scaled startups and transformed operations for established enterprises",
+    description: "Successfully scaled startups and transformed operations",
     icon: "TrendingUp",
   },
   {
@@ -70,28 +71,32 @@ export const projects = [
     id: "og-hemp",
     name: "OG Hemp",
     category: "Sustainable Business",
-    description: "Led the strategic development and market expansion of a premium hemp-based products company, establishing distribution channels across India.",
+    description:
+      "Led the strategic development and market expansion of a premium hemp-based products company, establishing distribution channels across India.",
     highlights: ["Market Strategy", "Brand Development", "Supply Chain Optimization"],
   },
   {
     id: "skaizen-water",
     name: "Skaizen Water",
     category: "Operations",
-    description: "Transformed water purification operations with automated systems and expanded B2B customer base significantly.",
+    description:
+      "Transformed water purification operations with automated systems and expanded B2B customer base significantly.",
     highlights: ["Process Automation", "B2B Sales", "Quality Management"],
   },
   {
     id: "tech-automation",
     name: "Tech Automation Suite",
     category: "Technology",
-    description: "Developed custom web applications and automation tools to streamline business operations and enhance productivity.",
+    description:
+      "Developed custom web applications and automation tools to streamline business operations and enhance productivity.",
     highlights: ["Web Development", "Workflow Automation", "Data Analytics"],
   },
   {
     id: "international-bd",
     name: "International Expansion",
     category: "Business Development",
-    description: "Spearheaded international business development initiatives, establishing partnerships across multiple countries.",
+    description:
+      "Spearheaded international business development initiatives, establishing partnerships across multiple countries.",
     highlights: ["Market Research", "Partner Relations", "Export Compliance"],
   },
 ];
@@ -99,12 +104,14 @@ export const projects = [
 export const services = [
   {
     title: "Operations Consulting",
-    description: "End-to-end operational assessment and optimization to improve efficiency, reduce costs, and scale sustainably.",
+    description:
+      "End-to-end operational assessment and optimization to improve efficiency, reduce costs, and scale sustainably.",
     icon: "Settings",
   },
   {
     title: "Sustainable GTM Strategy",
-    description: "Go-to-market strategies for sustainable products with focus on brand positioning and channel development.",
+    description:
+      "Go-to-market strategies for sustainable products with focus on brand positioning and channel development.",
     icon: "Leaf",
   },
   {
