@@ -9,11 +9,11 @@ interface HeroProps {
 
 export const Hero = ({ onOpenEnquiry }: HeroProps) => {
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 pb-16 px-4">
+    <section className="min-h-[85vh] flex items-center justify-center pt-16 pb-10 px-4 bg-gradient-to-br from-primary/5 via-background to-accent/5">
       <div className="container mx-auto text-center">
         {/* Large Initials */}
-        <div className="mb-8 animate-fade-in">
-          <span className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-primary/10 select-none">
+        <div className="mb-6 animate-fade-in">
+          <span className="text-8xl md:text-9xl lg:text-[12rem] font-bold bg-gradient-to-r from-primary/20 to-primary/5 bg-clip-text text-transparent select-none">
             {siteConfig.initials}
           </span>
         </div>

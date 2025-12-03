@@ -11,7 +11,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export const BeyondWork = () => {
   return (
-    <section id="beyond-work" className="py-16 md:py-24 px-4">
+    <section id="beyond-work" className="py-10 md:py-14 px-4">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -30,7 +30,7 @@ export const BeyondWork = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardContent className="p-6 text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-3">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-accent/20 to-primary/10 text-primary mb-3">
                   {iconMap[item.icon]}
                 </div>
                 <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>

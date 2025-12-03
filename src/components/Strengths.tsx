@@ -13,7 +13,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export const Strengths = () => {
   return (
-    <section id="strengths" className="py-16 md:py-24 px-4 bg-muted/30">
+    <section id="strengths" className="py-10 md:py-14 px-4 bg-gradient-to-r from-primary/5 via-muted/30 to-accent/5">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -33,7 +33,7 @@ export const Strengths = () => {
             >
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-primary/15 to-primary/5 text-primary flex items-center justify-center">
                     {iconMap[strength.icon]}
                   </div>
                   <div>
