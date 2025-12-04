@@ -5,35 +5,37 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-8 px-4 border-t border-border bg-gradient-to-t from-muted/50 to-background">
+    <footer className="py-10 px-4 border-t border-border bg-gradient-to-t from-primary/5 to-background">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
-          <div className="text-2xl font-bold text-primary">{siteConfig.initials}</div>
+          <div className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            {siteConfig.initials}
+          </div>
 
           {/* Quick Links */}
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
             <a
               href="#strengths"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground hover:text-primary transition-colors"
             >
               Strengths
             </a>
             <a
               href="#projects"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground hover:text-primary transition-colors"
             >
               Projects
             </a>
             <a
               href="#services"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground hover:text-primary transition-colors"
             >
               Services
             </a>
             <a
               href="#beyond-work"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground hover:text-primary transition-colors"
             >
               Beyond Work
             </a>
@@ -43,19 +45,19 @@ export const Footer = () => {
           <div className="flex items-center gap-4">
             <a
               href={`mailto:${siteConfig.email}`}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all"
               aria-label="Email"
             >
-              <Mail size={20} />
+              <Mail size={18} />
             </a>
             <a
               href={siteConfig.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="w-10 h-10 rounded-full bg-secondary/10 text-secondary hover:bg-secondary hover:text-secondary-foreground flex items-center justify-center transition-all"
               aria-label="LinkedIn"
             >
-              <Linkedin size={20} />
+              <Linkedin size={18} />
             </a>
           </div>
         </div>

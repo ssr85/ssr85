@@ -15,7 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Loader2 } from "lucide-react";
+import { Loader2, Send } from "lucide-react";
 
 const enquirySchema = z.object({
   name: z
@@ -116,15 +116,18 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Get In Touch</DialogTitle>
-          <DialogDescription>
-            Fill out the form below and I'll get back to you as soon as possible.
-          </DialogDescription>
-        </DialogHeader>
+      <DialogContent className="sm:max-w-md p-0 overflow-hidden">
+        {/* Gradient Header */}
+        <div className="bg-gradient-to-r from-primary to-secondary p-6 text-primary-foreground">
+          <DialogHeader>
+            <DialogTitle className="text-primary-foreground text-xl">Get In Touch</DialogTitle>
+            <DialogDescription className="text-primary-foreground/80">
+              Fill out the form below and I'll get back to you as soon as possible.
+            </DialogDescription>
+          </DialogHeader>
+        </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-6">
           {/* Name */}
           <div className="space-y-2">
             <Label htmlFor="name">
@@ -135,6 +138,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               placeholder="Your full name"
               {...register("name")}
               aria-invalid={!!errors.name}
+              className="border-border focus:border-primary"
             />
             {errors.name && (
               <p className="text-sm text-destructive">{errors.name.message}</p>
@@ -152,6 +156,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               placeholder="your@email.com"
               {...register("email")}
               aria-invalid={!!errors.email}
+              className="border-border focus:border-primary"
             />
             {errors.email && (
               <p className="text-sm text-destructive">{errors.email.message}</p>
@@ -168,6 +173,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               placeholder="+91XXXXXXXXXX"
               {...register("phone")}
               aria-invalid={!!errors.phone}
+              className="border-border focus:border-primary"
             />
             {errors.phone && (
               <p className="text-sm text-destructive">{errors.phone.message}</p>
@@ -182,6 +188,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               placeholder="Your company (optional)"
               {...register("companyName")}
               aria-invalid={!!errors.companyName}
+              className="border-border focus:border-primary"
             />
             {errors.companyName && (
               <p className="text-sm text-destructive">{errors.companyName.message}</p>
@@ -199,6 +206,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               rows={4}
               {...register("requirement")}
               aria-invalid={!!errors.requirement}
+              className="border-border focus:border-primary"
             />
             {errors.requirement && (
               <p className="text-sm text-destructive">{errors.requirement.message}</p>
@@ -210,14 +218,21 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
             <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isSubmitting}>
+            <Button 
+              type="submit" 
+              disabled={isSubmitting}
+              className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
+            >
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   Sending...
                 </>
               ) : (
-                "Send Enquiry"
+                <>
+                  <Send className="mr-2 h-4 w-4" />
+                  Send Enquiry
+                </>
               )}
             </Button>
           </div>

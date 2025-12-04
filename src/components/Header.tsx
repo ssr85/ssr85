@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/data/content";
 
 interface HeaderProps {
@@ -38,7 +38,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-sm border-b border-border"
+          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -47,7 +47,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
           {/* Logo */}
           <a
             href="#"
-            className="text-2xl font-bold text-primary hover:text-primary/80 transition-colors"
+            className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:opacity-80 transition-opacity"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
@@ -62,19 +62,24 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
-                className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
+                className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
               >
                 {link.label}
               </button>
             ))}
-            <Button onClick={onOpenEnquiry} size="sm">
+            <Button 
+              onClick={onOpenEnquiry} 
+              size="sm"
+              className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-md shadow-primary/20 group"
+            >
               Get In Touch
+              <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
             </Button>
           </nav>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -84,18 +89,21 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border animate-fade-in">
+          <nav className="md:hidden py-4 border-t border-border animate-fade-in bg-background/95 backdrop-blur-md">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => scrollToSection(link.href)}
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium text-left py-2"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium text-left py-2"
                 >
                   {link.label}
                 </button>
               ))}
-              <Button onClick={onOpenEnquiry} className="mt-2">
+              <Button 
+                onClick={onOpenEnquiry} 
+                className="mt-2 bg-gradient-to-r from-primary to-secondary"
+              >
                 Get In Touch
               </Button>
             </div>
