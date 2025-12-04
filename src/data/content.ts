@@ -1,5 +1,7 @@
 // CMS-editable content file for Sarabjeet Rattan's portfolio
 
+// CMS-editable content file for Sarabjeet Rattan's portfolio
+
 export const siteConfig = {
   name: "Sarabjeet Rattan",
   initials: "SR",
@@ -12,23 +14,24 @@ export const siteConfig = {
 export const snapshotCards = [
   {
     title: "Core Experience",
-    description: "15+ years in operations, business development, and strategic growth across multiple industries",
+    description:
+      "15+ years building sustainable product and service operations, driving growth across manufacturing, B2B sales, and export markets.",
     icon: "Briefcase",
   },
   {
     title: "Technical Expertise",
     description:
-      "Web applications, automation systems, and data-driven decision making. Landing pages & System Integrations",
+      "Designing web apps, automation flows, and data-driven dashboards that reduce manual work and speed decision making.",
     icon: "Code",
   },
   {
     title: "Track Record",
-    description: "Successfully scaled startups and transformed operations",
+    description: "Proven history of scaling startups and improving operational KPIs through pragmatic process design.",
     icon: "TrendingUp",
   },
   {
     title: "Current Focus",
-    description: "Building sustainable businesses with tech-enabled operations and global market reach",
+    description: "Building tech-enabled, sustainable businesses with global distribution and resilient supply chains.",
     icon: "Target",
   },
 ];
@@ -36,32 +39,32 @@ export const snapshotCards = [
 export const strengths = [
   {
     title: "Strategic Planning",
-    description: "Developing comprehensive business strategies aligned with long-term vision and market opportunities",
+    description: "Translating vision into clear roadmaps: market analysis, product positioning, and growth milestones.",
     icon: "Compass",
   },
   {
     title: "Operations Excellence",
-    description: "Streamlining processes to maximize efficiency and reduce operational overhead",
+    description: "Process design, cost optimization, and operational controls to improve throughput and quality.",
     icon: "Settings",
   },
   {
     title: "Team Leadership",
-    description: "Building and mentoring high-performing teams that deliver exceptional results",
+    description: "Hiring, mentoring, and aligning teams to deliver against aggressive operational targets.",
     icon: "Users",
   },
   {
     title: "Business Development",
-    description: "Identifying and capturing growth opportunities in domestic and international markets",
+    description: "Opening new channels and partnerships for domestic and international growth.",
     icon: "Rocket",
   },
   {
     title: "Technology Integration",
-    description: "Leveraging modern tools and automation to enhance business capabilities",
+    description: "Applying modern tooling and automation to replace friction with repeatable systems.",
     icon: "Cpu",
   },
   {
     title: "Sustainable Growth",
-    description: "Creating business models that balance profitability with environmental responsibility",
+    description: "Designing business models that balance profitability with environmental responsibility.",
     icon: "Leaf",
   },
 ];
@@ -72,31 +75,28 @@ export const projects = [
     name: "OG Hemp",
     category: "Sustainable Business",
     description:
-      "Led the strategic development and market expansion of a premium hemp-based products company, establishing distribution channels across India.",
+      "Led strategy and market expansion for a premium hemp-products business, building distribution channels across India.",
     highlights: ["Market Strategy", "Brand Development", "Supply Chain Optimization"],
   },
   {
     id: "skaizen-water",
     name: "Skaizen Water",
     category: "Operations",
-    description:
-      "Transformed water purification operations with automated systems and expanded B2B customer base significantly.",
+    description: "Transformed water purification operations with automation and expanded the B2B customer base.",
     highlights: ["Process Automation", "B2B Sales", "Quality Management"],
   },
   {
     id: "tech-automation",
     name: "Tech Automation Suite",
     category: "Technology",
-    description:
-      "Developed custom web applications and automation tools to streamline business operations and enhance productivity.",
+    description: "Built custom web applications and automation tools to streamline workflows and surface key metrics.",
     highlights: ["Web Development", "Workflow Automation", "Data Analytics"],
   },
   {
     id: "international-bd",
     name: "International Expansion",
     category: "Business Development",
-    description:
-      "Spearheaded international business development initiatives, establishing partnerships across multiple countries.",
+    description: "Spearheaded market-entry efforts and partner development for exports and international sales.",
     highlights: ["Market Research", "Partner Relations", "Export Compliance"],
   },
 ];
@@ -104,24 +104,22 @@ export const projects = [
 export const services = [
   {
     title: "Operations Consulting",
-    description:
-      "End-to-end operational assessment and optimization to improve efficiency, reduce costs, and scale sustainably.",
+    description: "End-to-end operational audits and improvement plans to increase efficiency and lower costs.",
     icon: "Settings",
   },
   {
     title: "Sustainable GTM Strategy",
-    description:
-      "Go-to-market strategies for sustainable products with focus on brand positioning and channel development.",
+    description: "Go-to-market planning for sustainable products focused on positioning, channels, and unit economics.",
     icon: "Leaf",
   },
   {
     title: "WebApp & Automation",
-    description: "Custom web application development and business process automation to modernize operations.",
+    description: "Custom webapps and automation that eliminate bottlenecks and make teams more productive.",
     icon: "Code",
   },
   {
     title: "International Business Development",
-    description: "Market entry strategies, partner identification, and export compliance for global expansion.",
+    description: "Partner sourcing, compliance guidance, and practical market-entry support for exports.",
     icon: "Globe",
   },
 ];
