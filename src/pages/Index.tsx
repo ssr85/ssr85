@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { Stats } from "@/components/Stats";
 import { Snapshot } from "@/components/Snapshot";
 import { Strengths } from "@/components/Strengths";
 import { Projects } from "@/components/Projects";
@@ -20,6 +21,7 @@ const Index = () => {
       <Header onOpenEnquiry={openEnquiry} />
       <main>
         <Hero onOpenEnquiry={openEnquiry} />
+        <Stats />
         <Snapshot />
         <Strengths />
         <Projects />
