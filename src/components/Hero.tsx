@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Mail, Linkedin, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/data/content";
+import logo from "@/assets/logo.png";
 
 interface HeroProps {
   onOpenEnquiry: () => void;
@@ -15,11 +16,14 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
       
       <div className="container mx-auto text-center relative z-10">
-        {/* Large Initials */}
-        <div className="mb-6 animate-fade-in">
-          <span className="text-8xl md:text-9xl lg:text-[12rem] font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent select-none">
-            {siteConfig.initials}
-          </span>
+        {/* Logo */}
+        <div className="mb-6 animate-fade-in relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent blur-2xl opacity-30 scale-110" />
+          <img 
+            src={logo} 
+            alt={siteConfig.initials} 
+            className="h-40 md:h-48 lg:h-64 w-auto relative z-10"
+          />
         </div>
 
         {/* Name and Tagline */}
