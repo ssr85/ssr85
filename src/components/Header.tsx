@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
-import { siteConfig } from "@/data/content";
+import logo from "@/assets/SR_LOGO.png";
 
 interface HeaderProps {
   onOpenEnquiry: () => void;
@@ -47,13 +47,13 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
           {/* Logo */}
           <a
             href="#"
-            className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+            className="hover:opacity-80 transition-opacity"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            {siteConfig.initials}
+            <img src={logo} alt="SR Logo" className="h-10 md:h-12 w-auto" />
           </a>
 
           {/* Desktop Navigation */}
