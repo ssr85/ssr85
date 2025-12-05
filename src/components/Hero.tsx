@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Mail, Linkedin, ArrowRight } from "lucide-react";
@@ -8,13 +9,41 @@ interface HeroProps {
 }
 
 export const Hero = ({ onOpenEnquiry }: HeroProps) => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <section className="min-h-[85vh] flex items-center justify-center pt-16 pb-10 px-4 bg-gradient-to-br from-primary/10 via-background to-secondary/10 relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+      {/* Parallax decorative elements */}
+      <div 
+        className="absolute top-20 right-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl transition-transform duration-100"
+        style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+      />
+      <div 
+        className="absolute bottom-20 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl transition-transform duration-100"
+        style={{ transform: `translateY(${scrollY * 0.2}px)` }}
+      />
+      <div 
+        className="absolute top-1/3 left-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-3xl transition-transform duration-100"
+        style={{ transform: `translateY(${scrollY * 0.4}px)` }}
+      />
+      <div 
+        className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-accent/15 rounded-full blur-2xl transition-transform duration-100"
+        style={{ transform: `translateY(${scrollY * 0.15}px)` }}
+      />
       
-      <div className="container mx-auto text-center relative z-10">
+      <div 
+        className="container mx-auto text-center relative z-10"
+        style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+      >
         {/* Large Initials */}
         <div className="mb-6 animate-fade-in">
           <span className="text-8xl md:text-9xl lg:text-[12rem] font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent select-none">
