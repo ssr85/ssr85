@@ -58,7 +58,11 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
               alt="SR Logo"
               width={48}
               height={48}
-              className="h-10 md:h-12 w-auto mix-blend-multiply dark:mix-blend-screen dark:invert transition-transform duration-300 group-hover:scale-110" 
+              className={`h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-110 rounded ${
+                isScrolled 
+                  ? "bg-background" 
+                  : "bg-transparent"
+              }`}
             />
           </a>
 
