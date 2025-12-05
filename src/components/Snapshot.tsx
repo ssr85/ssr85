@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { snapshotCards } from "@/data/content";
 import { Briefcase, Code, TrendingUp, Target } from "lucide-react";
+import { StaggeredCard } from "@/components/ScrollAnimationWrapper";
 
 const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
   Briefcase: { icon: <Briefcase className="h-8 w-8" />, color: "from-primary to-primary/60" },
@@ -26,21 +27,19 @@ export const Snapshot = () => {
           {snapshotCards.map((card, index) => {
             const iconData = iconMap[card.icon];
             return (
-              <Card
-                key={card.title}
-                className="bg-card border-border hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 animate-fade-in group"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardContent className="p-6 text-center">
-                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${iconData.color} text-primary-foreground mb-4 group-hover:scale-110 transition-transform`}>
-                    {iconData.icon}
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {card.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">{card.description}</p>
-                </CardContent>
-              </Card>
+              <StaggeredCard key={card.title} index={index}>
+                <Card className="bg-card border-border hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 group h-full">
+                  <CardContent className="p-6 text-center">
+                    <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${iconData.color} text-primary-foreground mb-4 group-hover:scale-110 transition-transform`}>
+                      {iconData.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                      {card.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">{card.description}</p>
+                  </CardContent>
+                </Card>
+              </StaggeredCard>
             );
           })}
         </div>

@@ -25,21 +25,13 @@ const Index = () => {
         <ScrollAnimationWrapper>
           <Stats />
         </ScrollAnimationWrapper>
-        <ScrollAnimationWrapper>
-          <Snapshot />
-        </ScrollAnimationWrapper>
-        <ScrollAnimationWrapper>
-          <Strengths />
-        </ScrollAnimationWrapper>
+        <Snapshot />
+        <Strengths />
         <ScrollAnimationWrapper>
           <Projects />
         </ScrollAnimationWrapper>
-        <ScrollAnimationWrapper>
-          <Services onOpenEnquiry={openEnquiry} />
-        </ScrollAnimationWrapper>
-        <ScrollAnimationWrapper>
-          <BeyondWork />
-        </ScrollAnimationWrapper>
+        <Services onOpenEnquiry={openEnquiry} />
+        <BeyondWork />
       </main>
       <Footer />
       <EnquiryModal isOpen={isEnquiryOpen} onClose={closeEnquiry} />
