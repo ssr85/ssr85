@@ -47,13 +47,17 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
           {/* Logo */}
           <a
             href="#"
-            className="hover:opacity-80 transition-opacity"
+            className="group"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            <img src={logo} alt="SR Logo" className="h-10 md:h-12 w-auto" />
+            <img 
+              src={logo} 
+              alt="SR Logo" 
+              className="h-10 md:h-12 w-auto mix-blend-multiply dark:mix-blend-screen dark:invert transition-transform duration-300 group-hover:scale-110" 
+            />
           </a>
 
           {/* Desktop Navigation */}

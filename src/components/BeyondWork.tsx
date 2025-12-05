@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { beyondWork } from "@/data/content";
 import { Plane, BookOpen, Dumbbell, GraduationCap } from "lucide-react";
+import { StaggeredCard } from "@/components/ScrollAnimationWrapper";
 
 const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
   Plane: { icon: <Plane className="h-6 w-6" />, color: "bg-accent/15 text-accent" },
@@ -29,19 +30,17 @@ export const BeyondWork = () => {
           {beyondWork.map((item, index) => {
             const iconData = iconMap[item.icon];
             return (
-              <Card
-                key={item.title}
-                className="bg-card border-border hover:border-primary/50 hover:shadow-lg transition-all duration-300 animate-fade-in group"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardContent className="p-6 text-center">
-                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl ${iconData.color} mb-3 group-hover:scale-110 transition-transform`}>
-                    {iconData.icon}
-                  </div>
-                  <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
-                  <p className="text-xs text-muted-foreground">{item.description}</p>
-                </CardContent>
-              </Card>
+              <StaggeredCard key={item.title} index={index}>
+                <Card className="bg-card border-border hover:border-primary/50 hover:shadow-lg transition-all duration-300 group h-full">
+                  <CardContent className="p-6 text-center">
+                    <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl ${iconData.color} mb-3 group-hover:scale-110 transition-transform`}>
+                      {iconData.icon}
+                    </div>
+                    <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
+                    <p className="text-xs text-muted-foreground">{item.description}</p>
+                  </CardContent>
+                </Card>
+              </StaggeredCard>
             );
           })}
         </div>
