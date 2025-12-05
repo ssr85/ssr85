@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Stats } from "@/components/Stats";
@@ -8,8 +8,9 @@ import { Projects } from "@/components/Projects";
 import { Services } from "@/components/Services";
 import { BeyondWork } from "@/components/BeyondWork";
 import { Footer } from "@/components/Footer";
-import { EnquiryModal } from "@/components/EnquiryModal";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
+
+const EnquiryModal = lazy(() => import("@/components/EnquiryModal").then(m => ({ default: m.EnquiryModal })));
 
 const Index = () => {
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
@@ -34,7 +35,9 @@ const Index = () => {
         <BeyondWork />
       </main>
       <Footer />
-      <EnquiryModal isOpen={isEnquiryOpen} onClose={closeEnquiry} />
+      <Suspense fallback={null}>
+        <EnquiryModal isOpen={isEnquiryOpen} onClose={closeEnquiry} />
+      </Suspense>
     </div>
   );
 };
