@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
-import logo from "@/assets/SR_LOGO_optimized.webp";
+import logo from "@/assets/SR_LOGO_no_bg.png";
 
 interface HeaderProps {
   onOpenEnquiry: () => void;
@@ -58,11 +58,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
               alt="SR Logo"
               width={48}
               height={48}
-              className={`h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-110 rounded ${
-                isScrolled 
-                  ? "bg-background" 
-                  : "bg-transparent"
-              }`}
+              className="h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-110"
             />
           </a>
 
