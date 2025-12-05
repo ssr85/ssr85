@@ -54,7 +54,7 @@ function isRateLimited(clientIP: string): boolean {
 
 // Validation helpers
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const PHONE_REGEX = /^[\d\s\-+()]{10,20}$/;
+const PHONE_REGEX = /^\+[1-9]\d{9,14}$/;
 
 interface ValidationError {
   field: string;
@@ -86,7 +86,7 @@ function validateInput(data: EnquiryRequest): ValidationError[] {
   if (!data.phone || typeof data.phone !== "string") {
     errors.push({ field: "phone", message: "Phone is required" });
   } else if (!PHONE_REGEX.test(data.phone.trim())) {
-    errors.push({ field: "phone", message: "Phone must be 10-20 digits" });
+    errors.push({ field: "phone", message: "Phone must start with + followed by country code and 10-15 digits (e.g., +919876543210)" });
   }
 
   // Company name validation (optional but limited)

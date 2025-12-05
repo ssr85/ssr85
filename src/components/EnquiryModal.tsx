@@ -21,7 +21,7 @@ const enquirySchema = z.object({
   name: z
     .string()
     .trim()
-    .min(1, "Name is required")
+    .min(2, "Name must be at least 2 characters")
     .max(100, "Name must be less than 100 characters"),
   email: z
     .string()
@@ -34,20 +34,20 @@ const enquirySchema = z.object({
     .trim()
     .min(1, "Phone number is required")
     .regex(
-      /^\+?[1-9]\d{9,14}$/,
-      "Please enter a valid phone number (10-15 digits, optionally starting with +)"
+      /^\+[1-9]\d{9,14}$/,
+      "Phone must start with + followed by country code and 10-15 digits (e.g., +919876543210)"
     ),
   companyName: z
     .string()
     .trim()
-    .max(200, "Company name must be less than 200 characters")
+    .max(100, "Company name must be less than 100 characters")
     .optional()
     .or(z.literal("")),
   requirement: z
     .string()
     .trim()
-    .min(1, "Please describe your requirement")
-    .max(1000, "Requirement must be less than 1000 characters"),
+    .min(10, "Requirement must be at least 10 characters")
+    .max(2000, "Requirement must be less than 2000 characters"),
 });
 
 type EnquiryFormData = z.infer<typeof enquirySchema>;
@@ -81,7 +81,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.functions.invoke("send-enquiry", {
+      const { data: responseData, error } = await supabase.functions.invoke("send-enquiry", {
         body: {
           name: data.name,
           email: data.email,
@@ -92,7 +92,54 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
       });
 
       if (error) {
-        throw new Error(error.message || "Failed to send enquiry");
+        console.error("Server error:", error);
+        
+        // Try to parse error details from the response
+        let errorMessage = "Something went wrong. Please try again or email directly.";
+        
+        try {
+          // Check if error has context with details
+          const errorBody = error.context;
+          if (errorBody?.details && Array.isArray(errorBody.details)) {
+            const validationErrors = errorBody.details
+              .map((e: { field: string; message: string }) => `${e.field}: ${e.message}`)
+              .join("\n");
+            console.error("Validation errors:", validationErrors);
+            errorMessage = validationErrors;
+          } else if (errorBody?.error) {
+            errorMessage = errorBody.error;
+          }
+        } catch (parseError) {
+          console.error("Error parsing server response:", parseError);
+        }
+
+        toast({
+          title: "Validation Error",
+          description: errorMessage,
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Check for error in response data (non-2xx responses)
+      if (responseData?.error) {
+        console.error("Response error:", responseData);
+        
+        let errorMessage = responseData.error;
+        if (responseData.details && Array.isArray(responseData.details)) {
+          const validationErrors = responseData.details
+            .map((e: { field: string; message: string }) => `${e.field}: ${e.message}`)
+            .join("\n");
+          console.error("Validation errors:", validationErrors);
+          errorMessage = validationErrors;
+        }
+
+        toast({
+          title: "Validation Error",
+          description: errorMessage,
+          variant: "destructive",
+        });
+        return;
       }
 
       toast({
