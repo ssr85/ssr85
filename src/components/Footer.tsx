@@ -8,11 +8,6 @@ export const Footer = () => {
     <footer className="py-10 px-4 border-t border-border bg-gradient-to-t from-primary/5 to-background">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo */}
-          <div className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            {siteConfig.initials}
-          </div>
-
           {/* Quick Links */}
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
             <a

@@ -9,6 +9,7 @@ import { Services } from "@/components/Services";
 import { BeyondWork } from "@/components/BeyondWork";
 import { Footer } from "@/components/Footer";
 import { EnquiryModal } from "@/components/EnquiryModal";
+import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 
 const Index = () => {
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
@@ -21,12 +22,24 @@ const Index = () => {
       <Header onOpenEnquiry={openEnquiry} />
       <main>
         <Hero onOpenEnquiry={openEnquiry} />
-        <Stats />
-        <Snapshot />
-        <Strengths />
-        <Projects />
-        <Services onOpenEnquiry={openEnquiry} />
-        <BeyondWork />
+        <ScrollAnimationWrapper>
+          <Stats />
+        </ScrollAnimationWrapper>
+        <ScrollAnimationWrapper>
+          <Snapshot />
+        </ScrollAnimationWrapper>
+        <ScrollAnimationWrapper>
+          <Strengths />
+        </ScrollAnimationWrapper>
+        <ScrollAnimationWrapper>
+          <Projects />
+        </ScrollAnimationWrapper>
+        <ScrollAnimationWrapper>
+          <Services onOpenEnquiry={openEnquiry} />
+        </ScrollAnimationWrapper>
+        <ScrollAnimationWrapper>
+          <BeyondWork />
+        </ScrollAnimationWrapper>
       </main>
       <Footer />
       <EnquiryModal isOpen={isEnquiryOpen} onClose={closeEnquiry} />
