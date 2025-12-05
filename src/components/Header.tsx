@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
-import logo from "@/assets/SR_LOGO.png";
+import logo from "@/assets/SR_LOGO_optimized.webp";
 
 interface HeaderProps {
   onOpenEnquiry: () => void;
@@ -55,7 +55,9 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
           >
             <img 
               src={logo} 
-              alt="SR Logo" 
+              alt="SR Logo"
+              width={48}
+              height={48}
               className="h-10 md:h-12 w-auto mix-blend-multiply dark:mix-blend-screen dark:invert transition-transform duration-300 group-hover:scale-110" 
             />
           </a>
