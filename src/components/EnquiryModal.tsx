@@ -145,16 +145,16 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
       if (error) {
         console.error("Server error:", error);
         
+        let errorTitle = "Error";
         let errorMessage = "Something went wrong. Please try again or email directly.";
         
         try {
           const errorBody = error.context;
           if (errorBody?.details && Array.isArray(errorBody.details)) {
-            const validationErrors = errorBody.details
-              .map((e: { field: string; message: string }) => `${e.field}: ${e.message}`)
+            errorTitle = "Validation Error";
+            errorMessage = errorBody.details
+              .map((e: { field: string; message: string }) => `• ${e.field.charAt(0).toUpperCase() + e.field.slice(1)}: ${e.message}`)
               .join("\n");
-            console.error("Validation errors:", validationErrors);
-            errorMessage = validationErrors;
           } else if (errorBody?.error) {
             errorMessage = errorBody.error;
           }
@@ -163,7 +163,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
         }
 
         toast({
-          title: "Validation Error",
+          title: errorTitle,
           description: errorMessage,
           variant: "destructive",
         });
@@ -173,17 +173,18 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
       if (responseData?.error) {
         console.error("Response error:", responseData);
         
+        let errorTitle = "Error";
         let errorMessage = responseData.error;
+        
         if (responseData.details && Array.isArray(responseData.details)) {
-          const validationErrors = responseData.details
-            .map((e: { field: string; message: string }) => `${e.field}: ${e.message}`)
+          errorTitle = "Validation Error";
+          errorMessage = responseData.details
+            .map((e: { field: string; message: string }) => `• ${e.field.charAt(0).toUpperCase() + e.field.slice(1)}: ${e.message}`)
             .join("\n");
-          console.error("Validation errors:", validationErrors);
-          errorMessage = validationErrors;
         }
 
         toast({
-          title: "Validation Error",
+          title: errorTitle,
           description: errorMessage,
           variant: "destructive",
         });
