@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -16,7 +16,17 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2, Send } from "lucide-react";
-import { SimpleCaptcha } from "@/components/SimpleCaptcha";
+
+const RECAPTCHA_SITE_KEY = "6Lf5AOcSAAAAAKcPeo0ie99Ksfw14mGTEQMegT98";
+
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (callback: () => void) => void;
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+    };
+  }
+}
 
 const enquirySchema = z.object({
   name: z
@@ -60,7 +70,6 @@ interface EnquiryModalProps {
 
 export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const { toast } = useToast();
 
   const {
@@ -79,27 +88,49 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
     },
   });
 
-  const handleCaptchaVerify = useCallback((token: string) => {
-    setCaptchaToken(token);
-  }, []);
-
-  const handleCaptchaError = useCallback(() => {
-    setCaptchaToken(null);
-  }, []);
+  const executeRecaptcha = async (): Promise<string | null> => {
+    try {
+      return new Promise((resolve) => {
+        if (!window.grecaptcha) {
+          console.error("reCAPTCHA not loaded");
+          resolve(null);
+          return;
+        }
+        window.grecaptcha.ready(async () => {
+          try {
+            const token = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, {
+              action: "submit_enquiry",
+            });
+            resolve(token);
+          } catch (err) {
+            console.error("reCAPTCHA execution error:", err);
+            resolve(null);
+          }
+        });
+      });
+    } catch (err) {
+      console.error("reCAPTCHA error:", err);
+      return null;
+    }
+  };
 
   const onSubmit = async (data: EnquiryFormData) => {
-    if (!captchaToken) {
-      toast({
-        title: "Verification Required",
-        description: "Please complete the security check before submitting.",
-        variant: "destructive",
-      });
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
+      // Get reCAPTCHA token
+      const recaptchaToken = await executeRecaptcha();
+      
+      if (!recaptchaToken) {
+        toast({
+          title: "Security Check Failed",
+          description: "Please refresh the page and try again.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
       const { data: responseData, error } = await supabase.functions.invoke("send-enquiry", {
         body: {
           name: data.name,
@@ -107,18 +138,16 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
           phone: data.phone,
           companyName: data.companyName || "",
           requirement: data.requirement,
-          captchaToken,
+          recaptchaToken,
         },
       });
 
       if (error) {
         console.error("Server error:", error);
         
-        // Try to parse error details from the response
         let errorMessage = "Something went wrong. Please try again or email directly.";
         
         try {
-          // Check if error has context with details
           const errorBody = error.context;
           if (errorBody?.details && Array.isArray(errorBody.details)) {
             const validationErrors = errorBody.details
@@ -141,7 +170,6 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
         return;
       }
 
-      // Check for error in response data (non-2xx responses)
       if (responseData?.error) {
         console.error("Response error:", responseData);
         
@@ -168,7 +196,6 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
       });
 
       reset();
-      setCaptchaToken(null);
       onClose();
     } catch (error) {
       console.error("Error sending enquiry:", error);
@@ -281,8 +308,18 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
             )}
           </div>
 
-          {/* CAPTCHA */}
-          <SimpleCaptcha onVerify={handleCaptchaVerify} onError={handleCaptchaError} />
+          {/* reCAPTCHA Notice */}
+          <p className="text-xs text-muted-foreground">
+            This site is protected by reCAPTCHA and the Google{" "}
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
+              Privacy Policy
+            </a>{" "}
+            and{" "}
+            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
+              Terms of Service
+            </a>{" "}
+            apply.
+          </p>
 
           {/* Submit Button */}
           <div className="flex justify-end gap-3 pt-4">
