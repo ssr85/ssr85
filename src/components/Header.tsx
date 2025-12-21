@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import logo from "@/assets/SR_LOGO_no_bg.png";
 
 interface HeaderProps {
@@ -11,7 +12,6 @@ const navLinks = [
   { label: "Strengths", href: "#strengths" },
   { label: "Projects", href: "#projects" },
   { label: "Services", href: "#services" },
-  { label: "Beyond Work", href: "#beyond-work" },
 ];
 
 export const Header = ({ onOpenEnquiry }: HeaderProps) => {
@@ -58,7 +58,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
               alt="SR Logo"
               width={48}
               height={48}
-              className="h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-110"
+              className="h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-110 dark:invert"
             />
           </a>
 
@@ -81,6 +81,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
               Get In Touch
               <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
             </Button>
+            <ThemeToggle />
           </nav>
 
           {/* Mobile Menu Button */}
@@ -106,12 +107,15 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                   {link.label}
                 </button>
               ))}
-              <Button 
-                onClick={onOpenEnquiry} 
-                className="mt-2 bg-gradient-to-r from-primary to-secondary"
-              >
-                Get In Touch
-              </Button>
+              <div className="flex items-center gap-4 mt-2">
+                <Button 
+                  onClick={onOpenEnquiry} 
+                  className="flex-1 bg-gradient-to-r from-primary to-secondary"
+                >
+                  Get In Touch
+                </Button>
+                <ThemeToggle />
+              </div>
             </div>
           </nav>
         )}
