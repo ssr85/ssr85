@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2, Send } from "lucide-react";
+import { SimpleCaptcha } from "@/components/SimpleCaptcha";
 
 const enquirySchema = z.object({
   name: z
@@ -59,6 +60,7 @@ interface EnquiryModalProps {
 
 export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const { toast } = useToast();
 
   const {
@@ -77,7 +79,24 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
     },
   });
 
+  const handleCaptchaVerify = useCallback((token: string) => {
+    setCaptchaToken(token);
+  }, []);
+
+  const handleCaptchaError = useCallback(() => {
+    setCaptchaToken(null);
+  }, []);
+
   const onSubmit = async (data: EnquiryFormData) => {
+    if (!captchaToken) {
+      toast({
+        title: "Verification Required",
+        description: "Please complete the security check before submitting.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -88,6 +107,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
           phone: data.phone,
           companyName: data.companyName || "",
           requirement: data.requirement,
+          captchaToken,
         },
       });
 
@@ -148,6 +168,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
       });
 
       reset();
+      setCaptchaToken(null);
       onClose();
     } catch (error) {
       console.error("Error sending enquiry:", error);
@@ -259,6 +280,9 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               <p className="text-sm text-destructive">{errors.requirement.message}</p>
             )}
           </div>
+
+          {/* CAPTCHA */}
+          <SimpleCaptcha onVerify={handleCaptchaVerify} onError={handleCaptchaError} />
 
           {/* Submit Button */}
           <div className="flex justify-end gap-3 pt-4">
