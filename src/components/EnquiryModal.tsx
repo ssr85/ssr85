@@ -17,7 +17,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2, Send } from "lucide-react";
 
-const RECAPTCHA_SITE_KEY = "6Lf5AOcSAAAAAKcPeo0ie99Ksfw14mGTEQMegT98";
+const RECAPTCHA_SITE_KEY = "6LeVgjIsAAAAAN6e8q-EldrjmBTN2n1rVPj5aGEv";
 
 declare global {
   interface Window {
