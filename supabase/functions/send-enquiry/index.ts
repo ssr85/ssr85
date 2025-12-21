@@ -188,7 +188,10 @@ const handler = async (req: Request): Promise<Response> => {
     if (!requestData.recaptchaToken) {
       console.warn("No reCAPTCHA token provided");
       return new Response(
-        JSON.stringify({ error: "Security verification failed. Please refresh and try again." }),
+        JSON.stringify({ 
+          error: "Validation failed", 
+          details: [{ field: "captcha", message: "Security verification is required. Please refresh and try again." }]
+        }),
         {
           status: 400,
           headers: { "Content-Type": "application/json", ...corsHeaders },
@@ -201,7 +204,10 @@ const handler = async (req: Request): Promise<Response> => {
     if (!recaptchaResult.success) {
       console.warn(`reCAPTCHA verification failed for IP: ${clientIP}`);
       return new Response(
-        JSON.stringify({ error: "Security verification failed. Please refresh and try again." }),
+        JSON.stringify({ 
+          error: "Validation failed", 
+          details: [{ field: "captcha", message: "Security verification failed. Please refresh and try again." }]
+        }),
         {
           status: 400,
           headers: { "Content-Type": "application/json", ...corsHeaders },
@@ -212,7 +218,10 @@ const handler = async (req: Request): Promise<Response> => {
     if (recaptchaResult.score < RECAPTCHA_SCORE_THRESHOLD) {
       console.warn(`Low reCAPTCHA score (${recaptchaResult.score}) for IP: ${clientIP}`);
       return new Response(
-        JSON.stringify({ error: "Request flagged as suspicious. Please try again or contact directly." }),
+        JSON.stringify({ 
+          error: "Validation failed", 
+          details: [{ field: "captcha", message: "Request flagged as suspicious. Please try again or contact directly." }]
+        }),
         {
           status: 403,
           headers: { "Content-Type": "application/json", ...corsHeaders },
