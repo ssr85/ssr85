@@ -149,7 +149,16 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
         let errorMessage = "Something went wrong. Please try again or email directly.";
         
         try {
-          const errorBody = error.context;
+          // The context has json() as a function that needs to be called
+          let errorBody = null;
+          if (error.context && typeof error.context.json === 'function') {
+            errorBody = await error.context.json();
+          } else if (error.context) {
+            errorBody = error.context;
+          }
+          
+          console.log("Parsed error body:", errorBody);
+          
           if (errorBody?.details && Array.isArray(errorBody.details)) {
             errorTitle = "Validation Error";
             errorMessage = errorBody.details
