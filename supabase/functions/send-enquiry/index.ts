@@ -13,15 +13,16 @@ interface EnquiryRequest {
   phone: string;
   companyName?: string;
   requirement: string;
+  captchaToken?: string;
 }
 
 // In-memory rate limiting store (resets on function cold start)
-const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
-const RATE_LIMIT_MAX = 5; // Max requests per window
-const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour window
+const rateLimitStore = new Map<string, { count: number; resetTime: number; blocked: boolean }>();
+const RATE_LIMIT_MAX = 3; // Max requests per window
+const RATE_LIMIT_WINDOW_MS = 30 * 60 * 1000; // 30 minute window
+const BLOCK_DURATION_MS = 60 * 60 * 1000; // 1 hour block for abusers
 
 function getClientIP(req: Request): string {
-  // Check common headers for client IP
   const forwarded = req.headers.get("x-forwarded-for");
   if (forwarded) {
     return forwarded.split(",")[0].trim();
@@ -33,23 +34,33 @@ function getClientIP(req: Request): string {
   return "unknown";
 }
 
-function isRateLimited(clientIP: string): boolean {
+function checkRateLimit(clientIP: string): { limited: boolean; remaining: number } {
   const now = Date.now();
   const record = rateLimitStore.get(clientIP);
 
+  // Check if IP is blocked
+  if (record?.blocked && now < record.resetTime) {
+    console.warn(`Blocked IP attempted request: ${clientIP}`);
+    return { limited: true, remaining: 0 };
+  }
+
   if (!record || now > record.resetTime) {
     // First request or window expired - start new window
-    rateLimitStore.set(clientIP, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
-    return false;
+    rateLimitStore.set(clientIP, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS, blocked: false });
+    return { limited: false, remaining: RATE_LIMIT_MAX - 1 };
   }
 
   if (record.count >= RATE_LIMIT_MAX) {
-    return true;
+    // Block the IP for longer duration on repeated violations
+    record.blocked = true;
+    record.resetTime = now + BLOCK_DURATION_MS;
+    console.warn(`Rate limit exceeded, blocking IP: ${clientIP}`);
+    return { limited: true, remaining: 0 };
   }
 
   // Increment count
   record.count++;
-  return false;
+  return { limited: false, remaining: RATE_LIMIT_MAX - record.count };
 }
 
 // Validation helpers
@@ -103,6 +114,11 @@ function validateInput(data: EnquiryRequest): ValidationError[] {
     errors.push({ field: "requirement", message: "Requirement must be less than 2000 characters" });
   }
 
+  // CAPTCHA token validation
+  if (!data.captchaToken || typeof data.captchaToken !== "string" || data.captchaToken.length < 10) {
+    errors.push({ field: "captcha", message: "Security verification is required" });
+  }
+
   return errors;
 }
 
@@ -115,13 +131,19 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     // Rate limiting check
     const clientIP = getClientIP(req);
-    if (isRateLimited(clientIP)) {
+    const rateLimit = checkRateLimit(clientIP);
+    
+    if (rateLimit.limited) {
       console.warn(`Rate limit exceeded for IP: ${clientIP}`);
       return new Response(
         JSON.stringify({ error: "Too many requests. Please try again later." }),
         {
           status: 429,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
+          headers: { 
+            "Content-Type": "application/json", 
+            "Retry-After": "1800",
+            ...corsHeaders 
+          },
         }
       );
     }
@@ -156,7 +178,7 @@ const handler = async (req: Request): Promise<Response> => {
     const companyName = requestData.companyName?.trim() || "";
     const requirement = requestData.requirement.trim();
 
-    console.log("Sending enquiry email from:", email);
+    console.log(`Processing enquiry from: ${email}, IP: ${clientIP}, remaining requests: ${rateLimit.remaining}`);
 
     // Create SMTP client for Gmail
     const client = new SMTPClient({
@@ -180,6 +202,7 @@ Name: ${name}
 Email: ${email}
 Phone: ${phone}
 Company: ${companyName || "Not provided"}
+Client IP: ${clientIP}
 -----------------------------------
 
 Requirement:
