@@ -127,7 +127,7 @@ export const services = [
 export const beyondWork = [
   {
     title: "Travel",
-    description: "Exploring new cultures and perspectives",
+    description: "Finding inspiration in the unfamiliar.",
     icon: "Plane",
   },
   {
@@ -137,12 +137,12 @@ export const beyondWork = [
   },
   {
     title: "Fitness",
-    description: "Maintaining balance through regular exercise",
+    description: "Mind, Body, Work. In that order.",
     icon: "Dumbbell",
   },
   {
     title: "Mentoring",
-    description: "Guiding aspiring entrepreneurs",
+    description: "Providing the strategic shortcuts I wish I knew early in my career.",
     icon: "GraduationCap",
   },
 ];
