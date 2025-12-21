@@ -24,7 +24,7 @@ const iconMap: Record<string, {
   }
 };
 export const BeyondWork = () => {
-  return <section id="beyond-work" className="py-12 md:py-16 px-4 bg-muted/30">
+  return <section id="beyond-work" className="py-12 md:py-16 px-4 bg-muted/50">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">Personal</span>
