@@ -2,13 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -46,14 +40,9 @@ const enquirySchema = z.object({
     .min(1, "Phone number is required")
     .regex(
       /^\+[1-9]\d{9,14}$/,
-      "Phone must start with + followed by country code and 10-15 digits (e.g., +919876543210)"
+      "Phone must start with + followed by country code and 10-15 digits (e.g., +919876543210)",
     ),
-  companyName: z
-    .string()
-    .trim()
-    .max(100, "Company name must be less than 100 characters")
-    .optional()
-    .or(z.literal("")),
+  companyName: z.string().trim().max(100, "Company name must be less than 100 characters").optional().or(z.literal("")),
   requirement: z
     .string()
     .trim()
@@ -120,7 +109,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
     try {
       // Get reCAPTCHA token
       const recaptchaToken = await executeRecaptcha();
-      
+
       if (!recaptchaToken) {
         toast({
           title: "Security Check Failed",
@@ -144,25 +133,28 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
 
       if (error) {
         console.error("Server error:", error);
-        
+
         let errorTitle = "Error";
         let errorMessage = "Something went wrong. Please try again or email directly.";
-        
+
         try {
           // The context has json() as a function that needs to be called
           let errorBody = null;
-          if (error.context && typeof error.context.json === 'function') {
+          if (error.context && typeof error.context.json === "function") {
             errorBody = await error.context.json();
           } else if (error.context) {
             errorBody = error.context;
           }
-          
+
           console.log("Parsed error body:", errorBody);
-          
+
           if (errorBody?.details && Array.isArray(errorBody.details)) {
             errorTitle = "Validation Error";
             errorMessage = errorBody.details
-              .map((e: { field: string; message: string }) => `• ${e.field.charAt(0).toUpperCase() + e.field.slice(1)}: ${e.message}`)
+              .map(
+                (e: { field: string; message: string }) =>
+                  `• ${e.field.charAt(0).toUpperCase() + e.field.slice(1)}: ${e.message}`,
+              )
               .join("\n");
           } else if (errorBody?.error) {
             errorMessage = errorBody.error;
@@ -181,14 +173,17 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
 
       if (responseData?.error) {
         console.error("Response error:", responseData);
-        
+
         let errorTitle = "Error";
         let errorMessage = responseData.error;
-        
+
         if (responseData.details && Array.isArray(responseData.details)) {
           errorTitle = "Validation Error";
           errorMessage = responseData.details
-            .map((e: { field: string; message: string }) => `• ${e.field.charAt(0).toUpperCase() + e.field.slice(1)}: ${e.message}`)
+            .map(
+              (e: { field: string; message: string }) =>
+                `• ${e.field.charAt(0).toUpperCase() + e.field.slice(1)}: ${e.message}`,
+            )
             .join("\n");
         }
 
@@ -211,7 +206,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
       console.error("Error sending enquiry:", error);
       toast({
         title: "Failed to Send",
-        description: "Something went wrong. Please try again or email directly.",
+        description: "Something went wrong. Please try again or email me directly on sarabjit.rattan@gmail.com",
         variant: "destructive",
       });
     } finally {
@@ -245,9 +240,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               aria-invalid={!!errors.name}
               className="border-border focus:border-primary"
             />
-            {errors.name && (
-              <p className="text-sm text-destructive">{errors.name.message}</p>
-            )}
+            {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
           </div>
 
           {/* Email */}
@@ -263,9 +256,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               aria-invalid={!!errors.email}
               className="border-border focus:border-primary"
             />
-            {errors.email && (
-              <p className="text-sm text-destructive">{errors.email.message}</p>
-            )}
+            {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
           </div>
 
           {/* Phone */}
@@ -280,9 +271,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               aria-invalid={!!errors.phone}
               className="border-border focus:border-primary"
             />
-            {errors.phone && (
-              <p className="text-sm text-destructive">{errors.phone.message}</p>
-            )}
+            {errors.phone && <p className="text-sm text-destructive">{errors.phone.message}</p>}
           </div>
 
           {/* Company Name (Optional) */}
@@ -295,9 +284,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               aria-invalid={!!errors.companyName}
               className="border-border focus:border-primary"
             />
-            {errors.companyName && (
-              <p className="text-sm text-destructive">{errors.companyName.message}</p>
-            )}
+            {errors.companyName && <p className="text-sm text-destructive">{errors.companyName.message}</p>}
           </div>
 
           {/* Requirement */}
@@ -313,19 +300,27 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               aria-invalid={!!errors.requirement}
               className="border-border focus:border-primary"
             />
-            {errors.requirement && (
-              <p className="text-sm text-destructive">{errors.requirement.message}</p>
-            )}
+            {errors.requirement && <p className="text-sm text-destructive">{errors.requirement.message}</p>}
           </div>
 
           {/* reCAPTCHA Notice */}
           <p className="text-xs text-muted-foreground">
             This site is protected by reCAPTCHA and the Google{" "}
-            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
+            <a
+              href="https://policies.google.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-primary"
+            >
               Privacy Policy
             </a>{" "}
             and{" "}
-            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
+            <a
+              href="https://policies.google.com/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-primary"
+            >
               Terms of Service
             </a>{" "}
             apply.
@@ -336,8 +331,8 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
             <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
               Cancel
             </Button>
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               disabled={isSubmitting}
               className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
             >
