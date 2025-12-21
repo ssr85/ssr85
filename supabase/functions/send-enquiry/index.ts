@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -283,6 +284,37 @@ ${requirement}
 -----------------------------------
 This email was sent from the portfolio website contact form.
     `.trim();
+
+    // Initialize Supabase client with service role for database insert
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const supabaseServiceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    
+    if (!supabaseUrl || !supabaseServiceRoleKey) {
+      console.error("Supabase credentials not configured");
+      throw new Error("Database service not configured");
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
+
+    // Save enquiry to database
+    const { error: dbError } = await supabase
+      .from("enquiries")
+      .insert({
+        name,
+        email,
+        phone,
+        company_name: companyName || null,
+        requirement,
+        client_ip: clientIP,
+        recaptcha_score: recaptchaResult.score,
+      });
+
+    if (dbError) {
+      console.error("Database insert error:", dbError);
+      // Continue with email sending even if DB fails
+    } else {
+      console.log("Enquiry saved to database successfully");
+    }
 
     // Send email
     await client.send({
