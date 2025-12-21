@@ -13,7 +13,7 @@ interface EnquiryRequest {
   phone: string;
   companyName?: string;
   requirement: string;
-  captchaToken?: string;
+  recaptchaToken?: string;
 }
 
 // In-memory rate limiting store (resets on function cold start)
@@ -21,6 +21,9 @@ const rateLimitStore = new Map<string, { count: number; resetTime: number; block
 const RATE_LIMIT_MAX = 3; // Max requests per window
 const RATE_LIMIT_WINDOW_MS = 30 * 60 * 1000; // 30 minute window
 const BLOCK_DURATION_MS = 60 * 60 * 1000; // 1 hour block for abusers
+
+const RECAPTCHA_SECRET_KEY = Deno.env.get("RECAPTCHA_SECRET_KEY");
+const RECAPTCHA_SCORE_THRESHOLD = 0.5; // Reject scores below this
 
 function getClientIP(req: Request): string {
   const forwarded = req.headers.get("x-forwarded-for");
@@ -61,6 +64,34 @@ function checkRateLimit(clientIP: string): { limited: boolean; remaining: number
   // Increment count
   record.count++;
   return { limited: false, remaining: RATE_LIMIT_MAX - record.count };
+}
+
+// Verify reCAPTCHA token with Google
+async function verifyRecaptcha(token: string): Promise<{ success: boolean; score: number; action: string }> {
+  if (!RECAPTCHA_SECRET_KEY) {
+    console.error("RECAPTCHA_SECRET_KEY not configured");
+    return { success: false, score: 0, action: "" };
+  }
+
+  try {
+    const response = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `secret=${RECAPTCHA_SECRET_KEY}&response=${token}`,
+    });
+
+    const data = await response.json();
+    console.log("reCAPTCHA verification result:", { success: data.success, score: data.score, action: data.action });
+    
+    return {
+      success: data.success === true,
+      score: data.score || 0,
+      action: data.action || "",
+    };
+  } catch (error) {
+    console.error("reCAPTCHA verification error:", error);
+    return { success: false, score: 0, action: "" };
+  }
 }
 
 // Validation helpers
@@ -114,11 +145,6 @@ function validateInput(data: EnquiryRequest): ValidationError[] {
     errors.push({ field: "requirement", message: "Requirement must be less than 2000 characters" });
   }
 
-  // CAPTCHA token validation
-  if (!data.captchaToken || typeof data.captchaToken !== "string" || data.captchaToken.length < 10) {
-    errors.push({ field: "captcha", message: "Security verification is required" });
-  }
-
   return errors;
 }
 
@@ -158,6 +184,42 @@ const handler = async (req: Request): Promise<Response> => {
 
     const requestData: EnquiryRequest = await req.json();
 
+    // Verify reCAPTCHA token
+    if (!requestData.recaptchaToken) {
+      console.warn("No reCAPTCHA token provided");
+      return new Response(
+        JSON.stringify({ error: "Security verification failed. Please refresh and try again." }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    const recaptchaResult = await verifyRecaptcha(requestData.recaptchaToken);
+    
+    if (!recaptchaResult.success) {
+      console.warn(`reCAPTCHA verification failed for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ error: "Security verification failed. Please refresh and try again." }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    if (recaptchaResult.score < RECAPTCHA_SCORE_THRESHOLD) {
+      console.warn(`Low reCAPTCHA score (${recaptchaResult.score}) for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ error: "Request flagged as suspicious. Please try again or contact directly." }),
+        {
+          status: 403,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
     // Server-side validation
     const validationErrors = validateInput(requestData);
     if (validationErrors.length > 0) {
@@ -178,7 +240,7 @@ const handler = async (req: Request): Promise<Response> => {
     const companyName = requestData.companyName?.trim() || "";
     const requirement = requestData.requirement.trim();
 
-    console.log(`Processing enquiry from: ${email}, IP: ${clientIP}, remaining requests: ${rateLimit.remaining}`);
+    console.log(`Processing enquiry from: ${email}, IP: ${clientIP}, reCAPTCHA score: ${recaptchaResult.score}, remaining requests: ${rateLimit.remaining}`);
 
     // Create SMTP client for Gmail
     const client = new SMTPClient({
@@ -203,6 +265,7 @@ Email: ${email}
 Phone: ${phone}
 Company: ${companyName || "Not provided"}
 Client IP: ${clientIP}
+reCAPTCHA Score: ${recaptchaResult.score}
 -----------------------------------
 
 Requirement:
