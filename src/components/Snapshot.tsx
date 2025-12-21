@@ -12,7 +12,7 @@ const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
 
 export const Snapshot = () => {
   return (
-    <section className="py-12 md:py-16 px-4 bg-muted/30">
+    <section className="py-12 md:py-16 px-4 bg-muted/50">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">

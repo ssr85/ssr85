@@ -15,7 +15,7 @@ export const Projects = () => {
   const [activeProject, setActiveProject] = useState(projects[0].id);
 
   return (
-    <section id="projects" className="py-12 md:py-16 px-4 bg-muted/30">
+    <section id="projects" className="py-12 md:py-16 px-4 bg-muted/50">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
