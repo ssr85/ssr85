@@ -77,6 +77,7 @@ export const projects = [
     description:
       "Led strategy and market expansion for a premium hemp-products business, building distribution channels across India.",
     highlights: ["Market Strategy", "Brand Development", "Supply Chain Optimization"],
+    image: "/images/projects/og-hemp.jpg",
   },
   {
     id: "skaizen-water",
@@ -84,6 +85,7 @@ export const projects = [
     category: "Operations",
     description: "Transformed water purification operations with automation and expanded the B2B customer base.",
     highlights: ["Process Automation", "B2B Sales", "Quality Management"],
+    image: "/images/projects/skaizen-water.jpg",
   },
   {
     id: "tech-automation",
@@ -91,6 +93,7 @@ export const projects = [
     category: "Technology",
     description: "Built custom web applications and automation tools to streamline workflows and surface key metrics.",
     highlights: ["Web Development", "Workflow Automation", "Data Analytics"],
+    image: "/images/projects/tech-automation.jpg",
   },
   {
     id: "international-bd",
@@ -98,6 +101,7 @@ export const projects = [
     category: "Business Development",
     description: "Spearheaded market-entry efforts and partner development for exports and international sales.",
     highlights: ["Market Research", "Partner Relations", "Export Compliance"],
+    image: "/images/projects/international-bd.jpg",
   },
 ];
 

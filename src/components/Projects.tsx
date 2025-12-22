@@ -44,23 +44,48 @@ export const Projects = () => {
 
           {projects.map((project) => (
             <TabsContent key={project.id} value={project.id}>
-              <Card className="bg-card border-border max-w-3xl mx-auto animate-fade-in shadow-xl shadow-primary/5">
-                <CardContent className="p-8">
-                  <Badge className={`mb-4 border ${categoryColors[project.category] || "bg-muted text-muted-foreground"}`}>
-                    {project.category}
-                  </Badge>
-                  <h3 className="text-2xl font-bold text-foreground mb-4">
-                    {project.name}
-                  </h3>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.highlights.map((highlight) => (
-                      <Badge key={highlight} variant="secondary" className="bg-muted text-foreground">
-                        {highlight}
+              <Card className="bg-card border-border max-w-4xl mx-auto animate-fade-in shadow-xl shadow-primary/5 overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="flex flex-col md:flex-row">
+                    {/* Image Section - 30% */}
+                    <div className="w-full md:w-[30%] bg-muted/50 flex items-center justify-center min-h-[200px] md:min-h-[280px]">
+                      {project.image ? (
+                        <img 
+                          src={project.image} 
+                          alt={project.name}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                          }}
+                        />
+                      ) : null}
+                      <div className={`flex flex-col items-center justify-center text-muted-foreground ${project.image ? 'hidden' : ''}`}>
+                        <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-2">
+                          <span className="text-2xl font-bold">{project.name.charAt(0)}</span>
+                        </div>
+                        <span className="text-sm">Add image</span>
+                      </div>
+                    </div>
+                    {/* Content Section - 70% */}
+                    <div className="w-full md:w-[70%] p-8">
+                      <Badge className={`mb-4 border ${categoryColors[project.category] || "bg-muted text-muted-foreground"}`}>
+                        {project.category}
                       </Badge>
-                    ))}
+                      <h3 className="text-2xl font-bold text-foreground mb-4">
+                        {project.name}
+                      </h3>
+                      <p className="text-muted-foreground mb-6 leading-relaxed">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {project.highlights.map((highlight) => (
+                          <Badge key={highlight} variant="secondary" className="bg-muted text-foreground">
+                            {highlight}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
