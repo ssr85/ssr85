@@ -1,22 +1,87 @@
-import { siteConfig } from "@/data/content";
+import { useEffect, useState, useRef } from "react";
 
 const stats = [
-  { value: "16+", label: "Years Experience" },
-  { value: "250+", label: "Clients" },
-  { value: "80%", label: "Repeat Collab" },
-  { value: "4", label: "Continents Served" },
+  { value: 16, suffix: "+", label: "Years Experience" },
+  { value: 250, suffix: "+", label: "Clients" },
+  { value: 80, suffix: "%", label: "Repeat Collab" },
+  { value: 4, suffix: "", label: "Continents Served" },
 ];
 
-export const Stats = () => {
+const useCountUp = (end: number, duration: number = 3000, startCounting: boolean) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!startCounting) return;
+    
+    let startTime: number;
+    let animationFrame: number;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      
+      setCount(Math.floor(progress * end));
+      
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrame);
+  }, [end, duration, startCounting]);
+
+  return count;
+};
+
+const StatItem = ({ value, suffix, label, delay, isVisible }: { value: number; suffix: string; label: string; delay: number; isVisible: boolean }) => {
+  const count = useCountUp(value, 3000, isVisible);
+  
   return (
-    <section className="py-8 px-4 bg-primary">
+    <div className="text-center animate-fade-in" style={{ animationDelay: `${delay * 0.1}s` }}>
+      <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-1">
+        {count}{suffix}
+      </div>
+      <div className="text-sm text-primary-foreground/80">{label}</div>
+    </div>
+  );
+};
+
+export const Stats = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="py-8 px-4 bg-primary">
       <div className="container mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, index) => (
-            <div key={stat.label} className="text-center animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-              <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-1">{stat.value}</div>
-              <div className="text-sm text-primary-foreground/80">{stat.label}</div>
-            </div>
+            <StatItem 
+              key={stat.label} 
+              value={stat.value} 
+              suffix={stat.suffix} 
+              label={stat.label} 
+              delay={index}
+              isVisible={isVisible}
+            />
           ))}
         </div>
       </div>
