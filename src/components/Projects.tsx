@@ -2,6 +2,13 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { projects } from "@/data/content";
 
 const categoryColors: Record<string, string> = {
@@ -47,25 +54,50 @@ export const Projects = () => {
               <Card className="bg-card border-border max-w-4xl mx-auto animate-fade-in shadow-xl shadow-primary/5 overflow-hidden">
                 <CardContent className="p-0">
                   <div className="flex flex-col md:flex-row">
-                    {/* Image Section - 30% */}
-                    <div className="w-full md:w-[30%] bg-muted/50 flex items-center justify-center min-h-[200px] md:min-h-[280px]">
-                      {project.image ? (
-                        <img 
-                          src={project.image} 
-                          alt={project.name}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                            e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                          }}
-                        />
-                      ) : null}
-                      <div className={`flex flex-col items-center justify-center text-muted-foreground ${project.image ? 'hidden' : ''}`}>
-                        <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-2">
-                          <span className="text-2xl font-bold">{project.name.charAt(0)}</span>
+                    {/* Carousel Section - 30% */}
+                    <div className="w-full md:w-[30%] bg-muted/50 flex items-center justify-center min-h-[200px] md:min-h-[280px] relative">
+                      {project.images && project.images.length > 0 ? (
+                        <Carousel className="w-full h-full">
+                          <CarouselContent className="h-full">
+                            {project.images.map((image, index) => (
+                              <CarouselItem key={index} className="h-full">
+                                <div className="w-full h-full min-h-[200px] md:min-h-[280px] flex items-center justify-center">
+                                  <img
+                                    src={image}
+                                    alt={`${project.name} - Image ${index + 1}`}
+                                    className="w-full h-full object-cover"
+                                    onError={(e) => {
+                                      const target = e.currentTarget;
+                                      target.style.display = 'none';
+                                      const fallback = target.nextElementSibling;
+                                      if (fallback) fallback.classList.remove('hidden');
+                                    }}
+                                  />
+                                  <div className="hidden flex-col items-center justify-center text-muted-foreground">
+                                    <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-2">
+                                      <span className="text-2xl font-bold">{project.name.charAt(0)}</span>
+                                    </div>
+                                    <span className="text-sm">Image {index + 1}</span>
+                                  </div>
+                                </div>
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          {project.images.length > 1 && (
+                            <>
+                              <CarouselPrevious className="left-2 h-8 w-8 bg-background/80 hover:bg-background" />
+                              <CarouselNext className="right-2 h-8 w-8 bg-background/80 hover:bg-background" />
+                            </>
+                          )}
+                        </Carousel>
+                      ) : (
+                        <div className="flex flex-col items-center justify-center text-muted-foreground">
+                          <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-2">
+                            <span className="text-2xl font-bold">{project.name.charAt(0)}</span>
+                          </div>
+                          <span className="text-sm">Add images</span>
                         </div>
-                        <span className="text-sm">Add image</span>
-                      </div>
+                      )}
                     </div>
                     {/* Content Section - 70% */}
                     <div className="w-full md:w-[70%] p-8">
