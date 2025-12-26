@@ -26,13 +26,21 @@ const Index = () => {
         <ScrollAnimationWrapper>
           <Stats />
         </ScrollAnimationWrapper>
-        <Snapshot />
-        <Strengths />
-        <ScrollAnimationWrapper>
+        <ScrollAnimationWrapper delay={100}>
+          <Snapshot />
+        </ScrollAnimationWrapper>
+        <ScrollAnimationWrapper delay={100}>
+          <Strengths />
+        </ScrollAnimationWrapper>
+        <ScrollAnimationWrapper delay={100}>
           <Projects />
         </ScrollAnimationWrapper>
-        <Services onOpenEnquiry={openEnquiry} />
-        <BeyondWork />
+        <ScrollAnimationWrapper delay={100}>
+          <Services onOpenEnquiry={openEnquiry} />
+        </ScrollAnimationWrapper>
+        <ScrollAnimationWrapper delay={100}>
+          <BeyondWork />
+        </ScrollAnimationWrapper>
       </main>
       <Footer />
       <Suspense fallback={null}>
