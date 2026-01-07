@@ -233,16 +233,16 @@ const Resume = () => {
                   <div className="flex justify-between items-start mb-1">
                     <div>
                       <h3 className="font-semibold text-foreground">Operations Manager</h3>
-                      <p className="text-sm text-muted-foreground">Company Name | Location</p>
+                      <p className="text-sm text-muted-foreground">OG Hemp | Pune</p>
                     </div>
-                    <span className="text-xs text-muted-foreground whitespace-nowrap">2010 - 2015</span>
+                    <span className="text-xs text-muted-foreground whitespace-nowrap">2017 - Present</span>
                   </div>
                   <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
                     Oversaw day-to-day operations and led process improvement initiatives to enhance efficiency and
                     reduce waste in manufacturing operations.
                   </p>
                   <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Streamlined production processes, improving efficiency by X%</li>
+                    <li>• Streamlined production processes, improving efficiency</li>
                     <li>• Implemented quality control measures reducing defect rates</li>
                     <li>• Trained and mentored team members on operational best practices</li>
                   </ul>
@@ -274,13 +274,6 @@ const Resume = () => {
                 <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-4 font-semibold">Key Projects</h2>
 
                 <div className="space-y-3">
-                  <div>
-                    <h3 className="font-semibold text-foreground text-sm">OG Hemp — Sustainable Products</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Led operations for eco-friendly hemp products company, establishing supply chains and market
-                      positioning for sustainable consumer goods.
-                    </p>
-                  </div>
                   <div>
                     <h3 className="font-semibold text-foreground text-sm">Skaizen Water — Water Solutions</h3>
                     <p className="text-sm text-muted-foreground">
