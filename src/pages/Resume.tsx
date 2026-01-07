@@ -5,7 +5,8 @@ const Resume = () => {
   const handlePrint = () => {
     window.print();
   };
-  return <div className="min-h-screen bg-muted/30">
+  return (
+    <div className="min-h-screen bg-muted/30">
       {/* Print Controls - Hidden when printing */}
       <div className="print:hidden sticky top-0 z-50 bg-background border-b border-border p-4">
         <div className="container mx-auto flex items-center justify-between">
@@ -104,9 +105,7 @@ const Resume = () => {
             <div className="w-[65%] p-6 print:p-5 flex flex-col">
               {/* Header */}
               <div className="mb-6 border-b-2 border-[#5D2E2E] pb-4">
-                <h1 className="text-3xl font-serif text-[#5D2E2E] mb-1">
-
-Sarabjeet Rattan</h1>
+                <h1 className="text-3xl font-serif text-[#5D2E2E] mb-1">Sarabjeet Rattan</h1>
                 <p className="text-sm text-muted-foreground uppercase tracking-wide">
                   Strategic Operations Leader | Sustainable Business Builder
                 </p>
@@ -135,19 +134,19 @@ Sarabjeet Rattan</h1>
                 <div className="mb-5">
                   <div className="flex justify-between items-start mb-1">
                     <div>
-                      <h3 className="font-semibold text-foreground">Business Systems Consultant</h3>
-                      <p className="text-sm text-muted-foreground">Company Name | Location</p>
+                      <h3 className="font-semibold text-foreground">Business Consultant</h3>
+                      <p className="text-sm text-muted-foreground">SkaizenTech | Pune</p>
                     </div>
                     <span className="text-xs text-muted-foreground whitespace-nowrap">2020 - Present</span>
                   </div>
                   <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
-                    Led strategic initiatives to optimize business operations and implement sustainable manufacturing
-                    practices across multiple client organizations.
+                    Led strategic initiatives to optimize business operations and implement automation practices across
+                    multiple client organizations.
                   </p>
                   <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Implemented process automation solutions reducing operational costs by X%</li>
-                    <li>• Developed and launched sustainable product lines for international markets</li>
-                    <li>• Managed cross-functional teams to deliver complex business transformation projects</li>
+                    <li>• Implemented process automation solutions reducing operational costs by reducing man-hours</li>
+                    <li>• Translate consumer pain points into a solution leveraging AI tools</li>
+                    <li>• End mile drinking water solutions for commercial establishments</li>
                   </ul>
                 </div>
 
@@ -155,10 +154,10 @@ Sarabjeet Rattan</h1>
                 <div className="mb-5">
                   <div className="flex justify-between items-start mb-1">
                     <div>
-                      <h3 className="font-semibold text-foreground">International Sales Manager</h3>
-                      <p className="text-sm text-muted-foreground">Company Name | Location</p>
+                      <h3 className="font-semibold text-foreground">International B2B Sales</h3>
+                      <p className="text-sm text-muted-foreground">OG Hemp | Pune</p>
                     </div>
-                    <span className="text-xs text-muted-foreground whitespace-nowrap">2015 - 2020</span>
+                    <span className="text-xs text-muted-foreground whitespace-nowrap">2017 - Present</span>
                   </div>
                   <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
                     Drove international business development and established key partnerships across multiple regions,
@@ -167,6 +166,7 @@ Sarabjeet Rattan</h1>
                   <ul className="text-sm text-muted-foreground space-y-1">
                     <li>• Expanded market presence to X+ countries, generating $X million in revenue</li>
                     <li>• Built and maintained relationships with key international distributors</li>
+                    <li>• Developed and launched sustainable product lines for international markets</li>
                     <li>• Led product positioning and market entry strategies for new regions</li>
                   </ul>
                 </div>
@@ -344,6 +344,7 @@ Sarabjeet Rattan</h1>
           }
         }
       `}</style>
-    </div>;
+    </div>
+  );
 };
 export default Resume;
