@@ -291,6 +291,14 @@ const Resume = () => {
                     </p>
                   </div>
                 </div>
+                <div>
+                    <h3 className="font-semibold text-foreground text-sm">Be Fit With - A personal trainers' Assistant</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Developed, Deployed using CI/CD using no-code tools and AI based IDE, a solution for personal trainers 
+                      to manage clients and sessions.
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* References */}
