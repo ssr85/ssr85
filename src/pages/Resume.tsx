@@ -114,8 +114,8 @@ const Resume = () => {
               {/* Professional Summary */}
               <div className="mb-6">
                 <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-3 font-semibold">
-                  Professional Summary
-                </h2>
+
+PROFESSIONAL SUMMARY</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Dynamic business consultant with 16+ years of experience in building sustainable systems and
                   small-business solutions. Proven track record in international sales, sustainable manufacturing, and
@@ -127,8 +127,8 @@ const Resume = () => {
               {/* Professional Experience */}
               <div>
                 <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-4 font-semibold">
-                  Professional Experience
-                </h2>
+
+PROFESSIONAL EXPERIENCE</h2>
 
                 {/* Experience Entry 1 */}
                 <div className="mb-5">
@@ -271,7 +271,9 @@ CERTIFICATIONS</h3>
 
               {/* Key Projects */}
               <div className="mb-6">
-                <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-4 font-semibold">Key Projects</h2>
+                <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-4 font-semibold">
+
+KEY PROJECTS</h2>
 
                 <div className="space-y-3">
                   <div>
