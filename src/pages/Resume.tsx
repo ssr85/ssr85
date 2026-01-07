@@ -226,9 +226,7 @@ const Resume = () => {
             <div className="w-[65%] p-6 print:p-5 flex flex-col">
               {/* Professional Experience Continued */}
               <div className="mb-6">
-                <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-4 font-semibold">
-                  Professional Experience (Continued)
-                </h2>
+                <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-4 font-semibold"></h2>
 
                 {/* Experience Entry 3 */}
                 <div className="mb-5">
@@ -291,10 +289,12 @@ const Resume = () => {
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground text-sm">Be Fit With - A personal trainers' Assistant</h3>
+                    <h3 className="font-semibold text-foreground text-sm">
+                      Be Fit With - A personal trainers' Assistant
+                    </h3>
                     <p className="text-sm text-muted-foreground">
-                      Developed, Deployed using CI/CD using no-code tools and AI based IDE, a solution for personal trainers
-                      to manage clients and sessions.
+                      Developed, Deployed using CI/CD using no-code tools and AI based IDE, a solution for personal
+                      trainers to manage clients and sessions.
                     </p>
                   </div>
                 </div>
