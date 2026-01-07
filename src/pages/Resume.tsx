@@ -70,7 +70,7 @@ const Resume = () => {
                     <p className="opacity-60 text-xs">2009-2011</p>
                   </div>
                   <div>
-                    <p className="font-semibold">Bachelor's of Engineering</p>
+                    <p className="font-semibold">Bachelor of Engineering</p>
                     <p className="opacity-80 text-xs">Nagpur University</p>
                     <p className="opacity-60 text-xs">2004-2007</p>
                   </div>
