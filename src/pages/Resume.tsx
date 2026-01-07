@@ -47,10 +47,7 @@ const Resume = () => {
                     <span className="opacity-70">📍</span>
                     <span>Pune, India</span>
                   </p>
-                  <p className="flex items-start gap-2">
-                    <span className="opacity-70">🔗</span>
-                    <span>sarabjeetrattan</span>
-                  </p>
+
                   <p className="flex items-start gap-2">
                     <span className="opacity-70">📱</span>
                     <span>+91 866 898 4323</span>
