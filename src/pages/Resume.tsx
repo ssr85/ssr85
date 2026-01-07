@@ -31,25 +31,9 @@ const Resume = () => {
             {/* Left Sidebar */}
             <div className="w-[35%] bg-[#5D2E2E] text-white p-6 print:p-5 flex flex-col">
               {/* Profile Photo Placeholder */}
-              <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <a
-            href="#"
-            className="group"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-          >
-            <img 
-              src={logo} 
-              alt="SR Logo"
-              width={48}
-              height={48}
-              className="h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-110 dark:invert"
-            />
-          </a>
+              <div className="w-24 h-24 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                <span className="text-3xl">👤</span>
+              </div>
 
               {/* Contact Section */}
               <div className="mb-6">
