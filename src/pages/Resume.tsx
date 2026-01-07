@@ -2,13 +2,11 @@ import { FileDown, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Logo from "@/assets/SR_LOGO_no_bg.png";
-
 const Resume = () => {
   const handlePrint = () => {
     window.print();
   };
-  return (
-    <div className="min-h-screen bg-muted/30 print:min-h-0 print:bg-transparent">
+  return <div className="min-h-screen bg-muted/30 print:min-h-0 print:bg-transparent">
       {/* Print Controls - Hidden when printing */}
       <div className="print:hidden sticky top-0 z-50 bg-background border-b border-border p-4">
         <div className="container mx-auto flex items-center justify-between">
@@ -184,7 +182,9 @@ const Resume = () => {
             <div className="w-[35%] bg-[#5D2E2E] text-white p-6 print:p-5 flex flex-col">
               {/* Certifications Section */}
               <div className="mb-6">
-                <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">Certifications</h3>
+                <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">
+
+CERTIFICATIONS</h3>
                 <ul className="space-y-2 text-sm">
                   <li>
                     <p className="font-semibold">Certification Name</p>
@@ -309,9 +309,8 @@ const Resume = () => {
         </div>
       </div>
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
+      <style dangerouslySetInnerHTML={{
+      __html: `
             .grecaptcha-badge { display: none !important; }
             .resume-container { max-width: 210mm; margin: 0 auto; }
             .resume-page { width: 210mm; min-height: 297mm; }
@@ -325,10 +324,8 @@ const Resume = () => {
               .resume-page > div { height: 297mm !important; min-height: 297mm !important; }
             }
             @media screen and (max-width: 900px) { .resume-page { width: 100%; min-height: auto; } }
-          `,
-        }}
-      />
-    </div>
-  );
+          `
+    }} />
+    </div>;
 };
 export default Resume;
