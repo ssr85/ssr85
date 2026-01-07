@@ -1,14 +1,11 @@
 import { FileDown, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-
 const Resume = () => {
   const handlePrint = () => {
     window.print();
   };
-
-  return (
-    <div className="min-h-screen bg-muted/30">
+  return <div className="min-h-screen bg-muted/30">
       {/* Print Controls - Hidden when printing */}
       <div className="print:hidden sticky top-0 z-50 bg-background border-b border-border p-4">
         <div className="container mx-auto flex items-center justify-between">
@@ -107,7 +104,9 @@ const Resume = () => {
             <div className="w-[65%] p-6 print:p-5 flex flex-col">
               {/* Header */}
               <div className="mb-6 border-b-2 border-[#5D2E2E] pb-4">
-                <h1 className="text-3xl font-serif text-[#5D2E2E] mb-1">Sarabjeet Rattan</h1>
+                <h1 className="text-3xl font-serif text-[#5D2E2E] mb-1">
+
+Sarabjeet Rattan</h1>
                 <p className="text-sm text-muted-foreground uppercase tracking-wide">
                   Strategic Operations Leader | Sustainable Business Builder
                 </p>
@@ -345,8 +344,6 @@ const Resume = () => {
           }
         }
       `}</style>
-    </div>
-  );
+    </div>;
 };
-
 export default Resume;
