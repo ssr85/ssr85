@@ -10,28 +10,16 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Quick Links */}
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
-            <a
-              href="#strengths"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
+            <a href="#strengths" className="text-muted-foreground hover:text-primary transition-colors">
               Strengths
             </a>
-            <a
-              href="#projects"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
+            <a href="#projects" className="text-muted-foreground hover:text-primary transition-colors">
               Projects
             </a>
-            <a
-              href="#services"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
+            <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
               Services
             </a>
-            <a
-              href="#beyond-work"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
+            <a href="#beyond-work" className="text-muted-foreground hover:text-primary transition-colors">
               Beyond Work
             </a>
           </nav>
@@ -60,7 +48,7 @@ export const Footer = () => {
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-border text-center">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} {siteConfig.name}. All rights reserved.
+            © {currentYear} {siteConfig.name}.
           </p>
         </div>
       </div>
