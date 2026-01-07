@@ -53,7 +53,7 @@ const Resume = () => {
                   </p>
                   <p className="flex items-start gap-2">
                     <span className="opacity-70">📱</span>
-                    <span>+91 XXXXX XXXXX</span>
+                    <span>+91 866 898 4323</span>
                   </p>
                 </div>
               </div>
