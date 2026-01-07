@@ -290,11 +290,10 @@ const Resume = () => {
                       efficiency.
                     </p>
                   </div>
-                </div>
-                <div>
+                  <div>
                     <h3 className="font-semibold text-foreground text-sm">Be Fit With - A personal trainers' Assistant</h3>
                     <p className="text-sm text-muted-foreground">
-                      Developed, Deployed using CI/CD using no-code tools and AI based IDE, a solution for personal trainers 
+                      Developed, Deployed using CI/CD using no-code tools and AI based IDE, a solution for personal trainers
                       to manage clients and sessions.
                     </p>
                   </div>
@@ -310,92 +309,25 @@ const Resume = () => {
         </div>
       </div>
 
-      {/* Print Styles */}
-      <style>{`
-        /* Hide reCAPTCHA badge on resume page */
-        .grecaptcha-badge {
-          display: none !important;
-        }
-        
-        .resume-container {
-          max-width: 210mm;
-          margin: 0 auto;
-        }
-        
-        .resume-page {
-          width: 210mm;
-          min-height: 297mm;
-        }
-        
-        @media print {
-          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-          }
-          
-          @page {
-            size: A4;
-            margin: 0 !important;
-          }
-          
-          html, body, #root {
-            width: 210mm !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-            color-adjust: exact !important;
-          }
-          
-          .resume-container {
-            width: 210mm !important;
-            max-width: 210mm !important;
-            margin: 0 !important;
-            padding: 0 !important;
-          }
-          
-          .resume-page {
-            width: 210mm !important;
-            height: 297mm !important;
-            min-height: 297mm !important;
-            max-height: 297mm !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            page-break-after: always;
-            page-break-inside: avoid;
-            box-shadow: none !important;
-            overflow: hidden !important;
-          }
-          
-          .resume-page:last-child {
-            page-break-after: auto;
-          }
-          
-          /* Ensure sidebar and content fill the page */
-          .resume-page > div {
-            height: 297mm !important;
-            min-height: 297mm !important;
-          }
-          
-          .resume-page .w-\\[35\\%\\] {
-            min-height: 297mm !important;
-            height: 297mm !important;
-          }
-          
-          .resume-page .w-\\[65\\%\\] {
-            min-height: 297mm !important;
-            height: 297mm !important;
-          }
-        }
-        
-        @media screen and (max-width: 900px) {
-          .resume-page {
-            width: 100%;
-            min-height: auto;
-          }
-        }
-      `}</style>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .grecaptcha-badge { display: none !important; }
+            .resume-container { max-width: 210mm; margin: 0 auto; }
+            .resume-page { width: 210mm; min-height: 297mm; }
+            @media print {
+              * { margin: 0; padding: 0; box-sizing: border-box; }
+              @page { size: A4; margin: 0 !important; }
+              html, body, #root { width: 210mm !important; margin: 0 !important; padding: 0 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+              .resume-container { width: 210mm !important; max-width: 210mm !important; margin: 0 !important; padding: 0 !important; }
+              .resume-page { width: 210mm !important; height: 297mm !important; min-height: 297mm !important; max-height: 297mm !important; margin: 0 !important; padding: 0 !important; page-break-after: always; page-break-inside: avoid; box-shadow: none !important; overflow: hidden !important; }
+              .resume-page:last-child { page-break-after: auto; }
+              .resume-page > div { height: 297mm !important; min-height: 297mm !important; }
+            }
+            @media screen and (max-width: 900px) { .resume-page { width: 100%; min-height: auto; } }
+          `,
+        }}
+      />
     </div>
   );
 };
