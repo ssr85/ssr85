@@ -1,5 +1,6 @@
 import { siteConfig } from "@/data/content";
-import { Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail, FileText } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -45,8 +46,19 @@ export const Footer = () => {
           </div>
         </div>
 
+        {/* Download PDF Link */}
+        <div className="mt-6 text-center">
+          <Link 
+            to="/resume" 
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+          >
+            <FileText size={16} />
+            <span>Download PDF Resume</span>
+          </Link>
+        </div>
+
         {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-border text-center">
+        <div className="mt-6 pt-6 border-t border-border text-center">
           <p className="text-sm text-muted-foreground">
             © {currentYear} {siteConfig.name}.
           </p>
