@@ -1,12 +1,14 @@
 import { FileDown, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import Logo from "@/assets/SR_LOGO_no_bg.png";
+
 const Resume = () => {
   const handlePrint = () => {
     window.print();
   };
   return (
-    <div className="min-h-screen bg-muted/30">
+    <div className="min-h-screen bg-muted/30 print:min-h-0 print:bg-transparent">
       {/* Print Controls - Hidden when printing */}
       <div className="print:hidden sticky top-0 z-50 bg-background border-b border-border p-4">
         <div className="container mx-auto flex items-center justify-between">
@@ -22,15 +24,15 @@ const Resume = () => {
       </div>
 
       {/* Resume Container */}
-      <div className="container mx-auto py-8 print:py-0 print:max-w-none">
+      <div className="resume-container py-8 print:py-0 print:m-0 print:p-0">
         {/* Page 1 */}
-        <div className="resume-page bg-white shadow-lg print:shadow-none mx-auto mb-8 print:mb-0 overflow-hidden">
+        <div className="resume-page bg-white shadow-lg print:shadow-none mx-auto mb-8 print:mb-0 print:mx-0 overflow-hidden">
           <div className="flex h-full">
             {/* Left Sidebar */}
             <div className="w-[35%] bg-[#5D2E2E] text-white p-6 print:p-5 flex flex-col">
-              {/* Profile Photo Placeholder */}
-              <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-white/20 flex items-center justify-center text-4xl font-serif">
-                SR
+              {/* Logo */}
+              <div className="w-28 h-28 mx-auto mb-6 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
+                <img src={Logo} alt="SR Logo" className="w-20 h-20 object-contain" />
               </div>
 
               {/* Contact Section */}
@@ -307,32 +309,55 @@ const Resume = () => {
           display: none !important;
         }
         
+        .resume-container {
+          max-width: 210mm;
+          margin: 0 auto;
+        }
+        
         .resume-page {
           width: 210mm;
           min-height: 297mm;
         }
         
         @media print {
-          @page {
-            size: A4;
+          * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
           }
           
-          html, body {
+          @page {
+            size: A4;
+            margin: 0 !important;
+          }
+          
+          html, body, #root {
+            width: 210mm !important;
             margin: 0 !important;
             padding: 0 !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
+            color-adjust: exact !important;
+          }
+          
+          .resume-container {
+            width: 210mm !important;
+            max-width: 210mm !important;
+            margin: 0 !important;
+            padding: 0 !important;
           }
           
           .resume-page {
-            width: 210mm;
-            height: 297mm;
+            width: 210mm !important;
+            height: 297mm !important;
+            min-height: 297mm !important;
+            max-height: 297mm !important;
             margin: 0 !important;
             padding: 0 !important;
             page-break-after: always;
             page-break-inside: avoid;
             box-shadow: none !important;
+            overflow: hidden !important;
           }
           
           .resume-page:last-child {
@@ -341,7 +366,18 @@ const Resume = () => {
           
           /* Ensure sidebar and content fill the page */
           .resume-page > div {
-            height: 100%;
+            height: 297mm !important;
+            min-height: 297mm !important;
+          }
+          
+          .resume-page .w-\\[35\\%\\] {
+            min-height: 297mm !important;
+            height: 297mm !important;
+          }
+          
+          .resume-page .w-\\[65\\%\\] {
+            min-height: 297mm !important;
+            height: 297mm !important;
           }
         }
         
