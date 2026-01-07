@@ -252,19 +252,17 @@ CERTIFICATIONS</h3>
                 <div className="mb-5">
                   <div className="flex justify-between items-start mb-1">
                     <div>
-                      <h3 className="font-semibold text-foreground">Business Development Executive</h3>
-                      <p className="text-sm text-muted-foreground">Company Name | Location</p>
+                      <h3 className="font-semibold text-foreground">Technical Associate</h3>
+                      <p className="text-sm text-muted-foreground">Tech Mahindra | Pune</p>
                     </div>
-                    <span className="text-xs text-muted-foreground whitespace-nowrap">2008 - 2010</span>
+                    <span className="text-xs text-muted-foreground whitespace-nowrap">2007 - 2009</span>
                   </div>
-                  <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
-                    Identified and pursued new business opportunities, building client relationships and contributing to
-                    company growth in competitive markets.
-                  </p>
+                  <p className="text-sm text-muted-foreground mb-2 leading-relaxed">Went through a comprehensive training of a dozen languages to understand the basis of how code works</p>
                   <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Generated new leads and converted prospects into long-term clients</li>
-                    <li>• Collaborated with marketing team on promotional strategies</li>
-                    <li>• Achieved X% of annual sales targets consistently</li>
+                    <li>• Learnt business analysis fundamentals through application on live projects</li>
+                    <li>• Web development, continuous improvement, deployment as daily tasks</li>
+                    <li>
+                  </li>
                   </ul>
                 </div>
               </div>
