@@ -60,7 +60,12 @@ const Resume = () => {
                 <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">Education</h3>
                 <div className="space-y-3 text-sm">
                   <div>
-                    <p className="font-semibold">Master in International Bsuiness</p>
+                    <p className="font-semibold">Product Management with Generative & Agentic AI</p>
+                    <p className="opacity-80 text-xs">BITSoM</p>
+                    <p className="opacity-60 text-xs">2025-2026</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold">Master in International Business</p>
                     <p className="opacity-80 text-xs">Grenoble Graduate School of Business</p>
                     <p className="opacity-60 text-xs">2009-2011</p>
                   </div>
