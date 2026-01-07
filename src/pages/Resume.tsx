@@ -109,7 +109,7 @@ const Resume = () => {
               <div className="mb-6 border-b-2 border-[#5D2E2E] pb-4">
                 <h1 className="text-3xl font-serif text-[#5D2E2E] mb-1">Sarabjeet Rattan</h1>
                 <p className="text-sm text-muted-foreground uppercase tracking-wide">
-                  Strategic Operations | Sustainability | Bio Pulp and Composites
+                  Strategic Operations | Sustainability | Pulp & BioComposites
                 </p>
               </div>
 
