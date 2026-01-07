@@ -49,11 +49,11 @@ const Resume = () => {
                   </p>
                   <p className="flex items-start gap-2">
                     <span className="opacity-70">🔗</span>
-                    <span>LinkedIn Profile</span>
+                    <span>sarabjeetrattan</span>
                   </p>
                   <p className="flex items-start gap-2">
                     <span className="opacity-70">📱</span>
-                    <span>+91 866 898 4323</span>
+                    <span>+91 XXXXX XXXXX</span>
                   </p>
                 </div>
               </div>
