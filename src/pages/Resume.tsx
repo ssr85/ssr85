@@ -1,10 +1,58 @@
-import { FileDown, Home } from "lucide-react";
+import { FileDown, Home, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { toast } from "sonner";
 import Logo from "@/assets/SR_LOGO_no_bg.png";
+
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (callback: () => void) => void;
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+    };
+  }
+}
+
+const RECAPTCHA_SITE_KEY = "6LeVgjIsAAAAAN6e8q-EldrjmBTN2n1rVPj5aGEv";
+
 const Resume = () => {
-  const handlePrint = () => {
-    window.print();
+  const [isVerifying, setIsVerifying] = useState(false);
+
+  const handlePrint = async () => {
+    setIsVerifying(true);
+    
+    try {
+      // Verify with reCAPTCHA
+      if (!window.grecaptcha) {
+        toast.error("reCAPTCHA not loaded. Please refresh the page.");
+        setIsVerifying(false);
+        return;
+      }
+
+      const token = await new Promise<string>((resolve, reject) => {
+        window.grecaptcha.ready(() => {
+          window.grecaptcha
+            .execute(RECAPTCHA_SITE_KEY, { action: "download_resume" })
+            .then(resolve)
+            .catch(reject);
+        });
+      });
+
+      if (!token) {
+        toast.error("Verification failed. Please try again.");
+        setIsVerifying(false);
+        return;
+      }
+
+      // Token obtained successfully - proceed with print
+      window.print();
+    } catch (error) {
+      console.error("reCAPTCHA error:", error);
+      toast.error("Verification failed. Please try again.");
+    } finally {
+      setIsVerifying(false);
+    }
   };
   return <div className="min-h-screen bg-muted/30 print:min-h-0 print:bg-transparent">
       {/* Print Controls - Hidden when printing */}
@@ -14,9 +62,9 @@ const Resume = () => {
             <Home size={18} />
             <span>Back to Portfolio</span>
           </Link>
-          <Button onClick={handlePrint} className="gap-2">
-            <FileDown size={18} />
-            Print / Save as PDF
+          <Button onClick={handlePrint} disabled={isVerifying} className="gap-2">
+            {isVerifying ? <Loader2 size={18} className="animate-spin" /> : <FileDown size={18} />}
+            {isVerifying ? "Verifying..." : "Print / Save as PDF"}
           </Button>
         </div>
       </div>
