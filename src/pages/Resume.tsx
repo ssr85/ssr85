@@ -164,7 +164,7 @@ const Resume = () => {
                     focusing on sustainable and eco-friendly product solutions.
                   </p>
                   <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Expanded market presence to X+ countries, generating $X million in revenue</li>
+                    <li>• Expanded market presence to 10+ countries</li>
                     <li>• Built and maintained relationships with key international distributors</li>
                     <li>• Developed and launched sustainable product lines for international markets</li>
                     <li>• Led product positioning and market entry strategies for new regions</li>
