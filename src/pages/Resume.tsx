@@ -302,6 +302,11 @@ const Resume = () => {
 
       {/* Print Styles */}
       <style>{`
+        /* Hide reCAPTCHA badge on resume page */
+        .grecaptcha-badge {
+          display: none !important;
+        }
+        
         .resume-page {
           width: 210mm;
           min-height: 297mm;
@@ -313,7 +318,9 @@ const Resume = () => {
             margin: 0;
           }
           
-          body {
+          html, body {
+            margin: 0 !important;
+            padding: 0 !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
           }
@@ -321,12 +328,20 @@ const Resume = () => {
           .resume-page {
             width: 210mm;
             height: 297mm;
+            margin: 0 !important;
+            padding: 0 !important;
             page-break-after: always;
             page-break-inside: avoid;
+            box-shadow: none !important;
           }
           
           .resume-page:last-child {
             page-break-after: auto;
+          }
+          
+          /* Ensure sidebar and content fill the page */
+          .resume-page > div {
+            height: 100%;
           }
         }
         
