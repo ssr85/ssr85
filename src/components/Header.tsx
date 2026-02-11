@@ -22,7 +22,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -36,9 +36,9 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
+          ? "bg-background/90 backdrop-blur-xl border-b border-border/50 shadow-sm shadow-foreground/[0.03]"
           : "bg-transparent"
       }`}
     >
@@ -58,7 +58,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
               alt="SR Logo"
               width={48}
               height={48}
-              className="h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-110 dark:invert"
+              className="h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-105 dark:invert"
             />
           </a>
 
@@ -68,7 +68,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
-                className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left"
               >
                 {link.label}
               </button>
@@ -76,7 +76,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
             <Button 
               onClick={onOpenEnquiry} 
               size="sm"
-              className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-md shadow-primary/20 group"
+              className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-md shadow-primary/15 group"
             >
               Get In Touch
               <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
@@ -96,20 +96,23 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border animate-fade-in bg-background/95 backdrop-blur-md">
+          <nav className="md:hidden py-4 border-t border-border/50 animate-slide-up bg-background/95 backdrop-blur-xl">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => scrollToSection(link.href)}
-                  className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium text-left py-2"
+                  className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium text-left py-2"
                 >
                   {link.label}
                 </button>
               ))}
               <div className="flex items-center gap-4 mt-2">
                 <Button 
-                  onClick={onOpenEnquiry} 
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    onOpenEnquiry();
+                  }} 
                   className="flex-1 bg-gradient-to-r from-primary to-secondary"
                 >
                   Get In Touch

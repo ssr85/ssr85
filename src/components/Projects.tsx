@@ -22,40 +22,42 @@ export const Projects = () => {
   const [activeProject, setActiveProject] = useState(projects[0].id);
 
   return (
-    <section id="projects" className="py-12 md:py-16 px-4 bg-muted/50">
+    <section id="projects" className="py-16 md:py-24 px-4 bg-muted/30">
       <div className="container mx-auto">
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
+        <div className="text-center mb-14">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-5 tracking-wide">
             Portfolio
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 tracking-tight">
             Highlight Projects
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Selected initiatives that showcase my approach to building and scaling businesses
           </p>
         </div>
 
         <Tabs value={activeProject} onValueChange={setActiveProject} className="w-full">
-          <TabsList className="flex flex-wrap justify-center gap-2 bg-transparent h-auto mb-8">
+          <TabsList className="flex flex-wrap justify-center gap-2 bg-transparent h-auto mb-10">
             {projects.map((project) => (
               <TabsTrigger
                 key={project.id}
                 value={project.id}
-                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/20 px-5 py-2.5 rounded-full border border-border data-[state=inactive]:bg-card data-[state=inactive]:hover:border-primary/50 transition-all"
+                className="px-5 py-2.5 rounded-lg border border-border bg-card text-muted-foreground data-[state=active]:text-foreground data-[state=active]:border-primary data-[state=active]:bg-primary/5 data-[state=active]:shadow-sm data-[state=inactive]:hover:border-primary/30 transition-all duration-200 relative"
               >
                 {project.name}
+                {/* Active bottom indicator */}
+                <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-primary rounded-full opacity-0 data-[state=active]:opacity-100 transition-opacity" />
               </TabsTrigger>
             ))}
           </TabsList>
 
           {projects.map((project) => (
-            <TabsContent key={project.id} value={project.id}>
-              <Card className="bg-card border-border max-w-4xl mx-auto animate-fade-in shadow-xl shadow-primary/5 overflow-hidden">
+            <TabsContent key={project.id} value={project.id} className="animate-fade-up">
+              <Card className="bg-card border-border max-w-4xl mx-auto shadow-lg shadow-foreground/[0.03] overflow-hidden">
                 <CardContent className="p-0">
                   <div className="flex flex-col md:flex-row">
                     {/* Carousel Section - 30% */}
-                    <div className="w-full md:w-[30%] bg-muted/50 flex items-center justify-center min-h-[200px] md:min-h-[280px] relative">
+                    <div className="w-full md:w-[30%] bg-muted/30 flex items-center justify-center min-h-[200px] md:min-h-[280px] relative">
                       {project.images && project.images.length > 0 ? (
                         <Carousel className="w-full h-full">
                           <CarouselContent className="h-full">
@@ -73,11 +75,10 @@ export const Projects = () => {
                                       if (fallback) fallback.classList.remove('hidden');
                                     }}
                                   />
-                                  <div className="hidden flex-col items-center justify-center text-muted-foreground">
-                                    <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-2">
-                                      <span className="text-2xl font-bold">{project.name.charAt(0)}</span>
+                                  <div className="hidden flex-col items-center justify-center text-muted-foreground bg-muted/50 w-full h-full">
+                                    <div className="w-14 h-14 rounded-full bg-muted flex items-center justify-center mb-2">
+                                      <span className="text-xl font-bold text-muted-foreground">{project.name.charAt(0)}</span>
                                     </div>
-                                    <span className="text-sm">Image {index + 1}</span>
                                   </div>
                                 </div>
                               </CarouselItem>
@@ -92,10 +93,9 @@ export const Projects = () => {
                         </Carousel>
                       ) : (
                         <div className="flex flex-col items-center justify-center text-muted-foreground">
-                          <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-2">
-                            <span className="text-2xl font-bold">{project.name.charAt(0)}</span>
+                          <div className="w-14 h-14 rounded-full bg-muted flex items-center justify-center mb-2">
+                            <span className="text-xl font-bold">{project.name.charAt(0)}</span>
                           </div>
-                          <span className="text-sm">Add images</span>
                         </div>
                       )}
                     </div>

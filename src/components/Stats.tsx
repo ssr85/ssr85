@@ -38,11 +38,14 @@ const StatItem = ({ value, suffix, label, delay, isVisible }: { value: number; s
   const count = useCountUp(value, 3000, isVisible);
   
   return (
-    <div className="text-center animate-fade-in" style={{ animationDelay: `${delay * 0.1}s` }}>
+    <div 
+      className="text-center animate-fade-up" 
+      style={{ animationDelay: `${delay * 0.1}s` }}
+    >
       <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-1">
         {count}{suffix}
       </div>
-      <div className="text-sm text-primary-foreground/80">{label}</div>
+      <div className="text-sm text-primary-foreground/70 tracking-wide">{label}</div>
     </div>
   );
 };
@@ -70,9 +73,11 @@ export const Stats = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-8 px-4 bg-primary">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+    <section ref={sectionRef} className="py-10 md:py-12 px-4 bg-primary relative overflow-hidden">
+      {/* Subtle inner glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary pointer-events-none" />
+      <div className="container mx-auto relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {stats.map((stat, index) => (
             <StatItem 
               key={stat.label} 

@@ -38,10 +38,13 @@ export const ScrollAnimationWrapper = ({ children, className = "", delay = 0 }: 
       ref={ref}
       className={`transition-all duration-700 ${
         isVisible
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-8"
+          ? "opacity-100 translate-y-0 scale-100"
+          : "opacity-0 translate-y-8 scale-[0.98]"
       } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ 
+        transitionDelay: `${delay}ms`,
+        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+      }}
     >
       {children}
     </div>
@@ -55,7 +58,7 @@ interface StaggeredCardProps {
   baseDelay?: number;
 }
 
-export const StaggeredCard = ({ children, className = "", index, baseDelay = 100 }: StaggeredCardProps) => {
+export const StaggeredCard = ({ children, className = "", index, baseDelay = 120 }: StaggeredCardProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -85,12 +88,15 @@ export const StaggeredCard = ({ children, className = "", index, baseDelay = 100
   return (
     <div
       ref={ref}
-      className={`transition-all duration-500 ${
+      className={`transition-all duration-600 ${
         isVisible
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-6"
+          ? "opacity-100 translate-y-0 scale-100"
+          : "opacity-0 translate-y-6 scale-[0.98]"
       } ${className}`}
-      style={{ transitionDelay: `${index * baseDelay}ms` }}
+      style={{ 
+        transitionDelay: `${index * baseDelay}ms`,
+        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+      }}
     >
       {children}
     </div>
