@@ -63,7 +63,7 @@ export const strengths = [
     icon: "Cpu",
   },
   {
-    title: "Sustainable Growth",
+    title: "Responsible Growth",
     description: "Designing business models that balance profitability with environmental responsibility.",
     icon: "Leaf",
   },
@@ -77,11 +77,7 @@ export const projects = [
     description:
       "Led strategy and market expansion for a premium hemp-products business, building distribution channels across India.",
     highlights: ["Market Strategy", "Brand Development", "Supply Chain Optimization"],
-    images: [
-      "/images/projects/og-hemp-1.jpg",
-      "/images/projects/og-hemp-2.jpg",
-      "/images/projects/og-hemp-3.jpg",
-    ],
+    images: ["/images/projects/og-hemp-1.jpg", "/images/projects/og-hemp-2.jpg", "/images/projects/og-hemp-3.jpg"],
   },
   {
     id: "skaizen-water",
