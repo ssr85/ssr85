@@ -1,70 +1,68 @@
 // CMS-editable content file for Sarabjeet Rattan's portfolio
 
-// CMS-editable content file for Sarabjeet Rattan's portfolio
-
 export const siteConfig = {
   name: "Sarabjeet Rattan",
   initials: "SR",
-  tagline: "Strategic Operations Leader | Sustainable Business Builder",
-  location: "India",
+  tagline: "Strategic Operations Executive | Scaling Sustainable Ventures",
+  location: "India & Global",
   email: "sarabjit.rattan@gmail.com",
   linkedin: "https://www.linkedin.com/in/sarabjeetrattan/",
 };
 
 export const snapshotCards = [
   {
-    title: "Core Experience",
+    title: "Core Expertise",
     description:
-      "15+ years building sustainable product and service operations, driving growth across manufacturing, B2B sales, and export markets.",
+      "16+ years architecting resilient operations across manufacturing, global B2B supply chains, and high-growth export markets.",
     icon: "Briefcase",
   },
   {
-    title: "Technical Expertise",
+    title: "Technical Leverage",
     description:
-      "Designing web apps, automation flows, and data-driven dashboards that reduce manual work and speed decision making.",
+      "Bridging the operations-technology gap by deploying custom automation, data pipelines, and internal tools that eliminate friction.",
     icon: "Code",
   },
   {
-    title: "Track Record",
-    description: "Proven history of scaling startups and improving operational KPIs through pragmatic process design.",
+    title: "Proven Impact",
+    description: "Demonstrated success in driving exponential growth, optimizing unit economics, and establishing rigorous KPIs for scale.",
     icon: "TrendingUp",
   },
   {
-    title: "Current Focus",
-    description: "Building tech-enabled, sustainable businesses with global distribution and resilient supply chains.",
+    title: "Current Thesis",
+    description: "Advising and building tech-enabled, forward-thinking enterprises backed by robust global distribution networks.",
     icon: "Target",
   },
 ];
 
 export const strengths = [
   {
-    title: "Strategic Planning",
-    description: "Translating vision into clear roadmaps: market analysis, product positioning, and growth milestones.",
+    title: "Strategic Architecture",
+    description: "Translating abstract vision into executable roadmaps: market entry, precise product positioning, and scaling milestones.",
     icon: "Compass",
   },
   {
-    title: "Operations Excellence",
-    description: "Process design, cost optimization, and operational controls to improve throughput and quality.",
+    title: "Operational Rigor",
+    description: "Engineering resilient process design, aggressive cost optimization, and systemic controls to maximize throughput.",
     icon: "Settings",
   },
   {
-    title: "Team Leadership",
-    description: "Hiring, mentoring, and aligning teams to deliver against aggressive operational targets.",
+    title: "Executive Leadership",
+    description: "Assembling, mentoring, and aligning high-performance cross-functional teams to deliver against ambitious multi-year targets.",
     icon: "Users",
   },
   {
-    title: "Business Development",
-    description: "Opening new channels and partnerships for domestic and international growth.",
+    title: "Global Expansion",
+    description: "Unlocking new revenue channels and securing strategic partnerships for aggressive domestic and international market dominance.",
     icon: "Rocket",
   },
   {
-    title: "Technology Integration",
-    description: "Applying modern tooling and automation to replace friction with repeatable systems.",
+    title: "System Integration",
+    description: "Replacing operational debt with highly repeatable systems, utilizing modern SaaS architectures and bespoke automation.",
     icon: "Cpu",
   },
   {
-    title: "Responsible Growth",
-    description: "Designing business models that balance profitability with environmental responsibility.",
+    title: "Sustainable Economics",
+    description: "Designing modern business models that rigorously balance aggressive profitability with long-term environmental responsibility.",
     icon: "Leaf",
   },
 ];
@@ -73,18 +71,18 @@ export const projects = [
   {
     id: "og-hemp",
     name: "OG Hemp",
-    category: "Sustainable Business",
+    category: "Sustainable Enterprise",
     description:
-      "Led strategy and market expansion for a premium hemp-products business, building distribution channels across India.",
-    highlights: ["Market Strategy", "Brand Development", "Supply Chain Optimization"],
+      "Architected the comprehensive go-to-market strategy and market expansion framework for a premium hemp-products business, establishing resilient distribution networks across India.",
+    highlights: ["Revenue Strategy", "Brand Architecture", "Supply Chain Resilience"],
     images: ["/images/projects/og-hemp-1.jpg", "/images/projects/og-hemp-2.jpg", "/images/projects/og-hemp-3.jpg"],
   },
   {
     id: "skaizen-water",
     name: "Skaizen Water",
-    category: "Operations",
-    description: "Transformed water purification operations with automation and expanded the B2B customer base.",
-    highlights: ["Process Automation", "B2B Sales", "Quality Management"],
+    category: "Operations Optimization",
+    description: "Radically transformed water purification operations via end-to-end automation logistics, successfully accelerating total B2B customer acquisition and retention.",
+    highlights: ["Workflow Automation", "B2B Expansion", "Quality Assurance"],
     images: [
       "/images/projects/skaizen-water-1.jpg",
       "/images/projects/skaizen-water-2.jpg",
@@ -93,10 +91,10 @@ export const projects = [
   },
   {
     id: "tech-automation",
-    name: "Tech Automation Suite",
-    category: "Technology",
-    description: "Built custom web applications and automation tools to streamline workflows and surface key metrics.",
-    highlights: ["Web Development", "Workflow Automation", "Data Analytics"],
+    name: "Internal Automation Suite",
+    category: "Technical Implementation",
+    description: "Developed and deployed custom web applications and deep automation pipelines to bypass operational bottlenecks and surface real-time executive metrics.",
+    highlights: ["Full-Stack Development", "Process Automation", "Executive Analytics"],
     images: [
       "/images/projects/tech-automation-1.jpg",
       "/images/projects/tech-automation-2.jpg",
@@ -105,10 +103,10 @@ export const projects = [
   },
   {
     id: "international-bd",
-    name: "International Expansion",
-    category: "Business Development",
-    description: "Spearheaded market-entry efforts and partner development for exports and international sales.",
-    highlights: ["Market Research", "Partner Relations", "Export Compliance"],
+    name: "Global Market Entry",
+    category: "Strategic Growth",
+    description: "Spearheaded complex market-entry efforts, navigating international compliance frameworks to secure pivotal partner relationships for multi-continent exports.",
+    highlights: ["Global Strategy", "Alliance Building", "Export Compliance"],
     images: [
       "/images/projects/international-bd-1.jpg",
       "/images/projects/international-bd-2.jpg",
@@ -119,46 +117,46 @@ export const projects = [
 
 export const services = [
   {
-    title: "Operations Consulting",
-    description: "End-to-end operational audits and improvement plans to increase efficiency and lower costs.",
+    title: "Operations Architecture",
+    description: "Comprehensive operational audits yielding actionable blueprints to radically increase efficiency, lower COGS, and unblock scale.",
     icon: "Settings",
   },
   {
-    title: "Sustainable GTM Strategy",
-    description: "Go-to-market planning for sustainable products focused on positioning, channels, and unit economics.",
+    title: "GTM Strategy & Positioning",
+    description: "Go-to-market orchestration for novel sustainable products, optimizing for sharp positioning, high-margin channels, and unit economics.",
     icon: "Leaf",
   },
   {
-    title: "WebApp & Automation",
-    description: "Custom webapps and automation that eliminate bottlenecks and make teams more productive.",
+    title: "Digital Transformation",
+    description: "Designing bespoke internal web applications and automation flows that eliminate massive manual bottlenecks.",
     icon: "Code",
   },
   {
-    title: "International Business Development",
-    description: "Partner sourcing, compliance guidance, and practical market-entry support for exports.",
+    title: "International Expansion",
+    description: "Sourcing robust global partners, advising on complex compliance, and executing practical, risk-managed market-entry operations.",
     icon: "Globe",
   },
 ];
 
 export const beyondWork = [
   {
-    title: "Travel",
-    description: "Finding inspiration in the unfamiliar.",
+    title: "Global Travel",
+    description: "Extracting strategic insights from unfamiliar cross-cultural environments.",
     icon: "Plane",
   },
   {
-    title: "Reading",
-    description: "Business strategy and technology trends",
+    title: "Continuous Learning",
+    description: "Deep-diving into bleeding-edge technology trends and macro business strategy.",
     icon: "BookOpen",
   },
   {
-    title: "Fitness",
-    description: "Mind, Body, Work. In that order.",
+    title: "Physical Resilience",
+    description: "Mind, Body, Work. Cultivating the stamina required for high-stakes leadership.",
     icon: "Dumbbell",
   },
   {
-    title: "Mentoring",
-    description: "Providing the strategic shortcuts I wish I knew early in my career.",
+    title: "Mentorship",
+    description: "Providing high-leverage strategic shortcuts to the next generation of operational leaders.",
     icon: "GraduationCap",
   },
 ];
