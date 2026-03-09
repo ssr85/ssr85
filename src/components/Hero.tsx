@@ -11,6 +11,23 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
   const [scrollY, setScrollY] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
 
+  const [currentTagIndex, setCurrentTagIndex] = useState(0);
+  const tags = [
+    "Agentic Systems",
+    "AI Driven Efficiency",
+    "Autonomous ReAct Engines",
+    "Intelligent Workflows",
+    "Multi-Agent Systems",
+    "Resilient Intelligent Engines"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTagIndex((prev) => (prev + 1) % tags.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       if (heroRef.current) {
@@ -20,7 +37,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
         }
       }
     };
-    
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -33,34 +50,34 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
   };
 
   return (
-    <section 
+    <section
       ref={heroRef}
       className="min-h-[95vh] flex items-center justify-center pt-24 pb-16 px-4 bg-background relative overflow-hidden font-sans"
     >
       {/* Sophisticated Background - Engineering/Operations grid vibe */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" 
-           style={{ 
-             backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-             backgroundSize: '4rem 4rem'
-           }} 
+      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
+          backgroundSize: '4rem 4rem'
+        }}
       />
-      
+
       {/* Subtle Mesh Gradient */}
-      <div 
+      <div
         className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/[0.04] rounded-full blur-[120px] will-change-transform pointer-events-none"
         style={{ transform: `translateY(${scrollY * 0.15}px)` }}
       />
-      <div 
+      <div
         className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/[0.04] rounded-full blur-[100px] will-change-transform pointer-events-none"
         style={{ transform: `translateY(${scrollY * -0.1}px)` }}
       />
-      
-      <div 
+
+      <div
         className="container mx-auto relative z-10 max-w-5xl"
         style={{ transform: `translateY(${scrollY * 0.05}px)` }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+
           {/* Main Content Area */}
           <div className="lg:col-span-8 text-left space-y-8">
             {/* Tagline / Name introduction */}
@@ -72,34 +89,36 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
             </div>
 
             {/* Headline */}
-            <h1 
+            <h1
               className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.1] tracking-tight animate-hero-fade"
               style={{ animationDelay: "0.15s" }}
             >
-              Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Scalable Operations</span> & Sustainable Businesses.
+              Architecting <span className="inline-block min-h-[0.9em] px-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary transition-all duration-500">
+                {tags[currentTagIndex]}
+              </span> for B2B Scale.
             </h1>
 
             {/* Value Proposition */}
-            <p 
+            <p
               className="text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-2xl animate-hero-fade font-light"
               style={{ animationDelay: "0.3s" }}
             >
-              Turning complex systems into growth engines. Driven by data, optimized for scale, built for resilience.
+              Building autonomous B2B engines that think, act, and scale. Bridging the gap between complex B2B operations and AI-driven efficiency.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4 animate-hero-fade" style={{ animationDelay: "0.45s" }}>
-              <Button 
-                size="lg" 
-                onClick={onOpenEnquiry} 
+              <Button
+                size="lg"
+                onClick={onOpenEnquiry}
                 className="w-full sm:w-auto px-8 py-7 text-base rounded-full bg-foreground text-background hover:bg-foreground/90 hover:scale-[1.02] shadow-xl shadow-foreground/10 transition-all font-semibold group border border-transparent"
               >
                 Start a Conversation
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
+              <Button
+                variant="outline"
+                size="lg"
                 onClick={scrollToContent}
                 className="w-full sm:w-auto px-8 py-7 text-base rounded-full border-border/50 hover:bg-muted/50 hover:border-primary/30 transition-all font-medium"
               >
@@ -129,7 +148,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
 
           {/* Value Highlights / Stats Column */}
           <div className="lg:col-span-4 lg:pl-8 space-y-6 hidden lg:block animate-hero-fade" style={{ animationDelay: "0.5s" }}>
-            
+
             {/* The "16+ Years" Callout */}
             <div className="p-8 rounded-3xl bg-card border border-border/50 shadow-2xl shadow-primary/5 relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -161,7 +180,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
 
         {/* Scroll down indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-hero-fade hidden md:flex" style={{ animationDelay: "0.8s" }}>
-          <button 
+          <button
             onClick={scrollToContent}
             className="w-10 h-16 rounded-full border border-border flex items-start justify-center p-2 hover:border-primary/50 transition-colors group"
             aria-label="Scroll down"

@@ -3,7 +3,7 @@
 export const siteConfig = {
   name: "Sarabjeet Rattan",
   initials: "SR",
-  tagline: "Strategic Operations Executive | Scaling Sustainable Ventures",
+  tagline: "Architecting Agentic Systems for B2B Scale",
   location: "India & Global",
   email: "sarabjit.rattan@gmail.com",
   linkedin: "https://www.linkedin.com/in/sarabjeetrattan/",
@@ -11,9 +11,9 @@ export const siteConfig = {
 
 export const snapshotCards = [
   {
-    title: "Core Expertise",
+    title: "B2B Agentic Systems",
     description:
-      "16+ years architecting resilient operations across manufacturing, global B2B supply chains, and high-growth export markets.",
+      "Designing self-correcting workflows and intelligent agents that navigate complex B2B business logic autonomously.",
     icon: "Briefcase",
   },
   {
@@ -32,6 +32,62 @@ export const snapshotCards = [
     description: "Advising and building tech-enabled, forward-thinking enterprises backed by robust global distribution networks.",
     icon: "Target",
   },
+];
+
+export interface CaseStudy {
+  id: string;
+  name: string;
+  category: string;
+  audience: string;
+  painPoints: string[];
+  description: string;
+  stats: string[];
+  techStack: string[];
+}
+
+export const caseStudies: CaseStudy[] = [
+  {
+    id: "lume",
+    name: "Lume",
+    category: "Agentic Engineering / AI Automation",
+    audience: "B2B Freelancers & Agencies",
+    painPoints: [
+      "Manual billing and proposal generation",
+      "Delayed payment tracking",
+      "Lead follow-up friction"
+    ],
+    description: "Engineered a proactive, context-aware AI agent that automates complex business workflows. Lume acts as a 'System Master,' managing email communications and dynamic invoice generation autonomously.",
+    stats: ["Context-Aware AI", "Automated Workflows", "Dynamic PDF Generation"],
+    techStack: ["Python/FastAPI", "OpenAI GPT-4o", "Gmail API", "Prompt Engineering"]
+  },
+  {
+    id: "lead-og",
+    name: "Lead OG",
+    category: "Agentic Engineering / Lead Gen",
+    audience: "B2B Sales Teams & SDRs",
+    painPoints: [
+      "Shallow lead context",
+      "Manual LinkedIn/Web research",
+      "Generic B2B contact strategies"
+    ],
+    description: "AI-powered CRM enrichment agent designed to transform raw leads into actionable enterprise opportunities through intelligent research and social scraping.",
+    stats: ["Social Enrichment", "CRM Integration", "Real-time Dashboard"],
+    techStack: ["React", "Supabase", "Tavily API", "LinkedIn Scraping", "Freshsales"]
+  },
+  {
+    id: "prospect-iq",
+    name: "Prospect IQ",
+    category: "Agentic Engineering / Data Intelligence",
+    audience: "Marketing & Web Design Agencies",
+    painPoints: [
+      "Analyzing prospect footprints at scale",
+      "Generic sales outreach",
+      "Manual audit overhead"
+    ],
+    description: "Sophisticated lead intelligence platform with resilient background workers and recovery services for stalled audits. Provides deep gap analysis for B2B marketing.",
+    stats: ["Data Enrichment", "Resilient Architecture", "Gap Analysis"],
+    techStack: ["Next.js", "Supabase", "Social Scraping Engne", "Tailwind CSS"]
+  }
 ];
 
 export const strengths = [

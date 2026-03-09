@@ -2,6 +2,7 @@ import { useState, lazy, Suspense } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Stats } from "@/components/Stats";
+import { CaseStudies } from "@/components/CaseStudies";
 import { Snapshot } from "@/components/Snapshot";
 import { Strengths } from "@/components/Strengths";
 import { Projects } from "@/components/Projects";
@@ -28,6 +29,9 @@ const Index = () => {
         </ScrollAnimationWrapper>
         <ScrollAnimationWrapper delay={100}>
           <Snapshot />
+        </ScrollAnimationWrapper>
+        <ScrollAnimationWrapper delay={200}>
+          <CaseStudies />
         </ScrollAnimationWrapper>
         <ScrollAnimationWrapper delay={100}>
           <Strengths />
