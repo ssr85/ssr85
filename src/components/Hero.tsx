@@ -15,7 +15,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
   const tags = [
     "Agentic Systems",
     "AI Driven Efficiency",
-    "Autonomous ReAct Engines",
+    "Auto ReAct Engines",
     "Intelligent Workflows",
     "Multi-Agent Systems",
     "Resilient Intelligent Engines"
