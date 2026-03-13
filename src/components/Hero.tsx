@@ -15,10 +15,10 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
   const tags = [
     "Agentic Systems",
     "AI Driven Efficiency",
-    "Autonomous ReAct Engines",
+    "Auto ReAct Engines",
     "Intelligent Workflows",
     "Multi-Agent Systems",
-    "Resilient Intelligent Engines",
+    "Resilient Intelligence"
   ];
 
   useEffect(() => {
@@ -55,11 +55,10 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
       className="min-h-[95vh] flex items-center justify-center pt-24 pb-16 px-4 bg-background relative overflow-hidden font-sans"
     >
       {/* Sophisticated Background - Engineering/Operations grid vibe */}
-      <div
-        className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-          backgroundSize: "4rem 4rem",
+          backgroundSize: '4rem 4rem'
         }}
       />
 
@@ -78,6 +77,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
         style={{ transform: `translateY(${scrollY * 0.05}px)` }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
           {/* Main Content Area */}
           <div className="lg:col-span-8 text-left space-y-8">
             {/* Tagline / Name introduction */}
@@ -93,12 +93,9 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
               className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.1] tracking-tight animate-hero-fade"
               style={{ animationDelay: "0.15s" }}
             >
-              Engineering <br />
-              <span className="inline-block min-h-[0.9em] text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary transition-all duration-500">
+              Architecting <br /><span className="inline-block min-h-[1.2em] pb-1 text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary transition-all duration-500">
                 {tags[currentTagIndex]}
-              </span>{" "}
-              <br />
-              for B2B Scale.
+              </span> <br />for B2B Scale.
             </h1>
 
             {/* Value Proposition */}
@@ -106,15 +103,11 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
               className="text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-2xl animate-hero-fade font-light"
               style={{ animationDelay: "0.3s" }}
             >
-              Building autonomous B2B engines that think, act, and scale. Bridging the gap between complex B2B
-              operations and AI-driven efficiency.
+              Building autonomous B2B engines that think, act, and scale. Bridging the gap between complex B2B operations and AI-driven efficiency.
             </p>
 
             {/* CTAs */}
-            <div
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4 animate-hero-fade"
-              style={{ animationDelay: "0.45s" }}
-            >
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4 animate-hero-fade" style={{ animationDelay: "0.45s" }}>
               <Button
                 size="lg"
                 onClick={onOpenEnquiry}
@@ -138,19 +131,11 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
               className="flex flex-wrap items-center gap-6 pt-8 animate-hero-fade border-t border-border/40 mt-8"
               style={{ animationDelay: "0.55s" }}
             >
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-              >
+              <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
                 <Mail size={16} className="text-primary" />
                 {siteConfig.email}
               </a>
-              <a
-                href={siteConfig.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-              >
+              <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
                 <Linkedin size={16} className="text-primary" />
                 LinkedIn
               </a>
@@ -162,21 +147,15 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
           </div>
 
           {/* Value Highlights / Stats Column */}
-          <div
-            className="lg:col-span-4 lg:pl-8 space-y-6 hidden lg:block animate-hero-fade"
-            style={{ animationDelay: "0.5s" }}
-          >
+          <div className="lg:col-span-4 lg:pl-8 space-y-6 hidden lg:block animate-hero-fade" style={{ animationDelay: "0.5s" }}>
+
             {/* The "16+ Years" Callout */}
             <div className="p-8 rounded-3xl bg-card border border-border/50 shadow-2xl shadow-primary/5 relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Activity size={80} />
               </div>
-              <h2 className="text-6xl font-black text-foreground tracking-tighter mb-2">
-                16<span className="text-primary">+</span>
-              </h2>
-              <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-1">
-                Years Experience
-              </p>
+              <h2 className="text-6xl font-black text-foreground tracking-tighter mb-2">16<span className="text-primary">+</span></h2>
+              <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-1">Years Experience</p>
               <p className="text-sm text-muted-foreground leading-relaxed mt-4 border-t border-border/50 pt-4">
                 Optimizing supply chains, expanding across 4 continents, and scaling businesses from the ground up.
               </p>
@@ -195,14 +174,12 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
                 <p className="text-xs text-muted-foreground mt-1">Tech-enabled</p>
               </div>
             </div>
+
           </div>
         </div>
 
         {/* Scroll down indicator */}
-        <div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-hero-fade hidden md:flex"
-          style={{ animationDelay: "0.8s" }}
-        >
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-hero-fade hidden md:flex" style={{ animationDelay: "0.8s" }}>
           <button
             onClick={scrollToContent}
             className="w-10 h-16 rounded-full border border-border flex items-start justify-center p-2 hover:border-primary/50 transition-colors group"
