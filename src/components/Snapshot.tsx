@@ -46,7 +46,7 @@ export const Snapshot = () => {
                   <div className={`absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br ${iconData.color} rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none`} />
 
                   <CardContent className="p-0 text-left relative z-10 flex flex-col h-full">
-                    <div className={`inline-flex items-center justify-center rounded-2xl bg-gradient-to-br ${iconData.color} text-primary-foreground mb-6 shadow-lg shadow-black/5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 ease-out`, isLarge ? "w-16 h-16" : "w-14 h-14"}>
+                    <div className={cn(`inline-flex items-center justify-center rounded-2xl bg-gradient-to-br ${iconData.color} text-primary-foreground mb-6 shadow-lg shadow-black/5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 ease-out`, isLarge ? "w-16 h-16" : "w-14 h-14")}>
                       {iconData.icon}
                     </div>
                     <div className="mt-auto">
