@@ -18,7 +18,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
     "Auto ReAct Engines",
     "Intelligent Workflows",
     "Multi-Agent Systems",
-    "Resilient Intelligent Engines"
+    "Resilient Intelligence"
   ];
 
   useEffect(() => {
