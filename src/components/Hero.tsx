@@ -93,9 +93,9 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
               className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.1] tracking-tight animate-hero-fade"
               style={{ animationDelay: "0.15s" }}
             >
-              Architecting <span className="inline-block min-h-[0.9em] px-2 text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary transition-all duration-500">
+              Architecting <br /><span className="inline-block min-h-[0.9em] text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary transition-all duration-500">
                 {tags[currentTagIndex]}
-              </span> for B2B Scale.
+              </span> <br />for B2B Scale.
             </h1>
 
             {/* Value Proposition */}
