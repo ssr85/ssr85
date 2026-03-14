@@ -12,7 +12,7 @@ const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
 
 export const BeyondWork = () => {
   return (
-    <section id="beyond-work" className="py-16 md:py-24 px-4 bg-muted/30 relative overflow-hidden">
+    <section id="about" className="py-16 md:py-24 px-4 bg-muted/30 relative overflow-hidden">
       {/* Subtle background texture */}
       <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]" style={{
         backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",

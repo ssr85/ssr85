@@ -24,25 +24,25 @@ const Index = () => {
       <Header onOpenEnquiry={openEnquiry} />
       <main>
         <Hero onOpenEnquiry={openEnquiry} />
-        <ScrollAnimationWrapper>
-          <Stats />
-        </ScrollAnimationWrapper>
         <ScrollAnimationWrapper delay={100}>
           <Snapshot />
+        </ScrollAnimationWrapper>
+        <ScrollAnimationWrapper delay={150}>
+          <Stats />
         </ScrollAnimationWrapper>
         <ScrollAnimationWrapper delay={200}>
           <CaseStudies />
         </ScrollAnimationWrapper>
-        <ScrollAnimationWrapper delay={100}>
+        <ScrollAnimationWrapper delay={250}>
           <Strengths />
         </ScrollAnimationWrapper>
-        <ScrollAnimationWrapper delay={100}>
-          <Projects />
-        </ScrollAnimationWrapper>
-        <ScrollAnimationWrapper delay={100}>
+        <ScrollAnimationWrapper delay={300}>
           <Services onOpenEnquiry={openEnquiry} />
         </ScrollAnimationWrapper>
-        <ScrollAnimationWrapper delay={100}>
+        <ScrollAnimationWrapper delay={350}>
+          <Projects />
+        </ScrollAnimationWrapper>
+        <ScrollAnimationWrapper delay={400}>
           <BeyondWork />
         </ScrollAnimationWrapper>
       </main>
