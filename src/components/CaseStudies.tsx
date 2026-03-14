@@ -9,7 +9,7 @@ export const CaseStudies = () => {
     const activeProject = caseStudies.find((p) => p.id === activeTab)!;
 
     return (
-        <section id="evidence" className="py-24 px-4 bg-muted/30 overflow-hidden">
+        <section className="py-24 px-4 bg-muted/30 overflow-hidden">
             <div className="container mx-auto max-w-5xl">
                 <div className="text-center mb-12 space-y-4 animate-hero-fade">
                     <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Case Studies</h2>
@@ -26,8 +26,8 @@ export const CaseStudies = () => {
                                 key={project.id}
                                 onClick={() => setActiveTab(project.id)}
                                 className={`px-6 py-2.5 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 ${activeTab === project.id
-                                    ? "bg-primary text-primary-foreground shadow-lg scale-105"
-                                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                                        ? "bg-primary text-primary-foreground shadow-lg scale-105"
+                                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                                     }`}
                             >
                                 {project.name}
@@ -106,11 +106,7 @@ export const CaseStudies = () => {
                             </div>
                         </div>
 
-                        <Button
-                            className="w-full lg:w-auto mt-8 rounded-full py-6 group"
-                            variant="outline"
-                            onClick={() => document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" })}
-                        >
+                        <Button className="w-full lg:w-auto mt-8 rounded-full py-6 group" variant="outline">
                             Project Specification
                             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Button>

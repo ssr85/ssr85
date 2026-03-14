@@ -51,7 +51,6 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
 
   return (
     <section
-      id="hero"
       ref={heroRef}
       className="min-h-[95vh] flex items-center justify-center pt-24 pb-16 px-4 bg-background relative overflow-hidden font-sans"
     >
@@ -94,17 +93,9 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
               className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.1] tracking-tight animate-hero-fade"
               style={{ animationDelay: "0.15s" }}
             >
-<<<<<<< HEAD
               Architecting <br /><span className="inline-block min-h-[1.2em] pb-1 text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary transition-all duration-500">
                 {tags[currentTagIndex]}
               </span> <br />for B2B Scale.
-=======
-              <span className="block mb-2 text-foreground/90">Architecting</span>
-              <span className="block text-2xl md:text-4xl lg:text-5xl py-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary transition-all duration-500 whitespace-nowrap overflow-hidden text-ellipsis">
-                {tags[currentTagIndex]}
-              </span>
-              <span className="block mt-2 text-foreground/90">for B2B Scale.</span>
->>>>>>> 4ca5f0c (feat: implement a new minimalist V2 landing page with dedicated components, content, and design plans, alongside minor adjustments to the existing homepage.)
             </h1>
 
             {/* Value Proposition */}
@@ -128,9 +119,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
               <Button
                 variant="outline"
                 size="lg"
-                onClick={() => {
-                  document.querySelector("#evidence")?.scrollIntoView({ behavior: "smooth" });
-                }}
+                onClick={scrollToContent}
                 className="w-full sm:w-auto px-8 py-7 text-base rounded-full border-border/50 hover:bg-muted/50 hover:border-primary/30 transition-all font-medium"
               >
                 View Portfolio

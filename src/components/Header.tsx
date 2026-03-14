@@ -9,9 +9,9 @@ interface HeaderProps {
 }
 
 const navLinks = [
-  { label: "Expertise", href: "#snapshot" },
-  { label: "Evidence", href: "#evidence" },
-  { label: "Systems", href: "#services" },
+  { label: "Strengths", href: "#strengths" },
+  { label: "Projects", href: "#projects" },
+  { label: "Services", href: "#services" },
 ];
 
 export const Header = ({ onOpenEnquiry }: HeaderProps) => {
@@ -36,10 +36,11 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
           ? "bg-background/90 backdrop-blur-xl border-b border-border/50 shadow-sm shadow-foreground/[0.03]"
           : "bg-transparent"
-        }`}
+      }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -52,8 +53,8 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            <img
-              src={logo}
+            <img 
+              src={logo} 
               alt="SR Logo"
               width={48}
               height={48}
@@ -72,8 +73,8 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                 {link.label}
               </button>
             ))}
-            <Button
-              onClick={onOpenEnquiry}
+            <Button 
+              onClick={onOpenEnquiry} 
               size="sm"
               className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-md shadow-primary/15 group"
             >
@@ -107,11 +108,11 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                 </button>
               ))}
               <div className="flex items-center gap-4 mt-2">
-                <Button
+                <Button 
                   onClick={() => {
                     setIsMobileMenuOpen(false);
                     onOpenEnquiry();
-                  }}
+                  }} 
                   className="flex-1 bg-gradient-to-r from-primary to-secondary"
                 >
                   Get In Touch
