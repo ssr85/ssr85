@@ -207,13 +207,13 @@ export const beyondWork = [
   },
   {
     title: "Continuous Learning",
-    description: "Deep-diving into bleeding-edge technology trends and macro business strategy.",
+    description: "Deep-diving into tech trends and macro business strategy.",
     icon: "BookOpen",
     details: ["Tech Trends", "System/Design Thinking", "Geopolitics"]
   },
   {
     title: "Physical Resilience",
-    description: "Mind, Body, Work. Cultivating the stamina required for high-stakes leadership.",
+    description: "Mind, Body, Work. Cultivating the stamina required for leadership.",
     icon: "Dumbbell",
     details: ["Mind-Body-Work Framework", "Strength Training", "High-Performance Habit"]
   },

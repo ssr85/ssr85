@@ -12,7 +12,7 @@ const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
 
 export const BeyondWork = () => {
   return (
-    <section id="beyond-work" className="py-20 md:py-28 px-4 bg-muted/30 relative overflow-hidden">
+    <section id="beyond-work" className="pt-20 pb-40 md:pt-28 md:pb-52 px-4 bg-muted/30 relative overflow-hidden">
       {/* Subtle background texture */}
       <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]" style={{
         backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
@@ -31,44 +31,45 @@ export const BeyondWork = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-4xl">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl">
           {beyondWork.map((item, index) => {
             const iconData = iconMap[item.icon];
             return (
               <StaggeredCard key={item.title} index={index}>
-                <Card className="bg-card border-border hover:border-primary/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 group h-full overflow-hidden">
-                  <CardContent className="p-6 text-center flex flex-col h-full">
-                    <div className="flex-grow flex flex-col items-center">
+                {/* Fixed-height wrapper to prevent layout shift */}
+                <div className="relative h-[200px] w-full">
+                  <Card className="absolute top-0 left-0 w-full transition-all duration-500 ease-out group hover:shadow-2xl hover:shadow-primary/5 hover:border-primary/40 hover:-translate-y-2 z-10 hover:z-30 bg-card/80 backdrop-blur-md border border-border/50 overflow-hidden rounded-[2rem]">
+                    <CardContent className="p-8 text-center flex flex-col items-center">
                       <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl ${iconData.color} mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
                         {iconData.icon}
                       </div>
-                      <h3 className="font-bold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
+                      
+                      <h3 className="font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                         {item.title}
                       </h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed transition-opacity duration-300 group-hover:opacity-80">
+                      
+                      <p className="text-sm text-muted-foreground leading-relaxed transition-opacity duration-300 group-hover:opacity-70">
                         {item.description}
                       </p>
-                    </div>
 
-                    {/* Expandable Section */}
-                    <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                      <div className="overflow-hidden">
-                        <div className="pt-4 mt-4 border-t border-border/50">
-                          <ul className="flex flex-wrap justify-center gap-1.5">
+                      {/* Expandable Details - Absolute/Transform based for zero layout shift */}
+                      <div className="w-full max-h-0 opacity-0 group-hover:max-h-[120px] group-hover:opacity-100 transition-all duration-500 ease-in-out overflow-hidden">
+                        <div className="pt-6 mt-6 border-t border-border/30">
+                          <div className="flex flex-wrap justify-center gap-2">
                             {item.details?.map((detail) => (
-                              <li 
+                              <span 
                                 key={detail} 
-                                className="text-[10px] px-2 py-0.5 rounded-full bg-secondary/50 text-secondary-foreground font-medium border border-border/30"
+                                className="text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-primary/5 text-primary/80 border border-primary/10 font-semibold"
                               >
                                 {detail}
-                              </li>
+                              </span>
                             ))}
-                          </ul>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </div>
               </StaggeredCard>
             );
           })}
