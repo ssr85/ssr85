@@ -92,6 +92,12 @@ export default {
           "0%": { transform: "scale(0.95)", opacity: "0" },
           "100%": { transform: "scale(1)", opacity: "1" },
         },
+        "ticker-slide": {
+          "0%": { transform: "translateY(100%)", opacity: "0" },
+          "10%": { transform: "translateY(0)", opacity: "1" },
+          "90%": { transform: "translateY(0)", opacity: "1" },
+          "100%": { transform: "translateY(-100%)", opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -101,6 +107,7 @@ export default {
         "slide-up": "slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both",
         "hero-fade": "hero-fade 0.8s cubic-bezier(0.16, 1, 0.3, 1) both",
         "scale-in": "scale-in 0.2s ease-out",
+        "ticker-slide": "ticker-slide 2s ease-in-out forwards",
       },
     },
   },

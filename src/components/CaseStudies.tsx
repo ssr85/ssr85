@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { caseStudies } from "@/data/content";
 import { Badge } from "@/components/ui/badge";
 import { Target, AlertCircle, Cpu } from "lucide-react";
@@ -6,6 +6,18 @@ import { Target, AlertCircle, Cpu } from "lucide-react";
 export const CaseStudies = () => {
     const [activeTab, setActiveTab] = useState(caseStudies[0].id);
     const activeProject = caseStudies.find((p) => p.id === activeTab)!;
+    const [painPointIndex, setPainPointIndex] = useState(0);
+
+    useEffect(() => {
+        setPainPointIndex(0);
+    }, [activeTab]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setPainPointIndex((prev) => (prev + 1) % activeProject.painPoints.length);
+        }, 2000);
+        return () => clearInterval(interval);
+    }, [activeProject.painPoints.length, activeTab]);
 
     return (
         <section id="case-studies" className="py-20 md:py-28 px-4 bg-muted/30 overflow-hidden">
@@ -67,14 +79,15 @@ export const CaseStudies = () => {
                                     <AlertCircle size={14} />
                                     <span>Pain Points Solved</span>
                                 </div>
-                                <ul className="text-xs text-muted-foreground space-y-1.5 font-medium">
-                                    {activeProject.painPoints.map((point, i) => (
-                                        <li key={i} className="flex items-start gap-2">
-                                            <span className="text-accent mt-1 text-[8px]">●</span>
-                                            <span>{point}</span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <div className="h-5 overflow-hidden relative">
+                                    <div
+                                        key={`${activeTab}-${painPointIndex}`}
+                                        className="flex items-start gap-2 text-xs text-muted-foreground font-medium animate-ticker-slide"
+                                    >
+                                        <span className="text-accent mt-0.5 text-[8px]">●</span>
+                                        <span>{activeProject.painPoints[painPointIndex]}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
