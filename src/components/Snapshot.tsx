@@ -13,7 +13,7 @@ const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
 
 export const Snapshot = () => {
   return (
-    <section className="py-20 md:py-28 px-4 bg-background relative overflow-hidden border-y border-border/40">
+    <section id="snapshot" className="py-20 md:py-28 px-4 bg-background relative overflow-hidden border-y border-border/40">
       {/* Subtle Engineering Grid Background */}
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none"

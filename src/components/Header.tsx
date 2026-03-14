@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import logo from "@/assets/SR_LOGO_no_bg.png";
 
 interface HeaderProps {
@@ -9,14 +10,18 @@ interface HeaderProps {
 }
 
 const navLinks = [
-  { label: "Strengths", href: "#strengths" },
-  { label: "Projects", href: "#projects" },
-  { label: "Services", href: "#services" },
+  { label: "Expertise", href: "#snapshot", id: "snapshot" },
+  { label: "Case Studies", href: "#case-studies", id: "case-studies" },
+  { label: "Strengths", href: "#strengths", id: "strengths" },
+  { label: "Services", href: "#services", id: "services" },
+  { label: "Beyond", href: "#beyond-work", id: "beyond-work" },
 ];
 
 export const Header = ({ onOpenEnquiry }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  const activeSection = useScrollSpy(navLinks.map(link => link.id));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,21 +34,30 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const offset = 80; // Header height
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
     setIsMobileMenuOpen(false);
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         isScrolled
-          ? "bg-background/90 backdrop-blur-xl border-b border-border/50 shadow-sm shadow-foreground/[0.03]"
+          ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm shadow-foreground/[0.03]"
           : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-16 md:h-24 transition-all duration-500">
           {/* Logo */}
           <a
             href="#"
@@ -58,66 +72,96 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
               alt="SR Logo"
               width={48}
               height={48}
-              className="h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-105 dark:invert"
+              className="h-10 md:h-12 w-auto transition-all duration-500 group-hover:scale-110 dark:invert"
             />
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left"
-              >
-                {link.label}
-              </button>
-            ))}
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <button
+                  key={link.href}
+                  onClick={() => scrollToSection(link.href)}
+                  className={`px-4 py-2 text-sm font-medium transition-all duration-500 relative group overflow-hidden rounded-full ${
+                    isActive 
+                      ? "text-primary scale-105" 
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <span className="relative z-10">{link.label}</span>
+                  
+                  {/* Gradual Lighting Effect Underlink */}
+                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary/0 via-primary to-primary/0 transition-all duration-700 ease-in-out transform ${
+                    isActive ? "scale-x-75 opacity-100" : "scale-x-0 opacity-0 group-hover:scale-x-50 group-hover:opacity-50"
+                  }`} />
+                  
+                  {/* Subtle Glow Background */}
+                  <span className={`absolute inset-0 bg-primary/5 rounded-full transition-all duration-1000 ease-in-out ${
+                    isActive ? "opacity-100 scale-100" : "opacity-0 scale-90"
+                  }`} />
+                </button>
+              );
+            })}
+            <div className="h-6 w-[1px] bg-border/40 mx-2" />
             <Button 
               onClick={onOpenEnquiry} 
               size="sm"
-              className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-md shadow-primary/15 group"
+              className="ml-2 bg-foreground text-background hover:bg-foreground/90 shadow-lg shadow-foreground/5 rounded-full px-6 transition-all duration-500 hover:scale-105 group"
             >
               Get In Touch
-              <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
             </Button>
             <ThemeToggle />
           </nav>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors bg-muted/20 rounded-full"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <div className="relative w-6 h-6">
+              {isMobileMenuOpen ? <X size={24} className="animate-in fade-in spin-in-90 duration-300" /> : <Menu size={24} className="animate-in fade-in spin-in--90 duration-300" />}
+            </div>
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border/50 animate-slide-up bg-background/95 backdrop-blur-xl">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => scrollToSection(link.href)}
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium text-left py-2"
-                >
-                  {link.label}
-                </button>
-              ))}
-              <div className="flex items-center gap-4 mt-2">
+          <nav className="md:hidden py-6 border-t border-border/20 animate-in slide-in-from-top-4 duration-500 bg-background/95 backdrop-blur-2xl rounded-b-3xl shadow-2xl overflow-hidden">
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <button
+                    key={link.href}
+                    onClick={() => scrollToSection(link.href)}
+                    className={`flex items-center justify-between px-6 py-4 text-base font-semibold transition-all duration-300 ${
+                      isActive 
+                        ? "text-primary bg-primary/5" 
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    {isActive && <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />}
+                  </button>
+                );
+              })}
+              <div className="px-6 pt-4 flex items-center gap-4">
                 <Button 
                   onClick={() => {
                     setIsMobileMenuOpen(false);
                     onOpenEnquiry();
                   }} 
-                  className="flex-1 bg-gradient-to-r from-primary to-secondary"
+                  className="flex-1 bg-foreground text-background hover:bg-foreground/90 rounded-full py-6 font-bold"
                 >
                   Get In Touch
                 </Button>
-                <ThemeToggle />
+                <div className="p-3 bg-muted/20 rounded-full">
+                  <ThemeToggle />
+                </div>
               </div>
             </div>
           </nav>

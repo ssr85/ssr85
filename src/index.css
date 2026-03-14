@@ -123,4 +123,17 @@ All colors MUST be HSL.
   .hover-scale {
     @apply transition-transform duration-200 hover:scale-105;
   }
+
+  @keyframes smooth-bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(20px);
+    }
+  }
+
+  .animate-smooth-bounce {
+    animation: smooth-bounce 2.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
 }

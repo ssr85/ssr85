@@ -51,6 +51,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
 
   return (
     <section
+      id="hero"
       ref={heroRef}
       className="min-h-[95vh] flex items-center justify-center pt-24 pb-16 px-4 bg-background relative overflow-hidden font-sans"
     >
@@ -175,7 +176,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
             <div className="grid grid-cols-2 gap-4">
               <div className="p-5 rounded-2xl bg-muted/40 border border-border/50 flex flex-col justify-center">
                 <Globe className="h-6 w-6 text-secondary mb-3" />
-                <h4 className="font-bold text-foreground">Global Reach</h4>
+                <h4 className="font-bold text-foreground">Global</h4>
                 <p className="text-xs text-muted-foreground mt-1">4 Continents</p>
               </div>
               <div className="p-5 rounded-2xl bg-muted/40 border border-border/50 flex flex-col justify-center">
@@ -188,14 +189,17 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
           </div>
         </div>
 
-        {/* Scroll down indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-hero-fade hidden md:flex" style={{ animationDelay: "0.8s" }}>
+        </div>
+
+      {/* Scroll down indicator - Moved to the bottom edge of the section */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-hero-fade hidden md:flex z-20" style={{ animationDelay: "1.2s" }}>
+        <div className="animate-smooth-bounce">
           <button
             onClick={scrollToContent}
-            className="w-10 h-16 rounded-full border border-border flex items-start justify-center p-2 hover:border-primary/50 transition-colors group"
+            className="w-10 h-16 rounded-full border border-primary/50 flex items-start justify-center p-2 transition-all duration-300 bg-background/10 hover:border-primary/80"
             aria-label="Scroll down"
           >
-            <div className="w-1.5 h-3 bg-muted-foreground rounded-full animate-bounce group-hover:bg-primary transition-colors" />
+            <div className="w-1.5 h-3 bg-primary/80 rounded-full" />
           </button>
         </div>
       </div>
