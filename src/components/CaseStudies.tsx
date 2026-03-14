@@ -79,7 +79,7 @@ export const CaseStudies = () => {
                                     <AlertCircle size={14} />
                                     <span>Pain Points Solved</span>
                                 </div>
-                                <div className="h-5 overflow-hidden relative">
+                                <div className="h-6 overflow-hidden relative">
                                     <div
                                         key={`${activeTab}-${painPointIndex}`}
                                         className="flex items-start gap-2 text-xs text-muted-foreground font-medium animate-ticker-slide"
