@@ -49,6 +49,22 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
     }
   };
 
+  const scrollToCaseStudies = () => {
+    const caseStudiesSection = document.getElementById("case-studies");
+    if (caseStudiesSection) {
+      const offset = 35;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = caseStudiesSection.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <section
       id="hero"
@@ -77,38 +93,39 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
         className="container mx-auto relative z-10 max-w-5xl"
         style={{ transform: `translateY(${scrollY * 0.05}px)` }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* Top Tagline - Now explicitly separate to allow sub-grid alignment */}
+        <div className="animate-hero-fade flex items-center gap-4 mb-8">
+          <div className="h-[1px] w-12 bg-primary/40" />
+          <p className="text-sm md:text-base font-semibold tracking-[0.2em] uppercase text-primary">
+            {siteConfig.name}
+          </p>
+        </div>
 
-          {/* Main Content Area */}
-          <div className="lg:col-span-8 text-left space-y-8">
-            {/* Tagline / Name introduction */}
-            <div className="animate-hero-fade flex items-center gap-4">
-              <div className="h-[1px] w-12 bg-primary/40" />
-              <p className="text-sm md:text-base font-semibold tracking-[0.2em] uppercase text-primary">
-                {siteConfig.name}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+          {/* Alignment Area: Left (Headline to CTAs) and Right (Boxes) */}
+          <div className="lg:col-span-8 flex flex-col items-start justify-between min-h-full">
+            <div className="space-y-8">
+              {/* Headline */}
+              <h1
+                className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.1] tracking-tight animate-hero-fade"
+                style={{ animationDelay: "0.15s" }}
+              >
+                Engineering <br /><span className="inline-block min-h-[1.2em] pb-1 text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary transition-all duration-500">
+                  {tags[currentTagIndex]}
+                </span> <br />for B2B Scale.
+              </h1>
+
+              {/* Value Proposition */}
+              <p
+                className="text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-xl animate-hero-fade font-light"
+                style={{ animationDelay: "0.3s" }}
+              >
+                Bridging B2B operations with autonomous, AI engines.
               </p>
             </div>
 
-            {/* Headline */}
-            <h1
-              className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.1] tracking-tight animate-hero-fade"
-              style={{ animationDelay: "0.15s" }}
-            >
-              Engineering <br /><span className="inline-block min-h-[1.2em] pb-1 text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary transition-all duration-500">
-                {tags[currentTagIndex]}
-              </span> <br />for B2B Scale.
-            </h1>
-
-            {/* Value Proposition */}
-            <p
-              className="text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-2xl animate-hero-fade font-light"
-              style={{ animationDelay: "0.3s" }}
-            >
-              Bridging B2B operations with autonomous, AI engines.
-            </p>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4 animate-hero-fade" style={{ animationDelay: "0.45s" }}>
+            {/* CTAs - This is the bottom anchor for alignment */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-8 animate-hero-fade mt-auto" style={{ animationDelay: "0.45s" }}>
               <Button
                 size="lg"
                 onClick={onOpenEnquiry}
@@ -120,37 +137,17 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
               <Button
                 variant="outline"
                 size="lg"
-                onClick={scrollToContent}
+                onClick={scrollToCaseStudies}
                 className="w-full sm:w-auto px-8 py-7 text-base rounded-full border-border/50 hover:bg-muted/50 hover:border-primary/30 transition-all font-medium"
               >
                 View Portfolio
               </Button>
             </div>
-
-            {/* Contact details */}
-            <div
-              className="flex flex-wrap items-center gap-6 pt-8 animate-hero-fade border-t border-border/40 mt-8"
-              style={{ animationDelay: "0.55s" }}
-            >
-              <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-                <Mail size={16} className="text-primary" />
-                {siteConfig.email}
-              </a>
-              <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-                <Linkedin size={16} className="text-primary" />
-                LinkedIn
-              </a>
-              <span className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                <MapPin size={16} className="text-primary" />
-                {siteConfig.location}
-              </span>
-            </div>
           </div>
 
-          {/* Value Highlights / Availability Column */}
-          <div className="lg:col-span-4 lg:pl-8 space-y-6 hidden lg:block animate-hero-fade" style={{ animationDelay: "0.5s" }}>
-
-            {/* Open For card */}
+          {/* Value Highlights / Availability Column - Height matched with left content */}
+          <div className="lg:col-span-4 lg:pl-8 flex flex-col justify-between hidden lg:flex animate-hero-fade" style={{ animationDelay: "0.5s" }}>
+            {/* Open For card - Top edge aligns with "Engineering" */}
             <div className="p-8 rounded-3xl bg-card border border-border/50 shadow-2xl shadow-primary/5 relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                 <BrainCircuit size={80} />
@@ -172,8 +169,8 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
               </ul>
             </div>
 
-            {/* Micro Stats */}
-            <div className="grid grid-cols-2 gap-4">
+            {/* Micro Stats - Bottom edge aligns with buttons */}
+            <div className="grid grid-cols-2 gap-4 mt-8">
               <div className="p-5 rounded-2xl bg-muted/40 border border-border/50 flex flex-col justify-center">
                 <Globe className="h-6 w-6 text-secondary mb-3" />
                 <h4 className="font-bold text-foreground">Global</h4>
@@ -185,11 +182,28 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
                 <p className="text-xs text-muted-foreground mt-1">Tech-enabled</p>
               </div>
             </div>
-
           </div>
         </div>
 
+        {/* Contact details - Now clearly below the aligned section */}
+        <div
+          className="flex flex-wrap items-center gap-6 pt-8 animate-hero-fade border-t border-border/40 mt-12"
+          style={{ animationDelay: "0.55s" }}
+        >
+          <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            <Mail size={16} className="text-primary" />
+            {siteConfig.email}
+          </a>
+          <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            <Linkedin size={16} className="text-primary" />
+            LinkedIn
+          </a>
+          <span className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+            <MapPin size={16} className="text-primary" />
+            {siteConfig.location}
+          </span>
         </div>
+      </div>
 
       {/* Scroll down indicator - Moved to the bottom edge of the section */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-hero-fade hidden md:flex z-20" style={{ animationDelay: "1.2s" }}>
