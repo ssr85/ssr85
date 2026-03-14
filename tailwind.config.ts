@@ -107,6 +107,7 @@ export default {
         "slide-up": "slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both",
         "hero-fade": "hero-fade 0.8s cubic-bezier(0.16, 1, 0.3, 1) both",
         "scale-in": "scale-in 0.2s ease-out",
+        "ticker-slide": "ticker-slide 2s ease-in-out forwards",
       },
     },
   },

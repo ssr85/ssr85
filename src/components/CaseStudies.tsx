@@ -79,14 +79,15 @@ export const CaseStudies = () => {
                                     <AlertCircle size={14} />
                                     <span>Pain Points Solved</span>
                                 </div>
-                                <ul className="text-xs text-muted-foreground space-y-1.5 font-medium">
-                                    {activeProject.painPoints.map((point, i) => (
-                                        <li key={i} className="flex items-start gap-2">
-                                            <span className="text-accent mt-1 text-[8px]">●</span>
-                                            <span>{point}</span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <div className="h-5 overflow-hidden relative">
+                                    <div
+                                        key={`${activeTab}-${painPointIndex}`}
+                                        className="flex items-start gap-2 text-xs text-muted-foreground font-medium animate-ticker-slide"
+                                    >
+                                        <span className="text-accent mt-0.5 text-[8px]">●</span>
+                                        <span>{activeProject.painPoints[painPointIndex]}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
