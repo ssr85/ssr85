@@ -12,23 +12,27 @@ export const siteConfig = {
 export const snapshotCards = [
   {
     title: "B2B Agentic Systems",
+    focus: "Auto-ReAct / LLM Ops",
     description:
       "Designing self-correcting workflows and intelligent agents that navigate complex B2B business logic autonomously.",
     icon: "Briefcase",
   },
   {
     title: "Technical Leverage",
+    focus: "System Integration",
     description:
       "Bridging the operations-technology gap by deploying custom automation, data pipelines, and internal tools that eliminate friction.",
     icon: "Code",
   },
   {
     title: "Proven Impact",
+    focus: "Scale & Efficiency",
     description: "Demonstrated success in driving exponential growth, optimizing unit economics, and establishing rigorous KPIs for scale.",
     icon: "TrendingUp",
   },
   {
     title: "Current Thesis",
+    focus: "Agent-Led Enterprise",
     description: "Advising and building tech-enabled, forward-thinking enterprises backed by robust global distribution networks.",
     icon: "Target",
   },
