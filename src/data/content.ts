@@ -3,7 +3,7 @@
 export const siteConfig = {
   name: "Sarabjeet Rattan",
   initials: "SR",
-  tagline: "Architecting Agentic Systems for B2B Scale",
+  tagline: "Engineering Agentic Systems for B2B Scale",
   location: "India & Global",
   email: "sarabjit.rattan@gmail.com",
   linkedin: "https://www.linkedin.com/in/sarabjeetrattan/",

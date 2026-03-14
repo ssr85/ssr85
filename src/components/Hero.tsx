@@ -93,7 +93,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
               className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.1] tracking-tight animate-hero-fade"
               style={{ animationDelay: "0.15s" }}
             >
-              Architecting <br /><span className="inline-block min-h-[1.2em] pb-1 text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary transition-all duration-500">
+              Engineering <br /><span className="inline-block min-h-[1.2em] pb-1 text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary transition-all duration-500">
                 {tags[currentTagIndex]}
               </span> <br />for B2B Scale.
             </h1>
@@ -103,7 +103,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
               className="text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-2xl animate-hero-fade font-light"
               style={{ animationDelay: "0.3s" }}
             >
-              Building autonomous B2B engines that think, act, and scale. Bridging the gap between complex B2B operations and AI-driven efficiency.
+              Bridging B2B operations with autonomous, AI engines.
             </p>
 
             {/* CTAs */}
