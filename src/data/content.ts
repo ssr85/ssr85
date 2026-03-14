@@ -56,10 +56,15 @@ export const caseStudies: CaseStudy[] = [
     category: "Agentic Engineering / AI Automation",
     audience: "B2B Freelancers & Agencies",
     painPoints: [
-      "Manual billing and proposal generation",
-      "Delayed payment tracking",
-      "Lead follow-up friction"
-    ],
+  "Manual proposal creation",
+  "Manual invoice generation",
+  "Delayed payment tracking",
+  "Lead follow-up friction",
+  "Email overload",
+  "Missed client responses",
+  "Overdue invoice reminders",
+  "Fragmented client data"
+],
     description: "Engineered a proactive, context-aware AI agent that automates complex business workflows. Lume acts as a 'System Master,' managing email communications and dynamic invoice generation autonomously.",
     stats: ["Context-Aware AI", "Automated Workflows", "Dynamic PDF Generation"],
     techStack: ["Python/FastAPI", "OpenAI GPT-4o", "Gmail API", "Prompt Engineering"]
@@ -70,10 +75,17 @@ export const caseStudies: CaseStudy[] = [
     category: "Agentic Engineering / Lead Gen",
     audience: "B2B Sales Teams & SDRs",
     painPoints: [
-      "Shallow lead context",
-      "Manual LinkedIn/Web research",
-      "Generic B2B contact strategies"
-    ],
+  "Shallow lead context",
+  "Manual lead research",
+  "Generic outreach strategies",
+  "Incomplete prospect profiles",
+  "Fragmented lead data",
+  "Slow lead qualification",
+  "Unverified contact data",
+  "Poor lead prioritization",
+  "Missing company insights",
+  "Disconnected sales tools"
+],
     description: "AI-powered CRM enrichment agent designed to transform raw leads into actionable enterprise opportunities through intelligent research and social scraping.",
     stats: ["Social Enrichment", "CRM Integration", "Real-time Dashboard"],
     techStack: ["React", "Supabase", "Tavily API", "LinkedIn Scraping", "Freshsales"]
@@ -84,10 +96,17 @@ export const caseStudies: CaseStudy[] = [
     category: "Agentic Engineering / Data Intelligence",
     audience: "Marketing & Web Design Agencies",
     painPoints: [
-      "Analyzing prospect footprints at scale",
-      "Generic sales outreach",
-      "Manual audit overhead"
-    ],
+  "Prospect footprint analysis",
+  "Generic sales outreach",
+  "Manual audit overhead",
+  "Incomplete prospect data",
+  "Fragmented marketing signals",
+  "Hidden opportunity gaps",
+  "Slow data enrichment",
+  "Stalled data audits",
+  "Missing prospect insights",
+  "Scattered prospect signals"
+],
     description: "Sophisticated lead intelligence platform with resilient background workers and recovery services for stalled audits. Provides deep gap analysis for B2B marketing.",
     stats: ["Data Enrichment", "Resilient Architecture", "Gap Analysis"],
     techStack: ["Next.js", "Supabase", "Social Scraping Engne", "Tailwind CSS"]
