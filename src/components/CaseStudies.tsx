@@ -79,17 +79,17 @@ export const CaseStudies = () => {
                                     <AlertCircle size={14} />
                                     <span>Pain Points Solved</span>
                                 </div>
-                                <div className="h-6 overflow-hidden relative">
+                                <div className="h-10 md:h-6 overflow-hidden relative">
                                     <div
                                         key={`${activeTab}-${painPointIndex}`}
-                                        className="flex items-start gap-2 text-xs text-muted-foreground font-medium animate-ticker-slide"
+                                        className="flex items-start gap-2 text-xs text-foreground/80 font-medium leading-relaxed animate-slide-up"
                                     >
-                                        <span className="text-accent mt-0.5 text-[8px]">●</span>
+                                        <span className="text-accent mt-1 text-[8px]">●</span>
                                         <span>{activeProject.painPoints[painPointIndex]}</span>
                                     </div>
                                 </div>
+                                </div>
                             </div>
-                        </div>
                     </div>
 
                     <div className="space-y-8 lg:pl-12 lg:border-l border-border/40 h-full flex flex-col justify-between">
