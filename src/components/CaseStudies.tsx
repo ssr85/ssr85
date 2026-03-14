@@ -90,7 +90,6 @@ export const CaseStudies = () => {
                                 </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
 
                     <div className="space-y-8 lg:pl-12 lg:border-l border-border/40 h-full flex flex-col justify-between">
