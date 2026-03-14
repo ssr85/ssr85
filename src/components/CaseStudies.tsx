@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { caseStudies } from "@/data/content";
 import { Badge } from "@/components/ui/badge";
 import { Target, AlertCircle, Cpu } from "lucide-react";
