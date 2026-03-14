@@ -13,7 +13,7 @@ const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
 
 export const Snapshot = () => {
   return (
-    <section className="py-16 md:py-20 px-4 bg-background relative overflow-hidden border-y border-border/40">
+    <section className="py-20 md:py-28 px-4 bg-background relative overflow-hidden border-y border-border/40">
       {/* Subtle Engineering Grid Background */}
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -25,8 +25,11 @@ export const Snapshot = () => {
       
       <div className="container mx-auto relative z-10 max-w-5xl">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-          <div className="space-y-2">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight">
+          <div className="space-y-3">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-medium tracking-wide">
+              Focus Areas
+            </span>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight">
               At a Glance
             </h2>
             <p className="text-muted-foreground text-lg max-w-lg">
@@ -69,8 +72,8 @@ export const Snapshot = () => {
                       <div className={cn(`inline-flex items-center justify-center rounded-lg bg-gradient-to-br ${iconData.color} text-white shadow-md group-hover:scale-105 transition-transform duration-500 ease-out`, isLarge ? "w-12 h-12" : "w-10 h-10")}>
                         {iconData.icon}
                       </div>
-                      <span className="text-[10px] font-mono text-muted-foreground/40 tracking-tighter">
-                        MODULE_0{index + 1}
+                      <span className="text-[10px] font-mono text-muted-foreground/50 tracking-tighter uppercase">
+                        {card.focus}
                       </span>
                     </div>
 

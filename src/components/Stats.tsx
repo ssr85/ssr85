@@ -73,7 +73,7 @@ export const Stats = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-10 md:py-12 px-4 bg-primary relative overflow-hidden">
+    <section ref={sectionRef} className="py-14 md:py-16 px-4 bg-primary relative overflow-hidden">
       {/* Subtle inner glow */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary pointer-events-none" />
       <div className="container mx-auto relative z-10">

@@ -203,20 +203,24 @@ export const beyondWork = [
     title: "Global Travel",
     description: "Extracting strategic insights from unfamiliar cross-cultural environments.",
     icon: "Plane",
+    details: ["12+ Countries", "Multi-Cultural Environments", "Market Nuances"]
   },
   {
     title: "Continuous Learning",
     description: "Deep-diving into bleeding-edge technology trends and macro business strategy.",
     icon: "BookOpen",
+    details: ["Tech Trends", "System/Design Thinking", "Geopolitics"]
   },
   {
     title: "Physical Resilience",
     description: "Mind, Body, Work. Cultivating the stamina required for high-stakes leadership.",
     icon: "Dumbbell",
+    details: ["Mind-Body-Work Framework", "Strength Training", "High-Performance Habit"]
   },
   {
     title: "Mentorship",
     description: "Providing high-leverage strategic shortcuts to the next generation of operational leaders.",
     icon: "GraduationCap",
+    details: ["Operational Scale", "Strategic Thinking", "Career Coaching", "Leadership"]
   },
 ];

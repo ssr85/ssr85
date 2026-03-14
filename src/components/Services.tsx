@@ -17,13 +17,22 @@ const iconMap: Record<string, { icon: React.ReactNode; gradient: string }> = {
 
 export const Services = ({ onOpenEnquiry }: ServicesProps) => {
   return (
-    <section id="services" className="py-16 md:py-24 px-4 bg-gradient-to-br from-secondary/3 via-background to-primary/3">
-      <div className="container mx-auto">
+    <section id="services" className="py-20 md:py-28 px-4 bg-background relative overflow-hidden border-y border-border/40">
+      {/* Subtle Engineering Grid Background */}
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
+          backgroundSize: '2.5rem 2.5rem'
+        }}
+      />
+      <div className="container mx-auto relative z-10">
+        <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
           <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-5 tracking-wide">
             How I Can Help
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 tracking-tight">
             Services
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
@@ -31,7 +40,7 @@ export const Services = ({ onOpenEnquiry }: ServicesProps) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((service, index) => {
             const iconData = iconMap[service.icon];
             return (
@@ -64,14 +73,15 @@ export const Services = ({ onOpenEnquiry }: ServicesProps) => {
 
         {/* CTA */}
         <div className="text-center mt-14">
-          <Button 
-            size="lg" 
-            onClick={onOpenEnquiry} 
+          <Button
+            size="lg"
+            onClick={onOpenEnquiry}
             className="px-8 py-5 bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 text-accent-foreground shadow-lg shadow-accent/20 group"
           >
             Discuss Your Requirements
             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Button>
+        </div>
         </div>
       </div>
     </section>

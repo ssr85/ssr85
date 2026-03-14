@@ -1,26 +1,28 @@
 import { useState } from "react";
 import { caseStudies } from "@/data/content";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Target, AlertCircle, Cpu, ArrowRight } from "lucide-react";
+import { Target, AlertCircle, Cpu } from "lucide-react";
 
 export const CaseStudies = () => {
     const [activeTab, setActiveTab] = useState(caseStudies[0].id);
     const activeProject = caseStudies.find((p) => p.id === activeTab)!;
 
     return (
-        <section className="py-24 px-4 bg-muted/30 overflow-hidden">
+        <section id="case-studies" className="py-20 md:py-28 px-4 bg-muted/30 overflow-hidden">
             <div className="container mx-auto max-w-5xl">
-                <div className="text-center mb-12 space-y-4 animate-hero-fade">
-                    <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Case Studies</h2>
-                    <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-light">
-                        Deep dives into agentic engines built for B2B scale.
-                    </p>
-                </div>
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6 animate-hero-fade">
+                    <div className="space-y-3">
+                        <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide">
+                          Work
+                        </span>
+                        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">Case Studies</h2>
+                        <p className="text-muted-foreground text-lg font-light max-w-lg">
+                            Deep dives into agentic engines built for B2B scale.
+                        </p>
+                    </div>
 
-                {/* Segmented Control */}
-                <div className="flex justify-center mb-12 animate-hero-fade" style={{ animationDelay: "0.2s" }}>
-                    <div className="inline-flex p-1 bg-background/50 backdrop-blur-md border border-border/50 rounded-full shadow-inner">
+                    {/* Segmented Control Moved into Header RHS */}
+                    <div className="inline-flex p-1 bg-background/50 backdrop-blur-md border border-border/50 rounded-full shadow-inner h-fit">
                         {caseStudies.map((project) => (
                             <button
                                 key={project.id}
@@ -106,10 +108,6 @@ export const CaseStudies = () => {
                             </div>
                         </div>
 
-                        <Button className="w-full lg:w-auto mt-8 rounded-full py-6 group" variant="outline">
-                            Project Specification
-                            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                        </Button>
                     </div>
                 </div>
             </div>

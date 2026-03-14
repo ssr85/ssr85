@@ -16,7 +16,7 @@ const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
 export const Strengths = () => {
   return (
     <section id="strengths" className="py-24 px-4 bg-background relative">
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-5xl">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 relative items-start">
           
           {/* Sticky Left Column -> Title & Context */}

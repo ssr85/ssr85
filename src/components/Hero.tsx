@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { MapPin, Mail, Linkedin, ArrowRight, ChevronDown, Activity, Globe, Zap } from "lucide-react";
+import { MapPin, Mail, Linkedin, ArrowRight, Globe, Zap, BrainCircuit, CheckCircle2 } from "lucide-react";
 import { siteConfig } from "@/data/content";
 
 interface HeroProps {
@@ -146,19 +146,29 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
             </div>
           </div>
 
-          {/* Value Highlights / Stats Column */}
+          {/* Value Highlights / Availability Column */}
           <div className="lg:col-span-4 lg:pl-8 space-y-6 hidden lg:block animate-hero-fade" style={{ animationDelay: "0.5s" }}>
 
-            {/* The "16+ Years" Callout */}
+            {/* Open For card */}
             <div className="p-8 rounded-3xl bg-card border border-border/50 shadow-2xl shadow-primary/5 relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Activity size={80} />
+                <BrainCircuit size={80} />
               </div>
-              <h2 className="text-6xl font-black text-foreground tracking-tighter mb-2">16<span className="text-primary">+</span></h2>
-              <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-1">Years Experience</p>
-              <p className="text-sm text-muted-foreground leading-relaxed mt-4 border-t border-border/50 pt-4">
-                Optimizing supply chains, expanding across 4 continents, and scaling businesses from the ground up.
-              </p>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
+                </span>
+                <p className="text-xs font-bold uppercase tracking-widest text-primary">Open For</p>
+              </div>
+              <ul className="space-y-3 border-t border-border/50 pt-4">
+                {["AI Strategy & Roadmap", "B2B Agentic Builds", "Ops Transformation"].map((item) => (
+                  <li key={item} className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Micro Stats */}
