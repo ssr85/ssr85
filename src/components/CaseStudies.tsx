@@ -34,19 +34,21 @@ export const CaseStudies = () => {
                     </div>
 
                     {/* Segmented Control Moved into Header RHS */}
-                    <div className="inline-flex p-1 bg-background/50 backdrop-blur-md border border-border/50 rounded-full shadow-inner h-fit">
-                        {caseStudies.map((project) => (
-                            <button
-                                key={project.id}
-                                onClick={() => setActiveTab(project.id)}
-                                className={`px-6 py-2.5 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 ${activeTab === project.id
-                                        ? "bg-primary text-primary-foreground shadow-lg scale-105"
-                                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                                    }`}
-                            >
-                                {project.name}
-                            </button>
-                        ))}
+                    <div className="w-full md:w-auto overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
+                        <div className="inline-flex p-1 bg-background/50 backdrop-blur-md border border-border/50 rounded-full shadow-inner h-fit whitespace-nowrap">
+                            {caseStudies.map((project) => (
+                                <button
+                                    key={project.id}
+                                    onClick={() => setActiveTab(project.id)}
+                                    className={`px-6 py-2.5 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 shrink-0 ${activeTab === project.id
+                                            ? "bg-primary text-primary-foreground shadow-lg scale-105"
+                                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                                        }`}
+                                >
+                                    {project.name}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
 

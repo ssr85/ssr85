@@ -31,45 +31,42 @@ export const BeyondWork = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl">
           {beyondWork.map((item, index) => {
             const iconData = iconMap[item.icon];
             return (
               <StaggeredCard key={item.title} index={index}>
-                {/* Fixed-height wrapper to prevent layout shift */}
-                <div className="relative h-[200px] w-full">
-                  <Card className="absolute top-0 left-0 w-full transition-all duration-500 ease-out group hover:shadow-2xl hover:shadow-primary/5 hover:border-primary/40 hover:-translate-y-2 z-10 hover:z-30 bg-card/80 backdrop-blur-md border border-border/50 overflow-hidden rounded-[2rem]">
-                    <CardContent className="p-8 text-center flex flex-col items-center">
-                      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl ${iconData.color} mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
-                        {iconData.icon}
-                      </div>
-                      
-                      <h3 className="font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
-                        {item.title}
-                      </h3>
-                      
-                      <p className="text-sm text-muted-foreground leading-relaxed transition-opacity duration-300 group-hover:opacity-70">
-                        {item.description}
-                      </p>
+                <Card className="h-full transition-all duration-500 ease-out group hover:shadow-2xl hover:shadow-primary/5 hover:border-primary/40 sm:hover:-translate-y-2 bg-card/80 backdrop-blur-md border border-border/50 overflow-hidden rounded-[2rem]">
+                  <CardContent className="p-8 text-center flex flex-col items-center h-full">
+                    <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl ${iconData.color} mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
+                      {iconData.icon}
+                    </div>
+                    
+                    <h3 className="font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                    
+                    <p className="text-sm text-muted-foreground leading-relaxed transition-opacity duration-300 group-hover:opacity-70">
+                      {item.description}
+                    </p>
 
-                      {/* Expandable Details - Absolute/Transform based for zero layout shift */}
-                      <div className="w-full max-h-0 opacity-0 group-hover:max-h-[120px] group-hover:opacity-100 transition-all duration-500 ease-in-out overflow-hidden">
-                        <div className="pt-6 mt-6 border-t border-border/30">
-                          <div className="flex flex-wrap justify-center gap-2">
-                            {item.details?.map((detail) => (
-                              <span 
-                                key={detail} 
-                                className="text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-primary/5 text-primary/80 border border-primary/10 font-semibold"
-                              >
-                                {detail}
-                              </span>
-                            ))}
-                          </div>
+                    {/* Expandable Details - Absolute/Transform based for zero layout shift */}
+                    <div className="w-full max-h-0 opacity-0 group-hover:max-h-[200px] group-hover:opacity-100 transition-all duration-500 ease-in-out overflow-hidden">
+                      <div className="pt-6 mt-6 border-t border-border/30">
+                        <div className="flex flex-wrap justify-center gap-2">
+                          {item.details?.map((detail) => (
+                            <span 
+                              key={detail} 
+                              className="text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-primary/5 text-primary/80 border border-primary/10 font-semibold"
+                            >
+                              {detail}
+                            </span>
+                          ))}
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-                </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </StaggeredCard>
             );
           })}

@@ -125,22 +125,22 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
             </div>
 
             {/* CTAs - This is the bottom anchor for alignment */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-8 animate-hero-fade mt-auto" style={{ animationDelay: "0.45s" }}>
+            <div className="flex flex-row items-center gap-3 pt-8 animate-hero-fade mt-auto w-full sm:w-auto" style={{ animationDelay: "0.45s" }}>
               <Button
                 size="lg"
                 onClick={onOpenEnquiry}
-                className="w-full sm:w-auto px-8 py-7 text-base rounded-full bg-foreground text-background hover:bg-foreground/90 hover:scale-[1.02] shadow-xl shadow-foreground/10 transition-all font-semibold group border border-transparent"
+                className="flex-1 sm:flex-initial px-4 sm:px-8 py-6 sm:py-7 text-sm sm:text-base rounded-full bg-foreground text-background hover:bg-foreground/90 hover:scale-[1.02] shadow-xl shadow-foreground/10 transition-all font-semibold group border border-transparent whitespace-nowrap"
               >
-                Start a Conversation
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                Let's Connect
+                <ArrowRight className="ml-1 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 onClick={scrollToCaseStudies}
-                className="w-full sm:w-auto px-8 py-7 text-base rounded-full border-border/50 hover:bg-muted/50 hover:border-primary/30 transition-all font-medium"
+                className="flex-1 sm:flex-initial px-4 sm:px-8 py-6 sm:py-7 text-sm sm:text-base rounded-full border-border/50 hover:bg-muted/50 hover:border-primary/30 transition-all font-medium whitespace-nowrap"
               >
-                View Portfolio
+                Portfolio
               </Button>
             </div>
           </div>
