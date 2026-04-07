@@ -51,44 +51,37 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
-    id: "lume",
-    name: "Lume",
-    category: "Agentic Engineering / AI Automation",
-    audience: "B2B Freelancers & Agencies",
-    painPoints: [
-  "Manual proposal creation",
-  "Manual invoice generation",
-  "Delayed payment tracking",
-  "Lead follow-up friction",
-  "Email overload",
-  "Missed client responses",
-  "Overdue invoice reminders",
-  "Fragmented client data"
-],
-    description: "Engineered a proactive, context-aware AI agent that automates complex business workflows. Lume acts as a 'System Master,' managing email communications and dynamic invoice generation autonomously.",
-    stats: ["Context-Aware AI", "Automated Workflows", "Dynamic PDF Generation"],
-    techStack: ["Python/FastAPI", "OpenAI GPT-4o", "Gmail API", "Prompt Engineering"]
-  },
-  {
     id: "lead-og",
     name: "Lead OG",
-    category: "Agentic Engineering / Lead Gen",
+    category: "Agentic Engineering / CRM Automation",
     audience: "B2B Sales Teams & SDRs",
     painPoints: [
-  "Shallow lead context",
-  "Manual lead research",
-  "Generic outreach strategies",
-  "Incomplete prospect profiles",
-  "Fragmented lead data",
-  "Slow lead qualification",
-  "Unverified contact data",
-  "Poor lead prioritization",
-  "Missing company insights",
-  "Disconnected sales tools"
-],
-    description: "AI-powered CRM enrichment agent designed to transform raw leads into actionable enterprise opportunities through intelligent research and social scraping.",
-    stats: ["Social Enrichment", "CRM Integration", "Real-time Dashboard"],
-    techStack: ["React", "Supabase", "Tavily API", "LinkedIn Scraping", "Freshsales"]
+      "Fragmented lead research",
+      "Manual LinkedIn scraping overhead",
+      "Slow Freshsales CRM synchronization",
+      "Disconnected session management",
+      "Outdated prospect context",
+      "Manual bulk lead updates"
+    ],
+    description: "Architected a high-velocity lead organizer that automates deep prospect research and CRM synchronization. Implemented a custom storage engine for 100x faster session caching and seamless bulk management for Freshsales.",
+    stats: ["100x Faster Caching", "Automated CRM Sync", "Real-time Research"],
+    techStack: ["React", "Supabase", "Tavily API", "Custom Session Engine", "Freshsales API"]
+  },
+  {
+    id: "linked-in",
+    name: "Linked-In",
+    category: "Agentic Engineering / Content Automation",
+    audience: "Founders & Digital Publishers",
+    painPoints: [
+      "Inconsistent publishing schedules",
+      "Manual research & drafting overhead",
+      "Creative friction in content ideation",
+      "Disconnected Trello-to-Social workflows",
+      "Scaling personal brand authority"
+    ],
+    description: "Engineered a Trello-driven LinkedIn automation system using CrewAI. Orchestrates agents for deep topic research and high-fidelity content generation, enabling a seamless 'Approve-to-Publish' workflow with absolute control.",
+    stats: ["70% Reduction in Drafting Time", "Trello-Driven Orchestration", "Automated Topic Sourcing"],
+    techStack: ["Python / CrewAI", "Trello API", "LinkedIn API", "APScheduler"]
   },
   {
     id: "prospect-iq",
@@ -96,20 +89,48 @@ export const caseStudies: CaseStudy[] = [
     category: "Agentic Engineering / Data Intelligence",
     audience: "Marketing & Web Design Agencies",
     painPoints: [
-  "Prospect footprint analysis",
-  "Generic sales outreach",
-  "Manual audit overhead",
-  "Incomplete prospect data",
-  "Fragmented marketing signals",
-  "Hidden opportunity gaps",
-  "Slow data enrichment",
-  "Stalled data audits",
-  "Missing prospect insights",
-  "Scattered prospect signals"
-],
-    description: "Sophisticated lead intelligence platform with resilient background workers and recovery services for stalled audits. Provides deep gap analysis for B2B marketing.",
-    stats: ["Data Enrichment", "Resilient Architecture", "Gap Analysis"],
-    techStack: ["Next.js", "Supabase", "Social Scraping Engne", "Tailwind CSS"]
+      "Incomplete 360° prospect audits",
+      "Stalled background enrichment jobs",
+      "Unreliable social signal tracking",
+      "Manual marketing gap analysis",
+      "Scaling audit throughput",
+      "Generic sales signals"
+    ],
+    description: "Engineered a 360° 8-pillar lead audit platform using a resilient worker-based architecture. Built custom recovery services for long-running enrichment tasks and deep marketing signal extraction.",
+    stats: ["8-Pillar Audit Engine", "99.9% Audit Completion", "Resilient BullMQ Workers"],
+    techStack: ["Next.js 14", "BullMQ / Redis", "Supabase", "Social Scraping Engine", "Tailwind CSS"]
+  },
+  {
+    id: "compliance-iq",
+    name: "Compliance IQ",
+    category: "Agentic Engineering / Regulatory RAG",
+    audience: "Medical Device Manufacturers & Pharma",
+    painPoints: [
+      "Complex CDSCO/MDR-2017 navigation",
+      "Manual regulatory document search",
+      "High legal consultation costs",
+      "Delayed compliance verification",
+      "Ever-changing health regulations"
+    ],
+    description: "Developed a specialized RAG (Retrieval-Augmented Generation) pipeline for Indian medical device regulations. Navigates thousands of pages of CDSCO and MDR-2017 documentation to provide instant, cited compliance answers.",
+    stats: ["Regulatory RAG pipeline", "Cited Compliance Answers", "CDSCO/MDR-2017 Context"],
+    techStack: ["Python / FastAPI", "LangChain", "Pinecone Vector DB", "OpenAI GPT-4", "Regulatory PDF Parser"]
+  },
+  {
+    id: "lume",
+    name: "Lume",
+    category: "Agentic Engineering / Business OS",
+    audience: "B2B Freelancers & Agencies",
+    painPoints: [
+      "Manual proposal & invoice friction",
+      "Fragmented client communications",
+      "Delayed follow-up sequences",
+      "Operational overhead in small teams",
+      "Non-proactive system management"
+    ],
+    description: "Engineered a proactive 'System Master' agent that autonomously manages business operations. Automates the entire lifecycle from context-aware email responses to dynamic invoice generation and payment tracking.",
+    stats: ["Proactive Workflow Master", "Context-Aware AI Ops", "End-to-End Automation"],
+    techStack: ["Python / FastAPI", "OpenAI GPT-4o", "Gmail / Stripe API", "Agentic Workflows"]
   }
 ];
 

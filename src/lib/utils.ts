@@ -1,6 +1,7 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { cn as sharedCn } from "@shared/ui";
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+/**
+ * SSR_Website's 'cn' utility is now a wrapper for the shared @shared/ui/cn. 
+ * This maintains existing imports while centralizing the logic.
+ */
+export const cn = sharedCn;
