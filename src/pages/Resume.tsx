@@ -310,6 +310,12 @@ KEY PROJECTS</h2>
                       trainers to manage clients and sessions.
                     </p>
                   </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground text-sm">LeadOG — B2B Lead Enrichment Platform</h3>
+                    <p className="text-sm text-muted-foreground">
+                      CRM-integrated internal B2B enrichment platform that enriches prospect data across multiple sources using intent signals and previous conversation context.
+                    </p>
+                  </div>
                 </div>
               </div>
 
