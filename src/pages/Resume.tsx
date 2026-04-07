@@ -253,7 +253,7 @@ const Resume = () => {
             </div>
 
             {/* Right Main Section - Continued */}
-            <div className="w-[65%] p-6 pt-10 print:p-5 print:pt-10 flex flex-col">
+            <div className="w-[65%] px-6 pb-6 print:px-5 print:pb-5 flex flex-col" style={{ paddingTop: '2.5cm' }}>
               {/* Professional Experience Continued */}
               <div className="mb-8">
                 <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-5 font-semibold">
