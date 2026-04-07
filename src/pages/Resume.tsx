@@ -213,8 +213,8 @@ const Resume = () => {
         </div>
 
         {/* Page 2 */}
-        <div className="resume-page bg-white shadow-lg print:shadow-none mx-auto overflow-hidden">
-          <div className="flex h-full">
+        <div className="resume-page-auto bg-white shadow-lg print:shadow-none mx-auto overflow-hidden">
+          <div className="flex">
             {/* Left Sidebar - Continued */}
             <div className="w-[35%] bg-[#5D2E2E] text-white px-6 pb-6 print:px-5 print:pb-5 flex flex-col" style={{ paddingTop: '2.5cm' }}>
               {/* Languages Section */}
