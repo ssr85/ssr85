@@ -228,22 +228,6 @@ PROFESSIONAL EXPERIENCE</h2>
           <div className="flex">
             {/* Left Sidebar - Continued */}
             <div className="w-[35%] bg-[#5D2E2E] text-white p-6 print:p-5 flex flex-col">
-              {/* Certifications Section */}
-              <div className="mb-6">
-                <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">
-
-CERTIFICATIONS</h3>
-                <ul className="space-y-2 text-sm">
-                  <li>
-                    <p className="font-semibold">Certification Name</p>
-                    <p className="opacity-60 text-xs">Issuing Organization, Year</p>
-                  </li>
-                  <li>
-                    <p className="font-semibold">Certification Name</p>
-                    <p className="opacity-60 text-xs">Issuing Organization, Year</p>
-                  </li>
-                </ul>
-              </div>
 
               {/* Tools & Technologies */}
               <div className="mb-6">
