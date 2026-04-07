@@ -75,7 +75,7 @@ const Resume = () => {
         <div className="resume-page bg-white shadow-lg print:shadow-none mx-auto mb-8 print:mb-0 print:mx-0 overflow-hidden">
           <div className="flex h-full">
             {/* Left Sidebar */}
-            <div className="w-[35%] bg-[#5D2E2E] text-white p-6 print:p-5 flex flex-col">
+            <div className="w-[35%] bg-[#5D2E2E] text-white p-6 print:p-5 flex flex-col justify-center">
               {/* Logo */}
               <div className="w-28 h-28 mx-auto mb-8 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
                 <img src={Logo} alt="SR Logo" className="w-20 h-20 object-contain brightness-0 invert" />
@@ -123,7 +123,7 @@ const Resume = () => {
               </div>
 
               {/* Skills Section */}
-              <div className="mt-auto">
+              <div>
                 <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">Skills</h3>
                 <ul className="space-y-2 text-sm">
                   <li>• Operations Setup & Optimization</li>
@@ -139,7 +139,7 @@ const Resume = () => {
             </div>
 
             {/* Right Main Section */}
-            <div className="w-[65%] p-6 print:p-5 flex flex-col">
+            <div className="w-[65%] p-6 print:p-5 flex flex-col justify-center">
               {/* Header */}
               <div className="mb-8 border-b-2 border-[#5D2E2E] pb-4">
                 <h1 className="text-3xl font-serif text-[#5D2E2E] mb-1">Sarabjeet Rattan</h1>
@@ -213,10 +213,10 @@ const Resume = () => {
         </div>
 
         {/* Page 2 */}
-        <div className="resume-page-auto bg-white shadow-lg print:shadow-none mx-auto overflow-hidden">
-          <div className="flex">
+        <div className="resume-page bg-white shadow-lg print:shadow-none mx-auto overflow-hidden">
+          <div className="flex h-full">
             {/* Left Sidebar - Continued */}
-            <div className="w-[35%] bg-[#5D2E2E] text-white px-6 pb-6 print:px-5 print:pb-5 flex flex-col" style={{ paddingTop: '2.5cm' }}>
+            <div className="w-[35%] bg-[#5D2E2E] text-white p-6 print:p-5 flex flex-col justify-center">
               {/* Languages Section */}
               <div className="mb-8">
                 <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">Languages</h3>
@@ -242,7 +242,7 @@ const Resume = () => {
               </div>
 
               {/* Interests */}
-              <div className="mt-auto">
+              <div>
                 <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">Interests</h3>
                 <ul className="space-y-2 text-sm">
                   <li>• Sustainable Manufacturing</li>
@@ -253,7 +253,7 @@ const Resume = () => {
             </div>
 
             {/* Right Main Section - Continued */}
-            <div className="w-[65%] px-6 pb-6 print:px-5 print:pb-5 flex flex-col" style={{ paddingTop: '2.5cm' }}>
+            <div className="w-[65%] p-6 print:p-5 flex flex-col justify-center">
               {/* Professional Experience Continued */}
               <div className="mb-8">
                 <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-5 font-semibold">
@@ -319,7 +319,7 @@ const Resume = () => {
               </div>
 
               {/* References */}
-              <div className="mt-auto">
+              <div>
                 <p className="text-sm text-muted-foreground italic">References available upon request</p>
               </div>
             </div>
@@ -332,18 +332,16 @@ const Resume = () => {
             .grecaptcha-badge { display: none !important; }
             .resume-container { max-width: 210mm; margin: 0 auto; }
             .resume-page { width: 210mm; min-height: 297mm; }
-            .resume-page-auto { width: 210mm; }
             @media print {
               * { margin: 0; padding: 0; box-sizing: border-box; }
               @page { size: A4; margin: 0 !important; }
               html, body, #root { width: 210mm !important; margin: 0 !important; padding: 0 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
               .resume-container { width: 210mm !important; max-width: 210mm !important; margin: 0 !important; padding: 0 !important; }
               .resume-page { width: 210mm !important; height: 297mm !important; min-height: 297mm !important; max-height: 297mm !important; margin: 0 !important; padding: 0 !important; page-break-after: always; page-break-inside: avoid; box-shadow: none !important; overflow: hidden !important; }
-              .resume-page-auto { width: 210mm !important; margin: 0 !important; padding: 0 !important; page-break-inside: avoid; box-shadow: none !important; }
               .resume-page:last-child { page-break-after: auto; }
               .resume-page > div { height: 297mm !important; min-height: 297mm !important; }
             }
-            @media screen and (max-width: 900px) { .resume-page, .resume-page-auto { width: 100%; min-height: auto; } }
+            @media screen and (max-width: 900px) { .resume-page { width: 100%; min-height: auto; } }
           `
     }} />
     </div>;
