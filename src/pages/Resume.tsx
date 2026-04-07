@@ -14,7 +14,8 @@ declare global {
   }
 }
 
-const RECAPTCHA_SITE_KEY = "6LeVgjIsAAAAAN6e8q-EldrjmBTN2n1rVPj5aGEv";
+// Use injected global Site Key
+const RECAPTCHA_SITE_KEY_INTERNAL = RECAPTCHA_SITE_KEY;
 
 const Resume = () => {
   const [isVerifying, setIsVerifying] = useState(false);
@@ -33,7 +34,7 @@ const Resume = () => {
       const token = await new Promise<string>((resolve, reject) => {
         window.grecaptcha.ready(() => {
           window.grecaptcha
-            .execute(RECAPTCHA_SITE_KEY, { action: "download_resume" })
+            .execute(RECAPTCHA_SITE_KEY_INTERNAL, { action: "download_resume" })
             .then(resolve)
             .catch(reject);
         });

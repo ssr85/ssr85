@@ -11,7 +11,8 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2, FileDown } from "lucide-react";
 
-const RECAPTCHA_SITE_KEY = "6LeVgjIsAAAAAN6e8q-EldrjmBTN2n1rVPj5aGEv";
+// Use injected global Site Key
+const RECAPTCHA_SITE_KEY_INTERNAL = RECAPTCHA_SITE_KEY;
 
 declare global {
   interface Window {
@@ -112,61 +113,44 @@ export const ResumeDownloadModal = ({ isOpen, onClose }: ResumeDownloadModalProp
         return;
       }
 
-      const { data: responseData, error } = await supabase.functions.invoke("send-enquiry", {
-        body: {
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           name: data.name,
           email: data.email,
           phone: data.phone,
-          companyName: "",
-          requirement: "Resume PDF Download Request",
+          requirement: "Resume Download Request",
           recaptchaToken,
-        },
+        }),
       });
 
-      if (error) {
-        console.error("Server error:", error);
+      const responseData = await response.json();
 
-        let errorMessage = "Something went wrong. Please try again.";
+      if (!response.ok) {
+        console.error("Server error:", responseData);
 
-        try {
-          let errorBody = null;
-          if (error.context && typeof error.context.json === "function") {
-            errorBody = await error.context.json();
-          } else if (error.context) {
-            errorBody = error.context;
-          }
+        let errorTitle = "Error";
+        let errorMessage = responseData.error || "Something went wrong. Please try again or email directly.";
 
-          if (errorBody?.details && Array.isArray(errorBody.details)) {
-            errorMessage = errorBody.details
-              .map(
-                (e: { field: string; message: string }) =>
-                  `• ${e.field.charAt(0).toUpperCase() + e.field.slice(1)}: ${e.message}`,
-              )
-              .join("\n");
-          } else if (errorBody?.error) {
-            errorMessage = errorBody.error;
-          }
-        } catch (parseError) {
-          console.error("Error parsing server response:", parseError);
+        if (responseData.details && Array.isArray(responseData.details)) {
+          errorTitle = "Validation Error";
+          errorMessage = responseData.details
+            .map(
+              (e: { field: string; message: string }) =>
+                `• ${e.field.charAt(0).toUpperCase() + e.field.slice(1)}: ${e.message}`,
+            )
+            .join("\n");
         }
 
         toast({
-          title: "Error",
+          title: errorTitle,
           description: errorMessage,
           variant: "destructive",
         });
         return;
       }
-
-      if (responseData?.error) {
-        toast({
-          title: "Error",
-          description: responseData.error,
-          variant: "destructive",
-        });
-        return;
-      }
-
+      
       // Success - close modal and navigate to resume page
       reset();
       onClose();
