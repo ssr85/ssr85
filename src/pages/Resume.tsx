@@ -216,7 +216,7 @@ const Resume = () => {
         <div className="resume-page bg-white shadow-lg print:shadow-none mx-auto overflow-hidden">
           <div className="flex h-full">
             {/* Left Sidebar - Continued */}
-            <div className="w-[35%] bg-[#5D2E2E] text-white p-6 pt-10 print:p-5 print:pt-10 flex flex-col">
+            <div className="w-[35%] bg-[#5D2E2E] text-white px-6 pb-6 print:px-5 print:pb-5 flex flex-col" style={{ paddingTop: '2.5cm' }}>
               {/* Languages Section */}
               <div className="mb-8">
                 <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">Languages</h3>
@@ -253,7 +253,7 @@ const Resume = () => {
             </div>
 
             {/* Right Main Section - Continued */}
-            <div className="w-[65%] p-6 pt-10 print:p-5 print:pt-10 flex flex-col">
+            <div className="w-[65%] px-6 pb-6 print:px-5 print:pb-5 flex flex-col" style={{ paddingTop: '2.5cm' }}>
               {/* Professional Experience Continued */}
               <div className="mb-8">
                 <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-5 font-semibold">
