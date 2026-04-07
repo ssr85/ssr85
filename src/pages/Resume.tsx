@@ -260,25 +260,6 @@ PROFESSIONAL EXPERIENCE</h2>
               <div className="mb-6">
                 <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-4 font-semibold"></h2>
 
-                {/* Experience Entry 3 */}
-                <div className="mb-5">
-                  <div className="flex justify-between items-start mb-1">
-                    <div>
-                      <h3 className="font-semibold text-foreground">Operations Manager</h3>
-                      <p className="text-sm text-muted-foreground">OG Hemp | Pune</p>
-                    </div>
-                    <span className="text-xs text-muted-foreground whitespace-nowrap">2017 - Present</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
-                    Oversaw day-to-day operations and led process improvement initiatives to enhance efficiency and
-                    reduce waste in manufacturing operations.
-                  </p>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Streamlined production processes, improving efficiency</li>
-                    <li>• Implemented quality control measures reducing defect rates</li>
-                    <li>• Trained and mentored team members on operational best practices</li>
-                  </ul>
-                </div>
 
                 {/* Experience Entry 4 */}
                 <div className="mb-5">
