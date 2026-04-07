@@ -78,7 +78,7 @@ const Resume = () => {
             <div className="w-[35%] bg-[#5D2E2E] text-white p-6 print:p-5 flex flex-col">
               {/* Logo */}
               <div className="w-28 h-28 mx-auto mb-6 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
-                <img src={Logo} alt="SR Logo" className="w-20 h-20 object-contain" />
+                <img src={Logo} alt="SR Logo" className="w-20 h-20 object-contain brightness-0 invert" />
               </div>
 
               {/* Contact Section */}
