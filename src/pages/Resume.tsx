@@ -77,14 +77,14 @@ const Resume = () => {
             {/* Left Sidebar */}
             <div className="w-[35%] bg-[#5D2E2E] text-white p-6 print:p-5 flex flex-col">
               {/* Logo */}
-              <div className="w-28 h-28 mx-auto mb-6 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
+              <div className="w-28 h-28 mx-auto mb-8 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
                 <img src={Logo} alt="SR Logo" className="w-20 h-20 object-contain brightness-0 invert" />
               </div>
 
               {/* Contact Section */}
-              <div className="mb-6">
+              <div className="mb-8">
                 <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">Contact</h3>
-                <div className="space-y-2 text-sm">
+                <div className="space-y-3 text-sm">
                   <p className="flex items-start gap-2">
                     <span className="opacity-70">📧</span>
                     <span className="break-all">sarabjit.rattan@gmail.com</span>
@@ -93,7 +93,6 @@ const Resume = () => {
                     <span className="opacity-70">📍</span>
                     <span>Pune, India</span>
                   </p>
-
                   <p className="flex items-start gap-2">
                     <span className="opacity-70">📱</span>
                     <span>+91 866 898 4323</span>
@@ -102,9 +101,9 @@ const Resume = () => {
               </div>
 
               {/* Education Section */}
-              <div className="mb-6">
+              <div className="mb-8">
                 <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">Education</h3>
-                <div className="space-y-3 text-sm">
+                <div className="space-y-4 text-sm">
                   <div>
                     <p className="font-semibold">Product Management with Generative & Agentic AI</p>
                     <p className="opacity-80 text-xs">BITS School of Management</p>
@@ -124,9 +123,9 @@ const Resume = () => {
               </div>
 
               {/* Skills Section */}
-              <div className="mb-6">
+              <div className="mt-auto">
                 <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">Skills</h3>
-                <ul className="space-y-1 text-sm">
+                <ul className="space-y-2 text-sm">
                   <li>• Operations Setup & Optimization</li>
                   <li>• Sustainable Product Innovation</li>
                   <li>• Business Analysis & Strategy</li>
@@ -137,22 +136,12 @@ const Resume = () => {
                   <li>• Team Leadership</li>
                 </ul>
               </div>
-
-              {/* Languages Section */}
-              <div className="mt-auto">
-                <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">Languages</h3>
-                <ul className="space-y-1 text-sm">
-                  <li>• English (Fluent)</li>
-                  <li>• Hindi (Native)</li>
-                  <li>• Punjabi (Native)</li>
-                </ul>
-              </div>
             </div>
 
             {/* Right Main Section */}
             <div className="w-[65%] p-6 print:p-5 flex flex-col">
               {/* Header */}
-              <div className="mb-6 border-b-2 border-[#5D2E2E] pb-4">
+              <div className="mb-8 border-b-2 border-[#5D2E2E] pb-4">
                 <h1 className="text-3xl font-serif text-[#5D2E2E] mb-1">Sarabjeet Rattan</h1>
                 <p className="text-sm text-muted-foreground tracking-wide">
                   Agentic AI Architect & Builder | Pulp & Composites | Sustainability Advocate | Strategic Operations
@@ -160,10 +149,10 @@ const Resume = () => {
               </div>
 
               {/* Professional Summary */}
-              <div className="mb-6">
+              <div className="mb-8">
                 <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-3 font-semibold">
-
-PROFESSIONAL SUMMARY</h2>
+                  Professional Summary
+                </h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Dynamic business consultant with 16+ years of experience in building sustainable systems and
                   small-business solutions. Proven track record in international sales, sustainable manufacturing, and
@@ -174,24 +163,24 @@ PROFESSIONAL SUMMARY</h2>
 
               {/* Professional Experience */}
               <div>
-                <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-4 font-semibold">
-
-PROFESSIONAL EXPERIENCE</h2>
+                <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-5 font-semibold">
+                  Professional Experience
+                </h2>
 
                 {/* Experience Entry 1 */}
-                <div className="mb-5">
-                  <div className="flex justify-between items-start mb-1">
+                <div className="mb-6">
+                  <div className="flex justify-between items-start mb-2">
                     <div>
                       <h3 className="font-semibold text-foreground">Business Consultant</h3>
                       <p className="text-sm text-muted-foreground">SkaizenTech | Pune</p>
                     </div>
                     <span className="text-xs text-muted-foreground whitespace-nowrap">2020 - Present</span>
                   </div>
-                  <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
+                  <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
                     Led strategic initiatives to optimize business operations and implement automation practices across
                     multiple client organizations.
                   </p>
-                  <ul className="text-sm text-muted-foreground space-y-1">
+                  <ul className="text-sm text-muted-foreground space-y-2">
                     <li>• Implemented process automation solutions reducing operational costs by reducing man-hours</li>
                     <li>• Translate consumer pain points into a solution leveraging AI tools</li>
                     <li>• End mile drinking water solutions for commercial establishments</li>
@@ -199,19 +188,19 @@ PROFESSIONAL EXPERIENCE</h2>
                 </div>
 
                 {/* Experience Entry 2 */}
-                <div className="mb-5">
-                  <div className="flex justify-between items-start mb-1">
+                <div>
+                  <div className="flex justify-between items-start mb-2">
                     <div>
                       <h3 className="font-semibold text-foreground">International B2B Sales</h3>
                       <p className="text-sm text-muted-foreground">OG Hemp | Pune</p>
                     </div>
                     <span className="text-xs text-muted-foreground whitespace-nowrap">2017 - Present</span>
                   </div>
-                  <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
+                  <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
                     Drove international business development and established key partnerships across multiple regions,
                     focusing on sustainable and eco-friendly product solutions.
                   </p>
-                  <ul className="text-sm text-muted-foreground space-y-1">
+                  <ul className="text-sm text-muted-foreground space-y-2">
                     <li>• Expanded market presence to 10+ countries</li>
                     <li>• Built and maintained relationships with key international distributors</li>
                     <li>• Developed and launched sustainable product lines for international markets</li>
@@ -224,17 +213,26 @@ PROFESSIONAL EXPERIENCE</h2>
         </div>
 
         {/* Page 2 */}
-        <div className="resume-page-auto bg-white shadow-lg print:shadow-none mx-auto overflow-hidden">
-          <div className="flex">
+        <div className="resume-page bg-white shadow-lg print:shadow-none mx-auto overflow-hidden">
+          <div className="flex h-full">
             {/* Left Sidebar - Continued */}
             <div className="w-[35%] bg-[#5D2E2E] text-white p-6 print:p-5 flex flex-col">
+              {/* Languages Section */}
+              <div className="mb-8">
+                <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">Languages</h3>
+                <ul className="space-y-2 text-sm">
+                  <li>• English (Fluent)</li>
+                  <li>• Hindi (Native)</li>
+                  <li>• Punjabi (Native)</li>
+                </ul>
+              </div>
 
               {/* Tools & Technologies */}
-              <div className="mb-6">
+              <div className="mb-8">
                 <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">
                   Tools & Technologies
                 </h3>
-                <ul className="space-y-1 text-sm">
+                <ul className="space-y-2 text-sm">
                   <li>• Microsoft Office Suite</li>
                   <li>• CRM Systems</li>
                   <li>• ERP Solutions</li>
@@ -246,7 +244,7 @@ PROFESSIONAL EXPERIENCE</h2>
               {/* Interests */}
               <div className="mt-auto">
                 <h3 className="text-xs uppercase tracking-widest mb-3 border-b border-white/30 pb-2">Interests</h3>
-                <ul className="space-y-1 text-sm">
+                <ul className="space-y-2 text-sm">
                   <li>• Sustainable Manufacturing</li>
                   <li>• Green Technology</li>
                   <li>• Business Innovation</li>
@@ -257,62 +255,63 @@ PROFESSIONAL EXPERIENCE</h2>
             {/* Right Main Section - Continued */}
             <div className="w-[65%] p-6 print:p-5 flex flex-col">
               {/* Professional Experience Continued */}
-              <div className="mb-6">
-                <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-4 font-semibold"></h2>
+              <div className="mb-8">
+                <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-5 font-semibold">
+                  Professional Experience (cont.)
+                </h2>
 
-
-                {/* Experience Entry 4 */}
-                <div className="mb-5">
-                  <div className="flex justify-between items-start mb-1">
+                {/* Experience Entry 3 */}
+                <div>
+                  <div className="flex justify-between items-start mb-2">
                     <div>
                       <h3 className="font-semibold text-foreground">Technical Associate</h3>
                       <p className="text-sm text-muted-foreground">Tech Mahindra | Pune</p>
                     </div>
                     <span className="text-xs text-muted-foreground whitespace-nowrap">2007 - 2009</span>
                   </div>
-                  <p className="text-sm text-muted-foreground mb-2 leading-relaxed">Went through a comprehensive training of a dozen languages to understand the basis of how code works</p>
-                  <ul className="text-sm text-muted-foreground space-y-1">
+                  <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
+                    Went through a comprehensive training of a dozen languages to understand the basis of how code works
+                  </p>
+                  <ul className="text-sm text-muted-foreground space-y-2">
                     <li>• Learnt business analysis fundamentals through application on live projects</li>
                     <li>• Web development, continuous improvement, deployment as daily tasks</li>
-                    <li>
-                  </li>
                   </ul>
                 </div>
               </div>
 
               {/* Key Projects */}
-              <div className="mb-6">
-                <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-4 font-semibold">
+              <div className="mb-8">
+                <h2 className="text-sm uppercase tracking-widest text-[#5D2E2E] mb-5 font-semibold">
+                  Key Projects
+                </h2>
 
-KEY PROJECTS</h2>
-
-                <div className="space-y-3">
+                <div className="space-y-5">
                   <div>
                     <h3 className="font-semibold text-foreground text-sm">Skaizen Water — Water Solutions</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       Developed business systems and processes for innovative water purification and sustainability
                       solutions.
                     </p>
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground text-sm">Tech Automation — Process Optimization</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       Implemented technology solutions to automate business processes and improve operational
                       efficiency.
                     </p>
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground text-sm">
-                      Be Fit With - A personal trainers' Assistant
+                      Be Fit With — A Personal Trainer's Assistant
                     </h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       Developed, Deployed using CI/CD using no-code tools and AI based IDE, a solution for personal
                       trainers to manage clients and sessions.
                     </p>
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground text-sm">LeadOG — B2B Lead Enrichment Platform</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       CRM-integrated internal B2B enrichment platform that enriches prospect data across multiple sources using intent signals and previous conversation context.
                     </p>
                   </div>
@@ -333,18 +332,16 @@ KEY PROJECTS</h2>
             .grecaptcha-badge { display: none !important; }
             .resume-container { max-width: 210mm; margin: 0 auto; }
             .resume-page { width: 210mm; min-height: 297mm; }
-            .resume-page-auto { width: 210mm; }
             @media print {
               * { margin: 0; padding: 0; box-sizing: border-box; }
               @page { size: A4; margin: 0 !important; }
               html, body, #root { width: 210mm !important; margin: 0 !important; padding: 0 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
               .resume-container { width: 210mm !important; max-width: 210mm !important; margin: 0 !important; padding: 0 !important; }
               .resume-page { width: 210mm !important; height: 297mm !important; min-height: 297mm !important; max-height: 297mm !important; margin: 0 !important; padding: 0 !important; page-break-after: always; page-break-inside: avoid; box-shadow: none !important; overflow: hidden !important; }
-              .resume-page-auto { width: 210mm !important; margin: 0 !important; padding: 0 !important; page-break-inside: avoid; box-shadow: none !important; overflow: hidden !important; }
               .resume-page:last-child { page-break-after: auto; }
               .resume-page > div { height: 297mm !important; min-height: 297mm !important; }
             }
-            @media screen and (max-width: 900px) { .resume-page, .resume-page-auto { width: 100%; min-height: auto; } }
+            @media screen and (max-width: 900px) { .resume-page { width: 100%; min-height: auto; } }
           `
     }} />
     </div>;
