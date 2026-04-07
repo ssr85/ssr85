@@ -21,7 +21,7 @@ export const snapshotCards = [
     title: "Technical Leverage",
     focus: "System Integration",
     description:
-      "Bridging the operations-technology gap by deploying custom automation, data pipelines, and internal tools that eliminate friction.",
+      "Bridging the operations-technology gap by engineering custom solutions to the operational bottlenecks encountered while scaling international B2B enterprises.",
     icon: "Code",
   },
   {
@@ -63,8 +63,8 @@ export const caseStudies: CaseStudy[] = [
       "Outdated prospect context",
       "Manual bulk lead updates"
     ],
-    description: "Architected a high-velocity lead organizer that automates deep prospect research and CRM synchronization. Implemented a custom storage engine for 100x faster session caching and seamless bulk management for Freshsales.",
-    stats: ["100x Faster Caching", "Automated CRM Sync", "Real-time Research"],
+    description: "Architected a high-velocity lead organizer that automates deep prospect research and CRM synchronization. Implemented a custom storage engine for faster session caching and seamless bulk management for Freshsales.",
+    stats: ["Faster Session Caching", "Automated CRM Sync", "Real-time Research"],
     techStack: ["React", "Supabase", "Tavily API", "Custom Session Engine", "Freshsales API"]
   },
   {
@@ -79,8 +79,8 @@ export const caseStudies: CaseStudy[] = [
       "Disconnected Trello-to-Social workflows",
       "Scaling personal brand authority"
     ],
-    description: "Engineered a Trello-driven LinkedIn automation system using CrewAI. Orchestrates agents for deep topic research and high-fidelity content generation, enabling a seamless 'Approve-to-Publish' workflow with absolute control.",
-    stats: ["70% Reduction in Drafting Time", "Trello-Driven Orchestration", "Automated Topic Sourcing"],
+    description: "Engineered a Trello-driven LinkedIn automation system using CrewAI. Orchestrates agents for deep topic research and high-fidelity content generation, enabling a seamless HITL 'Approve-to-Publish' workflow with absolute control.",
+    stats: ["Intelligent Content Drafting", "Trello-Driven Orchestration", "Human-in-the-Loop Dispatch"],
     techStack: ["Python / CrewAI", "Trello API", "LinkedIn API", "APScheduler"]
   },
   {
@@ -97,7 +97,7 @@ export const caseStudies: CaseStudy[] = [
       "Generic sales signals"
     ],
     description: "Engineered a 360° 8-pillar lead audit platform using a resilient worker-based architecture. Built custom recovery services for long-running enrichment tasks and deep marketing signal extraction.",
-    stats: ["8-Pillar Audit Engine", "99.9% Audit Completion", "Resilient BullMQ Workers"],
+    stats: ["8-Pillar Audit Engine", "Faster Audit Completion", "Resilient BullMQ Workers"],
     techStack: ["Next.js 14", "BullMQ / Redis", "Supabase", "Social Scraping Engine", "Tailwind CSS"]
   },
   {
@@ -128,8 +128,8 @@ export const caseStudies: CaseStudy[] = [
       "Operational overhead in small teams",
       "Non-proactive system management"
     ],
-    description: "Engineered a proactive 'System Master' agent that autonomously manages business operations. Automates the entire lifecycle from context-aware email responses to dynamic invoice generation and payment tracking.",
-    stats: ["Proactive Workflow Master", "Context-Aware AI Ops", "End-to-End Automation"],
+    description: "Engineered a proactive 'System Master' agent that manages business operations with human-in-the-loop (HITL) oversight. Automates the entire lifecycle from context-aware email responses to dynamic invoice generation and payment tracking.",
+    stats: ["Proactive HITL Operations", "Context-Aware AI Ops", "End-to-End Automation"],
     techStack: ["Python / FastAPI", "OpenAI GPT-4o", "Gmail / Stripe API", "Agentic Workflows"]
   }
 ];
@@ -152,7 +152,7 @@ export const strengths = [
   },
   {
     title: "Global Expansion",
-    description: "Unlocking new revenue channels and securing strategic partnerships for aggressive domestic and international market dominance.",
+    description: "Unlocking new revenue channels and securing strategic partnerships for aggressive domestic and international market expansion.",
     icon: "Rocket",
   },
   {
@@ -181,7 +181,7 @@ export const projects = [
     id: "skaizen-water",
     name: "Skaizen Water",
     category: "Operations Optimization",
-    description: "Radically transformed water purification operations via end-to-end automation logistics, successfully accelerating total B2B customer acquisition and retention.",
+    description: "Optimized water purification operations via end-to-end automation logistics, successfully accelerating total B2B customer acquisition and retention.",
     highlights: ["Workflow Automation", "B2B Expansion", "Quality Assurance"],
     images: [
       "/images/projects/skaizen-water-1.jpg",
