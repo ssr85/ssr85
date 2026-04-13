@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { siteConfig } from "@/data/content";
-import { Linkedin, Mail, FileText, ChevronUp } from "lucide-react";
+import { Mail, FileText, ChevronUp } from "lucide-react";
 import { ResumeDownloadModal } from "@/components/ResumeDownloadModal";
+import { EngineeringGrid } from "@/components/EngineeringGrid";
 import { cn } from "@/lib/utils";
 
 export const Footer = () => {
@@ -53,14 +54,7 @@ export const Footer = () => {
 
   return (
     <footer ref={footerRef} className="py-12 px-4 border-t border-border/40 bg-background relative overflow-hidden">
-      {/* Subtle Engineering Grid Background */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-          backgroundSize: '2.5rem 2.5rem'
-        }}
-      />
+      <EngineeringGrid />
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm story-link">
@@ -93,7 +87,7 @@ export const Footer = () => {
               className="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"
               aria-label="LinkedIn"
             >
-              <Linkedin size={18} />
+              <svg viewBox="0 0 24 24" width={18} height={18} fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
             
             {/* Docked Back to Top Button slot */}

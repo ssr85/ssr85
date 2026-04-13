@@ -7,10 +7,10 @@ import { projects } from "@/data/content";
 import { cn } from "@/lib/utils";
 
 const categoryColors: Record<string, { bg: string, text: string, border: string }> = {
-  "Sustainable Business": { bg: "bg-secondary/10", text: "text-secondary", border: "border-secondary/30" },
-  "Operations": { bg: "bg-primary/10", text: "text-primary", border: "border-primary/30" },
-  "Technology": { bg: "bg-accent/10", text: "text-accent", border: "border-accent/30" },
-  "Business Development": { bg: "bg-primary/10", text: "text-primary", border: "border-primary/30" },
+  "Sustainable Enterprise": { bg: "bg-secondary/10", text: "text-secondary", border: "border-secondary/30" },
+  "Operations Optimization": { bg: "bg-primary/10", text: "text-primary", border: "border-primary/30" },
+  "Technical Implementation": { bg: "bg-accent/10", text: "text-accent", border: "border-accent/30" },
+  "Strategic Growth": { bg: "bg-primary/10", text: "text-primary", border: "border-primary/30" },
 };
 
 export const Projects = () => {

@@ -1,11 +1,6 @@
-import { useEffect, useState, useRef } from "react";
-
-const stats = [
-  { value: 16, suffix: "+", label: "Years Experience" },
-  { value: 250, suffix: "+", label: "Clients" },
-  { value: 80, suffix: "%", label: "Repeat Collab" },
-  { value: 4, suffix: "", label: "Continents Served" },
-];
+import { useEffect } from "react";
+import { stats } from "@/data/content";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const useCountUp = (end: number, duration: number = 3000, startCounting: boolean) => {
   const [count, setCount] = useState(0);
@@ -51,26 +46,7 @@ const StatItem = ({ value, suffix, label, delay, isVisible }: { value: number; s
 };
 
 export const Stats = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const [sectionRef, isVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.3 });
 
   return (
     <section ref={sectionRef} className="py-14 md:py-16 px-4 bg-primary relative overflow-hidden">

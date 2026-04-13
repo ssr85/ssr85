@@ -1,7 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { MapPin, Mail, Linkedin, ArrowRight, Globe, Zap, BrainCircuit, CheckCircle2 } from "lucide-react";
-import { siteConfig } from "@/data/content";
+import { MapPin, Mail, ArrowRight, Globe, Zap, BrainCircuit, CheckCircle2 } from "lucide-react";
+import { siteConfig, heroTags } from "@/data/content";
+import { scrollToSection } from "@/lib/scroll";
+import { EngineeringGrid } from "@/components/EngineeringGrid";
 
 interface HeroProps {
   onOpenEnquiry: () => void;
@@ -12,18 +14,10 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
   const heroRef = useRef<HTMLElement>(null);
 
   const [currentTagIndex, setCurrentTagIndex] = useState(0);
-  const tags = [
-    "B2B AI Solutions",
-    "Agentic Systems",
-    "Industry Logic",
-    "Intelligent Workflows",
-    "Hemp Supply Chains",
-    "Resilient Intelligence"
-  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTagIndex((prev) => (prev + 1) % tags.length);
+      setCurrentTagIndex((prev) => (prev + 1) % heroTags.length);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
@@ -49,21 +43,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
     }
   };
 
-  const scrollToCaseStudies = () => {
-    const caseStudiesSection = document.getElementById("case-studies");
-    if (caseStudiesSection) {
-      const offset = 35;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = caseStudiesSection.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
-    }
-  };
+  const scrollToCaseStudies = () => scrollToSection("#case-studies", 35);
 
   return (
     <section
@@ -71,13 +51,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
       ref={heroRef}
       className="min-h-[95vh] flex items-center justify-center pt-24 pb-16 px-4 bg-background relative overflow-hidden font-sans"
     >
-      {/* Sophisticated Background - Engineering/Operations grid vibe */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-          backgroundSize: '4rem 4rem'
-        }}
-      />
+      <EngineeringGrid size="4rem 4rem" />
 
       {/* Subtle Mesh Gradient */}
       <div
@@ -111,7 +85,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
                 style={{ animationDelay: "0.15s" }}
               >
                 Engineering <br /><span className="inline-block min-h-[1.2em] pb-1 text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary transition-all duration-500">
-                  {tags[currentTagIndex]}
+                  {heroTags[currentTagIndex]}
                 </span> <br />for B2B Scale.
               </h1>
 
@@ -195,7 +169,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
             {siteConfig.email}
           </a>
           <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-            <Linkedin size={16} className="text-primary" />
+            <svg viewBox="0 0 24 24" width={16} height={16} fill="currentColor" className="text-primary" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             LinkedIn
           </a>
           <span className="flex items-center gap-2 text-sm font-medium text-muted-foreground">

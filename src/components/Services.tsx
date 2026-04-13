@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { services } from "@/data/content";
 import { Settings, Leaf, Code, Globe, ArrowRight } from "lucide-react";
 import { StaggeredCard } from "@/components/ScrollAnimationWrapper";
+import { EngineeringGrid } from "@/components/EngineeringGrid";
 
 interface ServicesProps {
   onOpenEnquiry: () => void;
@@ -18,14 +19,7 @@ const iconMap: Record<string, { icon: React.ReactNode; gradient: string }> = {
 export const Services = ({ onOpenEnquiry }: ServicesProps) => {
   return (
     <section id="services" className="py-20 md:py-28 px-4 bg-background relative overflow-hidden border-y border-border/40">
-      {/* Subtle Engineering Grid Background */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-          backgroundSize: '2.5rem 2.5rem'
-        }}
-      />
+      <EngineeringGrid />
       <div className="container mx-auto relative z-10">
         <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">

@@ -1,5 +1,29 @@
 // CMS-editable content file for Sarabjeet Rattan's portfolio
 
+export const navLinks = [
+  { label: "Expertise", href: "#snapshot", id: "snapshot" },
+  { label: "Case Studies", href: "#case-studies", id: "case-studies" },
+  { label: "Strengths", href: "#strengths", id: "strengths" },
+  { label: "Services", href: "#services", id: "services" },
+  { label: "Beyond", href: "#beyond-work", id: "beyond-work" },
+];
+
+export const heroTags = [
+  "B2B AI Solutions",
+  "Agentic Systems",
+  "Industry Logic",
+  "Intelligent Workflows",
+  "Hemp Supply Chains",
+  "Resilient Intelligence",
+];
+
+export const stats = [
+  { value: 16, suffix: "+", label: "Years Experience" },
+  { value: 250, suffix: "+", label: "Clients" },
+  { value: 80, suffix: "%", label: "Repeat Collab" },
+  { value: 4, suffix: "", label: "Continents Served" },
+];
+
 export const siteConfig = {
   name: "Sarabjeet Rattan",
   initials: "SR",

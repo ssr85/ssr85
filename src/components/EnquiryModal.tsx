@@ -8,20 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import { Loader2, Send } from "lucide-react";
-
-// Use injected global Site Key
-const RECAPTCHA_SITE_KEY_INTERNAL = RECAPTCHA_SITE_KEY;
-
-declare global {
-  interface Window {
-    grecaptcha: {
-      ready: (callback: () => void) => void;
-      execute: (siteKey: string, options: { action: string }) => Promise<string>;
-    };
-  }
-}
+import { executeRecaptcha } from "@/lib/recaptcha";
 
 const enquirySchema = z.object({
   name: z
@@ -78,38 +66,11 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
     },
   });
 
-  const executeRecaptcha = async (): Promise<string | null> => {
-    try {
-      return new Promise((resolve) => {
-        if (!window.grecaptcha) {
-          console.error("reCAPTCHA not loaded");
-          resolve(null);
-          return;
-        }
-        window.grecaptcha.ready(async () => {
-          try {
-            const token = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, {
-              action: "submit_enquiry",
-            });
-            resolve(token);
-          } catch (err) {
-            console.error("reCAPTCHA execution error:", err);
-            resolve(null);
-          }
-        });
-      });
-    } catch (err) {
-      console.error("reCAPTCHA error:", err);
-      return null;
-    }
-  };
-
   const onSubmit = async (data: EnquiryFormData) => {
     setIsSubmitting(true);
 
     try {
-      // Get reCAPTCHA token
-      const recaptchaToken = await executeRecaptcha();
+      const recaptchaToken = await executeRecaptcha("submit_enquiry");
 
       if (!recaptchaToken) {
         toast({

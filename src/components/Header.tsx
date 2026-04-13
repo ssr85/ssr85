@@ -3,19 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
+import { scrollToSection } from "@/lib/scroll";
+import { navLinks } from "@/data/content";
 import logo from "@/assets/SR_LOGO_no_bg.png";
 
 interface HeaderProps {
   onOpenEnquiry: () => void;
 }
-
-const navLinks = [
-  { label: "Expertise", href: "#snapshot", id: "snapshot" },
-  { label: "Case Studies", href: "#case-studies", id: "case-studies" },
-  { label: "Strengths", href: "#strengths", id: "strengths" },
-  { label: "Services", href: "#services", id: "services" },
-  { label: "Beyond", href: "#beyond-work", id: "beyond-work" },
-];
 
 export const Header = ({ onOpenEnquiry }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,20 +25,8 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const offset = 80; // Header height
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
-    }
+  const handleNavClick = (href: string) => {
+    scrollToSection(href);
     setIsMobileMenuOpen(false);
   };
 
@@ -83,7 +65,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
               return (
                 <button
                   key={link.href}
-                  onClick={() => scrollToSection(link.href)}
+                  onClick={() => handleNavClick(link.href)}
                   className={`px-4 py-2 text-sm font-medium transition-all duration-500 relative group overflow-hidden rounded-full ${
                     isActive 
                       ? "text-primary scale-105" 
@@ -137,7 +119,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                 return (
                   <button
                     key={link.href}
-                    onClick={() => scrollToSection(link.href)}
+                    onClick={() => handleNavClick(link.href)}
                     className={`flex items-center justify-between px-6 py-4 text-base font-semibold transition-all duration-300 ${
                       isActive 
                         ? "text-primary bg-primary/5" 

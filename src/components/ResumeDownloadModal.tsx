@@ -8,20 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import { Loader2, FileDown } from "lucide-react";
-
-// Use injected global Site Key
-const RECAPTCHA_SITE_KEY_INTERNAL = RECAPTCHA_SITE_KEY;
-
-declare global {
-  interface Window {
-    grecaptcha: {
-      ready: (callback: () => void) => void;
-      execute: (siteKey: string, options: { action: string }) => Promise<string>;
-    };
-  }
-}
+import { executeRecaptcha } from "@/lib/recaptcha";
 
 const downloadSchema = z.object({
   name: z
@@ -71,37 +59,11 @@ export const ResumeDownloadModal = ({ isOpen, onClose }: ResumeDownloadModalProp
     },
   });
 
-  const executeRecaptcha = async (): Promise<string | null> => {
-    try {
-      return new Promise((resolve) => {
-        if (!window.grecaptcha) {
-          console.error("reCAPTCHA not loaded");
-          resolve(null);
-          return;
-        }
-        window.grecaptcha.ready(async () => {
-          try {
-            const token = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, {
-              action: "download_resume",
-            });
-            resolve(token);
-          } catch (err) {
-            console.error("reCAPTCHA execution error:", err);
-            resolve(null);
-          }
-        });
-      });
-    } catch (err) {
-      console.error("reCAPTCHA error:", err);
-      return null;
-    }
-  };
-
   const onSubmit = async (data: DownloadFormData) => {
     setIsSubmitting(true);
 
     try {
-      const recaptchaToken = await executeRecaptcha();
+      const recaptchaToken = await executeRecaptcha("download_resume");
 
       if (!recaptchaToken) {
         toast({

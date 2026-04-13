@@ -1,50 +1,46 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-export const useScrollSpy = (ids: string[], offset: number = 0) => {
+export const useScrollSpy = (ids: string[]) => {
   const [activeId, setActiveId] = useState<string>("");
+  // Stable ref so the effect only re-runs when the serialized list changes,
+  // not on every render when the caller passes an inline array literal.
+  const idsKey = ids.join(",");
+  const idsRef = useRef(ids);
+  idsRef.current = ids;
 
   useEffect(() => {
-    // We use a small observer to detect when sections enter the top-middle of the screen
     const observerOptions = {
       root: null,
-      // Focus the "active zone" in the top 30% of the viewport
       rootMargin: "-20% 0px -70% 0px",
       threshold: 0,
     };
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveId(entry.target.id);
         }
       });
-    };
+    }, observerOptions);
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    // Observe each specified section
-    ids.forEach((id) => {
+    idsRef.current.forEach((id) => {
       const element = document.getElementById(id);
-      if (element) {
-        observer.observe(element);
-      }
+      if (element) observer.observe(element);
     });
 
-    // Special handler for the top of the page (Hero/Banner)
     const handleScroll = () => {
-      if (window.scrollY < 180) {
-        setActiveId("");
-      }
+      if (window.scrollY < 180) setActiveId("");
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial check
+    handleScroll();
 
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [ids]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idsKey]);
 
   return activeId;
 };

@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { snapshotCards } from "@/data/content";
 import { Briefcase, Code, TrendingUp, Target } from "lucide-react";
 import { StaggeredCard } from "@/components/ScrollAnimationWrapper";
+import { EngineeringGrid } from "@/components/EngineeringGrid";
 import { cn } from "@/lib/utils";
 
 const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
@@ -14,14 +15,7 @@ const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
 export const Snapshot = () => {
   return (
     <section id="snapshot" className="py-20 md:py-28 px-4 bg-background relative overflow-hidden border-y border-border/40">
-      {/* Subtle Engineering Grid Background */}
-      <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-          backgroundSize: '2.5rem 2.5rem'
-        }}
-      />
+      <EngineeringGrid />
       
       <div className="container mx-auto relative z-10 max-w-5xl">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
