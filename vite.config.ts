@@ -26,8 +26,8 @@ export default defineConfig(({ mode }) => {
       },
     },
     define: {
-      // Inject the public reCAPTCHA site key without needing the VITE_ prefix
-      RECAPTCHA_SITE_KEY: JSON.stringify(env.RECAPTCHA_SITE_KEY || ""),
+      // Inject the public reCAPTCHA site key
+      VITE_RECAPTCHA_SITE_KEY: JSON.stringify(env.VITE_RECAPTCHA_SITE_KEY || ""),
     },
   };
 });
