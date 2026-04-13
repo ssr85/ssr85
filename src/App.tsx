@@ -8,6 +8,7 @@ import React from "react";
 import Index from "./pages/Index";
 import Resume from "./pages/Resume";
 import NotFound from "./pages/NotFound";
+import { Analytics } from "@vercel/analytics/react";
 
 export const routes = [
   {
@@ -40,6 +41,7 @@ const App = () => {
           <div className="app-content">
             <Outlet />
           </div>
+          <Analytics />
         </TooltipProvider>
       </ThemeProvider>
     </QueryClientProvider>
