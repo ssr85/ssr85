@@ -9,6 +9,11 @@ declare global {
 
 export const executeRecaptcha = (action: string): Promise<string | null> => {
   return new Promise((resolve) => {
+    if (!RECAPTCHA_SITE_KEY) {
+      console.warn("reCAPTCHA Site Key is missing. Please add RECAPTCHA_SITE_KEY to your environment variables.");
+      resolve(null);
+      return;
+    }
     if (!window.grecaptcha) {
       console.error("reCAPTCHA not loaded");
       resolve(null);
