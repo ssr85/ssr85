@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { toast } from "sonner";
+import { SEO } from "@/components/SEO";
 
 declare global {
   interface Window {
@@ -78,6 +79,11 @@ const Resume = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 print:min-h-0 print:bg-transparent">
+      <SEO 
+        title="Resume | Sarabjeet Rattan" 
+        description="Professional resume of Sarabjeet Rattan, B2B AI Specialist & Operations Leader. Expert in Agentic Systems and Industrial Hemp Consultancy."
+        url="https://sarabjeetrattan.com/resume"
+      />
       {/* ── Print Toolbar ─────────────────────────────────────────────────── */}
       <div className="print:hidden sticky top-0 z-50 bg-white border-b border-gray-200 px-6 py-3">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
