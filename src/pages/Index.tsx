@@ -1,5 +1,6 @@
 import { useState, lazy, Suspense } from "react";
 import { Header } from "@/components/Header";
+import { SEO } from "@/components/SEO";
 import { Hero } from "@/components/Hero";
 import { Stats } from "@/components/Stats";
 import { CaseStudies } from "@/components/CaseStudies";
@@ -21,6 +22,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO />
       <Header onOpenEnquiry={openEnquiry} />
       <main>
         <Hero onOpenEnquiry={openEnquiry} />

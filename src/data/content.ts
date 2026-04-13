@@ -3,10 +3,15 @@
 export const siteConfig = {
   name: "Sarabjeet Rattan",
   initials: "SR",
-  tagline: "Engineering Agentic Systems for B2B Scale",
+  tagline: "B2B AI Specialist: Bridging Industry Logic & Agentic Systems",
   location: "India & Global",
   email: "sarabjit.rattan@gmail.com",
   linkedin: "https://www.linkedin.com/in/sarabjeetrattan/",
+  meta: {
+    title: "Sarabjeet Rattan | B2B AI Specialist India | Agentic Systems",
+    description: "B2B AI Specialist & Industrial Hemp Consultant. Expert in agentic engineering, sustainable supply chains (pulp, composites, moulded products), and scaling complex business logic.",
+    keywords: ["B2B AI Specialist India", "Agentic Systems", "b2b ai solutions", "Hemp Paper Supply Chain", "hemp packaging", "hemp paper pulp", "composite packaging", "moulded hemp products", "industrial hemp consultancy"]
+  }
 };
 
 export const snapshotCards = [
@@ -53,7 +58,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "lead-og",
     name: "Lead OG",
-    category: "Agentic Engineering / CRM Automation",
+    category: "B2B AI Solutions / CRM Automation",
     audience: "B2B Sales Teams & SDRs",
     painPoints: [
       "Fragmented lead research",
@@ -63,8 +68,8 @@ export const caseStudies: CaseStudy[] = [
       "Outdated prospect context",
       "Manual bulk lead updates"
     ],
-    description: "Architected a high-velocity lead organizer that automates deep prospect research and CRM synchronization. Implemented a custom storage engine for faster session caching and seamless bulk management for Freshsales.",
-    stats: ["Faster Session Caching", "Automated CRM Sync", "Real-time Research"],
+    description: "Architected a high-velocity B2B AI solution for lead organization that automates deep prospect research and CRM synchronization. Implemented a custom storage engine for faster session caching and seamless bulk management for Freshsales.",
+    stats: ["Agentic Research Engine", "Automated CRM Sync", "Real-time B2B Intelligence"],
     techStack: ["React", "Supabase", "Tavily API", "Custom Session Engine", "Freshsales API"]
   },
   {
@@ -173,8 +178,8 @@ export const projects = [
     name: "OG Hemp",
     category: "Sustainable Enterprise",
     description:
-      "Architected the comprehensive go-to-market strategy and market expansion framework for a premium hemp-products business, establishing resilient distribution networks across India.",
-    highlights: ["Revenue Strategy", "Brand Architecture", "Supply Chain Resilience"],
+      "Architected the comprehensive go-to-market strategy for premium hemp-products, focusing on hemp paper pulp, composite packaging, and moulded hemp products. Engineered a resilient Hemp Paper Supply Chain model to optimize domestic and international niche distribution.",
+    highlights: ["Revenue Strategy", "Hemp Paper Pulp & Composites", "Moulded Product Packaging"],
     images: ["/images/projects/og-hemp-1.jpg", "/images/projects/og-hemp-2.jpg", "/images/projects/og-hemp-3.jpg"],
   },
   {

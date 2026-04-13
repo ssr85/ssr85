@@ -13,11 +13,11 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
 
   const [currentTagIndex, setCurrentTagIndex] = useState(0);
   const tags = [
+    "B2B AI Solutions",
     "Agentic Systems",
-    "AI Driven Efficiency",
-    "Auto ReAct Engines",
+    "Industry Logic",
     "Intelligent Workflows",
-    "Multi-Agent Systems",
+    "Hemp Supply Chains",
     "Resilient Intelligence"
   ];
 
@@ -120,7 +120,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
                 className="text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-xl animate-hero-fade font-light"
                 style={{ animationDelay: "0.3s" }}
               >
-                Bridging B2B operations with autonomous, AI engines.
+                B2B AI Specialist bridging industry operations with autonomous, agentic engines.
               </p>
             </div>
 
