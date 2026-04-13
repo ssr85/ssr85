@@ -24,8 +24,8 @@ export const SEO = ({
   const seoImage = image || "https://storage.googleapis.com/gpt-engineer-file-uploads/qp12k9i7O0TTT9ff1Ydv9shUvex1/social-images/social-1766337520027-Screenshot 2025-12-21 at 22.48.19.png";
 
   const personSchema = {
-    "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${url}/#person`,
     "name": siteConfig.name,
     "jobTitle": "B2B AI Specialist & Industrial Hemp Consultant",
     "url": url,
@@ -33,33 +33,48 @@ export const SEO = ({
       siteConfig.linkedin
     ],
     "description": seoDescription,
+    "image": seoImage,
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "India",
-      "addressCountry": "Global"
-    }
+      "addressCountry": "IN"
+    },
+    "knowsAbout": [
+      "Agentic AI",
+      "B2B Automation",
+      "Industrial Hemp",
+      "Sustainable Packaging",
+      "Supply Chain Optimization"
+    ]
   };
 
   const aiServiceSchema = {
-    "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${url}/#ai-service`,
     "serviceType": "B2B AI & Agentic Systems Engineering",
-    "provider": {
-      "@type": "Person",
-      "name": siteConfig.name
-    },
-    "description": "Custom agentic workflows, autonomous LLM orchestration, and B2B system integration."
+    "provider": { "@id": `${url}/#person` },
+    "description": "Custom agentic workflows, autonomous LLM orchestration, and B2B system integration.",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Global"
+    }
   };
 
   const hempServiceSchema = {
-    "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${url}/#hemp-service`,
     "serviceType": "Industrial Hemp & Sustainable Packaging Consultancy",
-    "provider": {
-      "@type": "Person",
-      "name": siteConfig.name
-    },
-    "description": "Expertise in hemp paper pulp, composite packaging, and moulded hemp products supply chain development."
+    "provider": { "@id": `${url}/#person` },
+    "description": "Expertise in hemp paper pulp, composite packaging, and moulded hemp products supply chain development.",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Global"
+    }
+  };
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [personSchema, aiServiceSchema, hempServiceSchema]
   };
 
   return (
@@ -81,10 +96,11 @@ export const SEO = ({
       <meta name="twitter:description" content={seoDescription} />
       <meta name="twitter:image" content={seoImage} />
 
-      {/* Multiple Schemas JSON-LD */}
-      <script type="application/ld+json">
-        {JSON.stringify([personSchema, aiServiceSchema, hempServiceSchema])}
-      </script>
+      {/* Structured Data JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </Head>
   );
 };
