@@ -11,17 +11,55 @@
     <priority>1.0</priority>
   </url>
   
-  <!-- AI Context (For standard crawlers that index text files) -->
+  <!-- AI Context Manifests (High Priority Search Signals) -->
   <url>
     <loc>https://sarabjeetrattan.com/llms.txt</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://sarabjeetrattan.com/llms-full.txt</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Section Anchors (Detailed Granularity for AI RAG) -->
+  <url>
+    <loc>https://sarabjeetrattan.com/#snapshot</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sarabjeetrattan.com/#case-studies</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sarabjeetrattan.com/#projects</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sarabjeetrattan.com/#services</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sarabjeetrattan.com/#faq</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://sarabjeetrattan.com/#beyond</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>

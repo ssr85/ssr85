@@ -13,6 +13,18 @@ Allow: /
 User-agent: *
 Allow: /
 
+# Specifically Allow AI Agents to index high-density manifests
+User-agent: GPTBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /
+
+User-agent: OpenAI-GPT-4
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 Sitemap: https://sarabjeetrattan.com/sitemap.xml
 Sitemap: https://sarabjeetrattan.com/llms.txt
 Sitemap: https://sarabjeetrattan.com/llms-full.txt
