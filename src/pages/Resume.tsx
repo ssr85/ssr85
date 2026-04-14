@@ -15,7 +15,7 @@ declare global {
 }
 
 // Use injected global Site Key
-const RECAPTCHA_SITE_KEY_INTERNAL = RECAPTCHA_SITE_KEY;
+const RECAPTCHA_SITE_KEY_INTERNAL = VITE_RECAPTCHA_SITE_KEY;
 
 // ─── Reusable section heading ────────────────────────────────────────────────
 const SectionHeading = ({ children }: { children: React.ReactNode }) => (

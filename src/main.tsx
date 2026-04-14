@@ -9,7 +9,7 @@ export const createRoot = ViteReactSSG(
       {
         path: '/',
         Component: App,
-        children: routes
+        children: routes,
       }
     ],
   }

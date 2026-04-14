@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { stats } from "@/data/content";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
