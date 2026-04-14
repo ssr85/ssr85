@@ -23,58 +23,51 @@ export const SEO = ({
   const seoKeywords = keywords || siteConfig.meta.keywords;
   const seoImage = image || "https://storage.googleapis.com/gpt-engineer-file-uploads/qp12k9i7O0TTT9ff1Ydv9shUvex1/social-images/social-1766337520027-Screenshot%202025-12-21%20at%2022.48.19.png";
 
+  const websiteSchema = {
+    "@type": "WebSite",
+    "@id": `${url}/#website`,
+    "url": url,
+    "name": seoTitle,
+    "description": seoDescription,
+    "publisher": { "@id": `${url}/#person` }
+  };
+
   const personSchema = {
     "@type": "Person",
     "@id": `${url}/#person`,
     "name": siteConfig.name,
     "jobTitle": "B2B AI Specialist & Industrial Hemp Consultant",
     "url": url,
-    "sameAs": [
-      siteConfig.linkedin
-    ],
+    "email": siteConfig.email,
+    "sameAs": [siteConfig.linkedin],
     "description": seoDescription,
     "image": seoImage,
+    "knowsAbout": [
+      "Agentic AI", "B2B Automation", "Industrial Hemp", 
+      "Sustainable Packaging", "Supply Chain Optimization"
+    ]
+  };
+
+  const businessSchema = {
+    "@type": "ProfessionalService",
+    "@id": `${url}/#business`,
+    "name": `${siteConfig.name} Consulting`,
+    "image": seoImage,
+    "url": url,
+    "email": siteConfig.email,
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "India",
       "addressCountry": "IN"
     },
-    "knowsAbout": [
-      "Agentic AI",
-      "B2B Automation",
-      "Industrial Hemp",
-      "Sustainable Packaging",
-      "Supply Chain Optimization"
-    ]
-  };
-
-  const aiServiceSchema = {
-    "@type": "Service",
-    "@id": `${url}/#ai-service`,
-    "serviceType": "B2B AI & Agentic Systems Engineering",
+    "description": "Expert B2B AI & Agentic Systems Engineering and Industrial Hemp Supply Chain Consultancy.",
     "provider": { "@id": `${url}/#person` },
-    "description": "Custom agentic workflows, autonomous LLM orchestration, and B2B system integration.",
-    "areaServed": {
-      "@type": "Country",
-      "name": "Global"
-    }
-  };
-
-  const hempServiceSchema = {
-    "@type": "Service",
-    "@id": `${url}/#hemp-service`,
-    "serviceType": "Industrial Hemp & Sustainable Packaging Consultancy",
-    "provider": { "@id": `${url}/#person` },
-    "description": "Expertise in hemp paper pulp, composite packaging, and moulded hemp products supply chain development.",
-    "areaServed": {
-      "@type": "Country",
-      "name": "Global"
-    }
+    "areaServed": "Global"
   };
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [personSchema, aiServiceSchema, hempServiceSchema]
+    "@graph": [websiteSchema, personSchema, businessSchema]
   };
 
   return (
