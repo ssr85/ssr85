@@ -39,54 +39,56 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 lg:h-24 transition-all duration-500">
-          {/* Logo */}
-          <a
-            href="#"
-            className="group"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-          >
-            <img 
-              src={logo} 
-              alt="SR Logo"
-              width={48}
-              height={48}
-              className="h-10 md:h-12 w-auto transition-all duration-500 group-hover:scale-110 dark:invert"
-            />
-          </a>
+        <div className="max-w-5xl mx-auto flex items-center h-16 lg:h-24 transition-all duration-500 relative">
+          {/* Logo Container */}
+          <div className="flex-none">
+            <a
+              href="#"
+              className="group"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              <img 
+                src={logo} 
+                alt="SR Logo"
+                width={48}
+                height={48}
+                className="h-10 md:h-12 w-auto transition-all duration-500 group-hover:scale-110 dark:invert"
+              />
+            </a>
+          </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
+          {/* Desktop Navigation - Centered between Logo and Actions */}
+          <nav className="hidden lg:flex flex-1 items-center justify-center gap-1">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className={`px-3 xl:px-4 py-2 text-sm font-medium transition-all duration-500 relative group overflow-hidden rounded-full whitespace-nowrap ${
+                  className={`px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold transition-all duration-500 relative group overflow-hidden rounded-full whitespace-nowrap ${
                     isActive 
                       ? "text-primary scale-105" 
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   <span className="relative z-10">{link.label}</span>
-                  
-                  {/* Gradual Lighting Effect Underlink */}
                   <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary/0 via-primary to-primary/0 transition-all duration-700 ease-in-out transform ${
                     isActive ? "scale-x-75 opacity-100" : "scale-x-0 opacity-0 group-hover:scale-x-50 group-hover:opacity-50"
                   }`} />
-                  
-                  {/* Subtle Glow Background */}
                   <span className={`absolute inset-0 bg-primary/5 rounded-full transition-all duration-1000 ease-in-out ${
                     isActive ? "opacity-100 scale-100" : "opacity-0 scale-90"
                   }`} />
                 </button>
               );
             })}
-            <div className="hidden xl:flex items-center gap-0.5 mr-4">
+          </nav>
+
+          {/* Actions - Right Container */}
+          <div className="hidden lg:flex flex-none items-center justify-end gap-3 xl:gap-6 ml-auto">
+            <div className="flex items-center gap-0.5">
               <a 
                 href={`tel:${siteConfig.phone}`}
                 className="p-2 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
@@ -111,15 +113,6 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                 <Linkedin size={18} />
               </a>
               <a 
-                href={siteConfig.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
-                title="Website"
-              >
-                <Globe size={18} />
-              </a>
-              <a 
                 href={siteConfig.github}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -133,13 +126,13 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
             <Button 
               onClick={onOpenEnquiry} 
               size="sm"
-              className="bg-foreground text-background hover:bg-foreground/90 shadow-lg shadow-foreground/5 rounded-full px-6 transition-all duration-500 hover:scale-105 group"
+              className="bg-foreground text-background hover:bg-foreground/90 shadow-lg shadow-foreground/5 rounded-full px-5 transition-all duration-500 hover:scale-105 group whitespace-nowrap"
             >
               Get In Touch
               <ArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
             </Button>
             <ThemeToggle />
-          </nav>
+          </div>
 
           {/* Mobile Menu Button */}
           <button

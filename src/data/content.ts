@@ -5,7 +5,6 @@ export const navLinks = [
   { label: "Case Studies", href: "#case-studies", id: "case-studies" },
   { label: "Strengths", href: "#strengths", id: "strengths" },
   { label: "Services", href: "#services", id: "services" },
-  { label: "Beyond", href: "#beyond-work", id: "beyond-work" },
 ];
 
 export const heroTags = [
