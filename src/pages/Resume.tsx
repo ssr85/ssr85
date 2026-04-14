@@ -197,7 +197,7 @@ const Resume = () => {
                 },
                 {
                   degree: "Master in International Business",
-                  school: "Grenoble Graduate School of Business, London",
+                  school: "London School of Business & Finance, London",
                   dates: "09/2009 – 07/2011",
                 },
                 {
