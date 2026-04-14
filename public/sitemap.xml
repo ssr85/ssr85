@@ -10,6 +10,14 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Key Pages -->
+  <url>
+    <loc>https://sarabjeetrattan.com/resume</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
   
   <!-- AI Context Manifests (High Priority Search Signals) -->
   <url>
