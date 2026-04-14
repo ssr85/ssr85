@@ -14,7 +14,7 @@ export default defineConfig(() => {
       react(),
       Sitemap({
         hostname: "https://sarabjeetrattan.com",
-        dynamicRoutes: ["/", "/resume"],
+        dynamicRoutes: ["/"],
       }),
     ].filter(Boolean),
     resolve: {

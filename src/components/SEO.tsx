@@ -1,5 +1,5 @@
 import { Head } from "vite-react-ssg";
-import { siteConfig } from "@/data/content";
+import { siteConfig, caseStudies, projects, services } from "@/data/content";
 
 interface SEOProps {
   title?: string;
@@ -125,9 +125,63 @@ export const SEO = ({
     ]
   };
 
+  const projectSchemas = projects?.map(project => ({
+    "@type": "CreativeWork",
+    "name": project.name,
+    "description": project.description,
+    "url": `${url}/#projects`,
+    "keywords": project.highlights.join(", ")
+  })) || [];
+
+  const caseStudySchemas = caseStudies?.map(study => ({
+    "@type": "CreativeWork",
+    "name": study.name,
+    "description": study.description,
+    "url": `${url}/#case-studies`,
+    "keywords": study.techStack.join(", "),
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${url}/#case-studies`
+    }
+  })) || [];
+
+  const servicesSchema = services?.map(service => ({
+    "@type": "Service",
+    "name": service.title,
+    "description": service.description,
+    "provider": { "@id": `${url}/#person` }
+  })) || [];
+
+  const breadcrumbSchema = {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": url
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Resume",
+        "item": `${url}/resume`
+      }
+    ]
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [websiteSchema, personSchema, businessSchema, faqSchema]
+    "@graph": [
+      websiteSchema, 
+      personSchema, 
+      businessSchema, 
+      faqSchema, 
+      breadcrumbSchema,
+      ...projectSchemas,
+      ...caseStudySchemas,
+      ...servicesSchema
+    ]
   };
 
   return (

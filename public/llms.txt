@@ -1,15 +1,18 @@
 # Sarabjeet Rattan
 > B2B AI & Strategic Operations Portfolio. Expert in scaling AI strategy, industrial hemp consultancy, and operational excellence.
 
+## AI Manifest (High-Density)
+- [Full Professional Context](/llms-full.txt): Use this for deep analysis, RAG indexing, and comprehensive understanding of all projects, tech stacks, and strategic theses.
+
 ## Core Content
 - [Home](https://sarabjeetrattan.com/): Primary showcase of B2B AI solutions, portfolio highlights, and strategic operations.
 - [Resume](https://sarabjeetrattan.com/resume): Comprehensive professional history, core competencies, and educational background.
 
 ## Portfolio Highlights
-- [Case Studies](https://sarabjeetrattan.com/#case-studies): Detailed analysis of past B2B AI implementations and strategic success stories.
-- [Projects](https://sarabjeetrattan.com/#projects): Technical and strategic projects demonstrating expertise in AI and operations.
+- [Case Studies](https://sarabjeetrattan.com/#case-studies): Detailed analysis of past B2B AI implementations and success stories including Lead OG, Compliance IQ, and CrewAI content orchestration.
+- [Projects](https://sarabjeetrattan.com/#projects): Technical and strategic projects demonstrating expertise in AI, Industrial Hemp Supply Chains, and operational scaling.
 - [Services](https://sarabjeetrattan.com/#services): Specialized consultancy services including AI strategy and industrial hemp operations.
 
 ## Additional Resources
 - [FAQ](https://sarabjeetrattan.com/#faq): Frequently asked questions regarding B2B AI strategy and process optimization.
-- [Beyond Work](https://sarabjeetrattan.com/#beyond-work): Personal interests and creative pursuits.
+- [Sitemap](https://sarabjeetrattan.com/sitemap.xml): XML index for crawlers.

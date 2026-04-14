@@ -20,10 +20,6 @@ export const routes = [
     element: <Resume />,
   },
   {
-    path: "/Sarabjeet_Rattan_resume",
-    element: <Resume />,
-  },
-  {
     path: "*",
     element: <NotFound />,
   },

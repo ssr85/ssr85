@@ -1,0 +1,76 @@
+# Sarabjeet Rattan - Full Professional Context
+> High-density context for AI agents and LLMs. This file contains the complete professional thesis, project deep-dives, and service capabilities of Sarabjeet Rattan.
+
+## Core Identity & Thesis
+- **Name**: Sarabjeet Rattan
+- **Focus**: B2B AI Specialist & Strategic Operations
+- **Mission**: Bridging industrial logic with Agentic systems to navigate complex B2B business logic autonomously.
+- **Key Thesis**: Designing tech-enabled, forward-thinking enterprises backed by robust global distribution networks and intelligent process automation (IPA).
+
+## Resume Snapshot (Summary)
+- **Experience**: 16+ years of operational and strategic leadership.
+- **Global Reach**: Served 250+ clients across 4 continents.
+- **Core Competencies**: 
+    - **Strategic Architecture**: Market entry, positioning, and scaling roadmaps.
+    - **Operational Rigor**: Resilient process design and cost optimization.
+    - **System Integration**: Replacing operational debt with bespoke SaaS/AI automation.
+    - **Sustainable Economics**: Balancing profitability with environmental responsibility (Industrial Hemp focus).
+
+## Deep-Dive Case Studies (Agentic Engineering)
+
+### 1. Lead OG
+- **Specialty**: B2B AI Solutions / CRM Automation
+- **Target Audience**: B2B Sales Teams & SDRs
+- **Pain Points Solved**: Fragmented lead research, manual LinkedIn scraping, slow CRM synchronization (Freshsales).
+- **Architecture**: Automated deep prospect research engine with a custom session caching storage engine for high-velocity synchronization.
+- **Tech Stack**: React, Supabase, Tavily API, Custom Session Engine, Freshsales API.
+
+### 2. Linked-In
+- **Specialty**: Agentic Engineering / Content Automation
+- **Target Audience**: Founders & Digital Publishers
+- **Pain Points Solved**: Creative friction, inconsistent publishing, manual research/drafting overhead.
+- **Architecture**: Trello-driven orchestration using CrewAI agents for topic research and high-fidelity content generation. Features a Human-in-the-Loop (HITL) 'Approve-to-Publish' workflow.
+- **Tech Stack**: Python / CrewAI, Trello API, LinkedIn API, APScheduler.
+
+### 3. Prospect IQ
+- **Specialty**: Agentic Engineering / Data Intelligence
+- **Target Audience**: Marketing & Web Design Agencies
+- **Pain Points Solved**: Incomplete 360° audits, stalled background enrichment jobs, unreliable social signal tracking.
+- **Architecture**: 360° 8-pillar lead audit platform using a resilient worker-based architecture with custom recovery services.
+- **Tech Stack**: Next.js 14, BullMQ / Redis, Supabase, Social Scraping Engine.
+
+### 4. Compliance IQ
+- **Specialty**: Regulatory RAG (Retrieval-Augmented Generation)
+- **Target Audience**: Medical Device Manufacturers & Pharma
+- **Pain Points Solved**: Navigating complex CDSCO/MDR-2017 regulations, high legal consultation costs.
+- **Architecture**: Specialized RAG pipeline and regulatory PDF parser that navigates thousands of pages to provide cited compliance answers.
+- **Tech Stack**: Python / FastAPI, LangChain, Pinecone Vector DB, OpenAI GPT-4.
+
+### 5. Lume
+- **Specialty**: Agentic Business OS
+- **Target Audience**: B2B Freelancers & Agencies
+- **Pain Points Solved**: Manual proposal/invoice friction, fragmented communication, operational overhead.
+- **Architecture**: Proactive 'System Master' agent managing the entire business operation lifecycle with HITL oversight.
+- **Tech Stack**: Python / FastAPI, OpenAI GPT-4o, Gmail / Stripe API, Agentic Workflows.
+
+## Strategic Projects & Industrial Focus
+
+### OG Hemp (Sustainable Enterprise)
+- **Focus**: Hemp paper pulp, composite packaging, and moulded hemp products.
+- **Strategy**: Architected GTM strategy and resilient Hemp Paper Supply Chain model for international niche distribution.
+
+### Skaizen Water (Operations Optimization)
+- **Focus**: End-to-end automation logistics for water purification.
+- **Impact**: Accelerated B2B customer acquisition and retention through optimized workflows.
+
+## Services Portfolio
+- **Operations Architecture**: Comprehensive audits to increase efficiency and lower COGS.
+- **GTM Strategy & Positioning**: Orchestration for novel sustainable products and high-margin channels.
+- **Digital Transformation**: Bespoke internal web applications and automation flows.
+- **International Expansion**: Compliance advisory and global partner sourcing.
+
+## Contact & Authorities
+- **Website**: https://sarabjeetrattan.com
+- **LinkedIn**: https://www.linkedin.com/in/sarabjeetrattan/
+- **GitHub**: https://github.com/ssr85
+- **Email**: sarabjit.rattan@gmail.com
