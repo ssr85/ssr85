@@ -4,18 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
-
-declare global {
-  interface Window {
-    grecaptcha: {
-      ready: (callback: () => void) => void;
-      execute: (siteKey: string, options: { action: string }) => Promise<string>;
-    };
-  }
-}
-
-// Use injected global Site Key
-const RECAPTCHA_SITE_KEY_INTERNAL = VITE_RECAPTCHA_SITE_KEY;
+import { executeRecaptcha } from "@/lib/recaptcha";
 
 // ─── Reusable section heading ────────────────────────────────────────────────
 const SectionHeading = ({ children }: { children: React.ReactNode }) => (
@@ -50,22 +39,9 @@ const Resume = () => {
   const handlePrint = async () => {
     setIsVerifying(true);
     try {
-      if (!window.grecaptcha) {
-        toast.error("reCAPTCHA not loaded. Please refresh the page.");
-        setIsVerifying(false);
-        return;
-      }
-      const token = await new Promise<string>((resolve, reject) => {
-        window.grecaptcha.ready(() => {
-          window.grecaptcha
-            .execute(RECAPTCHA_SITE_KEY_INTERNAL, { action: "download_resume" })
-            .then(resolve)
-            .catch(reject);
-        });
-      });
+      const token = await executeRecaptcha("download_resume");
       if (!token) {
         toast.error("Verification failed. Please try again.");
-        setIsVerifying(false);
         return;
       }
       window.print();

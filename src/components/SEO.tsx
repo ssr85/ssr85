@@ -97,8 +97,8 @@ export const SEO = ({
       <meta name="twitter:image" content={seoImage} />
 
       {/* reCAPTCHA v3 script */}
-      {typeof VITE_RECAPTCHA_SITE_KEY !== 'undefined' && VITE_RECAPTCHA_SITE_KEY && (
-        <script src={`https://www.google.com/recaptcha/api.js?render=${VITE_RECAPTCHA_SITE_KEY}`} async defer />
+      {import.meta.env.VITE_RECAPTCHA_SITE_KEY && (
+        <script src={`https://www.google.com/recaptcha/api.js?render=${import.meta.env.VITE_RECAPTCHA_SITE_KEY}`} async defer />
       )}
 
       {/* Structured Data JSON-LD */}

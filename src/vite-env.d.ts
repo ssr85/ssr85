@@ -1,3 +1,9 @@
 /// <reference types="vite/client" />
 
-declare const VITE_RECAPTCHA_SITE_KEY: string;
+interface ImportMetaEnv {
+  readonly VITE_RECAPTCHA_SITE_KEY: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
