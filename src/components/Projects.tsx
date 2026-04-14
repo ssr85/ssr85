@@ -1,158 +1,128 @@
-import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { projects } from "@/data/content";
 import { cn } from "@/lib/utils";
 
-const categoryColors: Record<string, { bg: string, text: string, border: string }> = {
-  "Sustainable Enterprise": { bg: "bg-secondary/10", text: "text-secondary", border: "border-secondary/30" },
-  "Operations Optimization": { bg: "bg-primary/10", text: "text-primary", border: "border-primary/30" },
-  "Technical Implementation": { bg: "bg-accent/10", text: "text-accent", border: "border-accent/30" },
-  "Strategic Growth": { bg: "bg-primary/10", text: "text-primary", border: "border-primary/30" },
+const categoryColors: Record<string, { bg: string, text: string, border: string, dot: string }> = {
+  "Sustainable Enterprise": { bg: "bg-emerald-500/5", text: "text-emerald-500", border: "border-emerald-500/20", dot: "bg-emerald-500" },
+  "Operations Optimization": { bg: "bg-blue-500/5", text: "text-blue-500", border: "border-blue-500/20", dot: "bg-blue-500" },
+  "Technical Implementation": { bg: "bg-purple-500/5", text: "text-purple-500", border: "border-purple-500/20", dot: "bg-purple-500" },
+  "Strategic Growth": { bg: "bg-amber-500/5", text: "text-amber-500", border: "border-amber-500/20", dot: "bg-amber-500" },
 };
 
 export const Projects = () => {
-  const [activeProject, setActiveProject] = useState(projects[0].id);
-
   return (
-    <section id="projects" className="py-20 md:py-28 px-4 bg-muted/30">
-      <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-14">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-5 tracking-wide">
-            Portfolio
-          </span>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 tracking-tight">
-            Selected Work
+    <section id="projects" className="py-24 md:py-32 bg-background relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-1/4 h-2/3 bg-gradient-to-tr from-secondary/5 to-transparent pointer-events-none" />
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-3xl mb-16 md:mb-24">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted border border-border text-[10px] font-black uppercase tracking-[0.2em] mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            Selected Portfolio
+          </div>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-foreground mb-8 tracking-tight animate-in fade-in slide-in-from-bottom-6 duration-1000">
+            Engineering <span className="text-muted-foreground/30">Scale.</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg md:text-xl">
-            Initiatives that showcase my approach to building and scaling resilient businesses.
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
+            A curated selection of industrial initiatives and agentic systems engineered to solve high-stakes operational bottlenecks.
           </p>
         </div>
 
-        <Tabs value={activeProject} onValueChange={setActiveProject} className="w-full">
-          {/* Custom Tabs List */}
-          <TabsList className="flex flex-wrap justify-center gap-3 bg-transparent h-auto mb-12 p-0">
-            {projects.map((project) => (
-              <TabsTrigger
+        <div className="space-y-24 md:space-y-40">
+          {projects.map((project, index) => {
+            const isEven = index % 2 === 0;
+            const colors = categoryColors[project.category] || categoryColors["Strategic Growth"];
+            
+            return (
+              <div 
                 key={project.id}
-                value={project.id}
                 className={cn(
-                  "px-6 py-3 rounded-full border border-border bg-card/50 backdrop-blur-sm text-muted-foreground font-medium transition-all duration-300",
-                  "data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:bg-primary data-[state=active]:shadow-lg data-[state=active]:shadow-primary/20",
-                  "data-[state=inactive]:hover:border-primary/50 data-[state=inactive]:hover:bg-primary/5 data-[state=inactive]:hover:text-foreground"
+                  "flex flex-col lg:items-center gap-12 lg:gap-20",
+                  isEven ? "lg:flex-row" : "lg:flex-row-reverse"
                 )}
               >
-                {project.name}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-
-          {/* Tab Content */}
-          <div className="relative min-h-[500px]">
-            {projects.map((project) => (
-              <TabsContent 
-                key={project.id} 
-                value={project.id} 
-                className="absolute inset-0 transition-all duration-500 data-[state=inactive]:opacity-0 data-[state=inactive]:pointer-events-none data-[state=active]:opacity-100 animate-in fade-in zoom-in-95 data-[state=inactive]:animate-out data-[state=inactive]:fade-out data-[state=inactive]:zoom-out-95"
-              >
-                <Card className="bg-card/60 backdrop-blur-md border-border/50 shadow-2xl shadow-black/5 overflow-hidden h-full rounded-2xl group">
-                  <div className="flex flex-col lg:flex-row h-full">
-                    
-                    {/* Content Side */}
-                    <CardContent className="w-full lg:w-1/2 p-10 md:p-14 flex flex-col justify-center order-2 lg:order-1 relative z-10">
-                      <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-transparent z-0 lg:block hidden" />
-                      
-                      <div className="relative z-10">
-                        {/* Category Badge */}
-                        <div className={cn(
-                          "inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-6 border",
-                          categoryColors[project.category]?.bg || "bg-muted",
-                          categoryColors[project.category]?.text || "text-muted-foreground",
-                          categoryColors[project.category]?.border || "border-border"
-                        )}>
-                          {project.category}
-                        </div>
-                        
-                        <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight group-hover:text-primary transition-colors duration-300">
-                          {project.name}
-                        </h3>
-                        
-                        <p className="text-lg text-muted-foreground mb-10 leading-relaxed max-w-lg">
-                          {project.description}
-                        </p>
-                        
-                        {/* Highlights (Pills) */}
-                        <div className="space-y-4">
-                          <h4 className="text-sm font-semibold text-foreground uppercase tracking-widest opacity-80">Highlights</h4>
-                          <div className="flex flex-wrap gap-2.5">
-                            {project.highlights.map((highlight) => (
-                              <span 
-                                key={highlight} 
-                                className="px-4 py-2 rounded-lg bg-secondary/5 border border-secondary/20 text-secondary text-sm font-medium hover:bg-secondary/10 hover:border-secondary/40 transition-colors cursor-default"
-                              >
-                                {highlight}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
+                {/* Image Side */}
+                <div className="w-full lg:w-3/5 group">
+                  <div className="relative aspect-[16/10] lg:aspect-[16/9]">
+                    {/* Secondary Image (Staggered Behind) */}
+                    {project.images.length > 1 && (
+                      <div className="absolute inset-0 translate-x-4 translate-y-4 lg:translate-x-8 lg:translate-y-8 rounded-[2rem] overflow-hidden border border-border/30 opacity-40 transition-all duration-700 group-hover:translate-x-6 group-hover:translate-y-6 lg:group-hover:translate-x-12 lg:group-hover:translate-y-12 shadow-xl">
+                        <img
+                          src={project.images[1]}
+                          alt=""
+                          className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700"
+                        />
                       </div>
-                    </CardContent>
+                    )}
 
-                    {/* Image / Visual Side */}
-                    <div className="w-full lg:w-1/2 min-h-[300px] lg:min-h-full bg-muted/30 relative overflow-hidden order-1 lg:order-2 flex items-center justify-center p-8">
-                       {/* Subtle animated background gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-50 block" />
+                    {/* Primary Image */}
+                    <div className="relative h-full w-full overflow-hidden rounded-[2rem] bg-muted/30 border border-border/50 shadow-2xl transition-all duration-700 group-hover:shadow-primary/5 group-hover:border-primary/20 z-10">
+                      <img
+                        src={project.images[0]}
+                        alt={project.name}
+                        className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.parentElement?.classList.add('flex', 'items-center', 'justify-center', 'bg-muted/50');
+                          const span = document.createElement('span');
+                          span.className = "text-[10vw] font-black text-muted-foreground/10";
+                          span.innerText = project.name.split(' ').map(w => w[0]).join('');
+                          e.currentTarget.parentElement?.appendChild(span);
+                        }}
+                      />
                       
-                      {project.images && project.images.length > 0 ? (
-                        <div className="relative w-full aspect-video lg:aspect-square flex items-center justify-center">
-                           {/* Main Image */}
-                           <div className="absolute inset-0 rounded-xl overflow-hidden shadow-2xl z-20 group-hover:scale-[1.02] transition-transform duration-700 ease-in-out border border-white/10">
-                              <img
-                                src={project.images[0]}
-                                alt={`${project.name} preview`}
-                                className="w-full h-full object-cover"
-                                onError={(e) => {
-                                  e.currentTarget.style.display = 'none';
-                                  e.currentTarget.parentElement!.classList.add('bg-muted/80', 'flex', 'items-center', 'justify-center');
-                                  e.currentTarget.parentElement!.innerHTML = `<span class="text-6xl font-bold text-muted-foreground/30">${project.name.charAt(0)}</span>`;
-                                }}
-                              />
+                      {/* Overlay on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8 md:p-12">
+                        <div className="flex items-center gap-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                           <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground shadow-xl">
+                              <ArrowUpRight size={24} />
                            </div>
-                           
-                           {/* Secondary Images (Decorative staggered behind) */}
-                           {project.images.length > 1 && (
-                             <div className="absolute inset-0 rounded-xl overflow-hidden shadow-xl z-10 translate-x-4 translate-y-4 rotate-2 opacity-60 transition-all duration-500 group-hover:translate-x-6 group-hover:translate-y-6 group-hover:rotate-3 border border-white/5">
-                               <img src={project.images[1]} alt="" className="w-full h-full object-cover" />
-                             </div>
-                           )}
-                           {project.images.length > 2 && (
-                             <div className="absolute inset-0 rounded-xl overflow-hidden shadow-lg z-0 -translate-x-4 -translate-y-4 -rotate-2 opacity-30 transition-all duration-500 group-hover:-translate-x-6 group-hover:-translate-y-6 group-hover:-rotate-3 border border-white/5">
-                               <img src={project.images[2]} alt="" className="w-full h-full object-cover" />
-                             </div>
-                           )}
+                           <span className="text-sm font-bold tracking-widest uppercase text-white">Explore Case Study</span>
                         </div>
-                      ) : (
-                        <div className="w-full aspect-video rounded-2xl bg-muted/50 border border-border flex flex-col items-center justify-center text-muted-foreground">
-                          <div className="w-20 h-20 rounded-full bg-background flex items-center justify-center mb-4 shadow-sm border border-border/50">
-                            <span className="text-3xl font-bold text-primary/50">{project.name.charAt(0)}</span>
-                          </div>
-                          <span className="text-sm tracking-widest uppercase opacity-50 font-medium">Concept Preview</span>
-                        </div>
-                      )}
-                      
-                      {/* Decorative Link Icon */}
-                      <div className="absolute top-6 right-6 w-12 h-12 bg-background/80 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 -translate-y-4 group-hover:translate-y-0 transition-all duration-300 z-30 ring-1 ring-border">
-                        <ArrowUpRight className="w-5 h-5 text-foreground" />
                       </div>
                     </div>
                   </div>
-                </Card>
-              </TabsContent>
-            ))}
-          </div>
-        </Tabs>
+                </div>
+
+                {/* Content Side */}
+                <div className="w-full lg:w-2/5 flex flex-col justify-center">
+                  <div className={cn(
+                    "inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8 border transition-all duration-300",
+                    colors.bg,
+                    colors.text,
+                    colors.border
+                  )}>
+                    <span className={cn("w-2 h-2 rounded-full", colors.dot)} />
+                    {project.category}
+                  </div>
+
+                  <h3 className="text-3xl md:text-5xl font-black text-foreground mb-6 leading-[1.1] tracking-tighter">
+                    {project.name}
+                  </h3>
+
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-10">
+                    {project.description}
+                  </p>
+
+                  <div className="grid grid-cols-1 gap-4">
+                    {project.highlights.map((highlight) => (
+                      <div 
+                        key={highlight}
+                        className="flex items-start gap-3 p-4 rounded-2xl bg-muted/30 border border-border/10 hover:border-primary/20 hover:bg-muted/50 transition-all duration-300 group/item"
+                      >
+                        <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 opacity-50 group-hover/item:opacity-100 transition-opacity" />
+                        <span className="text-sm font-bold text-foreground/80 leading-normal">{highlight}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

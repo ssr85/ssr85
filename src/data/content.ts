@@ -207,7 +207,11 @@ export const projects = [
     description:
       "Architected the comprehensive go-to-market strategy for premium hemp-products, focusing on hemp paper pulp, composite packaging, and moulded hemp products. Engineered a resilient Hemp Paper Supply Chain model to optimize domestic and international niche distribution.",
     highlights: ["Revenue Strategy", "Hemp Paper Pulp & Composites", "Moulded Product Packaging"],
-    images: ["/images/projects/og-hemp-1.jpg", "/images/projects/og-hemp-2.jpg", "/images/projects/og-hemp-3.jpg"],
+    images: [
+      "/images/projects/og-hemp-1.jpg", 
+      "/images/projects/og-hemp-cover.png",
+      "/images/projects/og-hemp-2.jpg"
+    ],
   },
   {
     id: "skaizen-water",
@@ -215,11 +219,7 @@ export const projects = [
     category: "Operations Optimization",
     description: "Optimized water purification operations via end-to-end automation logistics, successfully accelerating total B2B customer acquisition and retention.",
     highlights: ["Workflow Automation", "B2B Expansion", "Quality Assurance"],
-    images: [
-      "/images/projects/skaizen-water-1.jpg",
-      "/images/projects/skaizen-water-2.jpg",
-      "/images/projects/skaizen-water-3.jpg",
-    ],
+    images: ["/images/projects/skaizen-cover.png"],
   },
   {
     id: "tech-automation",
@@ -227,11 +227,7 @@ export const projects = [
     category: "Technical Implementation",
     description: "Developed and deployed custom web applications and deep automation pipelines to bypass operational bottlenecks and surface real-time executive metrics.",
     highlights: ["Full-Stack Development", "Process Automation", "Executive Analytics"],
-    images: [
-      "/images/projects/tech-automation-1.jpg",
-      "/images/projects/tech-automation-2.jpg",
-      "/images/projects/tech-automation-3.jpg",
-    ],
+    images: ["/images/projects/automation-cover.png"],
   },
   {
     id: "international-bd",
@@ -239,11 +235,7 @@ export const projects = [
     category: "Strategic Growth",
     description: "Spearheaded complex market-entry efforts, navigating international compliance frameworks to secure pivotal partner relationships for multi-continent exports.",
     highlights: ["Global Strategy", "Alliance Building", "Export Compliance"],
-    images: [
-      "/images/projects/international-bd-1.jpg",
-      "/images/projects/international-bd-2.jpg",
-      "/images/projects/international-bd-3.jpg",
-    ],
+    images: ["/images/projects/global-market-cover.png"],
   },
 ];
 
