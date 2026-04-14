@@ -21,7 +21,7 @@ export const SEO = ({
   const seoTitle = title || siteConfig.meta.title;
   const seoDescription = description || siteConfig.meta.description;
   const seoKeywords = keywords || siteConfig.meta.keywords;
-  const seoImage = image || "https://storage.googleapis.com/gpt-engineer-file-uploads/qp12k9i7O0TTT9ff1Ydv9shUvex1/social-images/social-1766337520027-Screenshot 2025-12-21 at 22.48.19.png";
+  const seoImage = image || "https://storage.googleapis.com/gpt-engineer-file-uploads/qp12k9i7O0TTT9ff1Ydv9shUvex1/social-images/social-1766337520027-Screenshot%202025-12-21%20at%2022.48.19.png";
 
   const personSchema = {
     "@type": "Person",
@@ -102,10 +102,9 @@ export const SEO = ({
       )}
 
       {/* Structured Data JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json">
+        {JSON.stringify(jsonLd)}
+      </script>
     </Head>
   );
 };
