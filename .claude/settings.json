@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm install:*)",
+      "Bash(python3 -m json.tool)",
+      "Bash(pnpm why:*)",
+      "Bash(pnpm add:*)",
+      "Bash(mkdir -p /tmp/ssr_lockfix)",
+      "Bash(cp /Users/ssrrattan/Documents/SSR_Website/package.json /tmp/ssr_lockfix/)",
+      "Bash(cp /Users/ssrrattan/Documents/SSR_Website/.npmrc /tmp/ssr_lockfix/)",
+      "Read(//tmp/**)",
+      "Read(//private/tmp/ssr_lockfix/**)"
+    ],
+    "additionalDirectories": [
+      "/private/tmp/ssr_lockfix"
+    ]
+  }
+}
