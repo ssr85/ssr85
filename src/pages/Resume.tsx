@@ -1,4 +1,4 @@
-import { FileDown, Home, Loader2, Phone, Mail, Linkedin, Github, Globe } from "lucide-react";
+import { FileDown, Home, Loader2, Phone, Mail, Linkedin, Github, Globe, MapPin } from "lucide-react";
 import { siteConfig } from "@/data/content";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -428,6 +428,14 @@ const Resume = () => {
             </div>
           </div>
 
+          {/* ═══════════════════ FOOTER ═══════════════════════════════════ */}
+          <div style={{ marginTop: "auto", paddingTop: "12px", borderTop: "1px solid #eee", display: "flex", justifyContent: "center" }}>
+            <p style={{ fontSize: "7.5pt", color: "#666", display: "flex", alignItems: "center", gap: "4px" }}>
+              <MapPin size={10} style={{ color: "#111" }} />
+              Pune, India
+            </p>
+          </div>
+
         </div>
       </div>
 
@@ -448,6 +456,8 @@ const Resume = () => {
               padding: 11mm 14mm 10mm 14mm;
               box-sizing: border-box;
               font-family: 'Georgia', 'Times New Roman', serif;
+              display: flex;
+              flex-direction: column;
             }
 
             @media print {
