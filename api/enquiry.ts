@@ -33,6 +33,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // 2. Verify reCAPTCHA
+    if (!RECAPTCHA_SECRET_KEY) {
+      console.error('RECAPTCHA_SECRET_KEY environment variable is not set');
+      return res.status(500).json({ error: 'Server configuration error. Please try again later.' });
+    }
+
     const recaptchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -42,7 +47,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const recaptchaData = await recaptchaRes.json();
 
     if (!recaptchaData.success || recaptchaData.score < RECAPTCHA_SCORE_THRESHOLD) {
-      console.warn('reCAPTCHA failed:', recaptchaData);
+      console.warn('reCAPTCHA failed — success:', recaptchaData.success, '| score:', recaptchaData.score, '| error-codes:', recaptchaData['error-codes']);
       return res.status(403).json({ error: 'Security check failed. Please try again.' });
     }
 
