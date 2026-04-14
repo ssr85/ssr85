@@ -30,7 +30,10 @@ export const siteConfig = {
   tagline: "B2B AI Specialist: Bridging Industry Logic & Agentic Systems",
   location: "India & Global",
   email: "sarabjit.rattan@gmail.com",
+  phone: "+91-866-898-4323",
   linkedin: "https://www.linkedin.com/in/sarabjeetrattan/",
+  github: "https://github.com/ssr85",
+  website: "https://www.sarabjeetrattan.com",
   meta: {
     title: "Sarabjeet Rattan | B2B AI Specialist India | Agentic Systems",
     description: "B2B AI Specialist & Industrial Hemp Consultant. Expert in agentic engineering, sustainable supply chains (pulp, composites, moulded products), and scaling complex business logic.",

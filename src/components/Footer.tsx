@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { siteConfig } from "@/data/content";
-import { Mail, FileText, ChevronUp } from "lucide-react";
+import { Mail, FileText, ChevronUp, Phone, Linkedin, Github, Globe } from "lucide-react";
 import { ResumeDownloadModal } from "@/components/ResumeDownloadModal";
 import { EngineeringGrid } from "@/components/EngineeringGrid";
 import { cn } from "@/lib/utils";
@@ -74,6 +74,13 @@ export const Footer = () => {
 
           <div className="flex items-center gap-3">
             <a
+              href={`tel:${siteConfig.phone}`}
+              className="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"
+              aria-label="Phone"
+            >
+              <Phone size={18} />
+            </a>
+            <a
               href={`mailto:${siteConfig.email}`}
               className="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"
               aria-label="Email"
@@ -87,7 +94,25 @@ export const Footer = () => {
               className="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"
               aria-label="LinkedIn"
             >
-              <svg viewBox="0 0 24 24" width={18} height={18} fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              <Linkedin size={18} />
+            </a>
+            <a
+              href={siteConfig.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"
+              aria-label="Website"
+            >
+              <Globe size={18} />
+            </a>
+            <a
+              href={siteConfig.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"
+              aria-label="GitHub"
+            >
+              <Github size={18} />
             </a>
             
             {/* Docked Back to Top Button slot */}
@@ -116,6 +141,9 @@ export const Footer = () => {
             {/* Using same horizontal structure as footer buttons row */}
             <div className="flex items-center gap-3">
               {/* Spacer divs to match width of Mail and LinkedIn buttons */}
+              <div className="w-10 h-10" />
+              <div className="w-10 h-10" />
+              <div className="w-10 h-10" />
               <div className="w-10 h-10" />
               <div className="w-10 h-10" />
               

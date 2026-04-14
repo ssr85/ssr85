@@ -8,6 +8,7 @@ import { Snapshot } from "@/components/Snapshot";
 import { Strengths } from "@/components/Strengths";
 import { Projects } from "@/components/Projects";
 import { Services } from "@/components/Services";
+import { FAQ } from "@/components/FAQ";
 import { BeyondWork } from "@/components/BeyondWork";
 import { Footer } from "@/components/Footer";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
@@ -43,6 +44,7 @@ const Index = () => {
         <ScrollAnimationWrapper delay={100}>
           <Services onOpenEnquiry={openEnquiry} />
         </ScrollAnimationWrapper>
+        <FAQ />
         <ScrollAnimationWrapper delay={100}>
           <BeyondWork />
         </ScrollAnimationWrapper>

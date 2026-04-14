@@ -39,12 +39,28 @@ export const SEO = ({
     "jobTitle": "B2B AI Specialist & Industrial Hemp Consultant",
     "url": url,
     "email": siteConfig.email,
+    "telephone": "+918668984323",
     "sameAs": [siteConfig.linkedin],
     "description": seoDescription,
     "image": seoImage,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Pune",
+      "addressRegion": "Maharashtra",
+      "postalCode": "411027",
+      "addressCountry": "IN"
+    },
     "knowsAbout": [
-      "Agentic AI", "B2B Automation", "Industrial Hemp", 
-      "Sustainable Packaging", "Supply Chain Optimization"
+      "Agentic AI & Workflows", "B2B Automation", "Industrial Hemp Supply Chain", 
+      "Sustainable Packaging Solutions", "Supply Chain Optimization",
+      "B2B AI Strategy & Roadmap", "LLM Orchestration", "RAG (Retrieval-Augmented Generation)",
+      "Intelligent Process Automation (IPA)", "Autonomous Agents", "Circular Economy",
+      "Hemp Paper Pulp", "Bio-composites", "Regenerative Agriculture", "Carbon Neutrality"
+    ],
+    "worksFor": [
+      "Lead OG", "Sustainable Packaging", "Hemp Paper", 
+      "Hemp Plastic", "Hemp Compostables", "Hemp Pulp Moulded", 
+      "Biodegradable Composite Solutions"
     ]
   };
 
@@ -55,19 +71,63 @@ export const SEO = ({
     "image": seoImage,
     "url": url,
     "email": siteConfig.email,
+    "telephone": "+918668984323",
+    "priceRange": "₹1100-1900 /HOUR",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "India",
+      "streetAddress": "Pune",
+      "addressLocality": "Pune",
+      "addressRegion": "Maharashtra",
+      "postalCode": "411027",
       "addressCountry": "IN"
     },
-    "description": "Expert B2B AI & Agentic Systems Engineering and Industrial Hemp Supply Chain Consultancy.",
+    "description": "Expert high-end B2B AI consulting focusing on Agentic Workflows, LLM Orchestration, and Intelligent Process Automation. Specializing in Industrial Hemp supply chains, Circular Economy models, and Sustainable Packaging Solutions.",
     "provider": { "@id": `${url}/#person` },
     "areaServed": "Global"
   };
 
+  const faqSchema = {
+    "@type": "FAQPage",
+    "@id": `${url}/#faq`,
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Agentic AI and how does it benefit B2B operations?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Agentic AI refers to autonomous systems capable of executing complex business logic with minimal human intervention. For B2B, this means faster lead processing, automated CRM synchronization, and self-correcting workflows that reduce operational overhead."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why choose Industrial Hemp for sustainable packaging solutions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Industrial Hemp is a carbon-negative crop that produces high-strength fibers. It is ideal for hemp paper pulp, bio-composites, and moulded products, offering a biodegradable and high-performance alternative to traditional plastic and paper."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What industries do you serve with your consultancy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I specialize in high-growth B2B sectors, specifically focusing on AI-driven enterprise automation and the global Industrial Hemp supply chain, including sustainable packaging and bio-composite manufacturing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you bridge the gap between business logic and agentic systems?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I translate abstract operational vision into executable technical roadmaps. By engineering custom LLM orchestration and RAG pipelines, I ensure that AI systems respect complex B2B business rules while delivering scalable impact."
+        }
+      }
+    ]
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [websiteSchema, personSchema, businessSchema]
+    "@graph": [websiteSchema, personSchema, businessSchema, faqSchema]
   };
 
   return (

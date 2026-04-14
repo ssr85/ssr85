@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, Phone, Mail, Linkedin, Github, Globe } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import { scrollToSection } from "@/lib/scroll";
-import { navLinks } from "@/data/content";
+import { navLinks, siteConfig } from "@/data/content";
 import logo from "@/assets/SR_LOGO_no_bg.png";
 
 interface HeaderProps {
@@ -87,10 +87,55 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
               );
             })}
             <div className="h-6 w-[1px] bg-border/40 mx-2" />
+            
+            <div className="flex items-center gap-0.5 mr-4">
+              <a 
+                href={`tel:${siteConfig.phone}`}
+                className="p-2 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                title="Phone"
+              >
+                <Phone size={18} />
+              </a>
+              <a 
+                href={`mailto:${siteConfig.email}`}
+                className="p-2 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                title="Email"
+              >
+                <Mail size={18} />
+              </a>
+              <a 
+                href={siteConfig.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                title="LinkedIn"
+              >
+                <Linkedin size={18} />
+              </a>
+              <a 
+                href={siteConfig.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                title="Website"
+              >
+                <Globe size={18} />
+              </a>
+              <a 
+                href={siteConfig.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                title="GitHub"
+              >
+                <Github size={18} />
+              </a>
+            </div>
+
             <Button 
               onClick={onOpenEnquiry} 
               size="sm"
-              className="ml-2 bg-foreground text-background hover:bg-foreground/90 shadow-lg shadow-foreground/5 rounded-full px-6 transition-all duration-500 hover:scale-105 group"
+              className="bg-foreground text-background hover:bg-foreground/90 shadow-lg shadow-foreground/5 rounded-full px-6 transition-all duration-500 hover:scale-105 group"
             >
               Get In Touch
               <ArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
@@ -131,6 +176,25 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                   </button>
                 );
               })}
+              <div className="px-6 py-4 flex items-center justify-between border-y border-border/10 bg-muted/5">
+                <div className="flex items-center gap-4">
+                  <a href={`tel:${siteConfig.phone}`} className="p-2 text-muted-foreground hover:text-primary transition-colors">
+                    <Phone size={20} />
+                  </a>
+                  <a href={`mailto:${siteConfig.email}`} className="p-2 text-muted-foreground hover:text-primary transition-colors">
+                    <Mail size={20} />
+                  </a>
+                  <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-primary transition-colors">
+                    <Linkedin size={20} />
+                  </a>
+                  <a href={siteConfig.website} target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-primary transition-colors">
+                    <Globe size={20} />
+                  </a>
+                  <a href={siteConfig.github} target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-primary transition-colors">
+                    <Github size={20} />
+                  </a>
+                </div>
+              </div>
               <div className="px-6 pt-4 flex items-center gap-4">
                 <Button 
                   onClick={() => {

@@ -1,4 +1,5 @@
-import { FileDown, Home, Loader2 } from "lucide-react";
+import { FileDown, Home, Loader2, Phone, Mail, Linkedin, Github, Globe } from "lucide-react";
+import { siteConfig } from "@/data/content";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -118,7 +119,7 @@ const Resume = () => {
                 marginBottom: "6px",
               }}
             >
-              AI Product &amp; Operations Leader &nbsp;·&nbsp; Agentic Systems &nbsp;·&nbsp; B2B Transformation &nbsp;·&nbsp; B2B Operations
+              AI Product &amp; Operations Leader &nbsp;·&nbsp; Agentic Systems &nbsp;·&nbsp; B2B Transformation &nbsp;·&nbsp; Industrial Hemp Products
             </p>
             {/* Contact row */}
             <div
@@ -128,20 +129,40 @@ const Resume = () => {
                 gap: "0 14px",
                 fontSize: "8.5pt",
                 color: "#444",
+                alignItems: "center"
               }}
             >
-              <span>+91-866-898-4323</span>
-              <a href="mailto:sarabjit.rattan@gmail.com" style={{ color: "#1a56db", textDecoration: "none" }}>
-                sarabjit.rattan@gmail.com
+              <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                <Phone size={10} style={{ color: "#111" }} />
+                {siteConfig.phone}
+              </span>
+              <a 
+                href={`mailto:${siteConfig.email}`} 
+                style={{ color: "#1a56db", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}
+              >
+                <Mail size={10} style={{ color: "#111" }} />
+                {siteConfig.email}
               </a>
-              <span>Pune, Maharashtra</span>
-              <a href="https://www.linkedin.com/in/sarabjeetrattan/" style={{ color: "#1a56db", textDecoration: "none" }}>
-                linkedin.com/in/sarabjeetrattan
+            
+              <a 
+                href={siteConfig.linkedin} 
+                style={{ color: "#1a56db", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}
+              >
+                <Linkedin size={10} style={{ color: "#111" }} />
+                /sarabjeetrattan
               </a>
-              <a href="https://www.sarabjeetrattan.com" style={{ color: "#1a56db", textDecoration: "none" }}>
+              <a 
+                href={siteConfig.website} 
+                style={{ color: "#1a56db", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}
+              >
+                <Globe size={10} style={{ color: "#111" }} />
                 sarabjeetrattan.com
               </a>
-              <a href="https://github.com/ssr85" style={{ color: "#1a56db", textDecoration: "none" }}>
+              <a 
+                href={siteConfig.github} 
+                style={{ color: "#1a56db", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}
+              >
+                <Github size={10} style={{ color: "#111" }} />
                 github.com/ssr85
               </a>
             </div>
@@ -264,7 +285,7 @@ const Resume = () => {
                 <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
                   <Bullet text="A high-velocity lead enrichment & responder platform automating prospect research and CRM sync via Freshsales API." />
                   <Bullet text="Designed a custom session caching engine for data freshness, context based reponses with historic considerations" />
-                  <Bullet text="End-to-end build from user research through live signal extraction, " />
+                  <Bullet text="End-to-end build from user research through live signal extraction, intent analysis, history, enrichment, and communication." />
                 </ul>
               </div>
 
@@ -355,14 +376,15 @@ const Resume = () => {
               <div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
                   <div style={{ display: "flex", alignItems: "baseline", flexWrap: "wrap", gap: "4px" }}>
-                    <span style={{ fontSize: "9.5pt", fontWeight: 700, color: "#111" }}>International B2B Sales</span>
+                    <span style={{ fontSize: "9.5pt", fontWeight: 700, color: "#111" }}>International Business</span>
                     <span style={{ fontSize: "9pt", color: "#555" }}> · OG Hemp Pvt. Ltd. · Kolkata</span>
                   </div>
                   <span style={{ fontSize: "8.5pt", color: "#666" }}>01/2017 – Present</span>
                 </div>
                 <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-                  <Bullet text="International GTM strategy across 10+ countries for a premium B2B sustainable brand placement" />
+                  <Bullet text="International GTM and comliance strategy across 10+ countries for premium B2B sustainable brand placement" />
                   <Bullet text="Managing global partnerships & market-entry/development for newer regions with compliance considerations." />
+                  <Bullet text="New Product Development for white-labelled solutions in all categories, paper, pulp, & composites." />
                 </ul>
               </div>
 
