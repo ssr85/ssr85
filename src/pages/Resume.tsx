@@ -18,7 +18,7 @@ const SectionHeading = ({ children }: { children: React.ReactNode }) => (
       color: "#111",
       borderBottom: "1.5px solid #111",
       paddingBottom: "2px",
-      marginBottom: "7px",
+      marginBottom: "8px",
     }}
   >
     {children}
@@ -27,9 +27,9 @@ const SectionHeading = ({ children }: { children: React.ReactNode }) => (
 
 // ─── Bullet row ──────────────────────────────────────────────────────────────
 const Bullet = ({ text }: { text: string }) => (
-  <li style={{ display: "flex", gap: "6px", marginBottom: "2px", alignItems: "flex-start" }}>
+  <li style={{ display: "flex", gap: "6px", marginBottom: "3px", alignItems: "flex-start" }}>
     <span style={{ color: "#555", flexShrink: 0, marginTop: "1.5px", fontSize: "7pt" }}>●</span>
-    <span style={{ fontSize: "9pt", color: "#333", lineHeight: "1.45" }}>{text}</span>
+    <span style={{ fontSize: "9pt", color: "#333", lineHeight: "1.1" }}>{text}</span>
   </li>
 );
 
@@ -56,8 +56,8 @@ const Resume = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 print:min-h-0 print:bg-transparent">
-      <SEO 
-        title="Resume | Sarabjeet Rattan" 
+      <SEO
+        title="Resume | Sarabjeet Rattan"
         description="Professional resume of Sarabjeet Rattan, B2B AI Specialist & Operations Leader. Expert in Agentic Systems and Industrial Hemp Consultancy."
         url="https://sarabjeetrattan.com/resume"
       />
@@ -136,30 +136,30 @@ const Resume = () => {
                 <Phone size={10} style={{ color: "#111" }} />
                 {siteConfig.phone}
               </span>
-              <a 
-                href={`mailto:${siteConfig.email}`} 
+              <a
+                href={`mailto:${siteConfig.email}`}
                 style={{ color: "#1a56db", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}
               >
                 <Mail size={10} style={{ color: "#111" }} />
                 {siteConfig.email}
               </a>
-            
-              <a 
-                href={siteConfig.linkedin} 
+
+              <a
+                href={siteConfig.linkedin}
                 style={{ color: "#1a56db", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}
               >
                 <Linkedin size={10} style={{ color: "#111" }} />
                 /sarabjeetrattan
               </a>
-              <a 
-                href={siteConfig.website} 
+              <a
+                href={siteConfig.website}
                 style={{ color: "#1a56db", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}
               >
                 <Globe size={10} style={{ color: "#111" }} />
                 sarabjeetrattan.com
               </a>
-              <a 
-                href={siteConfig.github} 
+              <a
+                href={siteConfig.github}
                 style={{ color: "#1a56db", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}
               >
                 <Github size={10} style={{ color: "#111" }} />
@@ -169,26 +169,26 @@ const Resume = () => {
           </div>
 
           {/* ═══════════════════ SUMMARY ══════════════════════════════════ */}
-          <div style={{ marginBottom: "11px" }}>
+          <div style={{ marginBottom: "8px" }}>
             <SectionHeading>Professional Summary</SectionHeading>
             <p
               style={{
                 fontSize: "9.5pt",
                 color: "#333",
-                lineHeight: "1.5",
+                lineHeight: "1.35",
+                margin: 0,
               }}
             >
-              Results-driven Operations Leader with 16+ years in sustainable B2B industries, combining a
-              lifelong instinct for technology with hands-on automation experience — from scripting workflows
-              in Sheets to engineering full multi-agent AI systems. Skilled in product strategy, international
-              market expansion, and agentic system design.
+              Strategic and Results-driven B2B AI & Operations Leader with 16+ years of experience in scaling sustainable industries.
+              Specialized in engineering multi-agent agentic systems and automating complex business logic to drive operational efficiency.
+              Proven track record in orchestrating international expansion across 12 countries and executing technical product strategy for niche markets.
             </p>
           </div>
 
           {/* ═══════════════════ EDUCATION ════════════════════════════════ */}
-          <div style={{ marginBottom: "11px" }}>
+          <div style={{ marginBottom: "8px" }}>
             <SectionHeading>Education</SectionHeading>
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
               {[
                 {
                   degree: "Product Management with Generative & Agentic AI",
@@ -210,7 +210,7 @@ const Resume = () => {
                   key={e.degree}
                   style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}
                 >
-                  <div>
+                  <div style={{ lineHeight: "1.1" }}>
                     <span style={{ fontSize: "9.5pt", fontWeight: 600, color: "#111" }}>{e.degree}</span>
                     <span style={{ fontSize: "9pt", color: "#555" }}> · {e.school}</span>
                   </div>
@@ -223,7 +223,7 @@ const Resume = () => {
           </div>
 
           {/* ═══════════════════ SKILLS ═══════════════════════════════════ */}
-          <div style={{ marginBottom: "11px" }}>
+          <div style={{ marginBottom: "8px" }}>
             <SectionHeading>Skills</SectionHeading>
             <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
               {[
@@ -250,7 +250,7 @@ const Resume = () => {
                     "Cross-Cultural Intelligence (10+ regions), Strategic Negotiation, Narrative Building, & Adaptive Leadership",
                 },
               ].map((s) => (
-                <p key={s.label} style={{ fontSize: "9pt", color: "#333", lineHeight: "1.4" }}>
+                <p key={s.label} style={{ fontSize: "9pt", color: "#333", lineHeight: "1.1", margin: 0 }}>
                   <strong style={{ fontWeight: 600, color: "#111" }}>{s.label}:</strong> {s.value}
                 </p>
               ))}
@@ -258,9 +258,9 @@ const Resume = () => {
           </div>
 
           {/* ═══════════════════ PROJECTS ═════════════════════════════════ */}
-          <div style={{ marginBottom: "11px" }}>
+          <div style={{ marginBottom: "8px" }}>
             <SectionHeading>Projects</SectionHeading>
-            <div style={{ display: "flex", flexDirection: "column", gap: "9px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
 
               {/* ── Project 1: Lead OG ────────────────────────────────── */}
               <div>
@@ -278,14 +278,18 @@ const Resume = () => {
                       React · Supabase · Tavily API · Freshsales API
                     </span>
                   </span>
-                  <span style={{ fontSize: "8pt", color: "#666", whiteSpace: "nowrap", marginLeft: "10px" }}>
-                    CRM Automation · B2B Sales Teams
-                  </span>
+                  <a
+                    href="https://github.com/ssr85/leadog"
+                    style={{ fontSize: "8pt", color: "#1a56db", textDecoration: "none", whiteSpace: "nowrap", marginLeft: "10px" }}
+                  >
+                    github.com/ssr85/leadog
+                  </a>
                 </div>
                 <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-                  <Bullet text="A high-velocity lead enrichment & responder platform automating prospect research and CRM sync via Freshsales API." />
-                  <Bullet text="Designed a custom session caching engine for data freshness, context based reponses with historic considerations" />
-                  <Bullet text="End-to-end build from user research through live signal extraction, intent analysis, history, enrichment, and communication." />
+                  <Bullet text="Architected a B2B AI enrichment platform, reducing manual research time by 70% and doubling outreach capacity." />
+                  <Bullet text="Developed a session caching engine to accelerate data retrieval while maintaining context-aware responses." />
+                  <Bullet text="Implemented end-to-end pipelines for signal extraction, intent analysis, and real-time CRM synchronization." />
+                  <Bullet text="Led full-stack development from user research through live deployment of the agentic lead discovery system." />
                 </ul>
               </div>
 
@@ -313,7 +317,7 @@ const Resume = () => {
                   </a>
                 </div>
                 <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-                  <Bullet text="Engineered a Trello-driven LinkedIn automation system using CrewAI, for topic research and high-fidelity content generation." />
+                  <Bullet text="Engineered a Trello-driven LinkedIn automation system using CrewAI for topic research and high-fidelity content generation." />
                   <Bullet text="Human-in-the-Loop (HITL), Approve-to-Publish workflow enabling founders to maintain brand voice control at scale." />
                   <Bullet text="Orchestrated multi-agent research-to-dispatch pipelines with APScheduler, enabling publishing without manual overhead." />
                 </ul>
@@ -353,11 +357,11 @@ const Resume = () => {
           </div>
 
           {/* ═══════════════════ WORK EXPERIENCE ══════════════════════════ */}
-          <div style={{ marginBottom: "11px" }}>
+          <div style={{ marginBottom: "8px" }}>
             <SectionHeading>Work Experience</SectionHeading>
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
 
-              {/* ── SkaizenTech ──────────────────────────────────────── */}
+              {/* ── Skaizen Technotrades ─────────────────────────────── */}
               <div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
                   <div style={{ display: "flex", alignItems: "baseline", flexWrap: "wrap", gap: "4px" }}>
@@ -367,8 +371,8 @@ const Resume = () => {
                   <span style={{ fontSize: "8.5pt", color: "#666" }}>01/2020 – Present</span>
                 </div>
                 <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-                  <Bullet text="Directing transformation & automation blueprints for 3+ SMEs, automating workflows via AI-driven architectures." />
-                  <Bullet text="Leveraging industry experience to provision fully automated, last-mile potable water and testing services for SMEs." />
+                  <Bullet text="Directed automation blueprints for 3+ SMEs, achieving a 40% reduction in operational bottlenecks via AI architectures." />
+                  <Bullet text="Optimized purification workflows, reducing water cost by 30% and usage by 30% through end-to-end automation." />
                 </ul>
               </div>
 
@@ -382,9 +386,9 @@ const Resume = () => {
                   <span style={{ fontSize: "8.5pt", color: "#666" }}>01/2017 – Present</span>
                 </div>
                 <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-                  <Bullet text="International GTM and comliance strategy across 10+ countries for premium B2B sustainable brand placement" />
-                  <Bullet text="Managing global partnerships & market-entry/development for newer regions with compliance considerations." />
-                  <Bullet text="New Product Development for white-labelled solutions in all categories, paper, pulp, & composites." />
+                  <Bullet text="Engineered GTM and compliance across 12 countries, securing 5+ major partnerships to drive global revenue growth." />
+                  <Bullet text="Built 'Lead OG' to automate prospect research, reducing enrichment time to a fraction and follow-ups by 50%." />
+                  <Bullet text="Led New Product Development for white-labelled hemp solutions (paper, pulp, composites) for niche global markets." />
                 </ul>
               </div>
 
@@ -405,26 +409,45 @@ const Resume = () => {
             </div>
           </div>
 
-          {/* ═══════════════════ CERTIFICATIONS ════════════════════════════ */}
-          <div>
+          <div style={{ marginBottom: "6px" }}>
             <SectionHeading>Certifications</SectionHeading>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-              <p style={{ fontSize: "9pt", color: "#333" }}>
-                <strong style={{ fontWeight: 600 }}>Entrepreneurship with Design Thinking</strong>
-                {" "}· Symbiosis (SCEI) · 09/2020 – 11/2020
-              </p>
-              <a
-                href="https://drive.google.com/file/d/1h_I-TR28JG9ckbU7aP6K4nOz0iFU20jO/view?usp=sharing"
-                style={{
-                  fontSize: "8pt",
-                  color: "#1a56db",
-                  textDecoration: "none",
-                  whiteSpace: "nowrap",
-                  marginLeft: "12px",
-                }}
-              >
-                View Certificate ↗
-              </a>
+            <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+              {[
+                {
+                  title: "Certificate in Entrepreneurship with Design Thinking",
+                  authority: "Symbiosis (SCEI)",
+                  year: "2020",
+                  link: "https://drive.google.com/file/d/1RXJPNckuEDG7hppMUj6I0mTa7xTQ-GPx/view?usp=drive_link"
+                },
+                {
+                  title: "Business Process Improvement",
+                  authority: "LinkedIn Learning",
+                  year: "2022",
+                  link: "https://drive.google.com/file/d/1Ts0oYxlyv4wAOPOKJBJ9GiZcYoIeusWZ/view?usp=drive_link"
+                },
+                {
+                  title: "Introduction to Prompt Engineering for Generative AI",
+                  authority: "LinkedIn Learning",
+                  year: "2023",
+                  link: "https://drive.google.com/file/d/1vIfwpvLMGmkQzRNt7Quva1_lPw3y3WU5/view?usp=drive_link"
+                },
+              ].map((cert, idx) => (
+                <div key={idx} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                  <p style={{ fontSize: "9pt", color: "#333", margin: 0 }}>
+                    <strong style={{ fontWeight: 600 }}>{cert.title}</strong>
+                    {" "}· {cert.authority}
+                  </p>
+                  <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                    <a
+                      href={cert.link}
+                      style={{ fontSize: "8pt", color: "#1a56db", textDecoration: "none" }}
+                    >
+                      View ↗
+                    </a>
+                    <span style={{ fontSize: "8.5pt", color: "#666" }}>{cert.year}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
