@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight, Phone, Mail, Linkedin, Github, Globe } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
+import { useThrottledScroll } from "@/hooks/use-throttle";
 import { scrollToSection } from "@/lib/scroll";
 import { navLinks, siteConfig } from "@/data/content";
-import logo from "@/assets/SR_LOGO_no_bg.png";
+import logo from "@/assets/SR_LOGO_no_bg.webp";
 
 interface HeaderProps {
   onOpenEnquiry: () => void;
@@ -17,12 +18,8 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
   
   const activeSection = useScrollSpy(navLinks.map(link => link.id));
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+  useThrottledScroll(() => {
+    setIsScrolled(window.scrollY > 50);
   }, []);
 
   const handleNavClick = (href: string) => {
@@ -55,6 +52,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                 alt="SR Logo"
                 width={48}
                 height={48}
+                fetchpriority="high"
                 className="h-10 md:h-12 w-auto transition-all duration-500 group-hover:scale-110 dark:invert"
               />
             </a>

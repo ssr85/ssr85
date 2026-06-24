@@ -4,6 +4,7 @@ import { MapPin, Mail, ArrowRight, Globe, Zap, BrainCircuit, CheckCircle2 } from
 import { siteConfig, heroTags } from "@/data/content";
 import { scrollToSection } from "@/lib/scroll";
 import { EngineeringGrid } from "@/components/EngineeringGrid";
+import { useThrottledScroll } from "@/hooks/use-throttle";
 
 interface HeroProps {
   onOpenEnquiry: () => void;
@@ -12,6 +13,7 @@ interface HeroProps {
 export const Hero = ({ onOpenEnquiry }: HeroProps) => {
   const [scrollY, setScrollY] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
+  const scrollYRef = useRef(0);
 
   const [currentTagIndex, setCurrentTagIndex] = useState(0);
 
@@ -22,18 +24,17 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect();
-        if (rect.bottom > 0) {
-          setScrollY(window.scrollY);
+  useThrottledScroll(() => {
+    if (heroRef.current) {
+      const rect = heroRef.current.getBoundingClientRect();
+      if (rect.bottom > 0) {
+        const current = window.scrollY;
+        if (Math.abs(current - scrollYRef.current) > 2) {
+          scrollYRef.current = current;
+          setScrollY(current);
         }
       }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
   const scrollToContent = () => {
@@ -55,14 +56,13 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
 
       {/* Subtle Mesh Gradient */}
       <div
-        className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/[0.04] rounded-full blur-[120px] will-change-transform pointer-events-none"
+        className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/[0.04] rounded-full blur-[120px] pointer-events-none"
         style={{ transform: `translateY(${scrollY * 0.15}px)` }}
       />
       <div
-        className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/[0.04] rounded-full blur-[100px] will-change-transform pointer-events-none"
+        className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/[0.04] rounded-full blur-[100px] pointer-events-none"
         style={{ transform: `translateY(${scrollY * -0.1}px)` }}
       />
-
       <div
         className="container mx-auto relative z-10 max-w-5xl"
         style={{ transform: `translateY(${scrollY * 0.05}px)` }}

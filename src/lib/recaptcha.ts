@@ -7,27 +7,42 @@ declare global {
   }
 }
 
-export const executeRecaptcha = (action: string): Promise<string | null> => {
+const loadRecaptchaScript = (): Promise<void> => {
   return new Promise((resolve) => {
+    if (window.grecaptcha) {
+      resolve();
+      return;
+    }
     const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
     if (!siteKey) {
-      console.warn("reCAPTCHA Site Key is missing. Please add VITE_RECAPTCHA_SITE_KEY to your environment variables.");
-      resolve(null);
+      resolve();
       return;
     }
-    if (!window.grecaptcha) {
-      console.error("reCAPTCHA not loaded");
-      resolve(null);
-      return;
-    }
-    window.grecaptcha.ready(async () => {
-      try {
-        const token = await window.grecaptcha.execute(siteKey, { action });
-        resolve(token);
-      } catch (err) {
-        console.error("reCAPTCHA execution error:", err);
-        resolve(null);
-      }
-    });
+    const script = document.createElement("script");
+    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+    script.async = true;
+    script.defer = true;
+    script.onload = () => resolve();
+    document.head.appendChild(script);
   });
+};
+
+export const executeRecaptcha = async (action: string): Promise<string | null> => {
+  const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+  if (!siteKey) {
+    console.warn("reCAPTCHA Site Key is missing.");
+    return null;
+  }
+  await loadRecaptchaScript();
+  try {
+    const token = await new Promise<string>((resolve, reject) => {
+      window.grecaptcha.ready(() => {
+        window.grecaptcha.execute(siteKey, { action }).then(resolve).catch(reject);
+      });
+    });
+    return token;
+  } catch (err) {
+    console.error("reCAPTCHA execution error:", err);
+    return null;
+  }
 };

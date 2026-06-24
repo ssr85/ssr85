@@ -17,5 +17,21 @@ export default defineConfig(() => {
         "@": path.resolve(__dirname, "./src"),
       },
     },
+    build: {
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks(id: string) {
+            if (id.includes("node_modules")) {
+              if (id.includes("@radix-ui")) return "ui";
+              if (id.includes("recharts") || id.includes("recharts-scale") || id.includes("d3-")) return "charts";
+              if (id.includes("lucide-react")) return "icons";
+              if (id.includes("@tanstack/react-query") || id.includes("@tanstack/query-core")) return "query";
+              if (id.includes("next-themes")) return "theme";
+            }
+          },
+        },
+      },
+    },
   };
 });

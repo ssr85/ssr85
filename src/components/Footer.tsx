@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { siteConfig } from "@/data/content";
 import { Mail, FileText, ChevronUp, Phone, Linkedin, Github, Globe } from "lucide-react";
 import { ResumeDownloadModal } from "@/components/ResumeDownloadModal";
 import { EngineeringGrid } from "@/components/EngineeringGrid";
 import { cn } from "@/lib/utils";
+import { useThrottledScroll } from "@/hooks/use-throttle";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -13,33 +14,31 @@ export const Footer = () => {
   const footerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const caseStudies = document.getElementById("case-studies");
-      if (caseStudies) {
-        const csRect = caseStudies.getBoundingClientRect();
-        const triggerStart = window.innerHeight * 0.9;
-        const triggerEnd = window.innerHeight * 0.4;
-        
-        let progress = (triggerStart - csRect.top) / (triggerStart - triggerEnd);
-        setScrollProgress(Math.max(0, Math.min(1, progress)));
-      }
-
-      if (footerRef.current) {
-        const fRect = footerRef.current.getBoundingClientRect();
-        // Start landing transition as footer enters
-        const landingStart = window.innerHeight; 
-        const landingEnd = window.innerHeight - 120; // Expanded range for smoother blend
-        
-        let fProgress = (landingStart - fRect.top) / (landingStart - landingEnd);
-        setFooterProgress(Math.max(0, Math.min(1, fProgress)));
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleScroll = () => {
+    const caseStudies = document.getElementById("case-studies");
+    if (caseStudies) {
+      const csRect = caseStudies.getBoundingClientRect();
+      const triggerStart = window.innerHeight * 0.9;
+      const triggerEnd = window.innerHeight * 0.4;
+      
+      let progress = (triggerStart - csRect.top) / (triggerStart - triggerEnd);
+      setScrollProgress(Math.max(0, Math.min(1, progress)));
+    }
+
+    if (footerRef.current) {
+      const fRect = footerRef.current.getBoundingClientRect();
+      const landingStart = window.innerHeight; 
+      const landingEnd = window.innerHeight - 120;
+      
+      let fProgress = (landingStart - fRect.top) / (landingStart - landingEnd);
+      setFooterProgress(Math.max(0, Math.min(1, fProgress)));
+    }
+  };
+
+  useThrottledScroll(handleScroll, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });

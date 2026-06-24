@@ -68,6 +68,9 @@ export const Projects = () => {
                 <img
                   src={project.images[1] || project.images[0]}
                   alt=""
+                  loading="lazy"
+                  width={800}
+                  height={560}
                   className={cn(
                     "w-full h-full object-cover transition-all duration-700 grayscale-[0.5] group-hover:grayscale-0",
                     !project.images[1] && "scale-110"
@@ -83,6 +86,9 @@ export const Projects = () => {
                 <img
                   src={project.images[0]}
                   alt={project.name}
+                  loading="lazy"
+                  width={800}
+                  height={560}
                   className="w-full h-full object-cover transition-transform duration-1000 ease-out"
                 />
                 

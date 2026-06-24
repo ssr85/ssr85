@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { Header } from "@/components/Header";
 import { SEO } from "@/components/SEO";
 import { Hero } from "@/components/Hero";
 import { Stats } from "@/components/Stats";
-import { CaseStudies } from "@/components/CaseStudies";
 import { Snapshot } from "@/components/Snapshot";
+import { CaseStudies } from "@/components/CaseStudies";
 import { Strengths } from "@/components/Strengths";
 import { Projects } from "@/components/Projects";
 import { Services } from "@/components/Services";
@@ -12,7 +12,8 @@ import { FAQ } from "@/components/FAQ";
 import { BeyondWork } from "@/components/BeyondWork";
 import { Footer } from "@/components/Footer";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
-import { EnquiryModal } from "@/components/EnquiryModal";
+
+const EnquiryModal = lazy(() => import("@/components/EnquiryModal"));
 
 const Index = () => {
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
@@ -50,7 +51,11 @@ const Index = () => {
         </ScrollAnimationWrapper>
       </main>
       <Footer />
-      <EnquiryModal isOpen={isEnquiryOpen} onClose={closeEnquiry} />
+      {isEnquiryOpen && (
+        <Suspense fallback={null}>
+          <EnquiryModal isOpen={isEnquiryOpen} onClose={closeEnquiry} />
+        </Suspense>
+      )}
     </div>
   );
 };

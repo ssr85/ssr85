@@ -203,11 +203,6 @@ export const SEO = ({
       <meta name="twitter:description" content={seoDescription} />
       <meta name="twitter:image" content={seoImage} />
 
-      {/* reCAPTCHA v3 script */}
-      {import.meta.env.VITE_RECAPTCHA_SITE_KEY && (
-        <script src={`https://www.google.com/recaptcha/api.js?render=${import.meta.env.VITE_RECAPTCHA_SITE_KEY}`} async defer />
-      )}
-
       {/* Structured Data JSON-LD */}
       <script type="application/ld+json">
         {JSON.stringify(jsonLd)}
