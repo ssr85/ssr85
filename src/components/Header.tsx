@@ -49,7 +49,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
             >
               <img 
                 src={logo} 
-                alt="SR Logo"
+                alt="Sarabjeet Rattan Logo"
                 width={48}
                 height={48}
                 fetchpriority="high"

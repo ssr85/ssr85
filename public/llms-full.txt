@@ -14,7 +14,7 @@
     - **Strategic Architecture**: Market entry, positioning, and scaling roadmaps.
     - **Operational Rigor**: Resilient process design and cost optimization.
     - **System Integration**: Replacing operational debt with bespoke SaaS/AI automation.
-    - **Sustainable Economics**: Balancing profitability with environmental responsibility (Industrial Hemp focus).
+    - **Sustainable Economics**: Balancing profitability with environmental responsibility.
 
 ## Deep-Dive Case Studies (Agentic Engineering)
 

@@ -58,7 +58,7 @@ const Resume = () => {
     <div className="min-h-screen bg-gray-100 print:min-h-0 print:bg-transparent">
       <SEO
         title="Resume | Sarabjeet Rattan"
-        description="Professional resume of Sarabjeet Rattan, B2B AI Specialist & Operations Leader. Expert in Agentic Systems and Industrial Hemp Consultancy."
+        description="Professional resume of Sarabjeet Rattan, B2B AI Specialist & Operations Leader. Expert in Agentic Systems and Intelligent Automation."
         url="https://sarabjeetrattan.com/resume"
       />
       {/* ── Print Toolbar ─────────────────────────────────────────────────── */}
@@ -119,7 +119,7 @@ const Resume = () => {
                 marginBottom: "6px",
               }}
             >
-              AI Product &amp; Operations Leader &nbsp;·&nbsp; Agentic Systems &nbsp;·&nbsp; B2B Transformation &nbsp;·&nbsp; Industrial Hemp Products
+              AI Product &amp; Operations Leader &nbsp;·&nbsp; Agentic Systems &nbsp;·&nbsp; B2B Transformation &nbsp;·&nbsp; Intelligent Automation
             </p>
             {/* Contact row */}
             <div

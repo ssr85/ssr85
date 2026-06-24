@@ -36,7 +36,7 @@ export const SEO = ({
     "@type": "Person",
     "@id": `${url}/#person`,
     "name": siteConfig.name,
-    "jobTitle": "B2B AI Specialist & Industrial Hemp Consultant",
+    "jobTitle": "B2B AI Specialist & Agentic Systems Consultant",
     "url": url,
     "email": siteConfig.email,
     "telephone": "+918668984323",
@@ -51,16 +51,12 @@ export const SEO = ({
       "addressCountry": "IN"
     },
     "knowsAbout": [
-      "Agentic AI & Workflows", "B2B Automation", "Industrial Hemp Supply Chain", 
-      "Sustainable Packaging Solutions", "Supply Chain Optimization",
+      "Agentic AI & Workflows", "B2B Automation", "Supply Chain Optimization",
       "B2B AI Strategy & Roadmap", "LLM Orchestration", "RAG (Retrieval-Augmented Generation)",
-      "Intelligent Process Automation (IPA)", "Autonomous Agents", "Circular Economy",
-      "Hemp Paper Pulp", "Bio-composites", "Regenerative Agriculture", "Carbon Neutrality"
+      "Intelligent Process Automation (IPA)", "Autonomous Agents"
     ],
     "worksFor": [
-      "Lead OG", "Sustainable Packaging", "Hemp Paper", 
-      "Hemp Plastic", "Hemp Compostables", "Hemp Pulp Moulded", 
-      "Biodegradable Composite Solutions"
+      "Lead OG"
     ]
   };
 
@@ -81,7 +77,7 @@ export const SEO = ({
       "postalCode": "411027",
       "addressCountry": "IN"
     },
-    "description": "Expert high-end B2B AI consulting focusing on Agentic Workflows, LLM Orchestration, and Intelligent Process Automation. Specializing in Industrial Hemp supply chains, Circular Economy models, and Sustainable Packaging Solutions.",
+    "description": "Expert B2B AI strategy and agentic systems consulting. Building intelligent automation for SMEs and entrepreneurs scaling their operations.",
     "provider": { "@id": `${url}/#person` },
     "areaServed": "Global"
   };
@@ -111,7 +107,7 @@ export const SEO = ({
         "name": "What industries do you serve with your consultancy?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "I specialize in high-growth B2B sectors, specifically focusing on AI-driven enterprise automation and the global Industrial Hemp supply chain, including sustainable packaging and bio-composite manufacturing."
+          "text": "I specialize in high-growth B2B sectors, focusing on AI-driven enterprise automation and agentic workflows that solve operational bottlenecks for SMEs and entrepreneurs."
         }
       },
       {
@@ -120,6 +116,30 @@ export const SEO = ({
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "I translate abstract operational vision into executable technical roadmaps. By engineering custom LLM orchestration and RAG pipelines, I ensure that AI systems respect complex B2B business rules while delivering scalable impact."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is agentic AI consulting and how does it work for B2B?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Agentic AI consulting means designing autonomous AI systems that execute complex business workflows with human-in-the-loop oversight using CrewAI, LangChain, and RAG pipelines."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does CrewAI automate LinkedIn content scheduling?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I engineered a Trello-driven LinkedIn automation system using CrewAI that orchestrates research and drafting agents with an approve-to-publish workflow."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why hire an AI strategy consultant in Pune?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Based in Pune with 16+ years of operational leadership spanning AI strategy, agentic systems, and intelligent automation across 250+ clients in 4 continents."
         }
       }
     ]

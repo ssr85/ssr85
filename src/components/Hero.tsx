@@ -94,7 +94,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
                 className="text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-xl animate-hero-fade font-light"
                 style={{ animationDelay: "0.3s" }}
               >
-                B2B AI Specialist bridging industry operations with autonomous, agentic engines.
+                B2B AI Strategy & Agentic Systems Consultant bridging industry operations with autonomous engines.
               </p>
             </div>
 

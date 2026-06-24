@@ -12,7 +12,6 @@ export const heroTags = [
   "Agentic Systems",
   "Industry Logic",
   "Intelligent Workflows",
-  "Hemp Supply Chains",
   "Resilient Intelligence",
 ];
 
@@ -27,16 +26,16 @@ export const siteConfig = {
   name: "Sarabjeet Rattan",
   initials: "SR",
   tagline: "B2B AI Specialist: Bridging Industry Logic & Agentic Systems",
-  location: "India & Global",
+  location: "Pune, India & Global",
   email: "sarabjit.rattan@gmail.com",
   phone: "+91-866-898-4323",
   linkedin: "https://www.linkedin.com/in/sarabjeetrattan/",
   github: "https://github.com/ssr85",
   website: "https://www.sarabjeetrattan.com",
   meta: {
-    title: "Sarabjeet Rattan | B2B AI Specialist India | Agentic Systems",
-    description: "B2B AI Specialist & Industrial Hemp Consultant. Expert in agentic engineering, sustainable supply chains (pulp, composites, moulded products), and scaling complex business logic.",
-    keywords: ["B2B AI Specialist India", "Agentic Systems", "b2b ai solutions", "Hemp Paper Supply Chain", "hemp packaging", "hemp paper pulp", "composite packaging", "moulded hemp products", "industrial hemp consultancy"]
+    title: "Sarabjeet Rattan | B2B AI Strategy & Agentic Systems Consultant | Pune",
+    description: "B2B AI Specialist & Agentic Systems Consultant. Expert in AI strategy, intelligent automation, and scalable operations for SMEs and entrepreneurs.",
+    keywords: ["B2B AI Specialist India", "Agentic Systems", "B2B AI Solutions", "Agentic AI Consulting", "AI Strategy Consultant", "Pune AI Consultant", "Intelligent Automation", "B2B AI Strategy"]
   }
 };
 
@@ -204,7 +203,7 @@ export const projects = [
     name: "OG Hemp",
     category: "Sustainable Enterprise",
     description:
-      "Architected the comprehensive go-to-market strategy for premium hemp-products, focusing on hemp paper pulp, composite packaging, and moulded hemp products. Engineered a resilient Hemp Paper Supply Chain model to optimize domestic and international niche distribution.",
+      "Architected the comprehensive go-to-market strategy for premium hemp-products, focusing on hemp paper pulp, composite packaging, and moulded hemp products. As an industrial hemp packaging consultant, engineered a resilient Hemp Paper Supply Chain model to optimize domestic and international niche distribution.",
     highlights: ["Revenue Strategy", "Hemp Paper Pulp & Composites", "Moulded Product Packaging"],
     images: [
       "/images/projects/og-hemp-1.webp", 
