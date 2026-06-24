@@ -147,21 +147,64 @@ export const caseStudies: CaseStudy[] = [
     techStack: ["Python / FastAPI", "LangChain", "Pinecone Vector DB", "OpenAI GPT-4", "Regulatory PDF Parser"]
   },
   {
-    id: "lume",
-    name: "Lume",
-    category: "Agentic Engineering / Business OS",
-    audience: "B2B Freelancers & Agencies",
+    id: "content-og",
+    name: "ContentOG",
+    category: "SEO Intelligence / Content Strategy",
+    audience: "Content teams, SEO agencies, and publishers needing data-driven content strategies at scale",
     painPoints: [
-      "Manual proposal & invoice friction",
-      "Fragmented client communications",
-      "Delayed follow-up sequences",
-      "Operational overhead in small teams",
-      "Non-proactive system management"
+      "Manual SERP research takes hours and misses competitors",
+      "No systematic way to identify content gaps and topic clusters",
+      "Content strategies rely on intuition rather than data",
+      "Disconnected research-to-publishing workflows",
     ],
-    description: "Engineered a proactive 'System Master' agent that manages business operations with human-in-the-loop (HITL) oversight. Automates the entire lifecycle from context-aware email responses to dynamic invoice generation and payment tracking.",
-    stats: ["Proactive HITL Operations", "Context-Aware AI Ops", "End-to-End Automation"],
-    techStack: ["Python / FastAPI", "OpenAI GPT-4o", "Gmail / Stripe API", "Agentic Workflows"]
-  }
+    description: "An autonomous SEO intelligence system that discovers ranking opportunities, extracts People Also Ask questions, crawls content, generates embeddings, detects topic clusters, and produces data-driven content strategies — all without manual intervention.",
+    stats: [
+      "End-to-end automation from SERP discovery to strategy generation",
+      "Multi-agent pipeline: Discovery → PAA → Crawl → Embed → Cluster → Strategize",
+      "Vector embeddings for semantic topic clustering",
+    ],
+    techStack: ["Python", "CrewAI", "Supabase", "pgvector", "OpenAI", "SERP API"],
+  },
+  {
+    id: "linkedin-leadgen",
+    name: "LinkedIn LeadGen",
+    category: "B2B Outreach / Agentic Automation",
+    audience: "B2B sales teams and agencies needing compliant, automated LinkedIn outreach at scale",
+    painPoints: [
+      "Manual LinkedIn outreach doesn't scale beyond a handful of prospects",
+      "Automated outreach risks account bans without proper rate limiting",
+      "No way to orchestrate multi-step sequences with human oversight",
+      "Browser automation is fragile without proper fingerprint masking",
+    ],
+    description: "A hybrid B2B LinkedIn outreach system combining headless browser automation (Playwright/OpenOutreach) with LangGraph orchestration, LinkedIn's enterprise-grade rate limiting (iris, luminol, detext, gdmix), and VPN-isolated worker topology for compliant, large-scale prospect engagement.",
+    stats: [
+      "9-layer architecture: browser automation to VPN isolation to rate limiting",
+      "LangGraph supervisor handles state machine, retries, and agent routing",
+      "Enterprise rate limiting via LinkedIn's open-source infrastructure stack",
+      "Full OpenTelemetry tracing across every agent and proxy request",
+    ],
+    techStack: ["LangGraph", "Playwright", "OpenOutreach", "Docker", "Gluetun VPN", "OpenTelemetry"],
+  },
+  {
+    id: "multimodal-rag",
+    name: "Multimodal RAG Framework",
+    category: "Enterprise Document AI / Knowledge Retrieval",
+    audience: "Enterprises needing to index and query multimodal content (PDFs, images, video) from cloud storage",
+    painPoints: [
+      "Traditional RAG systems can't handle images and video alongside text",
+      "Google Drive content is siloed and unsearchable across formats",
+      "No unified pipeline for multimodal indexing and agentic retrieval",
+      "Embedding models lack support for mixed-media document understanding",
+    ],
+    description: "A production-ready agentic RAG framework that indexes multimodal content (PDFs, images, video) from Google Drive using Google ADK orchestration. Features two-pass indexing with dense multimodal summaries, 768-dimension Gemini embeddings, and agentic retrieval with Gemini 3 Flash reasoning.",
+    stats: [
+      "Multimodal indexing: PDF, images, and video from Google Drive",
+      "Two-pass indexing with high-density multimodal summaries",
+      "768-dimension Gemini Embedding 2 vectors with MRL support",
+      "Agentic orchestration via Google ADK with Gemini 3 Flash reasoning",
+    ],
+    techStack: ["Google ADK", "Gemini 3 Flash", "Gemini Embedding 2", "Supabase", "pgvector", "Google Drive API"],
+  },
 ];
 
 export const strengths = [
