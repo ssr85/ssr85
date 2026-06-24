@@ -13,6 +13,7 @@ const categoryColors: Record<string, { bg: string, text: string, border: string,
 
 export const Projects = () => {
   const [activeTab, setActiveTab] = useState(projects[0].id);
+  const [imageFlipped, setImageFlipped] = useState(false);
   const project = projects.find((p) => p.id === activeTab)!;
   const colors = categoryColors[project.category] || categoryColors["Strategic Growth"];
 
@@ -59,11 +60,18 @@ export const Projects = () => {
             className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center animate-in fade-in slide-in-from-bottom-12 duration-700"
           >
             {/* Interactive Image Gallery Side */}
-            <div className="relative group cursor-pointer w-full aspect-[16/10] lg:aspect-[14/9]">
-              {/* Secondary Image (Behind) - Swaps to Front on Hover */}
+            <div
+              className="relative group cursor-pointer w-full aspect-[16/10] lg:aspect-[14/9]"
+              onClick={() => setImageFlipped((f) => !f)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setImageFlipped((f) => !f); } }}
+            >
+              {/* Secondary Image (Behind) - Swaps to Front on Hover/Tap */}
               <div className={cn(
-                "absolute inset-0 translate-x-4 translate-y-4 lg:translate-x-8 lg:translate-y-8 rounded-[2rem] overflow-hidden border border-border/30 transition-all duration-700 ease-out shadow-xl z-0",
-                "group-hover:translate-x-0 group-hover:translate-y-0 group-hover:z-20 group-hover:scale-[1.02]"
+                "absolute inset-0 translate-x-6 translate-y-6 lg:translate-x-8 lg:translate-y-8 rounded-[2rem] overflow-hidden border border-border/30 transition-all duration-700 ease-out shadow-xl z-0",
+                "group-hover:translate-x-0 group-hover:translate-y-0 group-hover:z-20 group-hover:scale-[1.02]",
+                imageFlipped && "translate-x-0 translate-y-0 z-20 scale-[1.02]"
               )}>
                 <img
                   src={project.images[1] || project.images[0]}
@@ -73,15 +81,17 @@ export const Projects = () => {
                   height={560}
                   className={cn(
                     "w-full h-full object-cover transition-all duration-700 grayscale-[0.5] group-hover:grayscale-0",
+                    imageFlipped && "grayscale-0",
                     !project.images[1] && "scale-110"
                   )}
                 />
               </div>
   
-              {/* Primary Image (Front) - Swaps to Back on Hover */}
+              {/* Primary Image (Front) - Swaps to Back on Hover/Tap */}
               <div className={cn(
                 "relative h-full w-full overflow-hidden rounded-[2rem] bg-muted/30 border border-border/50 shadow-2xl transition-all duration-700 ease-out z-10",
-                "group-hover:translate-x-4 group-hover:translate-y-4 lg:group-hover:translate-x-8 lg:group-hover:translate-y-8 group-hover:z-0 group-hover:opacity-60 group-hover:grayscale-[0.8]"
+                "group-hover:translate-x-6 group-hover:translate-y-6 lg:group-hover:translate-x-8 lg:group-hover:translate-y-8 group-hover:z-0 group-hover:opacity-60 group-hover:grayscale-[0.8]",
+                imageFlipped && "translate-x-6 translate-y-6 z-0 opacity-60 grayscale-[0.8]"
               )}>
                 <img
                   src={project.images[0]}
@@ -92,7 +102,11 @@ export const Projects = () => {
                   className="w-full h-full object-cover transition-transform duration-1000 ease-out"
                 />
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-0 transition-opacity duration-500 flex items-end p-8 md:p-12">
+                <div className={cn(
+                  "absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent transition-opacity duration-500 flex items-end p-6 md:p-12",
+                  "opacity-0 group-hover:opacity-0",
+                  imageFlipped && "opacity-0"
+                )}>
                   <div className="flex items-center gap-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                      <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground shadow-xl">
                         <ArrowUpRight size={24} />

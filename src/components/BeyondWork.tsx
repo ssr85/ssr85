@@ -50,8 +50,8 @@ export const BeyondWork = () => {
                       {item.description}
                     </p>
 
-                    {/* Expandable Details - Absolute/Transform based for zero layout shift */}
-                    <div className="w-full max-h-0 opacity-0 group-hover:max-h-[200px] group-hover:opacity-100 transition-all duration-500 ease-in-out overflow-hidden">
+                    {/* Expandable Details - always visible on mobile, hover-reveal on desktop */}
+                    <div className="w-full max-h-[200px] opacity-100 sm:max-h-0 sm:opacity-0 sm:group-hover:max-h-[200px] sm:group-hover:opacity-100 transition-all duration-500 ease-in-out overflow-hidden">
                       <div className="pt-6 mt-6 border-t border-border/30">
                         <div className="flex flex-wrap justify-center gap-2">
                           {item.details?.map((detail) => (

@@ -29,14 +29,16 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+      className="fixed top-0 left-0 right-0 z-[101]"
+    >
+      {/* Backdrop layer - separated from interactive content for Safari backdrop-filter touch bug */}
+      <div className={`absolute inset-0 transition-all duration-700 ${
         isScrolled
           ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm shadow-foreground/[0.03]"
           : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto flex items-center h-16 lg:h-24 transition-all duration-500 relative">
+      }`} />
+      <div className="container mx-auto px-4 relative">
+        <div className="max-w-5xl mx-auto flex items-center justify-between h-16 lg:h-24 transition-all duration-500 relative">
           {/* Logo Container */}
           <div className="flex-none">
             <a
@@ -85,18 +87,18 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
           </nav>
 
           {/* Actions - Right Container */}
-          <div className="hidden lg:flex flex-none items-center justify-end gap-3 xl:gap-6 ml-auto">
+          <div className="hidden lg:flex flex-none items-center justify-end gap-3 xl:gap-6">
             <div className="flex items-center gap-0.5">
               <a 
                 href={`tel:${siteConfig.phone}`}
-                className="p-2 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                className="p-3 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
                 title="Phone"
               >
                 <Phone size={18} />
               </a>
               <a 
                 href={`mailto:${siteConfig.email}`}
-                className="p-2 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                className="p-3 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
                 title="Email"
               >
                 <Mail size={18} />
@@ -105,7 +107,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                 href={siteConfig.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                className="p-3 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
                 title="LinkedIn"
               >
                 <Linkedin size={18} />
@@ -114,7 +116,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                 href={siteConfig.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                className="p-3 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
                 title="GitHub"
               >
                 <Github size={18} />

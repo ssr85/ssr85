@@ -24,7 +24,7 @@ export const Footer = () => {
       const triggerStart = window.innerHeight * 0.9;
       const triggerEnd = window.innerHeight * 0.4;
       
-      let progress = (triggerStart - csRect.top) / (triggerStart - triggerEnd);
+      const progress = (triggerStart - csRect.top) / (triggerStart - triggerEnd);
       setScrollProgress(Math.max(0, Math.min(1, progress)));
     }
 
@@ -33,7 +33,7 @@ export const Footer = () => {
       const landingStart = window.innerHeight; 
       const landingEnd = window.innerHeight - 120;
       
-      let fProgress = (landingStart - fRect.top) / (landingStart - landingEnd);
+      const fProgress = (landingStart - fRect.top) / (landingStart - landingEnd);
       setFooterProgress(Math.max(0, Math.min(1, fProgress)));
     }
   };
@@ -123,34 +123,24 @@ export const Footer = () => {
             </div>
           </div>
   
-          {/* Floating Back to Top Button aligned with its Footer slot */}
+          {/* Floating Back to Top Button */}
           <div className={cn(
             "fixed bottom-8 left-0 right-0 z-50 pointer-events-none transition-opacity duration-300",
             footerProgress === 1 ? "opacity-0 invisible" : "opacity-100"
           )}>
-            <div className="container mx-auto px-4 flex justify-end">
-              <div className="max-w-5xl mx-auto w-full flex justify-end">
-                {/* Using same horizontal structure as footer buttons row */}
-                <div className="flex items-center gap-3">
-                  {/* Spacer divs to match width of Mail and LinkedIn buttons */}
-                  <div className="w-10 h-10" />
-                  <div className="w-10 h-10" />
-                  <div className="w-10 h-10" />
-                  <div className="w-10 h-10" />
-                  <div className="w-10 h-10" />
-                  
-                  <button
-                    onClick={scrollToTop}
-                    style={{ opacity: floatingOpacity }}
-                    className={cn(
-                      "pointer-events-auto w-10 h-10 rounded-full bg-primary text-primary-foreground shadow-2xl flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 active:scale-95 group border border-primary-foreground/10",
-                      showButton ? "translate-y-0" : "translate-y-20 opacity-0"
-                    )}
-                    aria-label="Back to top"
-                  >
-                    <ChevronUp size={20} className="group-hover:-translate-y-1 transition-transform duration-300" />
-                  </button>
-                </div>
+            <div className="container mx-auto px-4">
+              <div className="max-w-5xl mx-auto flex justify-end">
+                <button
+                  onClick={scrollToTop}
+                  style={{ opacity: floatingOpacity }}
+                  className={cn(
+                    "pointer-events-auto w-10 h-10 rounded-full bg-primary text-primary-foreground shadow-2xl flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 active:scale-95 group border border-primary-foreground/10",
+                    showButton ? "translate-y-0" : "translate-y-20 opacity-0"
+                  )}
+                  aria-label="Back to top"
+                >
+                  <ChevronUp size={20} className="group-hover:-translate-y-1 transition-transform duration-300" />
+                </button>
               </div>
             </div>
           </div>

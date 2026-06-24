@@ -99,20 +99,20 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
             </div>
 
             {/* CTAs - This is the bottom anchor for alignment */}
-            <div className="flex flex-row items-center gap-3 pt-8 animate-hero-fade mt-auto w-full sm:w-auto" style={{ animationDelay: "0.45s" }}>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-8 animate-hero-fade mt-auto w-full sm:w-auto" style={{ animationDelay: "0.45s" }}>
               <Button
                 size="lg"
                 onClick={onOpenEnquiry}
-                className="flex-1 sm:flex-initial px-4 sm:px-8 py-6 sm:py-7 text-sm sm:text-base rounded-full bg-foreground text-background hover:bg-foreground/90 hover:scale-[1.02] shadow-xl shadow-foreground/10 transition-all font-semibold group border border-transparent whitespace-nowrap"
+                className="px-6 sm:px-8 py-5 sm:py-7 text-sm sm:text-base rounded-full bg-foreground text-background hover:bg-foreground/90 hover:scale-[1.02] shadow-xl shadow-foreground/10 transition-all font-semibold group border border-transparent whitespace-nowrap"
               >
                 Let's Connect
-                <ArrowRight className="ml-1 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 onClick={scrollToCaseStudies}
-                className="flex-1 sm:flex-initial px-4 sm:px-8 py-6 sm:py-7 text-sm sm:text-base rounded-full border-border/50 hover:bg-muted/50 hover:border-primary/30 transition-all font-medium whitespace-nowrap"
+                className="px-6 sm:px-8 py-5 sm:py-7 text-sm sm:text-base rounded-full border-border/50 hover:bg-muted/50 hover:border-primary/30 transition-all font-medium whitespace-nowrap"
               >
                 Portfolio
               </Button>
@@ -154,6 +154,45 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
                 <Zap className="h-6 w-6 text-accent mb-3" />
                 <h4 className="font-bold text-foreground">Efficiency</h4>
                 <p className="text-xs text-muted-foreground mt-1">Tech-enabled</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile-only: Open For + Micro Stats - visible below lg */}
+        <div className="lg:hidden grid grid-cols-1 gap-4 mt-10 animate-hero-fade" style={{ animationDelay: "0.5s" }}>
+          <div className="p-5 rounded-2xl bg-card border border-border/50 flex items-center gap-4">
+            <div className="shrink-0">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                </span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-primary">Open For</span>
+              </div>
+              <ul className="space-y-1">
+                {["AI Strategy & Roadmap", "B2B Agentic Builds", "Ops Transformation"].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <CheckCircle2 className="h-3 w-3 text-primary shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="p-4 rounded-2xl bg-muted/40 border border-border/50 flex items-center gap-3">
+              <Globe className="h-5 w-5 text-secondary shrink-0" />
+              <div>
+                <h4 className="font-bold text-foreground text-sm">Global</h4>
+                <p className="text-[11px] text-muted-foreground">4 Continents</p>
+              </div>
+            </div>
+            <div className="p-4 rounded-2xl bg-muted/40 border border-border/50 flex items-center gap-3">
+              <Zap className="h-5 w-5 text-accent shrink-0" />
+              <div>
+                <h4 className="font-bold text-foreground text-sm">Efficiency</h4>
+                <p className="text-[11px] text-muted-foreground">Tech-enabled</p>
               </div>
             </div>
           </div>
