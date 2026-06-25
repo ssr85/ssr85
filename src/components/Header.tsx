@@ -5,7 +5,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import { scrollToSection } from "@/lib/scroll";
 import { navLinks, siteConfig } from "@/data/content";
-import logo from "@/assets/SR_LOGO_no_bg.png";
+import logo from "@/assets/SR_LOGO_no_bg.webp";
 
 interface HeaderProps {
   onOpenEnquiry: () => void;
@@ -55,6 +55,9 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                 alt="SR Logo"
                 width={48}
                 height={48}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="h-10 md:h-12 w-auto transition-all duration-500 group-hover:scale-110 dark:invert"
               />
             </a>
