@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { caseStudies } from "@/data/content";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Target, AlertCircle, Cpu } from "lucide-react";
+import { Target, AlertCircle, Cpu, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const cardAccents = [
@@ -19,20 +19,9 @@ export const CaseStudies = () => {
   const [painPointIndex, setPainPointIndex] = useState(0);
 
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const [isTouch] = useState(
-    () => typeof window !== "undefined" && window.matchMedia("(hover: none)").matches
-  );
 
   const handleExpand = (index: number) => {
     setExpandedIndex((prev) => (prev === index ? null : index));
-  };
-
-  const handleMouseEnter = (index: number) => {
-    if (!isTouch) setExpandedIndex(index);
-  };
-
-  const handleMouseLeave = () => {
-    if (!isTouch) setExpandedIndex(null);
   };
 
   useEffect(() => {
@@ -161,7 +150,6 @@ export const CaseStudies = () => {
                 <Card
                   key={project.id}
                   onClick={() => handleExpand(i)}
-                  onMouseEnter={() => handleMouseEnter(i)}
                   className="bg-card/40 backdrop-blur-sm border-border/80 hover:border-primary/40 hover:shadow-lg transition-all duration-300 p-4 cursor-pointer relative overflow-hidden group"
                 >
                   <div className="absolute top-2 left-2 w-1 h-1 border-t border-l border-muted-foreground/20" />
@@ -172,12 +160,13 @@ export const CaseStudies = () => {
                     <h3 className="font-bold text-foreground text-sm leading-tight">
                       {project.name}
                     </h3>
+                    <ChevronDown className="h-4 w-4 text-muted-foreground/40 group-hover:text-primary/60 transition-all duration-300 group-hover:translate-y-0.5" />
                   </div>
                 </Card>
               ))}
             </div>
           ) : (
-            <div className="flex flex-col gap-3" onMouseLeave={handleMouseLeave}>
+            <div className="flex flex-col gap-3">
               {(() => {
                 const project = caseStudies[expandedIndex];
                 return (
@@ -265,7 +254,6 @@ export const CaseStudies = () => {
                       <Card
                         key={project.id}
                         onClick={() => handleExpand(originalIndex)}
-                        onMouseEnter={() => handleMouseEnter(originalIndex)}
                         className="bg-card/40 backdrop-blur-sm border-border/80 hover:border-primary/40 transition-all duration-300 p-3 cursor-pointer relative overflow-hidden group"
                       >
                         <div className="absolute top-1 left-1 w-1 h-1 border-t border-l border-muted-foreground/20" />

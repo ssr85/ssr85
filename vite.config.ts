@@ -27,6 +27,8 @@ export default defineConfig(() => {
               if (id.includes("lucide-react")) return "icons";
               if (id.includes("@tanstack/react-query") || id.includes("@tanstack/query-core")) return "query";
               if (id.includes("next-themes")) return "theme";
+              if (id.includes("react-dom") || id.includes("react/") || id.includes("react-router") || id.includes("scheduler")) return "vendor";
+              if (id.includes("cmdk") || id.includes("vaul") || id.includes("sonner") || id.includes("embla") || id.includes("input-otp")) return "ui-vendor";
             }
           },
         },

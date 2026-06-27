@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { snapshotCards } from "@/data/content";
-import { Briefcase, Code, TrendingUp, Target } from "lucide-react";
+import { Briefcase, Code, TrendingUp, Target, ChevronDown } from "lucide-react";
 import { StaggeredCard } from "@/components/ScrollAnimationWrapper";
 import { EngineeringGrid } from "@/components/EngineeringGrid";
 import { cn } from "@/lib/utils";
@@ -15,20 +15,9 @@ const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
 
 export const Snapshot = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const [isTouch] = useState(
-    () => typeof window !== "undefined" && window.matchMedia("(hover: none)").matches
-  );
 
   const handleExpand = (index: number) => {
     setExpandedIndex((prev) => (prev === index ? null : index));
-  };
-
-  const handleMouseEnter = (index: number) => {
-    if (!isTouch) setExpandedIndex(index);
-  };
-
-  const handleMouseLeave = () => {
-    if (!isTouch) setExpandedIndex(null);
   };
 
   return (
@@ -116,7 +105,6 @@ export const Snapshot = () => {
                   <Card
                     key={card.title}
                     onClick={() => handleExpand(index)}
-                    onMouseEnter={() => handleMouseEnter(index)}
                     className="bg-card/40 backdrop-blur-sm border-border/80 hover:border-primary/40 hover:shadow-lg transition-all duration-300 p-4 cursor-pointer relative overflow-hidden group"
                   >
                     <div className="absolute top-2 left-2 w-1 h-1 border-t border-l border-muted-foreground/20" />
@@ -129,13 +117,14 @@ export const Snapshot = () => {
                       <h3 className="font-bold text-foreground text-sm leading-tight">
                         {card.title}
                       </h3>
+                      <ChevronDown className="h-4 w-4 text-muted-foreground/40 group-hover:text-primary/60 transition-all duration-300 group-hover:translate-y-0.5" />
                     </div>
                   </Card>
                 );
               })}
             </div>
           ) : (
-            <div className="flex flex-col gap-3" onMouseLeave={handleMouseLeave}>
+            <div className="flex flex-col gap-3">
               {(() => {
                 const card = snapshotCards[expandedIndex];
                 const iconData = iconMap[card.icon];
@@ -185,7 +174,6 @@ export const Snapshot = () => {
                       <Card
                         key={card.title}
                         onClick={() => handleExpand(originalIndex)}
-                        onMouseEnter={() => handleMouseEnter(originalIndex)}
                         className="bg-card/40 backdrop-blur-sm border-border/80 hover:border-primary/40 transition-all duration-300 p-3 cursor-pointer relative overflow-hidden group"
                       >
                         <div className="absolute top-1 left-1 w-1 h-1 border-t border-l border-muted-foreground/20" />
@@ -195,7 +183,7 @@ export const Snapshot = () => {
                           <div className={`inline-flex items-center justify-center rounded-lg bg-gradient-to-br ${iconData.color} text-white shadow-sm w-8 h-8`}>
                             {iconData.icon}
                           </div>
-                          <h3 className="font-bold text-foreground text-[10px] leading-tight leading-tight">
+                          <h3 className="font-bold text-foreground text-[10px] leading-tight">
                             {card.title}
                           </h3>
                         </div>
