@@ -1,10 +1,13 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, lazy, Suspense } from "react";
 import { siteConfig } from "@/data/content";
 import { Mail, FileText, ChevronUp, Phone, Linkedin, Github, Globe } from "lucide-react";
-import { ResumeDownloadModal } from "@/components/ResumeDownloadModal";
 import { EngineeringGrid } from "@/components/EngineeringGrid";
 import { cn } from "@/lib/utils";
 import { useThrottledScroll } from "@/hooks/use-throttle";
+
+const ResumeDownloadModal = lazy(() =>
+  import("@/components/ResumeDownloadModal").then((m) => ({ default: m.ResumeDownloadModal }))
+);
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -166,10 +169,14 @@ export const Footer = () => {
             </p>
           </div>
   
-          <ResumeDownloadModal
-            isOpen={isResumeModalOpen}
-            onClose={() => setIsResumeModalOpen(false)}
-          />
+          {isResumeModalOpen && (
+            <Suspense fallback={null}>
+              <ResumeDownloadModal
+                isOpen={isResumeModalOpen}
+                onClose={() => setIsResumeModalOpen(false)}
+              />
+            </Suspense>
+          )}
         </div>
       </div>
     </footer>
