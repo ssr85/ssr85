@@ -13,7 +13,9 @@ import { BeyondWork } from "@/components/BeyondWork";
 import { Footer } from "@/components/Footer";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 
-const EnquiryModal = lazy(() => import("@/components/EnquiryModal"));
+const EnquiryModal = lazy(() =>
+  import("@/components/EnquiryModal").then((module) => ({ default: module.EnquiryModal }))
+);
 
 const Index = () => {
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
