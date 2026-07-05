@@ -14,6 +14,10 @@ import {
   Clock,
   User,
   ChevronRight,
+  Database,
+  Globe,
+  Sparkles,
+  Key,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -21,6 +25,148 @@ const EnquiryModal = lazy(() =>
   import("@/components/EnquiryModal").then((m) => ({
     default: m.EnquiryModal,
   }))
+);
+
+// Lead OG Case Study — Visual Sub-components
+
+const LeadOGProblemVisual = () => (
+  <div className="relative p-6 bg-card border border-border/40 rounded-2xl shadow-md space-y-4 overflow-hidden h-full flex flex-col justify-between">
+    <div className="absolute top-0 right-0 w-24 h-24 bg-destructive/5 rounded-full blur-2xl pointer-events-none" />
+    <div>
+      <div className="text-xs font-bold uppercase tracking-wider text-accent mb-3">Scattered Sources</div>
+      <div className="space-y-2">
+        <div className="flex items-center justify-between p-3 bg-muted/50 border border-border/20 rounded-xl">
+          <span className="text-xs font-medium text-foreground">LinkedIn Outbound</span>
+          <span className="text-[10px] bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-200 px-2 py-0.5 rounded font-mono">No Email</span>
+        </div>
+        <div className="flex items-center justify-between p-3 bg-muted/50 border border-border/20 rounded-xl">
+          <span className="text-xs font-medium text-foreground">AdWords Landing Page</span>
+          <span className="text-[10px] bg-yellow-100 dark:bg-yellow-950 text-yellow-800 dark:text-yellow-200 px-2 py-0.5 rounded font-mono">Format Error</span>
+        </div>
+        <div className="flex items-center justify-between p-3 bg-muted/50 border border-border/20 rounded-xl">
+          <span className="text-xs font-medium text-foreground">Manual Spreadsheets</span>
+          <span className="text-[10px] bg-red-100 dark:bg-red-950 text-red-800 dark:text-red-200 px-2 py-0.5 rounded font-mono">Duplicate</span>
+        </div>
+      </div>
+    </div>
+    <div className="space-y-3 mt-4">
+      <div className="flex justify-center">
+        <div className="animate-bounce text-muted-foreground text-sm">↓</div>
+      </div>
+      <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-xl text-center">
+        <div className="text-xs font-bold text-destructive uppercase">Slow CRM Synchronization</div>
+        <div className="text-[10px] text-muted-foreground mt-1">SDR Outreach Delayed by Hours/Days</div>
+      </div>
+    </div>
+  </div>
+);
+
+const LeadOGApproachVisual = () => (
+  <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mt-4">
+    {[
+      { step: "01", name: "Parse Delimiters", desc: "Auto-detect commas, semicolons, or tabs." },
+      { step: "02", name: "Warn Delimiter", desc: "Alert user on CSV format warning flags." },
+      { step: "03", name: "Verify Types", desc: "Dynamic validations for numbers and dates." },
+      { step: "04", name: "Apply Update", desc: "Push to Freshsales CRM cleanly." }
+    ].map((item, idx) => (
+      <div key={idx} className="p-4 bg-card border border-border/40 rounded-xl space-y-2 relative overflow-hidden group hover:border-primary/45 transition-colors duration-300">
+        <div className="text-2xl font-black text-primary/10 absolute right-3 top-2 group-hover:text-primary/20 transition-colors">{item.step}</div>
+        <div className="text-xs font-bold text-foreground pr-6">{item.name}</div>
+        <div className="text-[11px] text-muted-foreground leading-snug">{item.desc}</div>
+      </div>
+    ))}
+  </div>
+);
+
+const LeadOGPipelineVisual = () => (
+  <div className="space-y-6 mt-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* Apollo Card */}
+      <div className="p-5 bg-card border border-border/40 rounded-2xl space-y-3 relative group hover:border-primary/30 transition-all duration-300">
+        <div className="p-2 w-fit rounded-lg bg-primary/10 text-primary">
+          <Database size={18} />
+        </div>
+        <div className="text-xs font-bold text-foreground">1. Apollo Database Enriched</div>
+        <ul className="text-[11px] text-muted-foreground space-y-1.5">
+          <li>• Direct Business Email</li>
+          <li>• Verified Cell/Work Phone</li>
+          <li>• Full Job Title & Location</li>
+          <li>• Organization size & revenue</li>
+        </ul>
+      </div>
+      {/* Firecrawl Card */}
+      <div className="p-5 bg-card border border-border/40 rounded-2xl space-y-3 relative group hover:border-secondary/30 transition-all duration-300">
+        <div className="p-2 w-fit rounded-lg bg-secondary/10 text-secondary">
+          <Globe size={18} />
+        </div>
+        <div className="text-xs font-bold text-foreground">2. Firecrawl Real-time Scrape</div>
+        <ul className="text-[11px] text-muted-foreground space-y-1.5">
+          <li>• Crawl official company sites</li>
+          <li>• Extract recent brand initiatives</li>
+          <li>• Identify current strategic pains</li>
+          <li>• Scrape context-aware details</li>
+        </ul>
+      </div>
+      {/* Gemini Card */}
+      <div className="p-5 bg-card border border-border/40 rounded-2xl space-y-3 relative group hover:border-accent/30 transition-all duration-300">
+        <div className="p-2 w-fit rounded-lg bg-accent/10 text-accent">
+          <Sparkles size={18} />
+        </div>
+        <div className="text-xs font-bold text-foreground">3. Gemini AI Analysis</div>
+        <ul className="text-[11px] text-muted-foreground space-y-1.5">
+          <li>• Score Ideal Customer Profile fit</li>
+          <li>• Pull matching tags dynamically</li>
+          <li>• Summarize prospect pain points</li>
+          <li>• Draft custom outbound templates</li>
+        </ul>
+      </div>
+    </div>
+    
+    {/* Caching & Sync callout */}
+    <div className="p-4 bg-muted/40 border border-border/20 rounded-xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs">
+      <div className="flex items-center gap-2">
+        <Key size={14} className="text-primary shrink-0" />
+        <div>
+          <span className="font-semibold text-foreground mr-1.5">Local Caching Engine</span>
+          <span className="text-muted-foreground">(readPersonCache / writePersonCache) prevents rate limit blocks</span>
+        </div>
+      </div>
+      <Badge variant="outline" className="text-[9px] bg-background/50 w-fit shrink-0">Active</Badge>
+    </div>
+  </div>
+);
+
+const LeadOGArchitectureVisual = () => (
+  <div className="p-6 bg-card border border-border/40 rounded-2xl space-y-6 mt-4">
+    <div className="text-xs font-bold uppercase tracking-wider text-secondary">Match Scoring Engine</div>
+    <div className="space-y-4">
+      {/* Slider / Range bar */}
+      <div className="space-y-2">
+        <div className="h-3 w-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 rounded-full relative">
+          {/* Unmatched marker */}
+          <div className="absolute left-[30%] -top-1 h-5 w-1 bg-foreground dark:bg-muted rounded" />
+          {/* Review marker */}
+          <div className="absolute left-[70%] -top-1 h-5 w-1 bg-foreground dark:bg-muted rounded" />
+        </div>
+        <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+          <span>Unmatched (&lt;60)</span>
+          <span>Review (60-84)</span>
+          <span>Exact Match (&gt;=85)</span>
+        </div>
+      </div>
+      {/* Score Bonuses list */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+        <div className="p-3 bg-muted/40 rounded-lg flex justify-between items-center text-xs">
+          <span className="font-medium text-foreground">Person + Company alignment</span>
+          <Badge className="bg-green-600 text-white font-mono">+20 score</Badge>
+        </div>
+        <div className="p-3 bg-muted/40 rounded-lg flex justify-between items-center text-xs">
+          <span className="font-medium text-foreground">Surname + Company match</span>
+          <Badge className="bg-green-600 text-white font-mono">+15 score</Badge>
+        </div>
+      </div>
+    </div>
+  </div>
 );
 
 interface CaseStudyDetailProps {
@@ -198,44 +344,73 @@ const CaseStudyDetail = ({ slug: propSlug }: CaseStudyDetailProps) => {
         {/* Narrative Sections */}
         {study.sections && study.sections.length > 0 && (
           <div className="container mx-auto max-w-4xl px-4 space-y-16 mb-16">
-            {study.sections.map((section, i) => (
-              <section key={i} className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="h-px flex-1 bg-gradient-to-r from-primary/30 to-transparent" />
-                  <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
-                    {section.title}
-                  </h2>
-                  <div className="h-px flex-1 bg-gradient-to-l from-primary/30 to-transparent" />
-                </div>
+            {study.sections.map((section, i) => {
+              const isLeadOG = study.id === "lead-og";
 
-                <div className="space-y-4">
-                  {section.content.map((paragraph, j) => (
-                    <p
-                      key={j}
-                      className="text-base md:text-lg text-muted-foreground leading-relaxed font-light"
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-
-                {section.highlights && section.highlights.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4">
-                    {section.highlights.map((highlight, k) => (
-                      <div
-                        key={k}
-                        className="flex items-start gap-3 p-4 rounded-xl bg-muted/40 border border-border/20"
-                      >
-                        <div className="h-2 w-2 rounded-full bg-primary mt-2 shrink-0" />
-                        <span className="text-sm font-medium text-foreground/80">
-                          {highlight}
-                        </span>
-                      </div>
-                    ))}
+              return (
+                <section key={i} className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="h-px flex-1 bg-gradient-to-r from-primary/30 to-transparent" />
+                    <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+                      {section.title}
+                    </h2>
+                    <div className="h-px flex-1 bg-gradient-to-l from-primary/30 to-transparent" />
                   </div>
-                )}
-              </section>
-            ))}
+
+                  {/* Section content and visuals */}
+                  {isLeadOG && i === 0 ? (
+                    /* Problem Section: 2-column split */
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                      <div className="space-y-4">
+                        {section.content.map((paragraph, j) => (
+                          <p
+                            key={j}
+                            className="text-base md:text-lg text-muted-foreground leading-relaxed font-light"
+                          >
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
+                      <LeadOGProblemVisual />
+                    </div>
+                  ) : (
+                    /* Default Section Text Layout */
+                    <div className="space-y-4">
+                      {section.content.map((paragraph, j) => (
+                        <p
+                          key={j}
+                          className="text-base md:text-lg text-muted-foreground leading-relaxed font-light"
+                        >
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Context-aware inline visual builders */}
+                  {isLeadOG && i === 1 && <LeadOGApproachVisual />}
+                  {isLeadOG && i === 2 && <LeadOGPipelineVisual />}
+                  {isLeadOG && i === 3 && <LeadOGArchitectureVisual />}
+
+                  {/* Highlights Callouts */}
+                  {section.highlights && section.highlights.length > 0 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4">
+                      {section.highlights.map((highlight, k) => (
+                        <div
+                          key={k}
+                          className="flex items-start gap-3 p-4 rounded-xl bg-muted/40 border border-border/20"
+                        >
+                          <div className="h-2 w-2 rounded-full bg-primary mt-2 shrink-0" />
+                          <span className="text-sm font-medium text-foreground/80">
+                            {highlight}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </section>
+              );
+            })}
           </div>
         )}
 
