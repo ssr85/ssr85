@@ -105,7 +105,11 @@ export const Snapshot = () => {
                   <Card
                     key={card.title}
                     onClick={() => handleExpand(index)}
-                    className="bg-card/40 backdrop-blur-sm border-border/80 hover:border-primary/40 hover:shadow-lg transition-all duration-300 p-4 cursor-pointer relative overflow-hidden group"
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Expand ${card.title}`}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleExpand(index); } }}
+                    className="bg-card/40 backdrop-blur-sm border-border/80 hover:border-primary/40 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-all duration-300 p-4 cursor-pointer relative overflow-hidden group"
                   >
                     <div className="absolute top-2 left-2 w-1 h-1 border-t border-l border-muted-foreground/20" />
                     <div className="absolute bottom-2 right-2 w-1 h-1 border-b border-r border-muted-foreground/20" />
@@ -132,7 +136,11 @@ export const Snapshot = () => {
                   <Card
                     key={card.title}
                     onClick={() => setExpandedIndex(null)}
-                    className="bg-card backdrop-blur-sm border-primary/40 shadow-xl shadow-primary/5 transition-all duration-300 p-5 cursor-pointer relative overflow-hidden"
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Collapse ${card.title}`}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpandedIndex(null); } }}
+                    className="bg-card backdrop-blur-sm border-primary/40 shadow-xl shadow-primary/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-all duration-300 p-5 cursor-pointer relative overflow-hidden"
                   >
                     <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t border-l border-muted-foreground/20" />
                     <div className="absolute bottom-2 right-2 w-1.5 h-1.5 border-b border-r border-muted-foreground/20" />
@@ -174,7 +182,11 @@ export const Snapshot = () => {
                       <Card
                         key={card.title}
                         onClick={() => handleExpand(originalIndex)}
-                        className="bg-card/40 backdrop-blur-sm border-border/80 hover:border-primary/40 transition-all duration-300 p-3 cursor-pointer relative overflow-hidden group"
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`Expand ${card.title}`}
+                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleExpand(originalIndex); } }}
+                        className="bg-card/40 backdrop-blur-sm border-border/80 hover:border-primary/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-all duration-300 p-3 cursor-pointer relative overflow-hidden group"
                       >
                         <div className="absolute top-1 left-1 w-1 h-1 border-t border-l border-muted-foreground/20" />
                         <div className="absolute bottom-1 right-1 w-1 h-1 border-b border-r border-muted-foreground/20" />

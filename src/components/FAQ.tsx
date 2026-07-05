@@ -12,8 +12,8 @@ const faqs = [
     answer: "Agentic AI refers to autonomous systems capable of executing complex business logic with minimal human intervention. For B2B, this means faster lead processing, automated CRM synchronization, and self-correcting workflows that reduce operational overhead."
   },
   {
-    question: "Why choose Industrial Hemp for sustainable packaging solutions?",
-    answer: "Industrial Hemp is a carbon-negative crop that produces high-strength fibers. It is ideal for hemp paper pulp, bio-composites, and moulded products, offering a biodegradable and high-performance alternative to traditional plastic and paper."
+    question: "What's the difference between AI automation and agentic AI?",
+    answer: "Traditional automation follows fixed, predefined rules. Agentic AI uses LLM-driven agents that reason, make decisions, and adapt their actions based on context, enabling more resilient workflows that handle exceptions without constant human intervention."
   },
   {
     question: "What industries do you serve with your consultancy?",

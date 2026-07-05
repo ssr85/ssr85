@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight, Phone, Mail, Linkedin, Github, Globe } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -49,11 +49,12 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
             >
-              <img 
-                src={logo} 
+              <img
+                src={logo}
                 alt="Sarabjeet Rattan Logo"
                 width={48}
                 height={48}
+                // @ts-expect-error -- React 18 DOM only recognizes the lowercase HTML attribute; @types/react expects camelCase (fixed in React 19)
                 fetchpriority="high"
                 className="h-10 md:h-12 w-auto transition-all duration-500 group-hover:scale-110 dark:invert"
               />
@@ -68,9 +69,9 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className={`px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold transition-all duration-500 relative group overflow-hidden rounded-full whitespace-nowrap ${
-                    isActive 
-                      ? "text-primary scale-105" 
+                  className={`px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold transition-all duration-500 relative group overflow-hidden rounded-full whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary ${
+                    isActive
+                      ? "text-primary scale-105"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
@@ -89,35 +90,35 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
           {/* Actions - Right Container */}
           <div className="hidden lg:flex flex-none items-center justify-end gap-3 xl:gap-6">
             <div className="flex items-center gap-0.5">
-              <a 
+              <a
                 href={`tel:${siteConfig.phone}`}
-                className="p-3 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
-                title="Phone"
+                className="p-3 text-muted-foreground hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-all duration-300 hover:scale-110"
+                aria-label="Call Sarabjeet Rattan"
               >
                 <Phone size={18} />
               </a>
-              <a 
+              <a
                 href={`mailto:${siteConfig.email}`}
-                className="p-3 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
-                title="Email"
+                className="p-3 text-muted-foreground hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-all duration-300 hover:scale-110"
+                aria-label="Email Sarabjeet Rattan"
               >
                 <Mail size={18} />
               </a>
-              <a 
+              <a
                 href={siteConfig.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
-                title="LinkedIn"
+                className="p-3 text-muted-foreground hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-all duration-300 hover:scale-110"
+                aria-label="Sarabjeet Rattan on LinkedIn (opens in a new tab)"
               >
                 <Linkedin size={18} />
               </a>
-              <a 
+              <a
                 href={siteConfig.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
-                title="GitHub"
+                className="p-3 text-muted-foreground hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-all duration-300 hover:scale-110"
+                aria-label="Sarabjeet Rattan on GitHub (opens in a new tab)"
               >
                 <Github size={18} />
               </a>
@@ -193,19 +194,19 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                 <div className="mt-auto px-8 py-8 border-t border-border/10 bg-muted/5">
                   <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/40 mb-5">Digital Presence</p>
                   <div className="grid grid-cols-5 gap-2">
-                    <a href={`tel:${siteConfig.phone}`} className="flex items-center justify-center aspect-square rounded-xl bg-background border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all hover:scale-105 shadow-sm">
+                    <a href={`tel:${siteConfig.phone}`} aria-label="Call Sarabjeet Rattan" className="flex items-center justify-center aspect-square rounded-xl bg-background border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-all hover:scale-105 shadow-sm">
                       <Phone size={18} />
                     </a>
-                    <a href={`mailto:${siteConfig.email}`} className="flex items-center justify-center aspect-square rounded-xl bg-background border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all hover:scale-105 shadow-sm">
+                    <a href={`mailto:${siteConfig.email}`} aria-label="Email Sarabjeet Rattan" className="flex items-center justify-center aspect-square rounded-xl bg-background border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-all hover:scale-105 shadow-sm">
                       <Mail size={18} />
                     </a>
-                    <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center aspect-square rounded-xl bg-background border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all hover:scale-105 shadow-sm">
+                    <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Sarabjeet Rattan on LinkedIn (opens in a new tab)" className="flex items-center justify-center aspect-square rounded-xl bg-background border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-all hover:scale-105 shadow-sm">
                       <Linkedin size={18} />
                     </a>
-                    <a href={siteConfig.website} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center aspect-square rounded-xl bg-background border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all hover:scale-105 shadow-sm">
+                    <a href={siteConfig.website} target="_blank" rel="noopener noreferrer" aria-label="Sarabjeet Rattan's website (opens in a new tab)" className="flex items-center justify-center aspect-square rounded-xl bg-background border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-all hover:scale-105 shadow-sm">
                       <Globe size={18} />
                     </a>
-                    <a href={siteConfig.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center aspect-square rounded-xl bg-background border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all hover:scale-105 shadow-sm">
+                    <a href={siteConfig.github} target="_blank" rel="noopener noreferrer" aria-label="Sarabjeet Rattan on GitHub (opens in a new tab)" className="flex items-center justify-center aspect-square rounded-xl bg-background border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-all hover:scale-105 shadow-sm">
                       <Github size={18} />
                     </a>
                   </div>

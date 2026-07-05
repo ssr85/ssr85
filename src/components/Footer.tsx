@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, lazy, Suspense } from "react";
 import { siteConfig } from "@/data/content";
-import { Mail, FileText, ChevronUp, Phone, Linkedin, Github, Globe } from "lucide-react";
+import { Mail, FileText, ChevronUp, Phone, Linkedin, Github } from "lucide-react";
 import { EngineeringGrid } from "@/components/EngineeringGrid";
 import { cn } from "@/lib/utils";
 import { useThrottledScroll } from "@/hooks/use-throttle";

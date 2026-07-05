@@ -147,12 +147,12 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
             <div className="grid grid-cols-2 gap-4 mt-8">
               <div className="p-5 rounded-2xl bg-muted/40 border border-border/50 flex flex-col justify-center">
                 <Globe className="h-6 w-6 text-secondary mb-3" />
-                <h4 className="font-bold text-foreground">Global</h4>
+                <p className="font-bold text-foreground">Global</p>
                 <p className="text-xs text-muted-foreground mt-1">4 Continents</p>
               </div>
               <div className="p-5 rounded-2xl bg-muted/40 border border-border/50 flex flex-col justify-center">
                 <Zap className="h-6 w-6 text-accent mb-3" />
-                <h4 className="font-bold text-foreground">Efficiency</h4>
+                <p className="font-bold text-foreground">Efficiency</p>
                 <p className="text-xs text-muted-foreground mt-1">Tech-enabled</p>
               </div>
             </div>
@@ -184,14 +184,14 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
             <div className="p-4 rounded-2xl bg-muted/40 border border-border/50 flex items-center gap-3">
               <Globe className="h-5 w-5 text-secondary shrink-0" />
               <div>
-                <h4 className="font-bold text-foreground text-sm">Global</h4>
+                <p className="font-bold text-foreground text-sm">Global</p>
                 <p className="text-[11px] text-muted-foreground">4 Continents</p>
               </div>
             </div>
             <div className="p-4 rounded-2xl bg-muted/40 border border-border/50 flex items-center gap-3">
               <Zap className="h-5 w-5 text-accent shrink-0" />
               <div>
-                <h4 className="font-bold text-foreground text-sm">Efficiency</h4>
+                <p className="font-bold text-foreground text-sm">Efficiency</p>
                 <p className="text-[11px] text-muted-foreground">Tech-enabled</p>
               </div>
             </div>

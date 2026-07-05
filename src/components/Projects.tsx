@@ -2,7 +2,6 @@ import { useState } from "react";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { projects } from "@/data/content";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
 
 const categoryColors: Record<string, { bg: string, text: string, border: string, dot: string }> = {
   "Sustainable Enterprise": { bg: "bg-emerald-500/5", text: "text-emerald-500", border: "border-emerald-500/20", dot: "bg-emerald-500" },
@@ -61,10 +60,11 @@ export const Projects = () => {
           >
             {/* Interactive Image Gallery Side */}
             <div
-              className="relative group cursor-pointer w-full aspect-[16/10] lg:aspect-[14/9]"
+              className="relative group cursor-pointer w-full aspect-[16/10] lg:aspect-[14/9] focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary rounded-[2rem]"
               onClick={() => setImageFlipped((f) => !f)}
               role="button"
               tabIndex={0}
+              aria-label={`Toggle ${project.name} screenshot`}
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setImageFlipped((f) => !f); } }}
             >
               {/* Secondary Image (Behind) - Swaps to Front on Hover/Tap */}
@@ -75,7 +75,7 @@ export const Projects = () => {
               )}>
                 <img
                   src={project.images[1] || project.images[0]}
-                  alt=""
+                  alt={`${project.name} alternate screenshot`}
                   loading="lazy"
                   width={800}
                   height={560}

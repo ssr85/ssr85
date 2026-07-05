@@ -96,10 +96,10 @@ export const SEO = ({
       },
       {
         "@type": "Question",
-        "name": "Why choose Industrial Hemp for sustainable packaging solutions?",
+        "name": "What's the difference between AI automation and agentic AI?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Industrial Hemp is a carbon-negative crop that produces high-strength fibers. It is ideal for hemp paper pulp, bio-composites, and moulded products, offering a biodegradable and high-performance alternative to traditional plastic and paper."
+          "text": "Traditional automation follows fixed, predefined rules. Agentic AI uses LLM-driven agents that reason, make decisions, and adapt their actions based on context, enabling more resilient workflows that handle exceptions without constant human intervention."
         }
       },
       {
