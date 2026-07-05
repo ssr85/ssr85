@@ -169,6 +169,99 @@ const LeadOGArchitectureVisual = () => (
   </div>
 );
 
+// LinkedIn Case Study — Visual Sub-components
+
+const LinkedInProblemVisual = () => (
+  <div className="relative p-6 bg-card border border-border/40 rounded-2xl shadow-md space-y-4 overflow-hidden h-full flex flex-col justify-between">
+    <div className="absolute top-0 right-0 w-24 h-24 bg-destructive/5 rounded-full blur-2xl pointer-events-none" />
+    <div>
+      <div className="text-xs font-bold uppercase tracking-wider text-accent mb-3">Manual Content Friction</div>
+      <div className="space-y-2">
+        <div className="p-3 bg-muted/50 border border-border/20 rounded-xl text-xs space-y-1">
+          <div className="font-bold text-foreground">1. Trend Research Time Drain</div>
+          <div className="text-[10px] text-muted-foreground">Spending 2-3 hours parsing URLs and scrolling news feeds daily.</div>
+        </div>
+        <div className="p-3 bg-muted/50 border border-border/20 rounded-xl text-xs space-y-1">
+          <div className="font-bold text-foreground">2. Creative Writer's Block</div>
+          <div className="text-[10px] text-muted-foreground">Drafting engaging content under strict char limits from scratch.</div>
+        </div>
+        <div className="p-3 bg-muted/50 border border-border/20 rounded-xl text-xs space-y-1">
+          <div className="font-bold text-foreground">3. Disjointed Workspace</div>
+          <div className="text-[10px] text-muted-foreground">Managing drafts in documents, calendar tools, and social schedulers.</div>
+        </div>
+      </div>
+    </div>
+    <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-xl text-center mt-4">
+      <span className="text-[10px] font-bold text-destructive uppercase">Stale Outreach & Brand Stagnation</span>
+    </div>
+  </div>
+);
+
+const LinkedInApproachVisual = () => (
+  <div className="space-y-4 mt-4">
+    <div className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Trello-Driven State Machine</div>
+    <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
+      {[
+        { label: "Pending Topics", actor: "CrewAI Research", color: "bg-blue-500/10 text-blue-500 border-blue-500/20" },
+        { label: "Approved Topics", actor: "User Moves Card", color: "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border-yellow-500/20" },
+        { label: "Pending Content", actor: "CrewAI Drafter", color: "bg-indigo-500/10 text-indigo-500 border-indigo-500/20" },
+        { label: "Approved Content", actor: "User Moves Card", color: "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20" },
+        { label: "Published", actor: "LinkedIn API Sync", color: "bg-primary/10 text-primary border-primary/20" },
+      ].map((column, idx) => (
+        <div key={idx} className={`p-3 bg-card border rounded-xl space-y-1.5 text-center ${column.color}`}>
+          <div className="text-xs font-bold truncate">{column.label}</div>
+          <div className="text-[9px] uppercase tracking-wider opacity-85 font-mono font-medium">{column.actor}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+const LinkedInAgentVisual = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div className="p-5 bg-card border border-border/40 rounded-2xl space-y-3 relative group hover:border-primary/30 transition-all duration-300">
+      <div className="p-2 w-fit rounded-lg bg-primary/10 text-primary">
+        <Globe size={18} />
+      </div>
+      <div className="text-xs font-bold text-foreground">Research Agent (CrewAI)</div>
+      <div className="text-[11px] text-muted-foreground space-y-1">
+        <div><strong>Role:</strong> Industry Scanner & Outliner</div>
+        <div><strong>Tools:</strong> SerperDev (Web Search), ScrapeWebsite (Scraper)</div>
+        <div><strong>Output:</strong> Detailed structured outlines + target keywords</div>
+      </div>
+    </div>
+    <div className="p-5 bg-card border border-border/40 rounded-2xl space-y-3 relative group hover:border-secondary/30 transition-all duration-300">
+      <div className="p-2 w-fit rounded-lg bg-secondary/10 text-secondary">
+        <Sparkles size={18} />
+      </div>
+      <div className="text-xs font-bold text-foreground">Content Agent (CrewAI)</div>
+      <div className="text-[11px] text-muted-foreground space-y-1">
+        <div><strong>Role:</strong> LinkedIn Copywriter</div>
+        <div><strong>Constraints:</strong> 500-3000 characters, markdown, hashtags</div>
+        <div><strong>Output:</strong> Draft post layout, hooks, and tag selections</div>
+      </div>
+    </div>
+  </div>
+);
+
+const LinkedInArchitectureVisual = () => (
+  <div className="p-6 bg-card border border-border/40 rounded-2xl space-y-4 mt-4">
+    <div className="text-xs font-bold uppercase tracking-wider text-secondary">System Component Layers</div>
+    <div className="space-y-3">
+      {[
+        { layer: "Scheduler Layer", tech: "APScheduler (Daily crons for research, polling checks)" },
+        { layer: "Orchestration Layer", tech: "Python Orchestrator (State machine, error recovery, run validations)" },
+        { layer: "Integration Layer", tech: "Trello Client API & LinkedIn ugcPost API" },
+      ].map((item, idx) => (
+        <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-muted/40 rounded-xl gap-1 text-xs">
+          <span className="font-semibold text-foreground shrink-0">{item.layer}</span>
+          <span className="text-muted-foreground text-[11px] sm:text-right">{item.tech}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
 interface CaseStudyDetailProps {
   slug?: string;
 }
@@ -346,6 +439,7 @@ const CaseStudyDetail = ({ slug: propSlug }: CaseStudyDetailProps) => {
           <div className="container mx-auto max-w-4xl px-4 space-y-16 mb-16">
             {study.sections.map((section, i) => {
               const isLeadOG = study.id === "lead-og";
+              const isLinkedIn = study.id === "linked-in";
 
               return (
                 <section key={i} className="space-y-6">
@@ -373,6 +467,21 @@ const CaseStudyDetail = ({ slug: propSlug }: CaseStudyDetailProps) => {
                       </div>
                       <LeadOGProblemVisual />
                     </div>
+                  ) : isLinkedIn && i === 0 ? (
+                    /* Problem Section: 2-column split for LinkedIn */
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                      <div className="space-y-4">
+                        {section.content.map((paragraph, j) => (
+                          <p
+                            key={j}
+                            className="text-base md:text-lg text-muted-foreground leading-relaxed font-light"
+                          >
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
+                      <LinkedInProblemVisual />
+                    </div>
                   ) : (
                     /* Default Section Text Layout */
                     <div className="space-y-4">
@@ -391,6 +500,10 @@ const CaseStudyDetail = ({ slug: propSlug }: CaseStudyDetailProps) => {
                   {isLeadOG && i === 1 && <LeadOGApproachVisual />}
                   {isLeadOG && i === 2 && <LeadOGPipelineVisual />}
                   {isLeadOG && i === 3 && <LeadOGArchitectureVisual />}
+
+                  {isLinkedIn && i === 1 && <LinkedInApproachVisual />}
+                  {isLinkedIn && i === 2 && <LinkedInAgentVisual />}
+                  {isLinkedIn && i === 3 && <LinkedInArchitectureVisual />}
 
                   {/* Highlights Callouts */}
                   {section.highlights && section.highlights.length > 0 && (

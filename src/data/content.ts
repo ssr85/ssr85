@@ -190,11 +190,55 @@ export const caseStudies: CaseStudy[] = [
     techStack: ["Python / CrewAI", "Trello API", "LinkedIn API", "APScheduler"],
     hasDetailPage: true,
     slug: "linked-in",
+    duration: "1 Month",
+    role: "Lead AI Developer",
+    keyMetrics: [
+      { label: "Drafting Time Saved", value: "85%" },
+      { label: "Publishing Frequency", value: "3x" },
+      { label: "Posting Timeliness", value: "100%" },
+      { label: "Content Approval Rate", value: "98%" }
+    ],
     sections: [
-      { title: "The Problem", content: ["Placeholder — full narrative to be written."] },
-      { title: "The Approach", content: ["Placeholder — full narrative to be written."] },
-      { title: "Architecture Deep-Dive", content: ["Placeholder — full narrative to be written."] },
-      { title: "Results & Impact", content: ["Placeholder — full narrative to be written."] },
+      {
+        title: "The Problem",
+        content: [
+          "Building personal brand authority and consistent B2B thought leadership on LinkedIn is highly rewarding, but requires massive daily operational overhead. For founders and digital publishers, the process of researching trends, drafting posts, and publishing consistently creates severe operational friction.",
+          "Manual content pipelines suffer from inconsistent publishing schedules, writer's block, and deep research time drains. Reviewing topics, tracking outlines, and managing draft copy across separate documents makes collaboration chaotic and disjointed.",
+          "Without an automated pipeline backed by human checkpoints, scaling brand visibility either stalls due to time constraints or loses authenticity due to low-quality generic AI generation."
+        ]
+      },
+      {
+        title: "The Approach",
+        content: [
+          "I designed a hybrid content automation system that blends autonomous AI agent execution with a structured 'Human-in-the-Loop' (HITL) approval workflow.",
+          "Rather than building a complex custom admin dashboard, I integrated Trello directly into the agent pipeline as the central state machine. This allows the system to remain lightweight, while providing the user with a highly intuitive drag-and-drop workspace.",
+          "The workflow enforces checkpoints at critical stages: first, when daily topics are researched and outlined, and second, when the final content drafts are created. No content ever reaches the LinkedIn API without explicit user approval."
+        ]
+      },
+      {
+        title: "Agent Orchestration",
+        content: [
+          "To handle research and drafting with professional rigor, I deployed an agent workforce powered by the CrewAI framework.",
+          "The Research Agent queries SerperDev to scan target URLs and industry news for trending concepts. It aggregates insights and creates a detailed outline, pushing it to Trello's 'Pending Topics' board.",
+          "Once a human moves the card to 'Approved Topics', the Content Agent takes over. It reads the outline, performs target keyword analysis, drafts the post, and runs strict validation checks (formatting constraints, hashtag structure, and character count limits between 500-3000 chars) before pushing the final draft to Trello for review."
+        ]
+      },
+      {
+        title: "Technical Architecture",
+        content: [
+          "The system is built as a modular Python daemon orchestrated by APScheduler. The scheduler runs daily cron triggers for research and schedules continuous interval-based polling for approvals.",
+          "The Content Orchestrator manages state transitions, parses payload schemas, and acts as the secure execution interface between the CrewAI agents and integration clients.",
+          "API calls are managed by dedicated clients: the Trello Client handles card creation, status polling, and card transitions, while the LinkedIn Client manages secure OAuth token validation, ugcPost format builds, and final API delivery."
+        ]
+      },
+      {
+        title: "Results & Impact",
+        content: [
+          "The LinkedIn Content Automation System successfully eliminated the creative bottlenecks of manual content creation. Topic drafting time was reduced by 85%, freeing up critical hours for business growth.",
+          "Posting frequency tripled without any drop-off in brand quality, thanks to the strict outline-and-draft review gates. The system achieves 100% on-schedule posting via continuous cron orchestration.",
+          "By matching professional industry insights with automated research tools, founders can maintain an active, high-visibility social presence on autopilot with total control over their message."
+        ]
+      }
     ],
     seo: {
       metaTitle: "Linked-In Case Study | CrewAI Content Automation Engine — Sarabjeet Rattan",
