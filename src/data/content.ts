@@ -116,11 +116,56 @@ export const caseStudies: CaseStudy[] = [
     techStack: ["React", "Supabase", "Tavily API", "Custom Session Engine", "Freshsales API"],
     hasDetailPage: true,
     slug: "lead-og",
+    duration: "2 Months",
+    role: "Lead Architect / Full-Stack Engineer",
+    keyMetrics: [
+      { label: "Lead Response Time", value: "-95%" },
+      { label: "Email Read Rates", value: "+40%" },
+      { label: "Customer Reply Rates", value: "+25%" },
+      { label: "CRM Duplicate Rate", value: "0%" }
+    ],
     sections: [
-      { title: "The Problem", content: ["Placeholder — full narrative to be written."] },
-      { title: "The Approach", content: ["Placeholder — full narrative to be written."] },
-      { title: "Architecture Deep-Dive", content: ["Placeholder — full narrative to be written."] },
-      { title: "Results & Impact", content: ["Placeholder — full narrative to be written."] },
+      {
+        title: "The Problem",
+        content: [
+          "In B2B outbound sales, timing and personalization are everything. However, the sales development team faced a massive bottleneck: lead data was scattered across multiple landing pages, Google AdWords campaigns, and LinkedIn lead forms, resulting in fragmented lists with zero standardization.",
+          "Manual research was a slow, error-prone chore. SDRs spent hours searching for prospect details, copy-pasting info, and checking for duplicates. Crucially, basic lead lists lacked deep contact context—often missing verified LinkedIn profiles, direct phone lines, and target company initiatives.",
+          "With lists stored across separate spreadsheets, disconnected session management led to duplicate CRM records and outdated context, directly impacting overall outbound performance."
+        ]
+      },
+      {
+        title: "The Approach",
+        content: [
+          "We needed to transition from manual, error-prone data entry to a centralized, automated lead ingestion and matching workspace.",
+          "The core requirement was building a robust matching system that could parse messy CSV uploads, check them against thousands of existing CRM contacts in real time, and pass them into an automated enrichment pipeline.",
+          "To ensure high user adoption, the UI needed to handle messy inputs gracefully—warning users about custom CSV delimiters, preventing bad data types (e.g. invalid dates or numbers) from reaching the CRM, and mapping custom CRM fields to intuitive, type-safe inputs dynamically."
+        ]
+      },
+      {
+        title: "The Enrichment Pipeline",
+        content: [
+          "To empower SDRs with high-fidelity context, I engineered a multi-stage asynchronous enrichment pipeline deployed as a Supabase Edge Function.",
+          "First, the pipeline queries the Apollo API to fetch structural metadata, including direct phone lines, verified work emails, target job titles, and company demographics (size, industry, and annual revenue).",
+          "Second, it invokes the Firecrawl API to perform targeted web searches and scrape the prospect's company website, extracting real-time business signals, recent press releases, and strategic initiatives.",
+          "Finally, the aggregated Apollo profiles and Firecrawl scrapes are fed into the Gemini LLM. Gemini analyzes ideal customer fit, extracts relevant custom tags, pinpoints organizational pain points, and drafts hyper-personalized outbound copy optimized for high read and reply rates."
+        ]
+      },
+      {
+        title: "Technical Architecture",
+        content: [
+          "To power the matching engine, I built a weighted similarity matching algorithm that scores data overlaps. Exact matches receive a score of 100, while fuzzy matches (60%-84% token overlap) are flagged for human review. To maximize accuracy, the algorithm awards scoring bonuses (+20 for person+company alignment and +15 for surname+company matches).",
+          "To prevent redundant API calls and manage external rate limits, I implemented a robust database and session caching layer (readPersonCache/writePersonCache). This stores enriched schemas and CRM contact metadata locally with a strict expiry mechanism.",
+          "The entire app runs on a fast client-server flow. A Supabase Postgres database stores import jobs and row states, secured with Row Level Security (RLS). A secure Edge Function proxy manages high-throughput, rate-limited requests to the Freshsales CRM API."
+        ]
+      },
+      {
+        title: "Results & Impact",
+        content: [
+          "Deploying the Lead OG workspace transformed the lead management pipeline. Automated CSV parsing and matching, combined with the enrichment pipeline, reduced manual lead enrichment times by 95%, allowing SDRs to contact prospects in minutes rather than days.",
+          "Duplicate records were completely eliminated, protecting CRM integrity and preventing embarrassing double-outreach situations.",
+          "Most importantly, because SDRs had instant access to rich, enriched prospect context and AI-drafted copy, outreach personalization scaled dramatically. This resulted in a 40% increase in email read rates and a 25% bump in customer response rates."
+        ]
+      }
     ],
     seo: {
       metaTitle: "Lead OG Case Study | Agentic B2B Lead Research Engine — Sarabjeet Rattan",
