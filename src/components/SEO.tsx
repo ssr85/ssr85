@@ -1,6 +1,11 @@
 import { Head } from "vite-react-ssg";
 import { siteConfig, caseStudies, projects, services } from "@/data/content";
 
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
 interface SEOProps {
   title?: string;
   description?: string;
@@ -8,6 +13,7 @@ interface SEOProps {
   image?: string;
   url?: string;
   type?: string;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 export const SEO = ({ 
@@ -16,7 +22,8 @@ export const SEO = ({
   keywords, 
   image, 
   url = "https://sarabjeetrattan.com", 
-  type = "website" 
+  type = "website",
+  breadcrumbs,
 }: SEOProps) => {
   const seoTitle = title || siteConfig.meta.title;
   const seoDescription = description || siteConfig.meta.description;
@@ -157,11 +164,15 @@ export const SEO = ({
     "@type": "CreativeWork",
     "name": study.name,
     "description": study.description,
-    "url": `${url}/#case-studies`,
+    "url": study.hasDetailPage && study.slug
+      ? `https://sarabjeetrattan.com/case-studies/${study.slug}`
+      : `${url}/#case-studies`,
     "keywords": study.techStack.join(", "),
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `${url}/#case-studies`
+      "@id": study.hasDetailPage && study.slug
+        ? `https://sarabjeetrattan.com/case-studies/${study.slug}`
+        : `${url}/#case-studies`
     }
   })) || [];
 
@@ -174,21 +185,51 @@ export const SEO = ({
 
   const breadcrumbSchema = {
     "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": url
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Resume",
-        "item": `${url}/resume`
-      }
-    ]
+    "itemListElement": breadcrumbs
+      ? [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sarabjeetrattan.com"
+          },
+          ...breadcrumbs.map((crumb, i) => ({
+            "@type": "ListItem",
+            "position": i + 2,
+            "name": crumb.name,
+            "item": crumb.url
+          }))
+        ]
+      : [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": url
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Resume",
+            "item": `${url}/resume`
+          }
+        ]
   };
+
+  // Article schema for case study detail pages
+  const articleSchema = type === "article" ? {
+    "@type": "Article",
+    "headline": seoTitle,
+    "description": seoDescription,
+    "image": seoImage,
+    "url": url,
+    "author": { "@id": `https://sarabjeetrattan.com/#person` },
+    "publisher": { "@id": `https://sarabjeetrattan.com/#person` },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": url
+    }
+  } : null;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -200,7 +241,8 @@ export const SEO = ({
       breadcrumbSchema,
       ...projectSchemas,
       ...caseStudySchemas,
-      ...servicesSchema
+      ...servicesSchema,
+      ...(articleSchema ? [articleSchema] : [])
     ]
   };
 

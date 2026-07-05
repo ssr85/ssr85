@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { caseStudies } from "@/data/content";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Target, AlertCircle, Cpu, ChevronDown } from "lucide-react";
+import { Target, AlertCircle, Cpu, ChevronDown, ArrowRight } from "lucide-react";
 
 const cardAccents = [
   "from-primary to-primary/60",
@@ -138,6 +139,16 @@ export const CaseStudies = () => {
                 </div>
               </div>
             </div>
+
+            {desktopProject.hasDetailPage && desktopProject.slug && (
+              <Link
+                to={`/case-studies/${desktopProject.slug}`}
+                className="inline-flex items-center gap-2 mt-4 px-6 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 w-fit"
+              >
+                Read Full Case Study
+                <ArrowRight size={16} />
+              </Link>
+            )}
           </div>
         </div>
 
@@ -247,6 +258,17 @@ export const CaseStudies = () => {
                           </div>
                         </div>
                       </div>
+
+                      {project.hasDetailPage && project.slug && (
+                        <Link
+                          to={`/case-studies/${project.slug}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-2 mt-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:shadow-lg transition-all duration-300 w-fit"
+                        >
+                          Read Full Case Study
+                          <ArrowRight size={16} />
+                        </Link>
+                      )}
                     </CardContent>
                   </Card>
                 );

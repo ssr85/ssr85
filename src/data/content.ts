@@ -68,6 +68,12 @@ export const snapshotCards = [
   },
 ];
 
+export interface CaseStudySection {
+  title: string;
+  content: string[];
+  highlights?: string[];
+}
+
 export interface CaseStudy {
   id: string;
   name: string;
@@ -77,6 +83,18 @@ export interface CaseStudy {
   description: string;
   stats: string[];
   techStack: string[];
+  hasDetailPage?: boolean;
+  slug?: string;
+  heroImage?: string;
+  duration?: string;
+  role?: string;
+  sections?: CaseStudySection[];
+  keyMetrics?: { label: string; value: string }[];
+  seo?: {
+    metaTitle: string;
+    metaDescription: string;
+    keywords: string[];
+  };
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -95,7 +113,20 @@ export const caseStudies: CaseStudy[] = [
     ],
     description: "Architected a high-velocity B2B AI solution for lead organization that automates deep prospect research and CRM synchronization. Implemented a custom storage engine for faster session caching and seamless bulk management for Freshsales.",
     stats: ["Agentic Research Engine", "Automated CRM Sync", "Real-time B2B Intelligence"],
-    techStack: ["React", "Supabase", "Tavily API", "Custom Session Engine", "Freshsales API"]
+    techStack: ["React", "Supabase", "Tavily API", "Custom Session Engine", "Freshsales API"],
+    hasDetailPage: true,
+    slug: "lead-og",
+    sections: [
+      { title: "The Problem", content: ["Placeholder — full narrative to be written."] },
+      { title: "The Approach", content: ["Placeholder — full narrative to be written."] },
+      { title: "Architecture Deep-Dive", content: ["Placeholder — full narrative to be written."] },
+      { title: "Results & Impact", content: ["Placeholder — full narrative to be written."] },
+    ],
+    seo: {
+      metaTitle: "Lead OG Case Study | Agentic B2B Lead Research Engine — Sarabjeet Rattan",
+      metaDescription: "How I architected a high-velocity B2B AI solution for automated lead research and CRM synchronization using Supabase, Tavily API, and Freshsales.",
+      keywords: ["Lead OG", "B2B AI", "CRM Automation", "Agentic Research", "Freshsales API"],
+    },
   },
   {
     id: "linked-in",
@@ -111,7 +142,20 @@ export const caseStudies: CaseStudy[] = [
     ],
     description: "Engineered a Trello-driven LinkedIn automation system using CrewAI. Orchestrates agents for deep topic research and high-fidelity content generation, enabling a seamless HITL 'Approve-to-Publish' workflow with absolute control.",
     stats: ["Intelligent Content Drafting", "Trello-Driven Orchestration", "Human-in-the-Loop Dispatch"],
-    techStack: ["Python / CrewAI", "Trello API", "LinkedIn API", "APScheduler"]
+    techStack: ["Python / CrewAI", "Trello API", "LinkedIn API", "APScheduler"],
+    hasDetailPage: true,
+    slug: "linked-in",
+    sections: [
+      { title: "The Problem", content: ["Placeholder — full narrative to be written."] },
+      { title: "The Approach", content: ["Placeholder — full narrative to be written."] },
+      { title: "Architecture Deep-Dive", content: ["Placeholder — full narrative to be written."] },
+      { title: "Results & Impact", content: ["Placeholder — full narrative to be written."] },
+    ],
+    seo: {
+      metaTitle: "Linked-In Case Study | CrewAI Content Automation Engine — Sarabjeet Rattan",
+      metaDescription: "How I engineered a Trello-driven LinkedIn automation system using CrewAI for intelligent content drafting with human-in-the-loop publishing.",
+      keywords: ["LinkedIn Automation", "CrewAI", "Content Automation", "Trello Integration", "HITL"],
+    },
   },
   {
     id: "prospect-iq",

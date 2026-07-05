@@ -10,6 +10,17 @@ import { Analytics } from "@vercel/analytics/react";
 
 const Resume = lazy(() => import("./pages/Resume"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
+
+import { caseStudies } from "./data/content";
+
+// Expand case study routes for SSG pre-rendering (only those with full pages)
+const caseStudyRoutes = caseStudies
+  .filter((cs) => cs.hasDetailPage && cs.slug)
+  .map((cs) => ({
+    path: `/case-studies/${cs.slug}`,
+    element: <CaseStudyDetail />,
+  }));
 
 export const routes = [
   {
@@ -20,6 +31,7 @@ export const routes = [
     path: "/resume",
     element: <Resume />,
   },
+  ...caseStudyRoutes,
   {
     path: "*",
     element: <NotFound />,
