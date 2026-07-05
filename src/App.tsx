@@ -19,7 +19,7 @@ const caseStudyRoutes = caseStudies
   .filter((cs) => cs.hasDetailPage && cs.slug)
   .map((cs) => ({
     path: `/case-studies/${cs.slug}`,
-    element: <CaseStudyDetail />,
+    element: <CaseStudyDetail slug={cs.slug} />,
   }));
 
 export const routes = [

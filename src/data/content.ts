@@ -119,9 +119,9 @@ export const caseStudies: CaseStudy[] = [
     duration: "2 Months",
     role: "Lead Architect / Full-Stack Engineer",
     keyMetrics: [
-      { label: "Lead Response Time", value: "-95%" },
-      { label: "Email Read Rates", value: "+40%" },
-      { label: "Customer Reply Rates", value: "+25%" },
+      { label: "Lead Response Time", value: "-70%" },
+      { label: "Email Read Rates", value: "+60%" },
+      { label: "Customer Reply Rates", value: "+15%" },
       { label: "CRM Duplicate Rate", value: "0%" }
     ],
     sections: [

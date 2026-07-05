@@ -23,8 +23,13 @@ const EnquiryModal = lazy(() =>
   }))
 );
 
-const CaseStudyDetail = () => {
-  const { slug } = useParams<{ slug: string }>();
+interface CaseStudyDetailProps {
+  slug?: string;
+}
+
+const CaseStudyDetail = ({ slug: propSlug }: CaseStudyDetailProps) => {
+  const { slug: paramSlug } = useParams<{ slug: string }>();
+  const slug = propSlug || paramSlug;
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
 
   const openEnquiry = () => setIsEnquiryOpen(true);
