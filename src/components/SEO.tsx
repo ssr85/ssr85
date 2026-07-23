@@ -63,7 +63,7 @@ export const SEO = ({
       "Intelligent Process Automation (IPA)", "Autonomous Agents"
     ],
     "worksFor": [
-      "Lead OG"
+      { "@type": "Organization", "name": "Lead OG" }
     ]
   };
 
@@ -258,6 +258,9 @@ export const SEO = ({
       <meta property="og:image" content={seoImage} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content={type} />
+
+      {/* Canonical */}
+      <link rel="canonical" href={url} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

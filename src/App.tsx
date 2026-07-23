@@ -38,17 +38,8 @@ export const routes = [
   },
 ];
 
-import { useLenis } from "@/hooks/use-lenis";
-import { initGA } from "@/lib/analytics";
-
 const App = () => {
   const [queryClient] = React.useState(() => new QueryClient());
-  useLenis();
-
-  React.useEffect(() => {
-    const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID;
-    if (gaId) initGA(gaId);
-  }, []);
   
   return (
     <QueryClientProvider client={queryClient}>

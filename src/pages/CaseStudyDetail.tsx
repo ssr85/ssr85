@@ -365,6 +365,7 @@ const CaseStudyDetail = ({ slug: propSlug }: CaseStudyDetailProps) => {
                 <img
                   src={study.heroImage}
                   alt={`${study.name} overview`}
+                  loading="lazy"
                   className="w-full h-auto"
                 />
               </div>

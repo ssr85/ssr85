@@ -34,3 +34,7 @@ dist-ssr
 
 # Design System
 design-system/
+
+# Build artifacts
+trace.json
+*.tsbuildinfo

@@ -1,7 +1,7 @@
-import { useEffect, useState, useRef } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MapPin, Mail, ArrowRight, Globe, Zap, BrainCircuit, CheckCircle2 } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { siteConfig, heroTags } from "@/data/content";
 import { scrollToSection } from "@/lib/scroll";
 import { EngineeringGrid } from "@/components/EngineeringGrid";
@@ -15,15 +15,6 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
   const [scrollY, setScrollY] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
   const scrollYRef = useRef(0);
-
-  const [currentTagIndex, setCurrentTagIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTagIndex((prev) => (prev + 1) % heroTags.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
 
   useThrottledScroll(() => {
     if (heroRef.current) {
@@ -86,22 +77,14 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
                 style={{ animationDelay: "0.15s" }}
               >
                 Engineering <br />
-                <span className="relative inline-block min-h-[1.2em] align-top">
-                  <span className="invisible whitespace-nowrap" aria-hidden="true">
-                    {heroTags.reduce((longest, tag) => (tag.length > longest.length ? tag : longest), "")}
+                <span className="relative inline-block h-[1.2em] overflow-hidden align-top">
+                  <span className="tagline-track">
+                    {heroTags.map((tag) => (
+                      <span key={tag} className="tagline-item text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary whitespace-nowrap">
+                        {tag}
+                      </span>
+                    ))}
                   </span>
-                  <AnimatePresence mode="wait" initial={false}>
-                    <motion.span
-                      key={currentTagIndex}
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -15 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="absolute inset-0 pb-1 text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"
-                    >
-                      {heroTags[currentTagIndex]}
-                    </motion.span>
-                  </AnimatePresence>
                 </span>
                 <br />for B2B Scale.
               </h1>
@@ -150,9 +133,9 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
             </div>
           </div>
 
-          {/* Value Highlights / Availability Column - Height matched with left content */}
+          {/* Value Highlights / Availability Column */}
           <div className="lg:col-span-4 lg:pl-8 flex flex-col justify-between hidden lg:flex animate-hero-fade" style={{ animationDelay: "0.5s" }}>
-            {/* Open For card - Top edge aligns with "Engineering" */}
+            {/* Open For card */}
             <div className="p-8 rounded-3xl bg-card border border-border/50 shadow-2xl shadow-primary/5 relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                 <BrainCircuit size={80} />
@@ -174,7 +157,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
               </ul>
             </div>
 
-            {/* Micro Stats - Bottom edge aligns with buttons */}
+            {/* Micro Stats */}
             <div className="grid grid-cols-2 gap-4 mt-8">
               <div className="p-5 rounded-2xl bg-muted/40 border border-border/50 flex flex-col justify-center">
                 <Globe className="h-6 w-6 text-secondary mb-3" />
@@ -190,7 +173,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
           </div>
         </div>
 
-        {/* Mobile-only: Open For + Micro Stats - visible below lg */}
+        {/* Mobile-only: Open For + Micro Stats */}
         <div className="lg:hidden grid grid-cols-1 gap-4 mt-10 animate-hero-fade" style={{ animationDelay: "0.5s" }}>
           <div className="p-5 rounded-2xl bg-card border border-border/50 flex items-center gap-4">
             <div className="shrink-0">
@@ -229,7 +212,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
           </div>
         </div>
 
-        {/* Contact details - Now clearly below the aligned section */}
+        {/* Contact details */}
         <div
           className="flex flex-wrap items-center gap-6 pt-8 animate-hero-fade border-t border-border/40 mt-12"
           style={{ animationDelay: "0.55s" }}
@@ -249,7 +232,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
         </div>
       </div>
 
-      {/* Scroll down indicator - Moved to the bottom edge of the section */}
+      {/* Scroll down indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-hero-fade hidden md:flex z-20" style={{ animationDelay: "1.2s" }}>
         <div className="animate-smooth-bounce">
           <button

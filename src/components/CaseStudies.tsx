@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { caseStudies } from "@/data/content";
 import { Badge } from "@/components/ui/badge";
@@ -16,24 +16,11 @@ const cardAccents = [
 export const CaseStudies = () => {
   const [activeTab, setActiveTab] = useState(caseStudies[0].id);
   const desktopProject = caseStudies.find((p) => p.id === activeTab)!;
-  const [painPointIndex, setPainPointIndex] = useState(0);
-
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const handleExpand = (index: number) => {
     setExpandedIndex((prev) => (prev === index ? null : index));
   };
-
-  useEffect(() => {
-    setPainPointIndex(0);
-  }, [activeTab]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPainPointIndex((prev) => (prev + 1) % desktopProject.painPoints.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [desktopProject.painPoints.length, activeTab]);
 
   return (
     <section id="case-studies" className="py-20 md:py-28 px-4 bg-muted/30 overflow-hidden">
@@ -98,14 +85,13 @@ export const CaseStudies = () => {
                   <AlertCircle size={14} />
                   <span>Pain Points Solved</span>
                 </div>
-                <div className="h-8 md:h-6 overflow-hidden relative">
-                  <div
-                    key={`${activeTab}-${painPointIndex}`}
-                    className="flex items-start gap-2 text-xs text-foreground/80 font-medium leading-relaxed animate-slide-up"
-                  >
-                    <span className="text-accent mt-1 text-[8px]">&#9679;</span>
-                    <span>{desktopProject.painPoints[painPointIndex]}</span>
-                  </div>
+                <div className="space-y-1.5">
+                  {desktopProject.painPoints.slice(0, 4).map((pp) => (
+                    <div key={pp} className="flex items-start gap-2 text-xs text-foreground/80 font-medium leading-relaxed">
+                      <span className="text-accent mt-1 text-[8px] shrink-0">&#9679;</span>
+                      <span>{pp}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

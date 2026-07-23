@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url('/fonts/archivo-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/space-grotesk-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -119,7 +137,11 @@ All colors MUST be HSL.
   }
 }
 
-@layer utilities {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @layer utilities {
   /* Story link underline animation */
   .story-link * {
     @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
@@ -141,5 +163,32 @@ All colors MUST be HSL.
 
   .animate-smooth-bounce {
     animation: smooth-bounce 2.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+
+  .tagline-track {
+    display: inline-flex;
+    flex-direction: column;
+    animation: tagline-cycle 15s infinite;
+  }
+
+  .tagline-item {
+    height: 1.2em;
+    display: flex;
+    align-items: center;
+  }
+
+  @keyframes tagline-cycle {
+    0%, 18% { transform: translateY(0); }
+    20%, 38% { transform: translateY(-1.2em); }
+    40%, 58% { transform: translateY(-2.4em); }
+    60%, 78% { transform: translateY(-3.6em); }
+    80%, 98% { transform: translateY(-4.8em); }
+    100% { transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tagline-track {
+      animation: none;
+    }
   }
 }
