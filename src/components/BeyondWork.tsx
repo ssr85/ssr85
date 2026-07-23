@@ -20,46 +20,43 @@ export const BeyondWork = () => {
         backgroundSize: "32px 32px",
       }} />
       <div className="container mx-auto relative z-10 max-w-5xl">
-        <div className="text-left mb-14">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-5 tracking-wide">
-            Personal
-          </span>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 tracking-tight">
-            Beyond Work
-          </h2>
-          <p className="text-muted-foreground max-w-2xl text-lg">
-            Interests and activities that keep me balanced and inspired
-          </p>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 mb-14">
+          <div className="text-left max-w-2xl">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-5 tracking-wide">
+              Personal
+            </span>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 tracking-tight">
+              Beyond Work
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Interests and activities that keep me balanced and inspired
+            </p>
+          </div>
+          
+          {/* Rotating Dotted Globe next to header */}
+          <div className="flex justify-start md:justify-end items-center pointer-events-none select-none">
+            <div 
+              className="w-40 h-40 md:w-56 md:h-56 transform" 
+              style={{ transform: "rotate(23.5deg)" }}
+            >
+              <RotatingEarth 
+                width={220} 
+                height={220} 
+                className="w-full h-full" 
+                transparent={true} 
+                hideControls={true} 
+              />
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl">
           {beyondWork.map((item, index) => {
             const iconData = iconMap[item.icon];
-            const isGlobalTravel = item.title === "Global Travel";
             
             return (
               <StaggeredCard key={item.title} index={index}>
                 <Card className="h-full relative overflow-hidden transition-all duration-500 ease-out group hover:shadow-2xl hover:shadow-primary/5 hover:border-primary/40 sm:hover:-translate-y-2 bg-card/80 backdrop-blur-md border border-border/50 rounded-[2rem]">
-                  {/* Rotating Earth Globe watermark behind the Global Travel card */}
-                  {isGlobalTravel && (
-                    <div 
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
-                    >
-                      <div 
-                        className="w-56 h-56 transition-transform duration-1000 group-hover:scale-115"
-                        style={{ transform: "rotate(23.5deg)" }}
-                      >
-                        <RotatingEarth 
-                          width={220} 
-                          height={220} 
-                          className="w-full h-full"
-                          transparent={true}
-                          hideControls={true}
-                        />
-                      </div>
-                    </div>
-                  )}
-
                   <CardContent className="p-8 text-center flex flex-col items-center h-full relative z-10">
                     <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl ${iconData.color} mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
                       {iconData.icon}
