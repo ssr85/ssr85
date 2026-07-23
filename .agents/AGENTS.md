@@ -7,6 +7,7 @@ This file contains strict behavioural constraints and guidelines for all agentic
 - **Image Generation Constraint**: Under no circumstances should you proactively generate placeholder or preview images using `generate_image` tools unless the USER explicitly requests it with a detailed prompt. Avoid placeholder icons or graphics; use Lucide-react SVGs or existing assets.
 - **Workflow Integrity**: Maintain existing inline comments, docstrings, and structure. Do not perform large sweeping refactors that combine unrelated issues. Keep changes isolated to the task goals.
 - **Verification First**: Verify that every change compiles successfully. Run `pnpm build` before presenting success claims to the user.
+- **shadcn Component Pathing**: Always place components in the exact directory aliased in `components.json` (such as `src/components/ui/`) rather than creating root-level directories, to maintain toolchain compatibility with the shadcn CLI.
 
 ## 2. Performance & Rendering Constraints (CRITICAL)
 
@@ -14,12 +15,14 @@ This file contains strict behavioural constraints and guidelines for all agentic
 - **Mount-Aware Animations**: Any scroll-based or mounting animations (such as Framer Motion elements using `initial` state) must be mount-aware. Defer applying `initial` styling until after mount (`isMounted === true`) to prevent pre-rendering invisible sections (`opacity: 0`) in static HTML.
 - **Code-Splitting Maintenance**: Ensure third-party libraries (e.g. `@supabase/supabase-js`, `motion/react`, `@radix-ui/*`) are mapped to their specific chunks in `vite.config.ts`'s `manualChunks` configuration, rather than letting them merge with `vendor-core`. Keep the core vendor bundle size under `250kB`.
 - **Asynchronous Font Loading**: All external web fonts (such as Google Fonts) MUST be loaded asynchronously using the `<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />` pattern with a `<noscript>` stylesheet fallback. Do NOT use standard render-blocking `<link rel="stylesheet">` for external font files.
+- **Canvas Watermarks**: When using interactive canvas elements (like `RotatingEarth`) as decorative watermarks or section header illustrations, always pass `transparent={true}` and `hideControls={true}` props. The canvas wrapper MUST have `pointer-events-none select-none` applied to prevent intercepting mouse clicks or blocking page scroll wheel events.
 
 ## 3. Design & Styling Guidelines
 
 - **Vanilla CSS & Tailwind**: Use the preconfigured Tailwind CSS classes. Use tailwind utility classes for layout and spacing. Avoid styling with raw inline styles or introducing ad-hoc stylesheet overrides.
 - **Consistent Icons**: Use `lucide-react` for system iconography. Maintain the custom icon mappings configured in Bento and Card configurations.
 - **Theme Support**: Design components to render beautifully in both light and dark modes. Use variables that support the next-themes config.
+- **Tailwind 3 HSL Colors**: When extending theme variables in Tailwind v3.4, always convert OKLCH color definitions to raw space-separated HSL values (e.g. `0 0% 0%`) inside `index.css`. Do not insert raw OKLCH functions directly inside HSL-mapped variables, as this breaks opacity modifiers (like `bg-primary/10`).
 
 ## 4. SEO & Verification
 
