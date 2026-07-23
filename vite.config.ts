@@ -27,7 +27,19 @@ export default defineConfig(() => {
               if (id.includes("lucide-react")) return "icons";
               if (id.includes("@tanstack/react-query") || id.includes("@tanstack/query-core")) return "query";
               if (id.includes("next-themes")) return "theme";
-              if (id.includes("react-dom") || id.includes("react/") || id.includes("react-router") || id.includes("scheduler")) return "vendor";
+              if (id.includes("motion") || id.includes("framer-motion")) return "motion";
+              if (id.includes("@supabase/supabase-js")) return "supabase";
+              if (id.includes("@radix-ui/")) return "radix";
+              if (id.includes("lenis")) return "lenis";
+              if (
+                id.includes("node_modules/react/") ||
+                id.includes("node_modules/react-dom/") ||
+                id.includes("node_modules/react-router/") ||
+                id.includes("node_modules/react-router-dom/") ||
+                id.includes("node_modules/scheduler/")
+              ) {
+                return "vendor-core";
+              }
               if (id.includes("cmdk") || id.includes("vaul") || id.includes("sonner") || id.includes("embla") || id.includes("input-otp")) return "ui-vendor";
             }
           },
