@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight, Phone, Mail, Linkedin, Github, Globe } from "lucide-react";
+import { motion } from "motion/react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import { useThrottledScroll } from "@/hooks/use-throttle";
@@ -61,7 +62,6 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
             </a>
           </div>
 
-          {/* Desktop Navigation - Centered between Logo and Actions */}
           <nav className="hidden lg:flex flex-1 items-center justify-center gap-1">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
@@ -69,19 +69,20 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className={`px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold transition-all duration-500 relative group overflow-hidden rounded-full whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary ${
+                  className={`px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold transition-all duration-300 relative rounded-full whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary ${
                     isActive
-                      ? "text-primary scale-105"
+                      ? "text-primary"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   <span className="relative z-10">{link.label}</span>
-                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary/0 via-primary to-primary/0 transition-all duration-700 ease-in-out transform ${
-                    isActive ? "scale-x-75 opacity-100" : "scale-x-0 opacity-0 group-hover:scale-x-50 group-hover:opacity-50"
-                  }`} />
-                  <span className={`absolute inset-0 bg-primary/5 rounded-full transition-all duration-1000 ease-in-out ${
-                    isActive ? "opacity-100 scale-100" : "opacity-0 scale-90"
-                  }`} />
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeNavBackground"
+                      className="absolute inset-0 bg-primary/5 rounded-full z-0"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
                 </button>
               );
             })}

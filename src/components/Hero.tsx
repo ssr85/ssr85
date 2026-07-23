@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { MapPin, Mail, ArrowRight, Globe, Zap, BrainCircuit, CheckCircle2 } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 import { siteConfig, heroTags } from "@/data/content";
 import { scrollToSection } from "@/lib/scroll";
 import { EngineeringGrid } from "@/components/EngineeringGrid";
@@ -84,9 +85,25 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
                 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.1] tracking-tight animate-hero-fade"
                 style={{ animationDelay: "0.15s" }}
               >
-                Engineering <br /><span className="inline-block min-h-[1.2em] pb-1 text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary transition-all duration-500">
-                  {heroTags[currentTagIndex]}
-                </span> <br />for B2B Scale.
+                Engineering <br />
+                <span className="relative inline-block min-h-[1.2em] align-top">
+                  <span className="invisible whitespace-nowrap" aria-hidden="true">
+                    {heroTags.reduce((longest, tag) => (tag.length > longest.length ? tag : longest), "")}
+                  </span>
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.span
+                      key={currentTagIndex}
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -15 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="absolute inset-0 pb-1 text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"
+                    >
+                      {heroTags[currentTagIndex]}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
+                <br />for B2B Scale.
               </h1>
 
               {/* Value Proposition */}
@@ -100,22 +117,36 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
 
             {/* CTAs - This is the bottom anchor for alignment */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-8 animate-hero-fade mt-auto w-full sm:w-auto" style={{ animationDelay: "0.45s" }}>
-              <Button
-                size="lg"
-                onClick={onOpenEnquiry}
-                className="px-6 sm:px-8 py-5 sm:py-7 text-sm sm:text-base rounded-full bg-foreground text-background hover:bg-foreground/90 hover:scale-[1.02] shadow-xl shadow-foreground/10 transition-all font-semibold group border border-transparent whitespace-nowrap"
+              <motion.div
+                whileHover={{ scale: 1.03, y: -1 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                className="w-full sm:w-auto"
               >
-                Let's Connect
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={scrollToCaseStudies}
-                className="px-6 sm:px-8 py-5 sm:py-7 text-sm sm:text-base rounded-full border-border/50 hover:bg-muted/50 hover:border-primary/30 transition-all font-medium whitespace-nowrap"
+                <Button
+                  size="lg"
+                  onClick={onOpenEnquiry}
+                  className="w-full px-6 sm:px-8 py-5 sm:py-7 text-sm sm:text-base rounded-full bg-foreground text-background hover:bg-foreground/90 shadow-xl shadow-foreground/10 font-semibold group border border-transparent whitespace-nowrap"
+                >
+                  Let's Connect
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.03, y: -1 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                className="w-full sm:w-auto"
               >
-                Portfolio
-              </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={scrollToCaseStudies}
+                  className="w-full px-6 sm:px-8 py-5 sm:py-7 text-sm sm:text-base rounded-full border-border/50 hover:bg-muted/50 hover:border-primary/30 font-medium whitespace-nowrap"
+                >
+                  Portfolio
+                </Button>
+              </motion.div>
             </div>
           </div>
 

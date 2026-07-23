@@ -38,8 +38,11 @@ export const routes = [
   },
 ];
 
+import { useLenis } from "@/hooks/use-lenis";
+
 const App = () => {
   const [queryClient] = React.useState(() => new QueryClient());
+  useLenis();
   
   return (
     <QueryClientProvider client={queryClient}>
