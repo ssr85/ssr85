@@ -7,9 +7,17 @@ interface RotatingEarthProps {
   width?: number
   height?: number
   className?: string
+  transparent?: boolean
+  hideControls?: boolean
 }
 
-export default function RotatingEarth({ width = 800, height = 600, className = "" }: RotatingEarthProps) {
+export default function RotatingEarth({
+  width = 800,
+  height = 600,
+  className = "",
+  transparent = false,
+  hideControls = false
+}: RotatingEarthProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -139,13 +147,17 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
       const currentScale = projection.scale()
       const scaleFactor = currentScale / radius
 
-      // Draw ocean (globe background)
+      // Detect dark mode from document
+      const isDark = document.documentElement.classList.contains("dark")
+      const strokeColor = isDark ? "rgba(255, 255, 255, 0.25)" : "rgba(0, 0, 0, 0.12)"
+      const graticuleColor = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.04)"
+      const dotColor = isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(0, 0, 0, 0.08)"
+
+      // Draw ocean (globe background) - transparent ocean, only outer stroke
       context.beginPath()
       context.arc(containerWidth / 2, containerHeight / 2, currentScale, 0, 2 * Math.PI)
-      context.fillStyle = "#000000"
-      context.fill()
-      context.strokeStyle = "#ffffff"
-      context.lineWidth = 2 * scaleFactor
+      context.strokeStyle = strokeColor
+      context.lineWidth = 1.5 * scaleFactor
       context.stroke()
 
       if (landFeatures) {
@@ -153,18 +165,16 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
         const graticule = d3.geoGraticule()
         context.beginPath()
         path(graticule())
-        context.strokeStyle = "#ffffff"
+        context.strokeStyle = graticuleColor
         context.lineWidth = 1 * scaleFactor
-        context.globalAlpha = 0.25
         context.stroke()
-        context.globalAlpha = 1
 
         // Draw land outlines
         context.beginPath()
         landFeatures.features.forEach((feature: any) => {
           path(feature)
         })
-        context.strokeStyle = "#ffffff"
+        context.strokeStyle = strokeColor
         context.lineWidth = 1 * scaleFactor
         context.stroke()
 
@@ -180,7 +190,7 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
           ) {
             context.beginPath()
             context.arc(projected[0], projected[1], 1.2 * scaleFactor, 0, 2 * Math.PI)
-            context.fillStyle = "#999999"
+            context.fillStyle = dotColor
             context.fill()
           }
         })
@@ -303,12 +313,14 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
     <div className={`relative ${className}`}>
       <canvas
         ref={canvasRef}
-        className="w-full h-auto rounded-2xl bg-background dark"
+        className={`w-full h-auto rounded-2xl ${transparent ? "" : "bg-background"} dark`}
         style={{ maxWidth: "100%", height: "auto" }}
       />
-      <div className="absolute bottom-4 left-4 text-xs text-muted-foreground px-2 py-1 rounded-md dark bg-neutral-900">
-        Drag to rotate • Scroll to zoom
-      </div>
+      {!hideControls && (
+        <div className="absolute bottom-4 left-4 text-xs text-muted-foreground px-2 py-1 rounded-md dark bg-neutral-900">
+          Drag to rotate • Scroll to zoom
+        </div>
+      )}
     </div>
   )
 }

@@ -43,10 +43,20 @@ export const BeyondWork = () => {
                   {/* Rotating Earth Globe watermark behind the Global Travel card */}
                   {isGlobalTravel && (
                     <div 
-                      className="absolute -left-12 top-1/2 w-48 h-48 pointer-events-none transition-transform duration-1000 group-hover:scale-110"
-                      style={{ transform: "translateY(-50%) rotate(23.5deg)" }}
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
                     >
-                      <RotatingEarth width={180} height={180} className="w-full h-full scale-[1.2]" />
+                      <div 
+                        className="w-56 h-56 transition-transform duration-1000 group-hover:scale-115"
+                        style={{ transform: "rotate(23.5deg)" }}
+                      >
+                        <RotatingEarth 
+                          width={220} 
+                          height={220} 
+                          className="w-full h-full"
+                          transparent={true}
+                          hideControls={true}
+                        />
+                      </div>
                     </div>
                   )}
 
