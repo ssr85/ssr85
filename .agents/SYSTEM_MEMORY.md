@@ -26,9 +26,11 @@ This document provides system-wide architectural details, directory outlines, an
 - **Server Side Generation (SSG)**: Pages (such as `index.html`, `resume.html`, and individual case studies) are fully pre-rendered into static HTML on the build server.
 - **Client Hydration**: When a user visits the site, the browser instantly loads the static HTML. After core JavaScript chunks are downloaded, React hydreates the static markup, attaching event listeners and enabling client-side interactions.
 
-### Crucial Hydration Rule
+### Crucial Hydration & Loading Rules
 
-Do not use React lazy-loading for landing page components. Statically import them. Any transition or animation wrapper (e.g. `ScrollAnimationWrapper.tsx`) must check `isMounted` before setting initial styles (like `opacity:0` or scale changes). This ensures that static HTML is fully visible immediately upon delivery, while scroll animations trigger smoothly post-hydration.
+- **No Landing Page Lazy Loading**: Do not use React lazy-loading for landing page components. Statically import them.
+- **Mount-Aware Animations**: Any transition or animation wrapper (e.g. `ScrollAnimationWrapper.tsx`) must check `isMounted` before setting initial styles (like `opacity:0` or scale changes). This ensures that static HTML is fully visible immediately upon delivery, while scroll animations trigger smoothly post-hydration.
+- **Asynchronous Fonts**: External web fonts (Google Fonts) are loaded asynchronously in `index.html` using `<link rel="preload" as="style" onload="...">` and `<noscript>` fallback. This prevents render-blocking performance warnings and improves FCP/LCP.
 
 ## 3. Technology Stack & Key Dependencies
 

@@ -13,6 +13,7 @@ This file contains strict behavioural constraints and guidelines for all agentic
 - **Static Landing Page Sections**: Do NOT use `React.lazy` or `Suspense` dynamic imports to load landing page (above-the-fold or immediate scroll) sections in `Index.tsx`. All main landing page components MUST be statically imported to prevent hydration fallback wipes.
 - **Mount-Aware Animations**: Any scroll-based or mounting animations (such as Framer Motion elements using `initial` state) must be mount-aware. Defer applying `initial` styling until after mount (`isMounted === true`) to prevent pre-rendering invisible sections (`opacity: 0`) in static HTML.
 - **Code-Splitting Maintenance**: Ensure third-party libraries (e.g. `@supabase/supabase-js`, `motion/react`, `@radix-ui/*`) are mapped to their specific chunks in `vite.config.ts`'s `manualChunks` configuration, rather than letting them merge with `vendor-core`. Keep the core vendor bundle size under `250kB`.
+- **Asynchronous Font Loading**: All external web fonts (such as Google Fonts) MUST be loaded asynchronously using the `<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />` pattern with a `<noscript>` stylesheet fallback. Do NOT use standard render-blocking `<link rel="stylesheet">` for external font files.
 
 ## 3. Design & Styling Guidelines
 
