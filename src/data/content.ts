@@ -33,7 +33,7 @@ export const siteConfig = {
   github: "https://github.com/ssr85",
   website: "https://www.sarabjeetrattan.com",
   meta: {
-    title: "Sarabjeet Rattan | B2B AI Strategy & Agentic Systems Consultant | Pune",
+      title: "Sarabjeet Rattan | B2B AI Strategy & Agentic Systems Consultant",
     description: "B2B AI Specialist & Agentic Systems Consultant. Expert in AI strategy, intelligent automation, and scalable operations for SMEs and entrepreneurs.",
     keywords: ["B2B AI Specialist India", "Agentic Systems", "B2B AI Solutions", "Agentic AI Consulting", "AI Strategy Consultant", "Pune AI Consultant", "Intelligent Automation", "B2B AI Strategy"]
   }

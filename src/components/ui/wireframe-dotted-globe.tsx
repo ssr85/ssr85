@@ -278,7 +278,7 @@ export default function RotatingEarth({
 
     const handleWheel = (event: WheelEvent) => {
       event.preventDefault()
-      const scaleFactor = event.deltaY > 0 ? 0.9 : 1.1
+      const scaleFactor = event.deltaY > 0 ? 0.9 : 3.9
       const newRadius = Math.max(radius * 0.5, Math.min(radius * 3, projection.scale() * scaleFactor))
       projection.scale(newRadius)
       render()

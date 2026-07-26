@@ -20,7 +20,7 @@ export const BeyondWork = () => {
         backgroundSize: "32px 32px",
       }} />
       <div className="container mx-auto relative z-10 max-w-5xl">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 mb-14">
+        <div className="flex flex-col md:flex-row md:items-center gap-8 mb-14">
           <div className="text-left max-w-2xl">
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-5 tracking-wide">
               Personal
@@ -34,10 +34,10 @@ export const BeyondWork = () => {
           </div>
           
           {/* Rotating Dotted Globe next to header */}
-          <div className="flex justify-start md:justify-end items-center pointer-events-none select-none">
+          <div className="flex justify-start md:justify-start items-center select-none">
             <div 
               className="w-40 h-40 md:w-56 md:h-56 transform" 
-              style={{ transform: "rotate(23.5deg)" }}
+              style={{ transform: "rotate(336.5deg)" }}
             >
               <RotatingEarth 
                 width={220} 

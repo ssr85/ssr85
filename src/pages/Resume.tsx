@@ -431,6 +431,12 @@ const Resume = () => {
                   year: "2023",
                   link: "https://drive.google.com/file/d/1vIfwpvLMGmkQzRNt7Quva1_lPw3y3WU5/view?usp=drive_link"
                 },
+                {
+                  title: "Products Management using Generative and Agentic AI",
+                  authority: "BITS School of Management",
+                  year: "2026",
+                  link: "https://drive.google.com/file/d/1hq1fYilej1Fm8rYcy9cpKzBxBBTxY8ea/view?usp=drivesdk"
+                },
               ].map((cert, idx) => (
                 <div key={idx} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
                   <p style={{ fontSize: "9pt", color: "#333", margin: 0 }}>

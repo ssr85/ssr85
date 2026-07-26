@@ -28,7 +28,7 @@ export const SEO = ({
   const seoTitle = title || siteConfig.meta.title;
   const seoDescription = description || siteConfig.meta.description;
   const seoKeywords = keywords || siteConfig.meta.keywords;
-  const seoImage = image || "https://storage.googleapis.com/gpt-engineer-file-uploads/qp12k9i7O0TTT9ff1Ydv9shUvex1/social-images/social-1766337520027-Screenshot%202025-12-21%20at%2022.48.19.png";
+  const seoImage = image || "https://sarabjeetrattan.com/images/og-default.webp";
 
   const websiteSchema = {
     "@type": "WebSite",

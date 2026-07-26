@@ -13,12 +13,6 @@ const knownRoutes = [
   { loc: '/resume', priority: '0.9', changefreq: 'monthly' },
   { loc: '/llms.txt', priority: '0.9', changefreq: 'weekly' },
   { loc: '/llms-full.txt', priority: '0.9', changefreq: 'weekly' },
-  { loc: '/#snapshot', priority: '0.7', changefreq: 'monthly' },
-  { loc: '/#case-studies', priority: '0.7', changefreq: 'monthly' },
-  { loc: '/#projects', priority: '0.7', changefreq: 'monthly' },
-  { loc: '/#services', priority: '0.7', changefreq: 'monthly' },
-  { loc: '/#faq', priority: '0.5', changefreq: 'monthly' },
-  { loc: '/#beyond', priority: '0.5', changefreq: 'monthly' },
 ];
 
 function processHtmlFiles(dir) {
