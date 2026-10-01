@@ -153,32 +153,6 @@ All colors MUST be HSL.
     animation: smooth-bounce 2.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   }
 
-  .tagline-track {
-    display: inline-flex;
-    flex-direction: column;
-    animation: tagline-cycle 25s infinite;
-  }
-
-  .tagline-item {
-    height: 1.2em;
-    display: flex;
-    align-items: center;
-  }
-
-  @keyframes tagline-cycle {
-    0%, 18% { transform: translateY(0); }
-    20%, 38% { transform: translateY(-1.2em); }
-    40%, 58% { transform: translateY(-2.4em); }
-    60%, 78% { transform: translateY(-3.6em); }
-    80%, 98% { transform: translateY(-4.8em); }
-    100% { transform: translateY(0); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .tagline-track {
-      animation: none;
-    }
-  }
 
   /* Card shadow scale */
   .shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }

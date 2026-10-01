@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Globe, Zap, BrainCircuit, CheckCircle2 } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { siteConfig, heroTags } from "@/data/content";
 import { scrollToSection } from "@/lib/scroll";
 import { EngineeringGrid } from "@/components/EngineeringGrid";
@@ -13,8 +13,18 @@ interface HeroProps {
 
 export const Hero = ({ onOpenEnquiry }: HeroProps) => {
   const [scrollY, setScrollY] = useState(0);
+  const [tagIndex, setTagIndex] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   const scrollYRef = useRef(0);
+
+  useEffect(() => {
+    setIsMounted(true);
+    const interval = setInterval(() => {
+      setTagIndex((prev) => (prev + 1) % heroTags.length);
+    }, 2800);
+    return () => clearInterval(interval);
+  }, []);
 
   useThrottledScroll(() => {
     if (heroRef.current) {
@@ -69,18 +79,29 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
           <div className="lg:col-span-8 flex flex-col items-start justify-between min-h-full">
             <div className="space-y-8">
               <h1
-                className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.1] tracking-tight animate-hero-fade"
+                className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.15] tracking-tight animate-hero-fade"
                 style={{ animationDelay: "0.15s" }}
               >
                 Engineering <br />
-                <span className="relative inline-block h-[1.2em] overflow-hidden align-top">
-                  <span className="tagline-track">
-                    {heroTags.map((tag) => (
-                      <span key={tag} className="tagline-item text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary whitespace-nowrap">
-                        {tag}
-                      </span>
-                    ))}
-                  </span>
+                <span className="relative inline-flex items-center h-[1.3em] overflow-hidden align-top">
+                  {isMounted ? (
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={heroTags[tagIndex]}
+                        initial={{ y: "100%", opacity: 0 }}
+                        animate={{ y: "0%", opacity: 1 }}
+                        exit={{ y: "-100%", opacity: 0 }}
+                        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                        className="inline-block text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary whitespace-nowrap py-1"
+                      >
+                        {heroTags[tagIndex]}
+                      </motion.span>
+                    </AnimatePresence>
+                  ) : (
+                    <span className="inline-block text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary whitespace-nowrap py-1">
+                      {heroTags[0]}
+                    </span>
+                  )}
                 </span>
                 <br />for B2B Scale.
               </h1>
