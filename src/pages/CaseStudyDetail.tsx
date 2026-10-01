@@ -142,7 +142,7 @@ const LeadOGArchitectureVisual = () => (
     <div className="space-y-4">
       {/* Slider / Range bar */}
       <div className="space-y-2">
-        <div className="h-3 w-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 rounded-full relative">
+        <div className="h-3 w-full bg-gradient-to-r from-red-500 via-yellow-500 to-success rounded-full relative">
           {/* Unmatched marker */}
           <div className="absolute left-[30%] -top-1 h-5 w-1 bg-foreground dark:bg-muted rounded" />
           {/* Review marker */}
@@ -158,11 +158,11 @@ const LeadOGArchitectureVisual = () => (
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
         <div className="p-3 bg-muted/40 rounded-lg flex justify-between items-center text-xs">
           <span className="font-medium text-foreground">Person + Company alignment</span>
-          <Badge className="bg-green-600 text-white font-mono">+20 score</Badge>
+          <Badge className="bg-success text-success-foreground font-mono">+20 score</Badge>
         </div>
         <div className="p-3 bg-muted/40 rounded-lg flex justify-between items-center text-xs">
           <span className="font-medium text-foreground">Surname + Company match</span>
-          <Badge className="bg-green-600 text-white font-mono">+15 score</Badge>
+          <Badge className="bg-success text-success-foreground font-mono">+15 score</Badge>
         </div>
       </div>
     </div>

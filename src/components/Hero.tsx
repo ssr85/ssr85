@@ -44,14 +44,14 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
       ref={heroRef}
       className="min-h-[95vh] flex items-center justify-center pt-24 pb-16 px-4 bg-background relative overflow-hidden font-sans"
     >
-      <EngineeringGrid size="4rem 4rem" opacity={0.3} />
+      <EngineeringGrid size="4rem 4rem" opacity={0.12} />
 
       <div
-        className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/[0.03] rounded-full blur-[120px] pointer-events-none"
+        className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/[0.08] rounded-full blur-[120px] pointer-events-none"
         style={{ transform: `translateY(${scrollY * 0.05}px)` }}
       />
       <div
-        className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/[0.03] rounded-full blur-[100px] pointer-events-none"
+        className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/[0.04] rounded-full blur-[100px] hidden pointer-events-none"
         style={{ transform: `translateY(${scrollY * -0.03}px)` }}
       />
       <div
@@ -137,7 +137,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
                 </span>
-                <p className="text-xs font-bold uppercase tracking-widest text-primary">Open For</p>
+                <p className="font-mono text-xs uppercase tracking-widest text-primary">Open For</p>
               </div>
               <ul className="space-y-3 border-t border-border/50 pt-4">
                 {["AI Strategy & Roadmap", "B2B Agentic Builds", "Ops Transformation"].map((item) => (
@@ -151,12 +151,12 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
 
             <div className="grid grid-cols-2 gap-4 mt-6">
               <div className="p-5 rounded-xl bg-muted/40 border border-border/50 flex flex-col justify-center">
-                <Globe className="h-6 w-6 text-secondary mb-3" />
+                <Globe className="h-6 w-6 text-primary mb-3" />
                 <p className="font-bold text-foreground">Global</p>
                 <p className="text-xs text-muted-foreground mt-1">4 Continents</p>
               </div>
               <div className="p-5 rounded-xl bg-muted/40 border border-border/50 flex flex-col justify-center">
-                <Zap className="h-6 w-6 text-accent mb-3" />
+                <Zap className="h-6 w-6 text-primary mb-3" />
                 <p className="font-bold text-foreground">Efficiency</p>
                 <p className="text-xs text-muted-foreground mt-1">Tech-enabled</p>
               </div>

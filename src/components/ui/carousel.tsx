@@ -2,8 +2,9 @@ import { useRef, useState, useEffect, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 interface CarouselProps {
-  items: ReactNode[];
-  renderItem: (item: ReactNode, index: number, isActive: boolean) => ReactNode;
+  items: unknown[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  renderItem: (item: any, index: number, isActive: boolean) => ReactNode;
   autoScroll?: boolean;
   interval?: number;
   className?: string;

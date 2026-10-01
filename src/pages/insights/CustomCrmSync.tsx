@@ -110,7 +110,7 @@ export const CustomCrmSync = () => {
 
           {/* 2. THE SOLUTION & ARCHITECTURE */}
           <section className="space-y-6">
-            <div className="flex items-center gap-2 text-emerald-500 font-mono text-xs uppercase tracking-wider font-bold">
+            <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-bold">
               <CheckCircle2 className="w-4 h-4" /> The Engineered Solution
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
@@ -134,7 +134,7 @@ export const CustomCrmSync = () => {
                 </div>
               </div>
               <div className="p-4 rounded-xl bg-card border border-border/80 space-y-1.5">
-                <div className="text-emerald-500 font-bold">Flat Serverless Hosting</div>
+                <div className="text-success font-bold">Flat Serverless Hosting</div>
                 <div className="text-muted-foreground font-sans">
                   Zero per-task fees. Runs on lightweight serverless infrastructure with 99.99% uptime.
                 </div>
@@ -167,7 +167,7 @@ export const CustomCrmSync = () => {
                 </p>
               </div>
               <div className="space-y-2">
-                <div className="text-xs font-mono text-emerald-500 font-bold">Phase 3: Live Verification</div>
+                <div className="text-xs font-mono text-success font-bold">Phase 3: Live Verification</div>
                 <h3 className="font-bold text-foreground text-sm">Historical Backfill & Sync</h3>
                 <p className="text-xs text-muted-foreground">
                   Clean historical data migration, zero duplicate guarantees, and 24/7 monitoring alerts.

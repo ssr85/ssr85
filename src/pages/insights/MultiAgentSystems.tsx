@@ -110,7 +110,7 @@ export const MultiAgentSystems = () => {
 
           {/* 2. THE SOLUTION & ARCHITECTURE */}
           <section className="space-y-6">
-            <div className="flex items-center gap-2 text-emerald-500 font-mono text-xs uppercase tracking-wider font-bold">
+            <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-bold">
               <CheckCircle2 className="w-4 h-4" /> The Engineered Solution
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
@@ -134,7 +134,7 @@ export const MultiAgentSystems = () => {
                 </div>
               </div>
               <div className="p-4 rounded-xl bg-card border border-border/80 space-y-1.5">
-                <div className="text-emerald-500 font-bold">3. Validation & Sign-off</div>
+                <div className="text-success font-bold">3. Validation & Sign-off</div>
                 <div className="text-muted-foreground font-sans">
                   Validates schemas against strict type definitions and gates external execution for human approval.
                 </div>
@@ -167,7 +167,7 @@ export const MultiAgentSystems = () => {
                 </p>
               </div>
               <div className="space-y-2">
-                <div className="text-xs font-mono text-emerald-500 font-bold">Stage 3: Safeguards</div>
+                <div className="text-xs font-mono text-success font-bold">Stage 3: Safeguards</div>
                 <h3 className="font-bold text-foreground text-sm">Human-in-the-Loop Gateways</h3>
                 <p className="text-xs text-muted-foreground">
                   Interactive dashboard or Slack/Email approval triggers for complete operational safety.

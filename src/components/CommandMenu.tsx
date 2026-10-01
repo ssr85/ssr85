@@ -119,7 +119,7 @@ export const CommandMenu = ({
             onSelect={() => handleSelect(() => navigateTo("/insights/local-llm-lm-studio-workflow"))}
             className="flex items-center gap-2.5"
           >
-            <Laptop className="w-4 h-4 text-emerald-500" />
+            <Laptop className="w-4 h-4 text-success" />
             <span>Local LLMs & LM Studio (Zero Token Costs)</span>
           </CommandItem>
 
@@ -167,7 +167,7 @@ export const CommandMenu = ({
             onSelect={() => handleSelect(() => navigateTo("/insights/google-sheets-apps-script-enterprise"))}
             className="flex items-center gap-2.5"
           >
-            <FileText className="w-4 h-4 text-emerald-600" />
+            <FileText className="w-4 h-4 text-success" />
             <span>Enterprise Google Sheets & Apps Script ERP</span>
           </CommandItem>
         </CommandGroup>
