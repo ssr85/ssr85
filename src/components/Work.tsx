@@ -25,6 +25,7 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
   const [activeTab, setActiveTab] = useState<TabId>("all");
   const [selectedDesktopIndex, setSelectedDesktopIndex] = useState(0);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const rhsRef = useRef<HTMLDivElement | null>(null);
 
   const filteredItems = activeTab === "all"
     ? workItems
@@ -34,41 +35,71 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
   const safeDesktopIndex = Math.min(selectedDesktopIndex, filteredItems.length - 1);
   const activeItem = filteredItems[safeDesktopIndex] || filteredItems[0];
 
-  // Scroll-linked Intersection Observer for LHS items
+  // Exact Scroll-Linked Sync: detects whichever LHS card's center aligns with the RHS card's vertical center
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
+    let ticking = false;
 
-    cardRefs.current.forEach((el, index) => {
-      if (!el) return;
+    const updateActiveCardByRhsCenter = () => {
+      const rhs = rhsRef.current;
+      if (!rhs) return;
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setSelectedDesktopIndex(index);
-            }
-          });
-        },
-        {
-          rootMargin: "-25% 0px -40% 0px",
-          threshold: 0.1,
+      const rhsRect = rhs.getBoundingClientRect();
+      // The exact vertical center of the pinned RHS card in viewport space
+      const rhsCenterY = rhsRect.top + rhsRect.height / 2;
+
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      cardRefs.current.forEach((card, index) => {
+        if (!card) return;
+        const cardRect = card.getBoundingClientRect();
+        // The vertical center of this LHS card
+        const cardCenterY = cardRect.top + cardRect.height / 2;
+        const distance = Math.abs(cardCenterY - rhsCenterY);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
         }
-      );
+      });
 
-      observer.observe(el);
-      observers.push(observer);
-    });
+      setSelectedDesktopIndex((prev) => (prev !== closestIndex ? closestIndex : prev));
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateActiveCardByRhsCenter);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    updateActiveCardByRhsCenter();
 
     return () => {
-      observers.forEach((obs) => obs.disconnect());
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
     };
   }, [filteredItems, activeTab]);
 
+  // Smooth click scroll: scrolls window so the clicked LHS card centers precisely with the RHS card
   const scrollToCard = (index: number) => {
     setSelectedDesktopIndex(index);
-    const target = cardRefs.current[index];
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "center" });
+    const card = cardRefs.current[index];
+    const rhs = rhsRef.current;
+    if (card && rhs) {
+      const cardRect = card.getBoundingClientRect();
+      const rhsRect = rhs.getBoundingClientRect();
+      const cardCenterY = cardRect.top + cardRect.height / 2;
+      const rhsCenterY = rhsRect.top + rhsRect.height / 2;
+      const scrollOffset = cardCenterY - rhsCenterY;
+
+      window.scrollBy({
+        top: scrollOffset,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -196,11 +227,11 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
           </div>
         </ScrollAnimationWrapper>
 
-        {/* Desktop Sticky Narrative Layout (LHS Scrolls with Page, RHS Pins & Auto-Updates) */}
+        {/* Desktop Sticky Narrative Layout (LHS Scrolls with Page, RHS Pins & Centers) */}
         <div className="hidden lg:grid grid-cols-12 gap-10 items-start relative">
           
-          {/* Left Column: Natural Scrolling Stream of Project Cards */}
-          <div className="col-span-5 space-y-6 pb-12">
+          {/* Left Column: Natural Scrolling Stream with Balanced Vertical Offset */}
+          <div className="col-span-5 space-y-8 pt-12 pb-56">
             {filteredItems.map((item, idx) => {
               const isSelected = idx === safeDesktopIndex;
               return (
@@ -211,16 +242,16 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                   className={cn(
                     "p-6 rounded-[1.75rem] transition-all duration-500 cursor-pointer border relative group",
                     isSelected
-                      ? "bg-white/[0.07] border-primary/50 shadow-2xl shadow-primary/10 ring-1 ring-primary/25 scale-[1.02] opacity-100"
-                      : "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.12] opacity-45 hover:opacity-85 scale-[0.99]"
+                      ? "bg-white/[0.08] border-primary/50 shadow-2xl shadow-primary/10 ring-1 ring-primary/25 scale-[1.03] opacity-100"
+                      : "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.12] opacity-40 hover:opacity-80 scale-[0.98]"
                   )}
                 >
                   {/* Card Header Telemetry */}
                   <div className="flex items-center justify-between mb-3">
                     <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
                       <span className={cn(
-                        "w-1.5 h-1.5 rounded-full transition-colors",
-                        isSelected ? "bg-primary animate-pulse" : "bg-muted-foreground/40"
+                        "w-2 h-2 rounded-full transition-colors",
+                        isSelected ? "bg-primary animate-pulse shadow-sm shadow-primary" : "bg-muted-foreground/30"
                       )} />
                       0{idx + 1} // {item.category}
                     </span>
@@ -282,7 +313,7 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
           </div>
 
           {/* Right Column: Pinned Sticky Inspector Window */}
-          <div className="col-span-7 sticky top-24">
+          <div ref={rhsRef} className="col-span-7 sticky top-24">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeItem.id}
