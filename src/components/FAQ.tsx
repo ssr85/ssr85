@@ -1,10 +1,18 @@
+import { useState } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import { ScrollAnimationWrapper } from "./ScrollAnimationWrapper";
+import { EngineeringGrid } from "./EngineeringGrid";
+import { Search, ArrowRight } from "lucide-react";
+
+interface FAQProps {
+  onOpenEnquiry: () => void;
+}
 
 const faqs = [
   {
@@ -37,12 +45,23 @@ const faqs = [
   }
 ];
 
-export const FAQ = () => {
+export const FAQ = ({ onOpenEnquiry }: FAQProps) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredFaqs = searchQuery
+    ? faqs.filter(
+        (faq) =>
+          faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : faqs;
+
   return (
-    <section id="faq" className="py-24 bg-muted/30">
-      <div className="container px-4 mx-auto max-w-4xl">
+    <section id="faq" className="py-24 bg-muted/30 relative overflow-hidden">
+      <EngineeringGrid opacity={0.02} />
+      <div className="container px-4 mx-auto max-w-4xl relative z-10">
         <ScrollAnimationWrapper>
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
             <p className="text-muted-foreground text-lg">
               Quick insights into B2B AI systems and agentic workflows for growing businesses.
@@ -51,19 +70,49 @@ export const FAQ = () => {
         </ScrollAnimationWrapper>
 
         <ScrollAnimationWrapper delay={100}>
-          <div className="bg-card border rounded-2xl p-6 md:p-8 shadow-sm">
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-b last:border-0 py-2">
-                  <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline hover:text-primary transition-colors py-4">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-4">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+          <div className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl p-6 md:p-8 shadow-sm space-y-6">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Find an answer..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 rounded-full bg-muted/50 border border-border/50 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
+              />
+            </div>
+
+            {filteredFaqs.length > 0 ? (
+              <Accordion type="single" collapsible className="w-full">
+                {filteredFaqs.map((faq, index) => (
+                  <AccordionItem key={index} value={`item-${index}`} className="border-b last:border-0 py-2">
+                    <AccordionTrigger className="text-left font-semibold text-base hover:no-underline hover:text-primary transition-colors py-4">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-4">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            ) : (
+              <div className="text-center py-8 text-muted-foreground">
+                <p className="text-sm">No matching questions found.</p>
+              </div>
+            )}
+
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-border/50">
+              <p className="text-sm text-muted-foreground">
+                Still have questions?
+              </p>
+              <Button
+                onClick={onOpenEnquiry}
+                size="sm"
+                className="rounded-full gap-2"
+              >
+                Let's Connect <ArrowRight size={14} />
+              </Button>
+            </div>
           </div>
         </ScrollAnimationWrapper>
       </div>

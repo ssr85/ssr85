@@ -66,11 +66,28 @@ export default function RotatingEarth({
       return inside
     }
 
-    const pointInFeature = (point: [number, number], feature: any): boolean => {
+    interface GeoFeature {
+      type: string;
+      geometry: {
+        type: string;
+        coordinates: number[][][] | number[][][][];
+      };
+      properties?: {
+        featurecla?: string;
+        [key: string]: unknown;
+      };
+    }
+
+    interface GeoFeatureCollection {
+      type: string;
+      features: GeoFeature[];
+    }
+
+    const pointInFeature = (point: [number, number], feature: GeoFeature): boolean => {
       const geometry = feature.geometry
 
       if (geometry.type === "Polygon") {
-        const coordinates = geometry.coordinates
+        const coordinates = geometry.coordinates as number[][][]
         // Check if point is in outer ring
         if (!pointInPolygon(point, coordinates[0])) {
           return false
@@ -83,8 +100,9 @@ export default function RotatingEarth({
         }
         return true
       } else if (geometry.type === "MultiPolygon") {
+        const coordinates = geometry.coordinates as number[][][][]
         // Check each polygon in the MultiPolygon
-        for (const polygon of geometry.coordinates) {
+        for (const polygon of coordinates) {
           // Check if point is in outer ring
           if (pointInPolygon(point, polygon[0])) {
             // Check if point is in any hole
@@ -106,9 +124,9 @@ export default function RotatingEarth({
       return false
     }
 
-    const generateDotsInPolygon = (feature: any, dotSpacing = 16) => {
+    const generateDotsInPolygon = (feature: GeoFeature, dotSpacing = 16) => {
       const dots: [number, number][] = []
-      const bounds = d3.geoBounds(feature)
+      const bounds = d3.geoBounds(feature as unknown as d3.GeoGeometryObjects)
       const [[minLng, minLat], [maxLng, maxLat]] = bounds
 
       const stepSize = dotSpacing * 0.08
@@ -138,7 +156,7 @@ export default function RotatingEarth({
     }
 
     const allDots: DotData[] = []
-    let landFeatures: any
+    let landFeatures: GeoFeatureCollection | null = null
 
     const render = () => {
       // Clear canvas
@@ -171,8 +189,8 @@ export default function RotatingEarth({
 
         // Draw land outlines
         context.beginPath()
-        landFeatures.features.forEach((feature: any) => {
-          path(feature)
+        landFeatures.features.forEach((feature: GeoFeature) => {
+          path(feature as unknown as d3.GeoGeometryObjects)
         })
         context.strokeStyle = strokeColor
         context.lineWidth = 1 * scaleFactor
@@ -210,13 +228,15 @@ export default function RotatingEarth({
 
         // Generate dots for all land features
         let totalDots = 0
-        landFeatures.features.forEach((feature: any) => {
-          const dots = generateDotsInPolygon(feature, 16)
-          dots.forEach(([lng, lat]) => {
-            allDots.push({ lng, lat, visible: true })
-            totalDots++
+        if (landFeatures && landFeatures.features) {
+          landFeatures.features.forEach((feature: GeoFeature) => {
+            const dots = generateDotsInPolygon(feature, 16)
+            dots.forEach(([lng, lat]) => {
+              allDots.push({ lng, lat, visible: true })
+              totalDots++
+            })
           })
-        })
+        }
 
         console.log(`[v0] Total dots generated: ${totalDots} across ${landFeatures.features.length} land features`)
 

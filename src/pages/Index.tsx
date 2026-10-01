@@ -5,11 +5,11 @@ import { Hero } from "@/components/Hero";
 import { Stats } from "@/components/Stats";
 import { Footer } from "@/components/Footer";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
+import { SectionNav } from "@/components/SectionNav";
 
 import { Snapshot } from "@/components/Snapshot";
-import { CaseStudies } from "@/components/CaseStudies";
+import { Work } from "@/components/Work";
 import { Strengths } from "@/components/Strengths";
-import { Projects } from "@/components/Projects";
 import { Services } from "@/components/Services";
 import { FAQ } from "@/components/FAQ";
 import { BeyondWork } from "@/components/BeyondWork";
@@ -28,6 +28,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <SEO />
       <Header onOpenEnquiry={openEnquiry} />
+      <SectionNav />
       <main>
         <Hero onOpenEnquiry={openEnquiry} />
         <ScrollAnimationWrapper>
@@ -36,19 +37,14 @@ const Index = () => {
         <ScrollAnimationWrapper delay={100}>
           <Snapshot />
         </ScrollAnimationWrapper>
-        <ScrollAnimationWrapper delay={200}>
-          <CaseStudies />
-        </ScrollAnimationWrapper>
+        <Work onOpenEnquiry={openEnquiry} />
         <ScrollAnimationWrapper delay={100}>
           <Strengths />
         </ScrollAnimationWrapper>
         <ScrollAnimationWrapper delay={100}>
-          <Projects />
-        </ScrollAnimationWrapper>
-        <ScrollAnimationWrapper delay={100}>
           <Services onOpenEnquiry={openEnquiry} />
         </ScrollAnimationWrapper>
-        <FAQ />
+        <FAQ onOpenEnquiry={openEnquiry} />
         <ScrollAnimationWrapper delay={100}>
           <BeyondWork />
         </ScrollAnimationWrapper>

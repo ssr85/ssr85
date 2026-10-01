@@ -2,6 +2,12 @@
 
 This file contains strict behavioural constraints and guidelines for all agentic AI coders working in this workspace. Always consult this document before proposing changes.
 
+## NEXT SESSION — High-Priority Task
+
+> **Build n8n Workflows Landing Page (`/n8n-workflows`)**
+> See full implementation plan: `docs/plans/2026-07-27-n8n-workflows-landing-page.md`
+> Inspired by a LinkedIn article on "Top 10 n8n Workflows Every Startup Should Automate" — SSR wants to offer these automation services. Scaffold the page, add route, build all sections.
+
 ## 1. General Behavioural Rules
 
 - **Image Generation Constraint**: Under no circumstances should you proactively generate placeholder or preview images using `generate_image` tools unless the USER explicitly requests it with a detailed prompt. Avoid placeholder icons or graphics; use Lucide-react SVGs or existing assets.

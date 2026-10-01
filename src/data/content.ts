@@ -97,11 +97,41 @@ export interface CaseStudy {
   };
 }
 
-export const caseStudies: CaseStudy[] = [
+export type WorkItemType = 'case-study' | 'project';
+
+export interface WorkItem {
+  id: string;
+  type: WorkItemType;
+  name: string;
+  category: string;
+  audience?: string;
+  painPoints?: string[];
+  description: string;
+  stats: string[];
+  techStack: string[];
+  highlights?: string[];
+  images?: string[];
+  hasDetailPage?: boolean;
+  slug?: string;
+  heroImage?: string;
+  duration?: string;
+  role?: string;
+  sections?: CaseStudySection[];
+  keyMetrics?: { label: string; value: string }[];
+  seo?: {
+    metaTitle: string;
+    metaDescription: string;
+    keywords: string[];
+  };
+}
+
+export const workItems: WorkItem[] = [
+  // B2B AI Builds
   {
+    type: "case-study",
     id: "lead-og",
     name: "Lead OG",
-    category: "B2B AI Solutions / CRM Automation",
+    category: "B2B AI Solutions",
     audience: "B2B Sales Teams & SDRs",
     painPoints: [
       "Fragmented lead research",
@@ -174,9 +204,10 @@ export const caseStudies: CaseStudy[] = [
     },
   },
   {
+    type: "case-study",
     id: "linked-in",
-    name: "Linked-In",
-    category: "Agentic Engineering / Content Automation",
+    name: "LinkedIn Automation",
+    category: "Agentic Engineering",
     audience: "Founders & Digital Publishers",
     painPoints: [
       "Inconsistent publishing schedules",
@@ -241,15 +272,16 @@ export const caseStudies: CaseStudy[] = [
       }
     ],
     seo: {
-      metaTitle: "Linked-In Case Study | CrewAI Content Automation Engine — Sarabjeet Rattan",
+      metaTitle: "LinkedIn Case Study | CrewAI Content Automation Engine — Sarabjeet Rattan",
       metaDescription: "How I engineered a Trello-driven LinkedIn automation system using CrewAI for intelligent content drafting with human-in-the-loop publishing.",
       keywords: ["LinkedIn Automation", "CrewAI", "Content Automation", "Trello Integration", "HITL"],
     },
   },
   {
+    type: "case-study",
     id: "prospect-iq",
     name: "Prospect IQ",
-    category: "Agentic Engineering / Data Intelligence",
+    category: "Agentic Engineering",
     audience: "Marketing & Web Design Agencies",
     painPoints: [
       "Incomplete 360° prospect audits",
@@ -264,9 +296,10 @@ export const caseStudies: CaseStudy[] = [
     techStack: ["Next.js 14", "BullMQ / Redis", "Supabase", "Social Scraping Engine", "Tailwind CSS"]
   },
   {
+    type: "case-study",
     id: "compliance-iq",
     name: "Compliance IQ",
-    category: "Agentic Engineering / Regulatory RAG",
+    category: "Agentic Engineering",
     audience: "Medical Device Manufacturers & Pharma",
     painPoints: [
       "Complex CDSCO/MDR-2017 navigation",
@@ -275,68 +308,116 @@ export const caseStudies: CaseStudy[] = [
       "Delayed compliance verification",
       "Ever-changing health regulations"
     ],
-    description: "Developed a specialized RAG (Retrieval-Augmented Generation) pipeline for Indian medical device regulations. Navigates thousands of pages of CDSCO and MDR-2017 documentation to provide instant, cited compliance answers.",
+    description: "Developed a specialized RAG pipeline for Indian medical device regulations. Navigates thousands of pages of CDSCO and MDR-2017 documentation to provide instant, cited compliance answers.",
     stats: ["Regulatory RAG pipeline", "Cited Compliance Answers", "CDSCO/MDR-2017 Context"],
     techStack: ["Python / FastAPI", "LangChain", "Pinecone Vector DB", "OpenAI GPT-4", "Regulatory PDF Parser"]
   },
   {
+    type: "case-study",
     id: "content-og",
     name: "ContentOG",
-    category: "SEO Intelligence / Content Strategy",
-    audience: "Content teams, SEO agencies, and publishers needing data-driven content strategies at scale",
+    category: "SEO Intelligence",
+    audience: "Content teams, SEO agencies, publishers",
     painPoints: [
-      "Manual SERP research takes hours and misses competitors",
-      "No systematic way to identify content gaps and topic clusters",
-      "Content strategies rely on intuition rather than data",
+      "Manual SERP research takes hours",
+      "No systematic content gap analysis",
+      "Intuition-based content strategies",
       "Disconnected research-to-publishing workflows",
     ],
-    description: "An autonomous SEO intelligence system that discovers ranking opportunities, extracts People Also Ask questions, crawls content, generates embeddings, detects topic clusters, and produces data-driven content strategies — all without manual intervention.",
+    description: "An autonomous SEO intelligence system that discovers ranking opportunities, extracts People Also Ask questions, crawls content, generates embeddings, detects topic clusters, and produces data-driven content strategies.",
     stats: [
-      "End-to-end automation from SERP discovery to strategy generation",
-      "Multi-agent pipeline: Discovery → PAA → Crawl → Embed → Cluster → Strategize",
-      "Vector embeddings for semantic topic clustering",
+      "SERP discovery to strategy generation",
+      "Multi-agent pipeline",
+      "Semantic topic clustering",
     ],
     techStack: ["Python", "CrewAI", "Supabase", "pgvector", "OpenAI", "SERP API"],
   },
   {
+    type: "case-study",
     id: "linkedin-leadgen",
     name: "LinkedIn LeadGen",
-    category: "B2B Outreach / Agentic Automation",
-    audience: "B2B sales teams and agencies needing compliant, automated LinkedIn outreach at scale",
+    category: "B2B Outreach",
+    audience: "B2B sales teams and agencies",
     painPoints: [
-      "Manual LinkedIn outreach doesn't scale beyond a handful of prospects",
-      "Automated outreach risks account bans without proper rate limiting",
-      "No way to orchestrate multi-step sequences with human oversight",
-      "Browser automation is fragile without proper fingerprint masking",
+      "Manual LinkedIn outreach doesn't scale",
+      "Automated outreach risks account bans",
+      "No multi-step sequence orchestration",
+      "Fragile browser automation",
     ],
-    description: "A hybrid B2B LinkedIn outreach system combining headless browser automation (Playwright/OpenOutreach) with LangGraph orchestration, LinkedIn's enterprise-grade rate limiting (iris, luminol, detext, gdmix), and VPN-isolated worker topology for compliant, large-scale prospect engagement.",
+    description: "A hybrid B2B LinkedIn outreach system combining headless browser automation with LangGraph orchestration, enterprise-grade rate limiting, and VPN-isolated worker topology.",
     stats: [
-      "9-layer architecture: browser automation to VPN isolation to rate limiting",
-      "LangGraph supervisor handles state machine, retries, and agent routing",
-      "Enterprise rate limiting via LinkedIn's open-source infrastructure stack",
-      "Full OpenTelemetry tracing across every agent and proxy request",
+      "9-layer architecture",
+      "LangGraph state machine",
+      "Enterprise rate limiting",
+      "OpenTelemetry tracing",
     ],
     techStack: ["LangGraph", "Playwright", "OpenOutreach", "Docker", "Gluetun VPN", "OpenTelemetry"],
   },
   {
+    type: "case-study",
     id: "multimodal-rag",
-    name: "Multimodal RAG Framework",
-    category: "Enterprise Document AI / Knowledge Retrieval",
-    audience: "Enterprises needing to index and query multimodal content (PDFs, images, video) from cloud storage",
+    name: "Multimodal RAG",
+    category: "Enterprise Document AI",
+    audience: "Enterprises with cloud content",
     painPoints: [
-      "Traditional RAG systems can't handle images and video alongside text",
-      "Google Drive content is siloed and unsearchable across formats",
-      "No unified pipeline for multimodal indexing and agentic retrieval",
-      "Embedding models lack support for mixed-media document understanding",
+      "Traditional RAG can't handle images/video",
+      "Google Drive content is siloed",
+      "No unified multimodal pipeline",
+      "Embedding models lack mixed-media support",
     ],
-    description: "A production-ready agentic RAG framework that indexes multimodal content (PDFs, images, video) from Google Drive using Google ADK orchestration. Features two-pass indexing with dense multimodal summaries, 768-dimension Gemini embeddings, and agentic retrieval with Gemini 3 Flash reasoning.",
+    description: "A production-ready agentic RAG framework that indexes multimodal content (PDFs, images, video) from Google Drive using Google ADK orchestration.",
     stats: [
-      "Multimodal indexing: PDF, images, and video from Google Drive",
-      "Two-pass indexing with high-density multimodal summaries",
-      "768-dimension Gemini Embedding 2 vectors with MRL support",
-      "Agentic orchestration via Google ADK with Gemini 3 Flash reasoning",
+      "Multimodal indexing from Google Drive",
+      "Two-pass indexing with summaries",
+      "768-dimension Gemini embeddings",
+      "Agentic retrieval with Gemini 3 Flash",
     ],
     techStack: ["Google ADK", "Gemini 3 Flash", "Gemini Embedding 2", "Supabase", "pgvector", "Google Drive API"],
+  },
+  // Business Impact Projects
+  {
+    type: "project",
+    id: "og-hemp",
+    name: "OG Hemp",
+    category: "Sustainable Enterprise",
+    description: "Architected the comprehensive go-to-market strategy for premium hemp-products, focusing on hemp paper pulp, composite packaging, and moulded hemp products. Engineered a resilient Hemp Paper Supply Chain model.",
+    highlights: ["Revenue Strategy", "Hemp Paper Pulp & Composites", "Moulded Product Packaging"],
+    stats: ["Global Distribution", "Sustainable Packaging", "12+ Countries"],
+    techStack: ["GTM Strategy", "Supply Chain", "International Trade", "Compliance"],
+    images: ["/images/projects/og-hemp-1.webp", "/images/projects/og-hemp-cover.webp", "/images/projects/og-hemp-2.webp"],
+  },
+  {
+    type: "project",
+    id: "skaizen-water",
+    name: "Skaizen Water",
+    category: "Operations Optimization",
+    description: "Optimized water purification operations via end-to-end automation logistics, successfully accelerating total B2B customer acquisition and retention.",
+    highlights: ["Workflow Automation", "B2B Expansion", "Quality Assurance"],
+    stats: ["30% Cost Reduction", "30% Usage Reduction", "40% Bottleneck Reduction"],
+    techStack: ["Process Automation", "Operations Design", "B2B Sales", "Quality Systems"],
+    images: ["/images/projects/skaizen-cover.webp"],
+  },
+  {
+    type: "project",
+    id: "tech-automation",
+    name: "Internal Automation Suite",
+    category: "Technical Implementation",
+    description: "Developed and deployed custom web applications and deep automation pipelines to bypass operational bottlenecks and surface real-time executive metrics.",
+    highlights: ["Full-Stack Development", "Process Automation", "Executive Analytics"],
+    stats: ["Custom Web Applications", "Automated Workflows", "Real-time Dashboards"],
+    techStack: ["React", "Next.js", "Supabase", "Python", "APIs"],
+    images: ["/images/projects/automation-cover.webp"],
+  },
+  {
+    type: "project",
+    id: "international-bd",
+    name: "Global Market Entry",
+    category: "Strategic Growth",
+    description: "Spearheaded complex market-entry efforts, navigating international compliance frameworks to secure pivotal partner relationships for multi-continent exports.",
+    highlights: ["Global Strategy", "Alliance Building", "Export Compliance"],
+    stats: ["12 Countries", "5+ Major Partnerships", "International Compliance"],
+    techStack: ["Market Entry", "Compliance Navigation", "Partnership Development", "Export Strategy"],
+    images: ["/images/projects/global-market-cover.webp"],
   },
 ];
 
@@ -373,66 +454,32 @@ export const strengths = [
   },
 ];
 
-export const projects = [
-  {
-    id: "og-hemp",
-    name: "OG Hemp",
-    category: "Sustainable Enterprise",
-    description:
-      "Architected the comprehensive go-to-market strategy for premium hemp-products, focusing on hemp paper pulp, composite packaging, and moulded hemp products. As an industrial hemp packaging consultant, engineered a resilient Hemp Paper Supply Chain model to optimize domestic and international niche distribution.",
-    highlights: ["Revenue Strategy", "Hemp Paper Pulp & Composites", "Moulded Product Packaging"],
-    images: [
-      "/images/projects/og-hemp-1.webp", 
-      "/images/projects/og-hemp-cover.webp",
-      "/images/projects/og-hemp-2.webp"
-    ],
-  },
-  {
-    id: "skaizen-water",
-    name: "Skaizen Water",
-    category: "Operations Optimization",
-    description: "Optimized water purification operations via end-to-end automation logistics, successfully accelerating total B2B customer acquisition and retention.",
-    highlights: ["Workflow Automation", "B2B Expansion", "Quality Assurance"],
-    images: ["/images/projects/skaizen-cover.webp"],
-  },
-  {
-    id: "tech-automation",
-    name: "Internal Automation Suite",
-    category: "Technical Implementation",
-    description: "Developed and deployed custom web applications and deep automation pipelines to bypass operational bottlenecks and surface real-time executive metrics.",
-    highlights: ["Full-Stack Development", "Process Automation", "Executive Analytics"],
-    images: ["/images/projects/automation-cover.webp"],
-  },
-  {
-    id: "international-bd",
-    name: "Global Market Entry",
-    category: "Strategic Growth",
-    description: "Spearheaded complex market-entry efforts, navigating international compliance frameworks to secure pivotal partner relationships for multi-continent exports.",
-    highlights: ["Global Strategy", "Alliance Building", "Export Compliance"],
-    images: ["/images/projects/global-market-cover.webp"],
-  },
-];
+
 
 export const services = [
   {
-    title: "Operations Architecture",
-    description: "Comprehensive operational audits yielding actionable blueprints to radically increase efficiency, lower COGS, and unblock scale.",
-    icon: "Settings",
-  },
-  {
-    title: "GTM Strategy & Positioning",
-    description: "Go-to-market orchestration for novel sustainable products, optimizing for sharp positioning, high-margin channels, and unit economics.",
-    icon: "Leaf",
-  },
-  {
-    title: "Digital Transformation",
-    description: "Designing bespoke internal web applications and automation flows that eliminate massive manual bottlenecks.",
+    title: "Custom AI & Agentic Systems",
+    description: "Multi-agent orchestration, local LLM deployment via LM Studio, and high-velocity proprietary scraping pipelines built from scratch.",
     icon: "Code",
+    link: "/custom-ai-solutions",
   },
   {
-    title: "International Expansion",
-    description: "Sourcing robust global partners, advising on complex compliance, and executing practical, risk-managed market-entry operations.",
+    title: "AI WordPress & Plugin Engineering",
+    description: "Bespoke PHP plugins, lightweight executive admin dashboards, and headless React/Vite frontends with sub-500ms TTFB.",
+    icon: "Settings",
+    link: "/ai-wordpress-development",
+  },
+  {
+    title: "Bespoke Business & CRM Automation",
+    description: "Two-way Freshsales/HubSpot CRM sync engines, enterprise Google Apps Script workflows, and automated quotation pipelines.",
     icon: "Globe",
+    link: "/custom-business-automation",
+  },
+  {
+    title: "Operations & Architecture Strategy",
+    description: "Comprehensive technical and operational audits yielding actionable blueprints to eliminate manual bottlenecks and accelerate scale.",
+    icon: "Leaf",
+    link: "/resume",
   },
 ];
 
@@ -462,3 +509,6 @@ export const beyondWork = [
     details: ["Operational Scale", "Strategic Thinking", "Career Coaching", "Leadership"]
   },
 ];
+
+export const caseStudies = workItems;
+export const projects = workItems;

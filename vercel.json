@@ -1,5 +1,13 @@
 {
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm run build",
-  "framework": "vite"
+  "framework": "vite",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/((?!assets/|images/|fonts/|favicon|.*\\..*).*)",
+      "destination": "/index.html"
+    }
+  ]
 }

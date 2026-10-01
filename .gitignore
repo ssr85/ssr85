@@ -38,3 +38,4 @@ design-system/
 # Build artifacts
 trace.json
 *.tsbuildinfo
+supabase/.temp/

@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Serve existing files/directories directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Check if an .html file exists with this name (for SSG pages)
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([^/]+)/?$ $1.html [L]
+
+  # Check if nested .html exists (e.g. insights/slug.html or case-studies/slug.html)
+  RewriteCond %{DOCUMENT_ROOT}/$1/$2.html -f
+  RewriteRule ^([^/]+)/([^/]+)/?$ $1/$2.html [L]
+
+  # SPA Fallback for client-side routing
+  RewriteRule ^ index.html [L]
+</IfModule>

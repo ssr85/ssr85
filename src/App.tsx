@@ -12,6 +12,22 @@ const Resume = lazy(() => import("./pages/Resume"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
 
+// Core Pillars
+const AiWordPressDevelopment = lazy(() => import("./pages/AiWordPressDevelopment"));
+const CustomAiSolutions = lazy(() => import("./pages/CustomAiSolutions"));
+const CustomBusinessAutomation = lazy(() => import("./pages/CustomBusinessAutomation"));
+
+// Deep Cluster Insight Guides
+const AiWordPressPlugins = lazy(() => import("./pages/insights/AiWordPressPlugins"));
+const AutomatedSearchAnalytics = lazy(() => import("./pages/insights/AutomatedSearchAnalytics"));
+const LocalLlmStudio = lazy(() => import("./pages/insights/LocalLlmStudio"));
+const MultiAgentSystems = lazy(() => import("./pages/insights/MultiAgentSystems"));
+const CustomSessionEngines = lazy(() => import("./pages/insights/CustomSessionEngines"));
+const CustomCrmSync = lazy(() => import("./pages/insights/CustomCrmSync"));
+const SheetsAppsScript = lazy(() => import("./pages/insights/SheetsAppsScript"));
+const HeadlessWordPressVite = lazy(() => import("./pages/insights/HeadlessWordPressVite"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
+
 import { caseStudies } from "./data/content";
 
 // Expand case study routes for SSG pre-rendering (only those with full pages)
@@ -28,8 +44,58 @@ export const routes = [
     element: <Index />,
   },
   {
+    path: "/admin",
+    element: <AdminDashboard />,
+  },
+  {
     path: "/resume",
     element: <Resume />,
+  },
+  // Pillars
+  {
+    path: "/ai-wordpress-development",
+    element: <AiWordPressDevelopment />,
+  },
+  {
+    path: "/custom-ai-solutions",
+    element: <CustomAiSolutions />,
+  },
+  {
+    path: "/custom-business-automation",
+    element: <CustomBusinessAutomation />,
+  },
+  // Insights / Cluster Guides
+  {
+    path: "/insights/ai-wordpress-plugin-development",
+    element: <AiWordPressPlugins />,
+  },
+  {
+    path: "/insights/automated-search-analytics-reporting",
+    element: <AutomatedSearchAnalytics />,
+  },
+  {
+    path: "/insights/local-llm-lm-studio-workflow",
+    element: <LocalLlmStudio />,
+  },
+  {
+    path: "/insights/multi-agent-orchestration-from-scratch",
+    element: <MultiAgentSystems />,
+  },
+  {
+    path: "/insights/custom-session-storage-engines",
+    element: <CustomSessionEngines />,
+  },
+  {
+    path: "/insights/custom-crm-sync-engines",
+    element: <CustomCrmSync />,
+  },
+  {
+    path: "/insights/google-sheets-apps-script-enterprise",
+    element: <SheetsAppsScript />,
+  },
+  {
+    path: "/insights/headless-wordpress-vite-architecture",
+    element: <HeadlessWordPressVite />,
   },
   ...caseStudyRoutes,
   {

@@ -157,7 +157,7 @@ export const SEO = ({
     "name": project.name,
     "description": project.description,
     "url": `${url}/#projects`,
-    "keywords": project.highlights.join(", ")
+    "keywords": ('highlights' in project && Array.isArray(project.highlights) ? project.highlights.join(", ") : project.techStack?.join(", ")) || ""
   })) || [];
 
   const caseStudySchemas = caseStudies?.map(study => ({
@@ -167,7 +167,7 @@ export const SEO = ({
     "url": study.hasDetailPage && study.slug
       ? `https://sarabjeetrattan.com/case-studies/${study.slug}`
       : `${url}/#case-studies`,
-    "keywords": study.techStack.join(", "),
+    "keywords": study.techStack?.join(", ") || "",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": study.hasDetailPage && study.slug

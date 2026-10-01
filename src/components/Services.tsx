@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { services } from "@/data/content";
 import { Settings, Leaf, Code, Globe, ArrowRight } from "lucide-react";
 import { StaggeredCard } from "@/components/ScrollAnimationWrapper";
@@ -53,9 +54,17 @@ export const Services = ({ onOpenEnquiry }: ServicesProps) => {
                         <h3 className="text-xl font-semibold text-foreground mb-3">
                           {service.title}
                         </h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                           {service.description}
                         </p>
+                        {'link' in service && typeof service.link === 'string' && (
+                          <Link
+                            to={service.link}
+                            className="inline-flex items-center text-xs font-semibold text-primary hover:underline group-hover:translate-x-0.5 transition-transform"
+                          >
+                            Explore Architecture & Blueprint <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                          </Link>
+                        )}
                       </div>
                     </div>
                   </CardContent>
