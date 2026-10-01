@@ -115,10 +115,20 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
 
   const handleNavClick = (href: string) => {
     if (typeof window !== "undefined") {
-      if (window.location.pathname !== "/") {
-        window.location.href = `/${href}`;
+      if (!href || href === "" || href === "/") {
+        if (window.location.pathname !== "/") {
+          window.location.href = "/";
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      } else if (href.startsWith("#")) {
+        if (window.location.pathname !== "/") {
+          window.location.href = `/${href}`;
+        } else {
+          scrollToSection(href);
+        }
       } else {
-        scrollToSection(href);
+        window.location.href = href;
       }
     }
     setIsMobileMenuOpen(false);
@@ -177,6 +187,15 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
 
             {/* Desktop Center Navigation */}
             <nav className="hidden lg:flex items-center gap-1 bg-card/60 border border-border/60 backdrop-blur-md px-3 py-1.5 rounded-full shadow-sm">
+              {/* Home Link */}
+              <button
+                type="button"
+                onClick={() => handleNavClick("")}
+                className="px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 text-muted-foreground hover:text-foreground hover:bg-muted/40"
+              >
+                Home
+              </button>
+
               {/* Solutions Dropdown */}
               <div
                 ref={dropdownRef}
@@ -466,6 +485,15 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                         Explore
                       </div>
                       <button
+                        type="button"
+                        onClick={() => handleNavClick("")}
+                        className="w-full text-left px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted/50 rounded-lg transition-colors flex items-center justify-between"
+                      >
+                        <span>Home / Overview</span>
+                        <ArrowRight size={12} className="text-muted-foreground" />
+                      </button>
+                      <button
+                        type="button"
                         onClick={() => handleNavClick("#case-studies")}
                         className="w-full text-left px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted/50 rounded-lg transition-colors"
                       >
