@@ -669,15 +669,15 @@ export const AdminDashboard = () => {
                   <div key={item.id} className="p-5 rounded-2xl border border-border/80 bg-card space-y-3">
                     <div className="flex items-center justify-between text-xs font-mono">
                       <span className="px-2.5 py-1 rounded-full bg-primary/10 text-primary font-bold">
-                        {item.action_type} • Score: {item.priority_score}
+                        {String(item.action_type)} • Score: {String(item.priority_score)}
                       </span>
                       <span className="text-muted-foreground">{item.status}</span>
                     </div>
-                    <h3 className="font-bold text-base text-foreground">{item.target_topic}</h3>
-                    <div className="text-xs font-mono text-muted-foreground">Target Slug: {item.target_slug}</div>
-                    {item.primary_keywords && (
+                    <h3 className="font-bold text-base text-foreground">{String(item.target_topic)}</h3>
+                    <div className="text-xs font-mono text-muted-foreground">Target Slug: {String(item.target_slug)}</div>
+                    {Array.isArray(item.primary_keywords) && (
                       <div className="flex flex-wrap gap-1.5 pt-1">
-                        {item.primary_keywords.map((kw: string, i: number) => (
+                        {(item.primary_keywords as string[]).map((kw: string, i: number) => (
                           <span key={i} className="px-2 py-0.5 rounded bg-muted/60 text-[10px] font-mono text-muted-foreground">
                             {kw}
                           </span>
