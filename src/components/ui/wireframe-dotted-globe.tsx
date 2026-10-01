@@ -256,7 +256,7 @@ export default function RotatingEarth({
     const rotate = () => {
       if (autoRotate) {
         rotation[0] += rotationSpeed
-        projection.rotate(rotation)
+        projection.rotate(rotation as [number, number])
         render()
       }
     }
@@ -279,7 +279,7 @@ export default function RotatingEarth({
         rotation[1] = startRotation[1] - dy * sensitivity
         rotation[1] = Math.max(-90, Math.min(90, rotation[1]))
 
-        projection.rotate(rotation)
+        projection.rotate(rotation as [number, number])
         render()
       }
 

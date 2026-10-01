@@ -75,7 +75,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const [isCommandMenuOpen, setIsCommandMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   const activeSection = useScrollSpy(["snapshot", "case-studies", "strengths"]);
 
