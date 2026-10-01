@@ -51,9 +51,10 @@ export const AdminDashboard = () => {
 
   // Dashboard Data State
   const [activeTab, setActiveTab] = useState<"overview" | "leads" | "keywords" | "queue">("overview");
-  const [leads, setLeads] = useState<Record<string, unknown>[]>([]);
-  const [keywords, setKeywords] = useState<Record<string, unknown>[]>([]);
-  const [contentQueue, setContentQueue] = useState<Record<string, unknown>[]>([]);
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  const [leads, setLeads] = useState<Record<string, any>[]>([]);
+  const [keywords, setKeywords] = useState<Record<string, any>[]>([]);
+  const [contentQueue, setContentQueue] = useState<Record<string, any>[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
