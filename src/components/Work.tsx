@@ -35,10 +35,12 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
   const safeDesktopIndex = Math.min(selectedDesktopIndex, filteredItems.length - 1);
   const activeItem = filteredItems[safeDesktopIndex] || filteredItems[0];
 
-  // Calculate and update the top alignment with the selected LHS card
+  // Calculate and update the top alignment with the card PREVIOUS to the selected card
   useEffect(() => {
     const updateTargetPosition = () => {
-      const targetEl = cardRefs.current[safeDesktopIndex];
+      // Top-align with the previous card (or the first card if index is 0)
+      const previousIndex = Math.max(0, safeDesktopIndex - 1);
+      const targetEl = cardRefs.current[previousIndex];
       if (targetEl) {
         setTargetY(targetEl.offsetTop);
       }
@@ -296,7 +298,7 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
             })}
           </div>
 
-          {/* Right Column: Gliding Top-Aligned Inspector Window */}
+          {/* Right Column: Gliding Top-Aligned with Previous Card */}
           <div className="col-span-7 relative h-full">
             <motion.div
               animate={{ y: targetY }}
