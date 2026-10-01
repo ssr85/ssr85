@@ -122,7 +122,7 @@ export const CustomSessionEngines = () => {
 
           {/* 2. THE SOLUTION & ARCHITECTURE */}
           <section className="space-y-6">
-            <div className="flex items-center gap-2 text-emerald-500 font-mono text-xs uppercase tracking-wider font-bold">
+            <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-bold">
               <CheckCircle2 className="w-4 h-4" /> The Engineered Solution (Lead OG Engine)
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
@@ -152,7 +152,7 @@ export const CustomSessionEngines = () => {
               </div>
 
               <div className="p-5 rounded-xl bg-card border border-border/80 space-y-2">
-                <div className="flex items-center gap-2 text-emerald-500 font-bold">
+                <div className="flex items-center gap-2 text-success font-bold">
                   <RefreshCw className="w-4 h-4" /> 3. Atomic CRM Sync
                 </div>
                 <div className="text-muted-foreground font-sans">
@@ -184,7 +184,7 @@ export const CustomSessionEngines = () => {
             <div className="space-y-4">
               <div className="flex justify-between items-center text-xs font-mono">
                 <label htmlFor="prospect-slider" className="text-muted-foreground">Monthly Target Prospects: <span className="text-foreground font-bold">{prospectsPerMonth.toLocaleString()}</span></label>
-                <span className="text-emerald-500 font-bold">~{hoursSaved} Hours Saved / mo</span>
+                <span className="text-success font-bold">~{hoursSaved} Hours Saved / mo</span>
               </div>
               <input
                 id="prospect-slider"
@@ -203,7 +203,7 @@ export const CustomSessionEngines = () => {
                 </div>
                 <div className="p-2.5 rounded-lg bg-background/80 border border-border/60">
                   <div className="text-muted-foreground text-[10px]">Lead OG Engine Time</div>
-                  <div className="font-bold text-emerald-500 text-sm">~{Math.round(automatedMinutes / 60)} hrs</div>
+                  <div className="font-bold text-success text-sm">~{Math.round(automatedMinutes / 60)} hrs</div>
                 </div>
                 <div className="p-2.5 rounded-lg bg-background/80 border border-border/60">
                   <div className="text-muted-foreground text-[10px]">Response Acceleration</div>
@@ -238,7 +238,7 @@ export const CustomSessionEngines = () => {
                 </p>
               </div>
               <div className="space-y-2">
-                <div className="text-xs font-mono text-emerald-500 font-bold">Phase 3: Real-Time CRM Relay</div>
+                <div className="text-xs font-mono text-success font-bold">Phase 3: Real-Time CRM Relay</div>
                 <h3 className="font-bold text-foreground text-sm">Deduplication & Direct Sync</h3>
                 <p className="text-xs text-muted-foreground">
                   Bi-directional integration with your CRM (HubSpot, Freshsales, Salesforce) with 0% duplication guarantee.

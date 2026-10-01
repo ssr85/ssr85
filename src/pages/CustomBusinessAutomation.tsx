@@ -127,21 +127,21 @@ export const CustomBusinessAutomation = () => {
                 </ul>
               </div>
 
-              <div className="p-6 rounded-xl border border-emerald-500/30 bg-emerald-500/[0.03] space-y-4">
-                <div className="flex items-center gap-2 text-emerald-500 font-mono text-xs uppercase tracking-wider font-semibold">
+              <div className="p-6 rounded-xl border border-success/30 bg-success/[0.03] space-y-4">
+                <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-semibold">
                   <CheckCircle2 className="w-4 h-4" /> Bespoke Engineering (Sarabjeet Rattan)
                 </div>
                 <ul className="space-y-3 text-sm text-foreground/90">
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-500 mt-0.5">✓</span>
+                    <span className="text-success mt-0.5">✓</span>
                     <span><strong>Stateful Two-Way Sync:</strong> Atomic database transactions, automatic retries, and deduplication queues.</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-500 mt-0.5">✓</span>
+                    <span className="text-success mt-0.5">✓</span>
                     <span><strong>Zero Per-Task Tax:</strong> Runs on your own lightweight serverless infrastructure with flat hosting.</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-500 mt-0.5">✓</span>
+                    <span className="text-success mt-0.5">✓</span>
                     <span><strong>High-Velocity Bulk Processing:</strong> Effortlessly transforms 100,000+ row datasets and complex ERP schemas.</span>
                   </li>
                 </ul>
@@ -189,7 +189,7 @@ export const CustomBusinessAutomation = () => {
               className="group p-8 rounded-2xl border border-border/80 bg-card hover:border-primary/50 transition-all duration-300 hover:shadow-xl flex flex-col justify-between"
             >
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-success/10 border border-success/20 flex items-center justify-center text-success group-hover:scale-110 transition-transform">
                   <FileSpreadsheet className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
@@ -276,7 +276,7 @@ export const CustomBusinessAutomation = () => {
               </div>
               <div className="text-center sm:text-left">
                 <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground">Estimated Annual Operational Savings</div>
-                <div className="text-3xl font-extrabold text-emerald-500 mt-1">
+                <div className="text-3xl font-extrabold text-success mt-1">
                   ${annualDollarSavings.toLocaleString()} / yr
                 </div>
               </div>

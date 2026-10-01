@@ -142,7 +142,7 @@ export const AutomatedSearchAnalytics = () => {
                 </div>
               </div>
               <div className="p-5 rounded-xl bg-card border border-border/80 space-y-2">
-                <div className="text-emerald-500 font-bold font-mono flex items-center gap-2 text-sm">
+                <div className="text-success font-bold font-mono flex items-center gap-2 text-sm">
                   <Mail className="w-4 h-4" /> Prioritized Executive Digests
                 </div>
                 <div className="text-muted-foreground leading-relaxed">
@@ -153,8 +153,8 @@ export const AutomatedSearchAnalytics = () => {
           </section>
 
           {/* 3. MEASURABLE BUSINESS BENEFITS */}
-          <section className="p-8 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.02] space-y-6">
-            <div className="flex items-center gap-2 text-emerald-500 font-mono text-xs uppercase tracking-wider font-bold">
+          <section className="p-8 rounded-2xl border border-success/20 bg-success/[0.02] space-y-6">
+            <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-bold">
               <TrendingUp className="w-4 h-4" /> 3. Measurable Business Benefits
             </div>
             <h2 className="text-2xl font-bold text-foreground">
@@ -163,19 +163,19 @@ export const AutomatedSearchAnalytics = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
               <div className="p-4 rounded-xl bg-background/60 border border-border/60 space-y-1.5">
-                <div className="font-bold text-emerald-500 text-sm">15+ Hours Saved Monthly</div>
+                <div className="font-bold text-success text-sm">15+ Hours Saved Monthly</div>
                 <p className="text-muted-foreground leading-relaxed">
                   Completely eliminates manual spreadsheet pulling and data formatting for marketing teams and executives.
                 </p>
               </div>
               <div className="p-4 rounded-xl bg-background/60 border border-border/60 space-y-1.5">
-                <div className="font-bold text-emerald-500 text-sm">Fast Organic Traffic Wins</div>
+                <div className="font-bold text-success text-sm">Fast Organic Traffic Wins</div>
                 <p className="text-muted-foreground leading-relaxed">
                   Targeting striking-distance keywords (pos 5–20) yields faster ranking and traffic gains than creating content from scratch.
                 </p>
               </div>
               <div className="p-4 rounded-xl bg-background/60 border border-border/60 space-y-1.5">
-                <div className="font-bold text-emerald-500 text-sm">Zero Site Performance Impact</div>
+                <div className="font-bold text-success text-sm">Zero Site Performance Impact</div>
                 <p className="text-muted-foreground leading-relaxed">
                   Execution happens completely out-of-band via external cloud APIs, adding 0ms of latency to visitor page loads.
                 </p>

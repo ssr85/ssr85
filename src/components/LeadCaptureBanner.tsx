@@ -37,7 +37,7 @@ export const LeadCaptureBanner: React.FC<LeadCaptureBannerProps> = ({
               <Zap className="w-3.5 h-3.5 text-primary" /> Rapid 24h Assessment
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" /> NDA & Full Code Ownership
+              <ShieldCheck className="w-3.5 h-3.5 text-success" /> NDA & Full Code Ownership
             </span>
           </div>
         </div>

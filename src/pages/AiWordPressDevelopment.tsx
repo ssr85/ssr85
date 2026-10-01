@@ -348,31 +348,31 @@ export const AiWordPressDevelopment = () => {
               </div>
 
               {/* Right: Custom AI Engineering */}
-              <div className="p-6 rounded-xl border border-emerald-500/30 bg-emerald-500/[0.03] space-y-4 shadow-sm">
-                <div className="flex items-center gap-2 text-emerald-500 font-mono text-xs uppercase tracking-wider font-semibold">
+              <div className="p-6 rounded-xl border border-success/30 bg-success/[0.03] space-y-4 shadow-sm">
+                <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-semibold">
                   <CheckCircle2 className="w-4 h-4" /> Bespoke Engineering (Sarabjeet Rattan)
                 </div>
                 <ul className="space-y-3 text-sm text-foreground/90">
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-500 mt-0.5">✓</span>
+                    <span className="text-success mt-0.5">✓</span>
                     <span>
                       <strong>Zero Bloat, Pure Speed:</strong> Single focused PHP plugin namespaces with sub-50ms execution times and native ActionScheduler background workers.
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-500 mt-0.5">✓</span>
+                    <span className="text-success mt-0.5">✓</span>
                     <span>
                       <strong>Guaranteed Lead Invariants:</strong> Immutable database ledgers, Server-Side GA4 Measurement Protocol, and direct bi-directional CRM syncing.
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-500 mt-0.5">✓</span>
+                    <span className="text-success mt-0.5">✓</span>
                     <span>
                       <strong>Autonomous AI & Search Engines:</strong> Native `/llms.txt` vector feeds, real-time IndexNow pings, and rich JSON-LD graph generation.
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-500 mt-0.5">✓</span>
+                    <span className="text-success mt-0.5">✓</span>
                     <span>
                       <strong>100% Code Ownership:</strong> Tailored strictly to your exact business logic with zero recurring plugin licensing fees.
                     </span>
@@ -460,15 +460,15 @@ export const AiWordPressDevelopment = () => {
                     </div>
 
                     {/* 3. Business Benefits */}
-                    <div className="p-5 rounded-xl bg-emerald-500/[0.02] border border-emerald-500/20 space-y-3">
-                      <div className="font-semibold text-emerald-500 flex items-center gap-2 text-xs font-mono uppercase tracking-wider">
+                    <div className="p-5 rounded-xl bg-success/[0.02] border border-success/20 space-y-3">
+                      <div className="font-semibold text-success flex items-center gap-2 text-xs font-mono uppercase tracking-wider">
                         <CheckCircle2 className="w-4 h-4" />
                         {study.businessBenefits.title}
                       </div>
                       <ul className="space-y-2 text-xs text-foreground/90 leading-relaxed">
                         {study.businessBenefits.points.map((pt, i) => (
                           <li key={i} className="flex items-start gap-1.5">
-                            <span className="text-emerald-500 mt-0.5">✓</span>
+                            <span className="text-success mt-0.5">✓</span>
                             <span>{pt}</span>
                           </li>
                         ))}
@@ -540,7 +540,7 @@ export const AiWordPressDevelopment = () => {
               className="group p-8 rounded-2xl border border-border/80 bg-card hover:border-primary/50 transition-all duration-300 hover:shadow-xl flex flex-col justify-between"
             >
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-success/10 border border-success/20 flex items-center justify-center text-success group-hover:scale-110 transition-transform">
                   <LineChart className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">

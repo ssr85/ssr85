@@ -116,7 +116,7 @@ export const CustomAiSolutions = () => {
               </div>
 
               <div className="p-6 rounded-xl border border-border/80 bg-background/50 space-y-3">
-                <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 font-mono font-bold">
+                <div className="w-10 h-10 rounded-lg bg-success/10 flex items-center justify-center text-success font-mono font-bold">
                   100%
                 </div>
                 <h3 className="font-bold text-foreground text-base">Complete Data Residency</h3>
@@ -203,7 +203,7 @@ export const CustomAiSolutions = () => {
               className="group p-6 rounded-2xl border border-border/80 bg-card hover:border-primary/50 transition-all duration-300 hover:shadow-xl flex flex-col justify-between"
             >
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-success/10 border border-success/20 flex items-center justify-center text-success group-hover:scale-110 transition-transform">
                   <Database className="w-6 h-6" />
                 </div>
                 <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">

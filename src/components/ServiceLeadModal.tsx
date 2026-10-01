@@ -128,7 +128,7 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
 
           {isSuccess ? (
             <div className="py-8 text-center space-y-4">
-              <div className="w-14 h-14 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500">
+              <div className="w-14 h-14 mx-auto rounded-full bg-success/10 border border-success/20 flex items-center justify-center text-success">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-bold text-foreground">Inquiry Successfully Dispatched</h3>

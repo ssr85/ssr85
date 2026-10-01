@@ -142,7 +142,7 @@ export const HeadlessWordPressVite = () => {
                 </div>
               </div>
               <div className="p-5 rounded-xl bg-card border border-border/80 space-y-2">
-                <div className="text-emerald-500 font-bold font-mono flex items-center gap-2 text-sm">
+                <div className="text-success font-bold font-mono flex items-center gap-2 text-sm">
                   <Lock className="w-4 h-4" /> Total CMS Isolation
                 </div>
                 <div className="text-muted-foreground leading-relaxed">
@@ -153,8 +153,8 @@ export const HeadlessWordPressVite = () => {
           </section>
 
           {/* 3. MEASURABLE BUSINESS BENEFITS */}
-          <section className="p-8 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.02] space-y-6">
-            <div className="flex items-center gap-2 text-emerald-500 font-mono text-xs uppercase tracking-wider font-bold">
+          <section className="p-8 rounded-2xl border border-success/20 bg-success/[0.02] space-y-6">
+            <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-bold">
               <TrendingUp className="w-4 h-4" /> 3. Measurable Business Benefits
             </div>
             <h2 className="text-2xl font-bold text-foreground">
@@ -163,19 +163,19 @@ export const HeadlessWordPressVite = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
               <div className="p-4 rounded-xl bg-background/60 border border-border/60 space-y-1.5">
-                <div className="font-bold text-emerald-500 text-sm">100/100 Core Web Vitals</div>
+                <div className="font-bold text-success text-sm">100/100 Core Web Vitals</div>
                 <p className="text-muted-foreground leading-relaxed">
                   Instantaneous paint metrics directly boost organic search rankings and improve paid ad landing page quality scores.
                 </p>
               </div>
               <div className="p-4 rounded-xl bg-background/60 border border-border/60 space-y-1.5">
-                <div className="font-bold text-emerald-500 text-sm">Near-Zero Server Costs</div>
+                <div className="font-bold text-success text-sm">Near-Zero Server Costs</div>
                 <p className="text-muted-foreground leading-relaxed">
                   Edge caching reduces server infrastructure requirements by over 80%, effortlessly handling sudden viral traffic surges.
                 </p>
               </div>
               <div className="p-4 rounded-xl bg-background/60 border border-border/60 space-y-1.5">
-                <div className="font-bold text-emerald-500 text-sm">Editorial Continuity</div>
+                <div className="font-bold text-success text-sm">Editorial Continuity</div>
                 <p className="text-muted-foreground leading-relaxed">
                   Your content creators and marketing team keep using the familiar WordPress admin UI without needing developer assistance.
                 </p>

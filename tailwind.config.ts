@@ -17,8 +17,14 @@ export default {
       fontFamily: {
         sans: ["Space Grotesk", "sans-serif"],
         heading: ["Archivo", "sans-serif"],
+        mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Consolas", "monospace"],
       },
       colors: {
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        glow: "hsl(var(--glow))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

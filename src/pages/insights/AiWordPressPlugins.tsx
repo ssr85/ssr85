@@ -144,7 +144,7 @@ export const AiWordPressPlugins = () => {
                 </div>
               </div>
               <div className="p-5 rounded-xl bg-card border border-border/80 space-y-2">
-                <div className="text-emerald-500 font-bold font-mono flex items-center gap-2 text-sm">
+                <div className="text-success font-bold font-mono flex items-center gap-2 text-sm">
                   <Code2 className="w-4 h-4" /> Native Custom Post Types
                 </div>
                 <div className="text-muted-foreground leading-relaxed">
@@ -155,8 +155,8 @@ export const AiWordPressPlugins = () => {
           </section>
 
           {/* 3. MEASURABLE BUSINESS BENEFITS */}
-          <section className="p-8 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.02] space-y-6">
-            <div className="flex items-center gap-2 text-emerald-500 font-mono text-xs uppercase tracking-wider font-bold">
+          <section className="p-8 rounded-2xl border border-success/20 bg-success/[0.02] space-y-6">
+            <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-bold">
               <TrendingUp className="w-4 h-4" /> 3. Measurable Business Benefits
             </div>
             <h2 className="text-2xl font-bold text-foreground">
@@ -165,19 +165,19 @@ export const AiWordPressPlugins = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
               <div className="p-4 rounded-xl bg-background/60 border border-border/60 space-y-1.5">
-                <div className="font-bold text-emerald-500 text-sm">100% Code Ownership</div>
+                <div className="font-bold text-success text-sm">100% Code Ownership</div>
                 <p className="text-muted-foreground leading-relaxed">
                   Zero annual subscription fees or vendor lock-in. Full source code delivered directly to your company repository.
                 </p>
               </div>
               <div className="p-4 rounded-xl bg-background/60 border border-border/60 space-y-1.5">
-                <div className="font-bold text-emerald-500 text-sm">Sub-50ms Execution</div>
+                <div className="font-bold text-success text-sm">Sub-50ms Execution</div>
                 <p className="text-muted-foreground leading-relaxed">
                   No bloated third-party stylesheets or telemetry scripts injected into your frontend or admin dashboard.
                 </p>
               </div>
               <div className="p-4 rounded-xl bg-background/60 border border-border/60 space-y-1.5">
-                <div className="font-bold text-emerald-500 text-sm">Tailored Integrations</div>
+                <div className="font-bold text-success text-sm">Tailored Integrations</div>
                 <p className="text-muted-foreground leading-relaxed">
                   Seamlessly connects to internal ERPs, proprietary databases, and custom AI models with strict data privacy.
                 </p>

@@ -3,23 +3,22 @@ import { stats } from "@/data/content";
 
 export const Stats = () => {
   return (
-    <section className="py-14 md:py-16 px-4 bg-primary relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary pointer-events-none" />
-      <div className="container mx-auto relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+    <section className="px-4 bg-background border-y border-border/60">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-border/60">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="text-center"
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="text-center py-8 md:py-10 px-2"
             >
-              <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-1">
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2 [text-shadow:0_0_24px_hsl(var(--glow)/0.35)]">
                 {stat.value}{stat.suffix}
               </div>
-              <div className="text-sm text-primary-foreground/70 tracking-wide">{stat.label}</div>
+              <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">{stat.label}</div>
             </motion.div>
           ))}
         </div>

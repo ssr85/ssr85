@@ -376,7 +376,7 @@ export const AdminDashboard = () => {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="font-bold text-sm sm:text-base text-foreground">Executive Growth & Search Hub</h1>
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 text-[10px] font-mono">
+                <span className="px-2 py-0.5 rounded-full bg-success/10 text-success border border-success/20 text-[10px] font-mono">
                   LIVE
                 </span>
               </div>
@@ -457,7 +457,7 @@ export const AdminDashboard = () => {
               <div className="p-5 rounded-2xl border border-border/80 bg-card/60 space-y-1">
                 <div className="text-xs font-mono text-muted-foreground uppercase">Total Inbound Leads</div>
                 <div className="text-3xl font-extrabold text-foreground">{leads.length}</div>
-                <div className="text-[11px] text-emerald-500 font-mono">Attributed via Supabase</div>
+                <div className="text-[11px] text-success font-mono">Attributed via Supabase</div>
               </div>
               <div className="p-5 rounded-2xl border border-border/80 bg-card/60 space-y-1">
                 <div className="text-xs font-mono text-muted-foreground uppercase">Tracked Keywords</div>
@@ -472,7 +472,7 @@ export const AdminDashboard = () => {
               <div className="p-5 rounded-2xl border border-border/80 bg-card/60 space-y-1">
                 <div className="text-xs font-mono text-muted-foreground uppercase">Cluster Guides</div>
                 <div className="text-3xl font-extrabold text-foreground">7</div>
-                <div className="text-[11px] text-emerald-500 font-mono">100% SSG Pre-rendered</div>
+                <div className="text-[11px] text-success font-mono">100% SSG Pre-rendered</div>
               </div>
             </div>
 
@@ -532,7 +532,7 @@ export const AdminDashboard = () => {
                         </div>
                         <div className="text-right font-mono">
                           <div className="text-primary font-bold text-sm">#{kw.average_position.toFixed(1)}</div>
-                          <div className="text-[10px] text-emerald-500">Striking Target</div>
+                          <div className="text-[10px] text-success">Striking Target</div>
                         </div>
                       </div>
                     ))}
@@ -580,7 +580,7 @@ export const AdminDashboard = () => {
                         <td className="p-3.5 max-w-xs">{lead.requirement}</td>
                         <td className="p-3.5 font-mono text-muted-foreground text-[11px]">
                           <div>{lead.source_url}</div>
-                          {lead.referring_query && <div className="text-emerald-500">Q: {lead.referring_query}</div>}
+                          {lead.referring_query && <div className="text-success">Q: {lead.referring_query}</div>}
                         </td>
                         <td className="p-3.5 whitespace-nowrap">
                           <select
@@ -637,7 +637,7 @@ export const AdminDashboard = () => {
                           <td className="p-3.5">{((kw.ctr || 0) * 100).toFixed(1)}%</td>
                           <td className="p-3.5">
                             {isStriking ? (
-                              <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 font-bold text-[10px]">
+                              <span className="px-2 py-0.5 rounded bg-success/10 text-success font-bold text-[10px]">
                                 STRIKING (Pos 5-20)
                               </span>
                             ) : (

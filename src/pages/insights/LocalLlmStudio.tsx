@@ -80,7 +80,7 @@ export const LocalLlmStudio = () => {
               </div>
 
               <div className="p-4 rounded-xl bg-background/60 border border-border/70 space-y-2">
-                <div className="text-emerald-500 font-bold">3. Local Agent Relays</div>
+                <div className="text-success font-bold">3. Local Agent Relays</div>
                 <div className="text-muted-foreground font-sans">
                   IDEs, Cline, Aider, and custom agent scripts interact locally with 0ms network latency and 100% privacy.
                 </div>
