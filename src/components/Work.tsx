@@ -25,7 +25,6 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
   const [activeTab, setActiveTab] = useState<TabId>("all");
   const [selectedDesktopIndex, setSelectedDesktopIndex] = useState(0);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const rhsRef = useRef<HTMLDivElement | null>(null);
 
   const filteredItems = activeTab === "all"
     ? workItems
@@ -35,71 +34,41 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
   const safeDesktopIndex = Math.min(selectedDesktopIndex, filteredItems.length - 1);
   const activeItem = filteredItems[safeDesktopIndex] || filteredItems[0];
 
-  // Exact Scroll-Linked Sync: detects whichever LHS card's center aligns with the RHS card's vertical center
+  // Scroll-linked Intersection Observer for LHS items
   useEffect(() => {
-    let ticking = false;
+    const observers: IntersectionObserver[] = [];
 
-    const updateActiveCardByRhsCenter = () => {
-      const rhs = rhsRef.current;
-      if (!rhs) return;
+    cardRefs.current.forEach((el, index) => {
+      if (!el) return;
 
-      const rhsRect = rhs.getBoundingClientRect();
-      // The exact vertical center of the pinned RHS card in viewport space
-      const rhsCenterY = rhsRect.top + rhsRect.height / 2;
-
-      let closestIndex = 0;
-      let minDistance = Infinity;
-
-      cardRefs.current.forEach((card, index) => {
-        if (!card) return;
-        const cardRect = card.getBoundingClientRect();
-        // The vertical center of this LHS card
-        const cardCenterY = cardRect.top + cardRect.height / 2;
-        const distance = Math.abs(cardCenterY - rhsCenterY);
-
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestIndex = index;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setSelectedDesktopIndex(index);
+            }
+          });
+        },
+        {
+          rootMargin: "-25% 0px -40% 0px",
+          threshold: 0.1,
         }
-      });
+      );
 
-      setSelectedDesktopIndex((prev) => (prev !== closestIndex ? closestIndex : prev));
-      ticking = false;
-    };
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateActiveCardByRhsCenter);
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll, { passive: true });
-    updateActiveCardByRhsCenter();
+      observer.observe(el);
+      observers.push(observer);
+    });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
+      observers.forEach((obs) => obs.disconnect());
     };
   }, [filteredItems, activeTab]);
 
-  // Smooth click scroll: scrolls window so the clicked LHS card centers precisely with the RHS card
   const scrollToCard = (index: number) => {
     setSelectedDesktopIndex(index);
-    const card = cardRefs.current[index];
-    const rhs = rhsRef.current;
-    if (card && rhs) {
-      const cardRect = card.getBoundingClientRect();
-      const rhsRect = rhs.getBoundingClientRect();
-      const cardCenterY = cardRect.top + cardRect.height / 2;
-      const rhsCenterY = rhsRect.top + rhsRect.height / 2;
-      const scrollOffset = cardCenterY - rhsCenterY;
-
-      window.scrollBy({
-        top: scrollOffset,
-        behavior: "smooth",
-      });
+    const target = cardRefs.current[index];
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   };
 
@@ -227,11 +196,11 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
           </div>
         </ScrollAnimationWrapper>
 
-        {/* Desktop Sticky Narrative Layout (LHS Scrolls with Page, RHS Pins & Centers) */}
+        {/* Desktop Sticky Narrative Layout (LHS Scrolls with Page, RHS Pins & Auto-Updates) */}
         <div className="hidden lg:grid grid-cols-12 gap-10 items-start relative">
           
-          {/* Left Column: Natural Scrolling Stream with Balanced Vertical Offset */}
-          <div className="col-span-5 space-y-8 pt-12 pb-56">
+          {/* Left Column: Natural Scrolling Stream of Project Cards */}
+          <div className="col-span-5 space-y-6 pb-12">
             {filteredItems.map((item, idx) => {
               const isSelected = idx === safeDesktopIndex;
               return (
@@ -242,16 +211,16 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                   className={cn(
                     "p-6 rounded-[1.75rem] transition-all duration-500 cursor-pointer border relative group",
                     isSelected
-                      ? "bg-white/[0.08] border-primary/50 shadow-2xl shadow-primary/10 ring-1 ring-primary/25 scale-[1.03] opacity-100"
-                      : "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.12] opacity-40 hover:opacity-80 scale-[0.98]"
+                      ? "bg-white/[0.07] border-primary/50 shadow-2xl shadow-primary/10 ring-1 ring-primary/25 scale-[1.02] opacity-100"
+                      : "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.12] opacity-45 hover:opacity-85 scale-[0.99]"
                   )}
                 >
                   {/* Card Header Telemetry */}
                   <div className="flex items-center justify-between mb-3">
                     <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
                       <span className={cn(
-                        "w-2 h-2 rounded-full transition-colors",
-                        isSelected ? "bg-primary animate-pulse shadow-sm shadow-primary" : "bg-muted-foreground/30"
+                        "w-1.5 h-1.5 rounded-full transition-colors",
+                        isSelected ? "bg-primary animate-pulse" : "bg-muted-foreground/40"
                       )} />
                       0{idx + 1} // {item.category}
                     </span>
@@ -313,25 +282,20 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
           </div>
 
           {/* Right Column: Pinned Sticky Inspector Window */}
-          <div ref={rhsRef} className="col-span-7 sticky top-24">
+          <div className="col-span-7 sticky top-24 min-h-[580px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeItem.id}
-                initial={{ opacity: 0, y: 36, scale: 0.97 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -24, scale: 0.97 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="double-bezel p-1.5 rounded-[2.25rem] shadow-2xl shadow-black/70"
+                initial={{ opacity: 0, y: 32, scale: 0.97, filter: "blur(4px)" }}
+                animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -24, scale: 0.97, filter: "blur(4px)" }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="double-bezel p-1.5 rounded-[2.25rem] shadow-2xl shadow-black/60 will-change-transform"
               >
                 <div className="double-bezel-inner rounded-[calc(2.25rem-0.375rem)] p-7 md:p-8 space-y-6 max-h-[calc(100vh-7.5rem)] overflow-y-auto custom-scrollbar flex flex-col justify-between">
                   <div className="space-y-6">
                     {/* Header */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-                      className="space-y-2"
-                    >
+                    <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="badge-eyebrow text-[10px]">
                           {activeItem.category}
@@ -348,20 +312,20 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                       <p className="text-muted-foreground text-xs md:text-sm leading-relaxed font-light">
                         {activeItem.description}
                       </p>
-                    </motion.div>
+                    </div>
 
-                    {/* Key Metrics Grid with Staggered Kinetic Entry */}
+                    {/* Key Metrics Grid */}
                     {activeItem.keyMetrics && activeItem.keyMetrics.length > 0 && (
                       <motion.div
-                        initial={{ opacity: 0, y: 16 }}
+                        initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.35, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ delay: 0.08, duration: 0.3 }}
                         className="grid grid-cols-2 sm:grid-cols-4 gap-2.5"
                       >
                         {activeItem.keyMetrics.map((km, i) => (
                           <div
                             key={i}
-                            className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center shadow-inner group hover:border-primary/30 transition-colors"
+                            className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center shadow-inner"
                           >
                             <div className="text-xl md:text-2xl font-black font-mono tracking-tight text-primary">
                               {km.value}
@@ -375,12 +339,7 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                     )}
 
                     {/* Target Audience & Pain Points */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.35, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                      className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-3 border-t border-white/[0.06]"
-                    >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-3 border-t border-white/[0.06]">
                       {activeItem.audience && (
                         <div className="space-y-1.5">
                           <div className="flex items-center gap-1.5 text-primary font-mono text-[10px] uppercase tracking-wider">
@@ -409,15 +368,10 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                           </ul>
                         </div>
                       )}
-                    </motion.div>
+                    </div>
 
                     {/* Architecture & Tech Stack */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.35, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                      className="space-y-2 pt-3 border-t border-white/[0.06]"
-                    >
+                    <div className="space-y-2 pt-3 border-t border-white/[0.06]">
                       <div className="flex items-center gap-1.5 text-muted-foreground font-mono text-[10px] uppercase tracking-wider">
                         <Cpu size={12} />
                         <span>Architecture & Integrations</span>
@@ -432,16 +386,11 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                           </span>
                         ))}
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
 
                   {/* Guaranteed Visible Bottom Action Tray */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                    className="pt-5 border-t border-white/[0.08] flex items-center justify-between gap-4"
-                  >
+                  <div className="pt-5 border-t border-white/[0.08] flex items-center justify-between gap-4">
                     {activeItem.type === "case-study" && activeItem.hasDetailPage && activeItem.slug ? (
                       <Link
                         to={`/case-studies/${activeItem.slug}`}
@@ -465,7 +414,7 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                     <span className="font-mono text-[10px] text-muted-foreground hidden sm:inline-block">
                       System {safeDesktopIndex + 1} of {filteredItems.length}
                     </span>
-                  </motion.div>
+                  </div>
                 </div>
               </motion.div>
             </AnimatePresence>
