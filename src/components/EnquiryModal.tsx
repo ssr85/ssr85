@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Send } from "lucide-react";
+import { Loader2, Send, Sparkles, X } from "lucide-react";
 import { executeRecaptcha } from "@/lib/recaptcha";
 
 const enquirySchema = z.object({
@@ -98,32 +98,12 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
       const responseData = await response.json();
 
       if (!response.ok) {
-        console.error("Server error:", responseData);
-
-        let errorTitle = "Error";
-        let errorMessage = responseData.error || "Something went wrong. Please try again or email directly.";
-
-        if (responseData.details && Array.isArray(responseData.details)) {
-          errorTitle = "Validation Error";
-          errorMessage = responseData.details
-            .map(
-              (e: { field: string; message: string }) =>
-                `• ${e.field.charAt(0).toUpperCase() + e.field.slice(1)}: ${e.message}`,
-            )
-            .join("\n");
-        }
-
-        toast({
-          title: errorTitle,
-          description: errorMessage,
-          variant: "destructive",
-        });
-        return;
+        throw new Error(responseData.error || "Failed to send enquiry");
       }
 
       toast({
-        title: "Enquiry Sent Successfully!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+        title: "Enquiry Received",
+        description: "Thank you for reaching out. I will review your requirements and get back to you shortly.",
       });
 
       reset();
@@ -132,7 +112,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
       console.error("Error sending enquiry:", error);
       toast({
         title: "Failed to Send",
-        description: "Something went wrong. Please try again or email me directly on sarabjit.rattan@gmail.com",
+        description: "Something went wrong. Please try again or email me directly at sarabjit.rattan@gmail.com",
         variant: "destructive",
       });
     } finally {
@@ -142,101 +122,113 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md p-0 overflow-hidden">
-        {/* Gradient Header */}
-        <div className="bg-gradient-to-r from-primary to-secondary p-6 text-primary-foreground">
-          <DialogHeader>
-            <DialogTitle className="text-primary-foreground text-xl">Get In Touch</DialogTitle>
-            <DialogDescription className="text-primary-foreground/80">
-              Fill out the form below and I'll get back to you as soon as possible.
+      <DialogContent className="sm:max-w-lg p-0 overflow-hidden bg-[#070a0f] border border-white/[0.12] shadow-2xl rounded-[2rem]">
+        {/* Double Bezel Outer / Header */}
+        <div className="p-6 md:p-8 bg-gradient-to-b from-white/[0.04] to-transparent border-b border-white/[0.08]">
+          <DialogHeader className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="badge-eyebrow text-[10px]">
+                <Sparkles size={11} className="text-primary" />
+                Direct Inquiry
+              </span>
+            </div>
+            <DialogTitle className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+              Initiate Discussion.
+            </DialogTitle>
+            <DialogDescription className="text-muted-foreground text-xs md:text-sm font-light leading-relaxed">
+              Share your project or architectural requirements. I typically respond within 24 hours.
             </DialogDescription>
           </DialogHeader>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-6">
-          {/* Name */}
-          <div className="space-y-2">
-            <Label htmlFor="name">
-              Name <span className="text-destructive">*</span>
-            </Label>
-            <Input
-              id="name"
-              placeholder="Your full name"
-              {...register("name")}
-              aria-invalid={!!errors.name}
-              className="border-border focus:border-primary"
-            />
-            {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-6 md:p-8 pt-4">
+          {/* Name & Phone in 2-col on desktop */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <Label htmlFor="name" className="text-xs font-mono text-muted-foreground">
+                Your Name <span className="text-primary">*</span>
+              </Label>
+              <Input
+                id="name"
+                placeholder="e.g. Alex Walker"
+                {...register("name")}
+                aria-invalid={!!errors.name}
+                className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl"
+              />
+              {errors.name && <p className="text-[11px] text-destructive">{errors.name.message}</p>}
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="phone" className="text-xs font-mono text-muted-foreground">
+                Phone (+Country Code) <span className="text-primary">*</span>
+              </Label>
+              <Input
+                id="phone"
+                placeholder="+14155552671"
+                {...register("phone")}
+                aria-invalid={!!errors.phone}
+                className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl font-mono"
+              />
+              {errors.phone && <p className="text-[11px] text-destructive">{errors.phone.message}</p>}
+            </div>
           </div>
 
-          {/* Email */}
-          <div className="space-y-2">
-            <Label htmlFor="email">
-              Email <span className="text-destructive">*</span>
-            </Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="your@email.com"
-              {...register("email")}
-              aria-invalid={!!errors.email}
-              className="border-border focus:border-primary"
-            />
-            {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
-          </div>
+          {/* Email & Company */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <Label htmlFor="email" className="text-xs font-mono text-muted-foreground">
+                Work Email <span className="text-primary">*</span>
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="alex@enterprise.com"
+                {...register("email")}
+                aria-invalid={!!errors.email}
+                className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl"
+              />
+              {errors.email && <p className="text-[11px] text-destructive">{errors.email.message}</p>}
+            </div>
 
-          {/* Phone */}
-          <div className="space-y-2">
-            <Label htmlFor="phone">
-              Phone <span className="text-destructive">*</span>
-            </Label>
-            <Input
-              id="phone"
-              placeholder="+91XXXXXXXXXX"
-              {...register("phone")}
-              aria-invalid={!!errors.phone}
-              className="border-border focus:border-primary"
-            />
-            {errors.phone && <p className="text-sm text-destructive">{errors.phone.message}</p>}
-          </div>
-
-          {/* Company Name (Optional) */}
-          <div className="space-y-2">
-            <Label htmlFor="companyName">Company Name</Label>
-            <Input
-              id="companyName"
-              placeholder="Your company (optional)"
-              {...register("companyName")}
-              aria-invalid={!!errors.companyName}
-              className="border-border focus:border-primary"
-            />
-            {errors.companyName && <p className="text-sm text-destructive">{errors.companyName.message}</p>}
+            <div className="space-y-1.5">
+              <Label htmlFor="companyName" className="text-xs font-mono text-muted-foreground">
+                Company / Organization
+              </Label>
+              <Input
+                id="companyName"
+                placeholder="Enterprise Inc."
+                {...register("companyName")}
+                aria-invalid={!!errors.companyName}
+                className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl"
+              />
+              {errors.companyName && <p className="text-[11px] text-destructive">{errors.companyName.message}</p>}
+            </div>
           </div>
 
           {/* Requirement */}
-          <div className="space-y-2">
-            <Label htmlFor="requirement">
-              Brief Requirement <span className="text-destructive">*</span>
+          <div className="space-y-1.5">
+            <Label htmlFor="requirement" className="text-xs font-mono text-muted-foreground">
+              Project Architecture or Problem Scope <span className="text-primary">*</span>
             </Label>
             <Textarea
               id="requirement"
-              placeholder="Describe what you're looking for..."
+              placeholder="Outline your current operational bottlenecks, scale objectives, or required agentic capabilities..."
               rows={4}
               {...register("requirement")}
               aria-invalid={!!errors.requirement}
-              className="border-border focus:border-primary"
+              className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl resize-none"
             />
-            {errors.requirement && <p className="text-sm text-destructive">{errors.requirement.message}</p>}
+            {errors.requirement && <p className="text-[11px] text-destructive">{errors.requirement.message}</p>}
           </div>
 
           {/* reCAPTCHA Notice */}
-          <p className="text-xs text-muted-foreground">
-            This site is protected by reCAPTCHA and the Google{" "}
+          <p className="text-[11px] text-muted-foreground leading-relaxed pt-1">
+            Protected by Google reCAPTCHA.{" "}
             <a
               href="https://policies.google.com/privacy"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-primary"
+              className="text-foreground underline hover:text-primary"
             >
               Privacy Policy
             </a>{" "}
@@ -245,32 +237,40 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               href="https://policies.google.com/terms"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-primary"
+              className="text-foreground underline hover:text-primary"
             >
               Terms of Service
             </a>{" "}
             apply.
           </p>
 
-          {/* Submit Button */}
-          <div className="flex justify-end gap-3 pt-4">
-            <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
+          {/* Action Buttons */}
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/[0.08]">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onClose}
+              disabled={isSubmitting}
+              className="rounded-full px-5 text-xs border-white/[0.1] hover:bg-white/[0.05]"
+            >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
+              className="btn-icon-pod rounded-full px-6 py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs shadow-lg shadow-primary/20 transition-all group"
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Sending...
+                  <Loader2 className="mr-2 h-3.5 w-3.5 animate-spin" />
+                  <span>Submitting...</span>
                 </>
               ) : (
                 <>
-                  <Send className="mr-2 h-4 w-4" />
-                  Send Enquiry
+                  <span>Send Requirements</span>
+                  <span className="w-5 h-5 rounded-full bg-black/20 text-primary-foreground flex items-center justify-center group-hover:translate-x-0.5 transition-transform ml-2">
+                    <Send size={11} />
+                  </span>
                 </>
               )}
             </Button>

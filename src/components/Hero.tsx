@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Globe, Zap, BrainCircuit, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Globe, Zap, BrainCircuit, CheckCircle2, Terminal } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { siteConfig, heroTags } from "@/data/content";
 import { scrollToSection } from "@/lib/scroll";
@@ -52,34 +51,41 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
     <section
       id="hero"
       ref={heroRef}
-      className="min-h-[95vh] flex items-center justify-center pt-24 pb-16 px-4 bg-background relative overflow-hidden font-sans"
+      className="min-h-[92vh] flex items-center justify-center pt-28 md:pt-36 pb-20 px-4 bg-background relative overflow-hidden font-sans"
     >
-      <EngineeringGrid size="4rem 4rem" opacity={0.12} />
+      <EngineeringGrid size="4rem 4rem" opacity={0.25} />
 
+      {/* Luminous Ambient Mesh Glows */}
       <div
-        className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/[0.08] rounded-full blur-[120px] pointer-events-none"
+        className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-primary/[0.07] dark:bg-primary/[0.09] rounded-full blur-[140px] pointer-events-none"
         style={{ transform: `translateY(${scrollY * 0.05}px)` }}
       />
       <div
-        className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/[0.04] rounded-full blur-[100px] hidden pointer-events-none"
+        className="absolute bottom-10 left-0 w-[500px] h-[500px] bg-secondary/[0.06] dark:bg-secondary/[0.08] rounded-full blur-[120px] pointer-events-none"
         style={{ transform: `translateY(${scrollY * -0.03}px)` }}
       />
+
       <div
         className="container mx-auto relative z-10 max-w-5xl"
         style={{ transform: `translateY(${scrollY * 0.02}px)` }}
       >
-        <div className="animate-hero-fade flex items-center gap-4 mb-8">
-          <div className="h-[1px] w-12 bg-primary/40" />
-          <p className="text-sm md:text-base font-semibold tracking-[0.2em] uppercase text-primary">
-            {siteConfig.name}
-          </p>
+        {/* Eyebrow Status Badge */}
+        <div className="animate-hero-fade flex items-center gap-3 mb-6">
+          <div className="badge-eyebrow">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+            </span>
+            <span>B2B AI Specialist &bull; {siteConfig.location}</span>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-          <div className="lg:col-span-8 flex flex-col items-start justify-between min-h-full">
-            <div className="space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
+          {/* Main Hero Column */}
+          <div className="lg:col-span-7 flex flex-col items-start justify-between min-h-full">
+            <div className="space-y-6 md:space-y-8">
               <h1
-                className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.15] tracking-tight animate-hero-fade"
+                className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.12] tracking-tight animate-hero-fade"
                 style={{ animationDelay: "0.15s" }}
               >
                 Engineering <br />
@@ -92,7 +98,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
                         animate={{ y: "0%", opacity: 1 }}
                         exit={{ y: "-100%", opacity: 0 }}
                         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                        className="inline-block text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary whitespace-nowrap py-1"
+                        className="inline-block text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-400 to-secondary whitespace-nowrap py-1"
                       >
                         {heroTags[tagIndex]}
                       </motion.span>
@@ -107,115 +113,137 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
               </h1>
 
               <p
-                className="text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-xl animate-hero-fade font-light"
+                className="text-base md:text-xl text-muted-foreground leading-relaxed max-w-xl animate-hero-fade font-normal"
                 style={{ animationDelay: "0.3s" }}
               >
-                B2B AI Strategy & Agentic Systems Consultant bridging industry operations with autonomous engines.
+                B2B AI Strategy & Agentic Systems Consultant bridging enterprise operations with autonomous LLM orchestration and custom software pipelines.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-8 animate-hero-fade mt-auto w-full sm:w-auto" style={{ animationDelay: "0.45s" }}>
-              <motion.div
-                whileHover={{ scale: 1.03, y: -1 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                className="w-full sm:w-auto"
+            {/* Haptic Island Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-8 animate-hero-fade mt-auto w-full sm:w-auto" style={{ animationDelay: "0.45s" }}>
+              <button
+                onClick={onOpenEnquiry}
+                className="group relative inline-flex items-center justify-between sm:justify-start gap-4 pl-6 pr-2 py-2 rounded-full bg-foreground text-background dark:bg-primary dark:text-primary-foreground font-semibold text-sm md:text-base shadow-xl shadow-foreground/10 dark:shadow-primary/20 transition-all duration-300 hover:opacity-95 active:scale-[0.98]"
               >
-                <Button
-                  size="lg"
-                  onClick={onOpenEnquiry}
-                  className="w-full px-6 sm:px-8 py-5 sm:py-7 text-sm sm:text-base rounded-full bg-foreground text-background hover:bg-foreground/90 shadow-xl shadow-foreground/10 font-semibold group border border-transparent whitespace-nowrap"
-                >
-                  Let's Connect
-                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.03, y: -1 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                className="w-full sm:w-auto"
+                <span>Let's Connect</span>
+                <span className="w-8 h-8 rounded-full bg-background/20 dark:bg-background/20 flex items-center justify-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-[0.5px]">
+                  <ArrowRight className="w-4 h-4" />
+                </span>
+              </button>
+
+              <button
+                onClick={scrollToCaseStudies}
+                className="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm md:text-base font-semibold border border-black/10 dark:border-white/10 hover:bg-muted/50 transition-all duration-200 active:scale-[0.98] text-foreground"
               >
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={scrollToCaseStudies}
-                  className="w-full px-6 sm:px-8 py-5 sm:py-7 text-sm sm:text-base rounded-full border-border/50 hover:bg-muted/50 hover:border-primary/30 font-medium whitespace-nowrap"
-                >
-                  View Work
-                </Button>
-              </motion.div>
+                View Work
+              </button>
             </div>
           </div>
 
-          <div className="lg:col-span-4 lg:pl-8 flex flex-col justify-between hidden lg:flex animate-hero-fade" style={{ animationDelay: "0.5s" }}>
-            <div className="p-8 rounded-xl bg-card border border-border/50 shadow-xl shadow-primary/5 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                <BrainCircuit size={80} />
-              </div>
-              <div className="flex items-center gap-2 mb-4">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
-                </span>
-                <p className="font-mono text-xs uppercase tracking-widest text-primary">Open For</p>
-              </div>
-              <ul className="space-y-3 border-t border-border/50 pt-4">
-                {["AI Strategy & Roadmap", "B2B Agentic Builds", "Ops Transformation"].map((item) => (
-                  <li key={item} className="flex items-center gap-2.5 text-sm text-muted-foreground">
-                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Desktop Double-Bezel Hardware Panel */}
+          <div className="lg:col-span-5 lg:pl-4 flex flex-col justify-between hidden lg:flex animate-hero-fade" style={{ animationDelay: "0.5s" }}>
+            <div className="double-bezel">
+              <div className="double-bezel-inner space-y-6">
+                <div className="flex items-center justify-between pb-4 border-b border-border/50">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
+                    </span>
+                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-foreground">
+                      Capabilities Matrix
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-mono text-muted-foreground uppercase">
+                    Q4 Available
+                  </span>
+                </div>
 
-            <div className="grid grid-cols-2 gap-4 mt-6">
-              <div className="p-5 rounded-xl bg-muted/40 border border-border/50 flex flex-col justify-center">
-                <Globe className="h-6 w-6 text-primary mb-3" />
-                <p className="font-bold text-foreground">Global</p>
-                <p className="text-xs text-muted-foreground mt-1">4 Continents</p>
-              </div>
-              <div className="p-5 rounded-xl bg-muted/40 border border-border/50 flex flex-col justify-center">
-                <Zap className="h-6 w-6 text-primary mb-3" />
-                <p className="font-bold text-foreground">Efficiency</p>
-                <p className="text-xs text-muted-foreground mt-1">Tech-enabled</p>
+                <div className="space-y-3">
+                  {[
+                    { label: "B2B AI Strategy & Roadmaps", detail: "Translating ops logic to agents" },
+                    { label: "Autonomous Agentic Builds", detail: "CrewAI & LangGraph with HITL" },
+                    { label: "WordPress AI Engineering", detail: "Bespoke plugins & Headless SSG" },
+                    { label: "Operations Sync Engines", detail: "Freshsales & HubSpot 2-way sync" },
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      className="p-3 rounded-xl border border-black/5 dark:border-white/10 bg-background/50 flex items-start gap-3 transition-colors hover:border-primary/40"
+                    >
+                      <div className="p-1.5 rounded-lg bg-primary/10 text-primary mt-0.5 shrink-0">
+                        <CheckCircle2 className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-foreground">{item.label}</p>
+                        <p className="text-[11px] text-muted-foreground mt-0.5">{item.detail}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="p-3.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.03] border border-black/5 dark:border-white/10 text-center">
+                    <Globe className="h-5 w-5 text-primary mx-auto mb-1.5" />
+                    <p className="text-xs font-bold text-foreground">Global Reach</p>
+                    <p className="text-[10px] text-muted-foreground mt-0.5">4 Continents</p>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.03] border border-black/5 dark:border-white/10 text-center">
+                    <Zap className="h-5 w-5 text-primary mx-auto mb-1.5" />
+                    <p className="text-xs font-bold text-foreground">High Leverage</p>
+                    <p className="text-[10px] text-muted-foreground mt-0.5">Zero Bloat</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="lg:hidden grid grid-cols-1 gap-4 mt-10 animate-hero-fade" style={{ animationDelay: "0.5s" }}>
-          <div className="p-5 rounded-xl bg-card border border-border/50 flex items-center gap-4">
-            <div className="shrink-0">
-              <div className="flex items-center gap-2 mb-1">
+        {/* Mobile Capabilities Grid */}
+        <div className="lg:hidden mt-8 animate-hero-fade" style={{ animationDelay: "0.5s" }}>
+          <div className="double-bezel">
+            <div className="double-bezel-inner p-4 space-y-3">
+              <div className="flex items-center gap-2 mb-2">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-primary">Open For</span>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-primary">
+                  Core Focus Areas
+                </span>
               </div>
-              <ul className="space-y-1">
-                {["AI Strategy & Roadmap", "B2B Agentic Builds", "Ops Transformation"].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <CheckCircle2 className="h-3 w-3 text-primary shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" />
+                  <span>AI Strategy & Architecture</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" />
+                  <span>Agentic Systems Builds</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" />
+                  <span>Custom WordPress Engineering</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" />
+                  <span>Two-Way CRM Automation</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-hero-fade hidden md:flex z-20" style={{ animationDelay: "1.2s" }}>
+      {/* Scroll Down Indicator */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 animate-hero-fade hidden md:flex z-20" style={{ animationDelay: "1.2s" }}>
         <div className="animate-smooth-bounce">
           <button
             onClick={scrollToContent}
-            className="w-10 h-16 rounded-full border border-primary/50 flex items-start justify-center p-2 transition-all duration-300 bg-background/10 hover:border-primary/80"
+            className="w-8 h-12 rounded-full border border-primary/40 flex items-start justify-center p-1.5 transition-all duration-300 bg-background/20 hover:border-primary/80"
             aria-label="Scroll down"
           >
-            <div className="w-1.5 h-3 bg-primary/80 rounded-full" />
+            <div className="w-1.5 h-2.5 bg-primary/80 rounded-full" />
           </button>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { siteConfig } from "@/data/content";
-import { Mail, FileText, ChevronUp, Phone, Linkedin, Github } from "lucide-react";
+import { Mail, FileText, ChevronUp, Phone, Linkedin, Github, Terminal } from "lucide-react";
 import { EngineeringGrid } from "@/components/EngineeringGrid";
 import { cn } from "@/lib/utils";
 import { useThrottledScroll } from "@/hooks/use-throttle";
@@ -48,26 +48,23 @@ export const Footer = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const baseOpacity = scrollProgress > 0 ? 0.1 + (scrollProgress * 0.7) : 0;
-  const showButton = baseOpacity > 0;
-
-  // Cross-fade logic: Ensure the transition is truly gradual
-  const floatingOpacity = baseOpacity * (1 - footerProgress);
-  const footerButtonOpacity = footerProgress;
-
   return (
-    <footer ref={footerRef} className="py-16 px-4 border-t border-border/40 bg-background relative overflow-hidden">
+    <footer ref={footerRef} className="py-20 md:py-28 px-4 border-t border-white/[0.08] bg-background relative overflow-hidden">
       <EngineeringGrid />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-5xl mx-auto space-y-12">
+        <div className="max-w-6xl mx-auto space-y-16">
           {/* Main Footer Links Columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm">
-            <div className="space-y-3">
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground">Core Pillars</div>
-              <ul className="space-y-2 text-muted-foreground">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-sm">
+            {/* Column 1: Core Pillars */}
+            <div className="space-y-4">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                Core Systems
+              </div>
+              <ul className="space-y-2.5 text-muted-foreground text-xs">
                 <li>
                   <Link to="/custom-ai-solutions" className="hover:text-primary transition-colors">
-                    Custom AI Systems
+                    Custom AI Solutions
                   </Link>
                 </li>
                 <li>
@@ -77,15 +74,19 @@ export const Footer = () => {
                 </li>
                 <li>
                   <Link to="/custom-business-automation" className="hover:text-primary transition-colors">
-                    Business Automation
+                    Business & CRM Automation
                   </Link>
                 </li>
               </ul>
             </div>
 
-            <div className="space-y-3">
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground">WordPress Insights</div>
-              <ul className="space-y-2 text-xs text-muted-foreground">
+            {/* Column 2: WordPress Insights */}
+            <div className="space-y-4">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
+                WP Engineering
+              </div>
+              <ul className="space-y-2.5 text-xs text-muted-foreground">
                 <li>
                   <Link to="/insights/ai-wordpress-plugin-development" className="hover:text-primary transition-colors">
                     Custom AI Plugin Dev
@@ -104,9 +105,13 @@ export const Footer = () => {
               </ul>
             </div>
 
-            <div className="space-y-3">
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground">AI & Automation</div>
-              <ul className="space-y-2 text-xs text-muted-foreground">
+            {/* Column 3: AI & Automation */}
+            <div className="space-y-4">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                Autonomous Tech
+              </div>
+              <ul className="space-y-2.5 text-xs text-muted-foreground">
                 <li>
                   <Link to="/insights/local-llm-lm-studio-workflow" className="hover:text-primary transition-colors">
                     Local LLMs with LM Studio
@@ -114,7 +119,7 @@ export const Footer = () => {
                 </li>
                 <li>
                   <Link to="/insights/multi-agent-orchestration-from-scratch" className="hover:text-primary transition-colors">
-                    Multi-Agent Systems
+                    Multi-Agent Orchestration
                   </Link>
                 </li>
                 <li>
@@ -135,19 +140,24 @@ export const Footer = () => {
               </ul>
             </div>
 
-            <div className="space-y-3">
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground">Connect</div>
-              <div className="flex items-center gap-2.5 pt-1">
+            {/* Column 4: Connect & Telemetry */}
+            <div className="space-y-4">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                Connect
+              </div>
+              
+              <div className="flex items-center gap-2 pt-1">
                 <a
                   href={`tel:${siteConfig.phone}`}
-                  className="w-8 h-8 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"
+                  className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/80 hover:text-primary hover:border-primary/40 hover:bg-primary/10 flex items-center justify-center transition-all duration-200"
                   aria-label="Phone"
                 >
                   <Phone size={14} />
                 </a>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="w-8 h-8 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"
+                  className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/80 hover:text-primary hover:border-primary/40 hover:bg-primary/10 flex items-center justify-center transition-all duration-200"
                   aria-label="Email"
                 >
                   <Mail size={14} />
@@ -156,7 +166,7 @@ export const Footer = () => {
                   href={siteConfig.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"
+                  className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/80 hover:text-primary hover:border-primary/40 hover:bg-primary/10 flex items-center justify-center transition-all duration-200"
                   aria-label="LinkedIn"
                 >
                   <Linkedin size={14} />
@@ -165,42 +175,52 @@ export const Footer = () => {
                   href={siteConfig.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"
+                  className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/80 hover:text-primary hover:border-primary/40 hover:bg-primary/10 flex items-center justify-center transition-all duration-200"
                   aria-label="GitHub"
                 >
                   <Github size={14} />
                 </a>
               </div>
+
               <div className="pt-2">
                 <a
                   href="/resume"
-                  className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors font-mono"
+                  className="btn-icon-pod inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.12] text-xs text-muted-foreground hover:text-foreground transition-all font-mono"
                 >
-                  <FileText size={12} /> View Executive Resume
+                  <FileText size={12} className="text-primary" />
+                  <span>Executive Resume</span>
                 </a>
               </div>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-            <div className="flex items-center gap-4 justify-center sm:justify-start">
-              <span>© {currentYear} {siteConfig.name}. Built with React, Vite SSG & Supabase.</span>
+          {/* Bottom Bar */}
+          <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+            <div className="flex flex-wrap items-center gap-3 justify-center sm:justify-start font-mono text-[11px]">
+              <span>© {currentYear} {siteConfig.name}</span>
               <span>•</span>
               <button
                 onClick={() => setIsResumeModalOpen(true)}
-                className="inline-flex items-center gap-1.5 hover:text-primary transition-colors font-mono"
+                className="hover:text-primary transition-colors"
               >
-                <FileText size={12} /> Resume PDF
+                Resume PDF
               </button>
               <span>•</span>
-              <a href="/sitemap.xml" target="_blank" className="hover:text-primary transition-colors font-mono">Sitemap</a>
+              <a href="/sitemap.xml" target="_blank" className="hover:text-primary transition-colors">
+                Sitemap
+              </a>
+              <span>•</span>
+              <a href="/llms.txt" target="_blank" className="hover:text-primary transition-colors">
+                llms.txt
+              </a>
             </div>
             
             <button
               onClick={scrollToTop}
-              className="hover:text-foreground transition-colors flex items-center gap-1 font-mono"
+              className="btn-icon-pod inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] hover:border-white/[0.15] text-foreground/80 hover:text-foreground text-xs font-mono transition-all group"
             >
-              Back to Top <ChevronUp size={14} />
+              <span>Back to Top</span>
+              <ChevronUp size={13} className="text-primary group-hover:-translate-y-0.5 transition-transform" />
             </button>
           </div>
 
@@ -217,4 +237,3 @@ export const Footer = () => {
     </footer>
   );
 };
-
