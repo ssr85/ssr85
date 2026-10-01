@@ -286,16 +286,21 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeItem.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="double-bezel p-1.5 rounded-[2.25rem] shadow-2xl shadow-black/60"
+                initial={{ opacity: 0, y: 36, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -24, scale: 0.97 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="double-bezel p-1.5 rounded-[2.25rem] shadow-2xl shadow-black/70"
               >
                 <div className="double-bezel-inner rounded-[calc(2.25rem-0.375rem)] p-7 md:p-8 space-y-6 max-h-[calc(100vh-7.5rem)] overflow-y-auto custom-scrollbar flex flex-col justify-between">
                   <div className="space-y-6">
                     {/* Header */}
-                    <div className="space-y-2">
+                    <motion.div
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+                      className="space-y-2"
+                    >
                       <div className="flex items-center justify-between">
                         <span className="badge-eyebrow text-[10px]">
                           {activeItem.category}
@@ -312,15 +317,20 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                       <p className="text-muted-foreground text-xs md:text-sm leading-relaxed font-light">
                         {activeItem.description}
                       </p>
-                    </div>
+                    </motion.div>
 
-                    {/* Key Metrics Grid */}
+                    {/* Key Metrics Grid with Staggered Kinetic Entry */}
                     {activeItem.keyMetrics && activeItem.keyMetrics.length > 0 && (
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                      <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.35, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                        className="grid grid-cols-2 sm:grid-cols-4 gap-2.5"
+                      >
                         {activeItem.keyMetrics.map((km, i) => (
                           <div
                             key={i}
-                            className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center shadow-inner"
+                            className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center shadow-inner group hover:border-primary/30 transition-colors"
                           >
                             <div className="text-xl md:text-2xl font-black font-mono tracking-tight text-primary">
                               {km.value}
@@ -330,11 +340,16 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                             </div>
                           </div>
                         ))}
-                      </div>
+                      </motion.div>
                     )}
 
                     {/* Target Audience & Pain Points */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-3 border-t border-white/[0.06]">
+                    <motion.div
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.35, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                      className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-3 border-t border-white/[0.06]"
+                    >
                       {activeItem.audience && (
                         <div className="space-y-1.5">
                           <div className="flex items-center gap-1.5 text-primary font-mono text-[10px] uppercase tracking-wider">
@@ -363,10 +378,15 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                           </ul>
                         </div>
                       )}
-                    </div>
+                    </motion.div>
 
                     {/* Architecture & Tech Stack */}
-                    <div className="space-y-2 pt-3 border-t border-white/[0.06]">
+                    <motion.div
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.35, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                      className="space-y-2 pt-3 border-t border-white/[0.06]"
+                    >
                       <div className="flex items-center gap-1.5 text-muted-foreground font-mono text-[10px] uppercase tracking-wider">
                         <Cpu size={12} />
                         <span>Architecture & Integrations</span>
@@ -381,11 +401,16 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                           </span>
                         ))}
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
 
                   {/* Guaranteed Visible Bottom Action Tray */}
-                  <div className="pt-5 border-t border-white/[0.08] flex items-center justify-between gap-4">
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                    className="pt-5 border-t border-white/[0.08] flex items-center justify-between gap-4"
+                  >
                     {activeItem.type === "case-study" && activeItem.hasDetailPage && activeItem.slug ? (
                       <Link
                         to={`/case-studies/${activeItem.slug}`}
@@ -409,7 +434,7 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                     <span className="font-mono text-[10px] text-muted-foreground hidden sm:inline-block">
                       System {safeDesktopIndex + 1} of {filteredItems.length}
                     </span>
-                  </div>
+                  </motion.div>
                 </div>
               </motion.div>
             </AnimatePresence>
