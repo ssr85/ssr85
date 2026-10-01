@@ -105,7 +105,7 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
         <ScrollAnimationWrapper>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
             <div className="space-y-3">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide">
+              <span className="inline-block px-3 py-1 rounded-md border border-border bg-muted/40 text-muted-foreground font-mono text-xs uppercase tracking-widest tracking-wide">
                 Work
               </span>
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">

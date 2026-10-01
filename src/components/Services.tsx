@@ -24,7 +24,7 @@ export const Services = ({ onOpenEnquiry }: ServicesProps) => {
       <div className="container mx-auto relative z-10">
         <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-5 tracking-wide">
+          <span className="inline-block px-3 py-1 rounded-md border border-border bg-muted/40 text-muted-foreground font-mono text-xs uppercase tracking-widest mb-5 tracking-wide">
             How I Can Help
           </span>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 tracking-tight">

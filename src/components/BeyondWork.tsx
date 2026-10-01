@@ -5,10 +5,10 @@ import { StaggeredCard } from "@/components/ScrollAnimationWrapper";
 import RotatingEarth from "@/components/ui/wireframe-dotted-globe";
 
 const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
-  Plane: { icon: <Plane className="h-5 w-5" />, color: "bg-accent/10 text-accent" },
+  Plane: { icon: <Plane className="h-5 w-5" />, color: "bg-primary/10 text-primary" },
   BookOpen: { icon: <BookOpen className="h-5 w-5" />, color: "bg-primary/10 text-primary" },
-  Dumbbell: { icon: <Dumbbell className="h-5 w-5" />, color: "bg-secondary/10 text-secondary" },
-  GraduationCap: { icon: <GraduationCap className="h-5 w-5" />, color: "bg-accent/10 text-accent" },
+  Dumbbell: { icon: <Dumbbell className="h-5 w-5" />, color: "bg-primary/10 text-primary" },
+  GraduationCap: { icon: <GraduationCap className="h-5 w-5" />, color: "bg-primary/10 text-primary" },
 };
 
 export const BeyondWork = () => {
@@ -22,7 +22,7 @@ export const BeyondWork = () => {
       <div className="container mx-auto relative z-10 max-w-5xl">
         <div className="flex flex-col md:flex-row md:items-center gap-8 mb-14">
           <div className="text-left max-w-2xl">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-5 tracking-wide">
+            <span className="inline-block px-3 py-1 rounded-md border border-border bg-muted/40 text-muted-foreground font-mono text-xs uppercase tracking-widest mb-5 tracking-wide">
               Personal
             </span>
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 tracking-tight">

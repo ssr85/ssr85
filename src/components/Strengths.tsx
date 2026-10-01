@@ -6,11 +6,11 @@ import { cn } from "@/lib/utils";
 
 const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
   Compass: { icon: <Compass className="h-6 w-6" />, color: "bg-primary/10 text-primary" },
-  Settings: { icon: <Settings className="h-6 w-6" />, color: "bg-secondary/10 text-secondary" },
-  Users: { icon: <Users className="h-6 w-6" />, color: "bg-accent/10 text-accent" },
+  Settings: { icon: <Settings className="h-6 w-6" />, color: "bg-primary/10 text-primary" },
+  Users: { icon: <Users className="h-6 w-6" />, color: "bg-primary/10 text-primary" },
   Rocket: { icon: <Rocket className="h-6 w-6" />, color: "bg-primary/10 text-primary" },
-  Cpu: { icon: <Cpu className="h-6 w-6" />, color: "bg-secondary/10 text-secondary" },
-  Leaf: { icon: <Leaf className="h-6 w-6" />, color: "bg-accent/10 text-accent" },
+  Cpu: { icon: <Cpu className="h-6 w-6" />, color: "bg-primary/10 text-primary" },
+  Leaf: { icon: <Leaf className="h-6 w-6" />, color: "bg-primary/10 text-primary" },
 };
 
 export const Strengths = () => {
@@ -21,7 +21,7 @@ export const Strengths = () => {
           
           {/* Sticky Left Column -> Title & Context */}
           <div className="lg:w-1/3 lg:sticky lg:top-32 space-y-6 shrink-0">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide">
+            <span className="inline-block px-3 py-1 rounded-md border border-border bg-muted/40 text-muted-foreground font-mono text-xs uppercase tracking-widest tracking-wide">
               What I Bring
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight leading-tight">

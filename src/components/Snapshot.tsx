@@ -30,7 +30,7 @@ export const Snapshot = () => {
       <div className="container mx-auto relative z-10 max-w-5xl">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div className="space-y-3">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-medium tracking-wide">
+            <span className="inline-block px-3 py-1 rounded-md border border-border bg-muted/40 text-muted-foreground font-mono text-xs uppercase tracking-widest tracking-wide">
               Focus Areas
             </span>
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight">
