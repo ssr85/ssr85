@@ -1,9 +1,10 @@
 # Sarabjeet Rattan - Full Professional Context
-> High-density context for AI agents and LLMs. This file contains the complete professional thesis, project deep-dives, and service capabilities of Sarabjeet Rattan.
+> High-density context for AI agents and LLMs. This file contains the complete professional thesis, project deep-dives, service pillars, and architectural insight guides of Sarabjeet Rattan.
 
 ## Core Identity & Thesis
 - **Name**: Sarabjeet Rattan
-- **Focus**: B2B AI Specialist & Strategic Operations
+- **Focus**: B2B AI Specialist, Agentic Systems Consultant & Strategic Operations Leader
+- **Location**: Pune, India & Global
 - **Mission**: Bridging industrial logic with Agentic systems to navigate complex B2B business logic autonomously.
 - **Key Thesis**: Designing tech-enabled, forward-thinking enterprises backed by robust global distribution networks and intelligent process automation (IPA).
 
@@ -11,63 +12,70 @@
 - **Experience**: 16+ years of operational and strategic leadership.
 - **Global Reach**: Served 250+ clients across 4 continents.
 - **Core Competencies**: 
-    - **Strategic Architecture**: Market entry, positioning, and scaling roadmaps.
-    - **Operational Rigor**: Resilient process design and cost optimization.
-    - **System Integration**: Replacing operational debt with bespoke SaaS/AI automation.
-    - **Sustainable Economics**: Balancing profitability with environmental responsibility.
+  - **Strategic Architecture**: Market entry, positioning, and scaling roadmaps.
+  - **Operational Rigor**: Resilient process design and cost optimization.
+  - **System Integration**: Replacing operational debt with bespoke SaaS/AI automation.
+  - **WordPress AI Engineering**: High-velocity custom plugins, headless Vite frontends, and automated schema injection.
 
-## Deep-Dive Case Studies (Agentic Engineering)
+## Core Service Pillars
 
-### 1. Lead OG
+### 1. AI WordPress Development (https://sarabjeetrattan.com/ai-wordpress-development)
+- **Specialty**: Bespoke WordPress engineering and autonomous AI integration.
+- **Key Capabilities**:
+  - Custom PHP/AI plugins replacing heavy marketplace plugins.
+  - Headless Vite/React frontends with sub-500ms TTFB.
+  - Autonomous AEO/GEO Schema injection (JSON-LD) for LLM search visibility.
+  - Lead invariant hubs and custom B2B pricing calculators.
+
+### 2. Custom AI Solutions (https://sarabjeetrattan.com/custom-ai-solutions)
+- **Specialty**: Multi-agent systems, local LLMs, and custom AI architecture from scratch.
+- **Key Capabilities**:
+  - Deterministic multi-agent orchestration (CrewAI, LangGraph) with human-in-the-loop oversight.
+  - Quantized local LLM deployments with LM Studio for 100% private coding workflows.
+  - Vector database integrations (pgvector, Supabase, Pinecone) for specialized RAG pipelines.
+  - Proprietary web scraping engines with custom session management.
+
+### 3. Custom Business Automation (https://sarabjeetrattan.com/custom-business-automation)
+- **Specialty**: Bespoke operational workflows and zero-dependency integrations.
+- **Key Capabilities**:
+  - Two-way CRM synchronization between Freshsales, HubSpot, Pipedrive, and internal databases.
+  - Enterprise Google Apps Script automation: Google Sheets as ERP with auto-PDF quotation generation.
+  - Automated Search Console and GA4 daily revenue and striking-distance query monitoring.
+
+## Technical Insight Guides
+
+1. **AI WordPress Plugin Development** (`/insights/ai-wordpress-plugin-development`):
+   - Engineering bespoke PHP plugins without marketplace bloat, integrating OpenAI REST endpoints, and ensuring isolated database queries.
+2. **Automated Search Console & GA4 Intelligence** (`/insights/automated-search-analytics-reporting`):
+   - Daily automated search analytics ingestion, striking-distance keyword detection (Positions 5-20), and proactive executive alerting.
+3. **Local LLMs with LM Studio** (`/insights/local-llm-lm-studio-workflow`):
+   - Offline coding pipelines using quantized models (Qwen 2.5 Coder, DeepSeek-R1) with OpenAI-compatible endpoints and zero data leakage.
+4. **Multi-Agent Orchestration from Scratch** (`/insights/multi-agent-orchestration-from-scratch`):
+   - Designing deterministic agent loops with state machines, preventing runaway API loops, and enforcing HITL checkpoints.
+5. **Custom Session Storage Engines** (`/insights/custom-session-storage-engines`):
+   - High-velocity scraping architecture, session token pooling, IP rotation, and fast Redis/Supabase caching.
+6. **Two-Way CRM Sync Engines** (`/insights/custom-crm-sync-engines`):
+   - Stateful bi-directional synchronization, webhook retry engines, and deduplication logic without third-party connector limits.
+7. **Enterprise Google Apps Script** (`/insights/google-sheets-apps-script-enterprise`):
+   - Transforming Google Sheets into automated internal ERP machines with automated quotation generation and manager email approvals.
+8. **Headless WordPress & React/Vite SSG** (`/insights/headless-wordpress-vite-architecture`):
+   - Decoupled Headless WordPress with Vite Static Site Generation (SSG), achieving 100/100 Core Web Vitals and edge caching.
+
+## Deep-Dive Case Studies
+
+### 1. Lead OG (`/case-studies/lead-og`)
 - **Specialty**: B2B AI Solutions / CRM Automation
 - **Target Audience**: B2B Sales Teams & SDRs
-- **Pain Points Solved**: Fragmented lead research, manual LinkedIn scraping, slow CRM synchronization (Freshsales).
-- **Architecture**: Automated deep prospect research engine with a custom session caching storage engine for high-velocity synchronization.
+- **Pain Points Solved**: Fragmented lead research, manual LinkedIn scraping, slow CRM synchronization.
+- **Architecture**: Automated deep prospect research engine with a custom session caching storage engine for Freshsales synchronization.
 - **Tech Stack**: React, Supabase, Tavily API, Custom Session Engine, Freshsales API.
 
-### 2. Linked-In
+### 2. LinkedIn Automation (`/case-studies/linked-in`)
 - **Specialty**: Agentic Engineering / Content Automation
 - **Target Audience**: Founders & Digital Publishers
-- **Pain Points Solved**: Creative friction, inconsistent publishing, manual research/drafting overhead.
-- **Architecture**: Trello-driven orchestration using CrewAI agents for topic research and high-fidelity content generation. Features a Human-in-the-Loop (HITL) 'Approve-to-Publish' workflow.
+- **Pain Points Solved**: Inconsistent publishing, manual topic research overhead.
+- **Architecture**: Trello-driven CrewAI orchestration for topic research and high-fidelity content generation with an approve-to-publish workflow.
 - **Tech Stack**: Python / CrewAI, Trello API, LinkedIn API, APScheduler.
-
-### 3. Prospect IQ
-- **Specialty**: Agentic Engineering / Data Intelligence
-- **Target Audience**: Marketing & Web Design Agencies
-- **Pain Points Solved**: Incomplete 360° audits, stalled background enrichment jobs, unreliable social signal tracking.
-- **Architecture**: 360° 8-pillar lead audit platform using a resilient worker-based architecture with custom recovery services.
-- **Tech Stack**: Next.js 14, BullMQ / Redis, Supabase, Social Scraping Engine.
-
-### 4. Compliance IQ
-- **Specialty**: Regulatory RAG (Retrieval-Augmented Generation)
-- **Target Audience**: Medical Device Manufacturers & Pharma
-- **Pain Points Solved**: Navigating complex CDSCO/MDR-2017 regulations, high legal consultation costs.
-- **Architecture**: Specialized RAG pipeline and regulatory PDF parser that navigates thousands of pages to provide cited compliance answers.
-- **Tech Stack**: Python / FastAPI, LangChain, Pinecone Vector DB, OpenAI GPT-4.
-
-### 5. Lume
-- **Specialty**: Agentic Business OS
-- **Target Audience**: B2B Freelancers & Agencies
-- **Pain Points Solved**: Manual proposal/invoice friction, fragmented communication, operational overhead.
-- **Architecture**: Proactive 'System Master' agent managing the entire business operation lifecycle with HITL oversight.
-- **Tech Stack**: Python / FastAPI, OpenAI GPT-4o, Gmail / Stripe API, Agentic Workflows.
-
-## Strategic Projects & Industrial Focus
-
-### OG Hemp (Sustainable Enterprise)
-- **Focus**: Hemp paper pulp, composite packaging, and moulded hemp products.
-- **Strategy**: Architected GTM strategy and resilient Hemp Paper Supply Chain model for international niche distribution.
-
-### Skaizen Water (Operations Optimization)
-- **Focus**: End-to-end automation logistics for water purification.
-- **Impact**: Accelerated B2B customer acquisition and retention through optimized workflows.
-
-## Services Portfolio
-- **Operations Architecture**: Comprehensive audits to increase efficiency and lower COGS.
-- **GTM Strategy & Positioning**: Orchestration for novel sustainable products and high-margin channels.
-- **Digital Transformation**: Bespoke internal web applications and automation flows.
-- **International Expansion**: Compliance advisory and global partner sourcing.
 
 ## Contact & Authorities
 - **Website**: https://sarabjeetrattan.com

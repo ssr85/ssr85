@@ -25,8 +25,8 @@ export const MultiAgentSystems = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Custom Multi-Agent Orchestration & Agentic Systems Engineering | Sarabjeet Rattan"
-        description="We architect deterministic multi-agent systems built from scratch: Specialized research, extraction, synthesis, and human-in-the-loop validation agents with zero infinite loops."
+        title="Custom Multi-Agent Orchestration & Systems | Sarabjeet Rattan"
+        description="We architect deterministic multi-agent systems: Specialized research, extraction, synthesis, and human-in-the-loop validation with zero infinite loops."
         keywords={[
           "custom ai agent development",
           "multi agent system from scratch",

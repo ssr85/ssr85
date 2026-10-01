@@ -41,7 +41,9 @@ function getRenderedPages(dir, baseDir = dir) {
     } else if (file.endsWith('.html') && file !== 'index.html') {
       const relativePath = path.relative(baseDir, fullPath);
       const route = '/' + relativePath.replace(/\/?index\.html$/, '').replace(/\.html$/, '');
-      pages.push({ loc: route, priority: '0.9', changefreq: 'monthly' });
+      if (route !== '/admin' && route !== '/404' && !route.startsWith('/admin/')) {
+        pages.push({ loc: route, priority: '0.9', changefreq: 'monthly' });
+      }
     }
   }
   return pages;

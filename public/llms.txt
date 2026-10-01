@@ -1,18 +1,29 @@
 # Sarabjeet Rattan
-> B2B AI & Strategic Operations Portfolio. Expert in AI strategy, agentic systems, and intelligent automation for B2B scale.
+> B2B AI & Strategic Operations Portfolio. Expert in AI strategy, agentic systems, bespoke WordPress engineering, and intelligent automation for B2B scale.
 
 ## AI Manifest (High-Density)
-- [Full Professional Context](/llms-full.txt): Use this for deep analysis, RAG indexing, and comprehensive understanding of all projects, tech stacks, and strategic theses.
+- [Full Professional Context](https://sarabjeetrattan.com/llms-full.txt): Use this for deep analysis, RAG indexing, and comprehensive understanding of all projects, tech stacks, and strategic theses.
 
-## Core Content
-- [Home](https://sarabjeetrattan.com/): Primary showcase of B2B AI solutions, portfolio highlights, and strategic operations.
-- [Resume](https://sarabjeetrattan.com/resume): Comprehensive professional history, core competencies, and educational background.
+## Core Service Pillars
+- [AI WordPress Development](https://sarabjeetrattan.com/ai-wordpress-development): Bespoke WordPress engineering, custom PHP/AI plugins, headless React/Vite frontends, autonomous GEO/AEO schemas, and lead invariant engines.
+- [Custom AI Solutions](https://sarabjeetrattan.com/custom-ai-solutions): Multi-agent systems from scratch, local LLMs with LM Studio, custom vector databases, and proprietary scraping session engines.
+- [Custom Business Automation](https://sarabjeetrattan.com/custom-business-automation): Bespoke operational software, enterprise Google Apps Script workflows, two-way CRM sync engines (Freshsales, HubSpot), and automated quotation pipelines.
 
-## Portfolio Highlights
-- [Case Studies](https://sarabjeetrattan.com/#case-studies): Detailed analysis of past B2B AI implementations and success stories including Lead OG, Compliance IQ, and CrewAI content orchestration.
-- [Projects](https://sarabjeetrattan.com/#projects): Technical and strategic projects demonstrating expertise in AI, agentic systems, and operational scaling.
-- [Services](https://sarabjeetrattan.com/#services): Specialized consultancy services including AI strategy and intelligent automation.
+## In-Depth Insight Guides
+- [AI WordPress Plugin Development](https://sarabjeetrattan.com/insights/ai-wordpress-plugin-development): Bespoke, production-grade AI WordPress plugins tailored to proprietary workflows without marketplace bloat.
+- [Automated Search Console & GA4 Intelligence](https://sarabjeetrattan.com/insights/automated-search-analytics-reporting): Automated daily GSC/GA4 data ingestion and striking-distance query alerts.
+- [Running Local LLMs with LM Studio](https://sarabjeetrattan.com/insights/local-llm-lm-studio-workflow): Quantized open-weight coding models (Qwen 2.5 Coder, DeepSeek-R1) via LM Studio with 0 API costs.
+- [Custom Multi-Agent Systems](https://sarabjeetrattan.com/insights/multi-agent-orchestration-from-scratch): Deterministic multi-agent architectures with human-in-the-loop validation.
+- [High-Velocity Scraping & Session Engines](https://sarabjeetrattan.com/insights/custom-session-storage-engines): Bespoke session caching, distributed scrapers, and CRM enrichment pipelines.
+- [Two-Way CRM Synchronization](https://sarabjeetrattan.com/insights/custom-crm-sync-engines): Custom stateful sync engines bypassing Zapier/Make task limits.
+- [Enterprise Google Apps Script](https://sarabjeetrattan.com/insights/google-sheets-apps-script-enterprise): Sheets-as-an-ERP automation, quote creation, and multi-stage manager approvals.
+- [Headless WordPress with Vite & React SSG](https://sarabjeetrattan.com/insights/headless-wordpress-vite-architecture): Decoupled Headless WordPress achieving sub-500ms TTFB and 100/100 Core Web Vitals.
 
-## Additional Resources
-- [FAQ](https://sarabjeetrattan.com/#faq): Frequently asked questions regarding B2B AI strategy and process optimization.
-- [Sitemap](https://sarabjeetrattan.com/sitemap.xml): XML index for crawlers.
+## Case Studies
+- [Lead OG](https://sarabjeetrattan.com/case-studies/lead-og): High-velocity B2B lead organization, automated prospect research, and Freshsales CRM sync.
+- [LinkedIn Automation](https://sarabjeetrattan.com/case-studies/linked-in): Trello-driven CrewAI orchestration for topic research and content generation.
+
+## Professional Profiles
+- [Home](https://sarabjeetrattan.com/): Primary showcase of B2B AI solutions, services, and client testimonials.
+- [Resume](https://sarabjeetrattan.com/resume): 16+ years operational leadership, technical competencies, and executive track record.
+- [Sitemap](https://sarabjeetrattan.com/sitemap.xml): XML index for search engines.

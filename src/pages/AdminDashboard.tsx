@@ -229,6 +229,12 @@ export const AdminDashboard = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
+        <SEO 
+          title="Executive Admin Portal | Sarabjeet Rattan" 
+          description="Restricted Executive Admin Dashboard" 
+          url="https://sarabjeetrattan.com/admin"
+          robots="noindex, nofollow" 
+        />
         <div className="flex flex-col items-center gap-3">
           <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
           <span className="text-xs font-mono text-muted-foreground uppercase tracking-widest">
@@ -243,7 +249,12 @@ export const AdminDashboard = () => {
   if (!user) {
     return (
       <div className="min-h-screen bg-background text-foreground flex flex-col justify-center items-center px-4 relative overflow-hidden selection:bg-primary/20">
-        <SEO title="Executive Admin Portal | Sarabjeet Rattan" description="Restricted Executive Admin Dashboard" />
+        <SEO 
+          title="Executive Admin Portal | Sarabjeet Rattan" 
+          description="Restricted Executive Admin Dashboard" 
+          url="https://sarabjeetrattan.com/admin"
+          robots="noindex, nofollow" 
+        />
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
         
         <div className="w-full max-w-md p-8 md:p-10 rounded-2xl border border-border/80 bg-card/80 backdrop-blur-xl shadow-2xl relative z-10 space-y-6">
@@ -348,7 +359,12 @@ export const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20">
-      <SEO title="Executive Growth & Operations Dashboard | Sarabjeet Rattan" description="Executive Command Center" />
+      <SEO 
+        title="Executive Growth & Operations Dashboard | Sarabjeet Rattan" 
+        description="Executive Command Center" 
+        url="https://sarabjeetrattan.com/admin"
+        robots="noindex, nofollow" 
+      />
 
       {/* Header Bar */}
       <header className="border-b border-border/80 bg-card/60 backdrop-blur-md sticky top-0 z-50">

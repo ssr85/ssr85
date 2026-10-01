@@ -39,8 +39,8 @@ export const CustomAiSolutions = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Custom AI Solutions & Autonomous Agentic Engineering | Sarabjeet Rattan"
-        description="Bespoke AI systems built from scratch: Local LLM deployment via LM Studio, multi-agent orchestration, custom vector databases, and proprietary lead scraping engines."
+        title="Custom AI Solutions & Autonomous Systems | Sarabjeet Rattan"
+        description="Bespoke AI systems: Local LLM deployment with LM Studio, multi-agent orchestration, custom vector databases, and proprietary lead scraping engines."
         keywords={[
           "custom ai solutions",
           "hire ai engineer",

@@ -29,8 +29,8 @@ export const HeadlessWordPressVite = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Headless WordPress & Modern React/Vite SSG Engineering | Sarabjeet Rattan"
-        description="Achieve sub-500ms TTFB and 100/100 Core Web Vitals with a decoupled Headless WordPress architecture powered by React, Vite Static Site Generation (SSG), and Edge CDN."
+        title="Headless WordPress & React/Vite SSG Engineering | Sarabjeet Rattan"
+        description="Achieve sub-500ms TTFB and 100/100 Core Web Vitals with decoupled Headless WordPress powered by React, Vite Static Site Generation (SSG), and Edge CDNs."
         keywords={[
           "headless wordpress react",
           "vite headless wordpress setup",

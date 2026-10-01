@@ -30,7 +30,7 @@ export const AutomatedSearchAnalytics = () => {
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
         title="Automated Search Console & GA4 Intelligence | Sarabjeet Rattan"
-        description="Automate daily Google Search Console and GA4 data ingestion. Detect high-value striking-distance search queries (Pos 5–20) and receive proactive executive email alerts."
+        description="Automate daily Google Search Console and GA4 ingestion. Track striking-distance queries (Pos 5–20) with proactive executive email alerts."
         keywords={[
           "automated search console reporting",
           "automated google analytics email alerts",

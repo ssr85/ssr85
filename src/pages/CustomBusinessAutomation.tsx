@@ -42,8 +42,8 @@ export const CustomBusinessAutomation = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Bespoke Business Automation & Custom CRM Engineering | Sarabjeet Rattan"
-        description="Custom operational software built from scratch: Advanced Google Apps Script ecosystems, robust two-way CRM sync engines (Freshsales, HubSpot), and automated quotation/invoicing pipelines."
+        title="Bespoke Business Automation & CRM Engineering | Sarabjeet Rattan"
+        description="Custom operational software: Enterprise Google Apps Script workflows, two-way CRM sync engines (Freshsales, HubSpot), and automated quotation pipelines."
         keywords={[
           "custom business automation",
           "google apps script development",

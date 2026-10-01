@@ -1,19 +1,23 @@
 import { Head } from "vite-react-ssg";
-import { siteConfig, caseStudies, projects, services } from "@/data/content";
+import { siteConfig, services } from "@/data/content";
 
-interface BreadcrumbItem {
+export interface BreadcrumbItem {
   name: string;
   url: string;
 }
 
-interface SEOProps {
+export interface SEOProps {
   title?: string;
   description?: string;
   keywords?: string[];
   image?: string;
   url?: string;
-  type?: string;
+  type?: "website" | "article" | "profile";
   breadcrumbs?: BreadcrumbItem[];
+  showFaq?: boolean;
+  robots?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
 }
 
 export const SEO = ({ 
@@ -24,7 +28,14 @@ export const SEO = ({
   url = "https://sarabjeetrattan.com", 
   type = "website",
   breadcrumbs,
+  showFaq = false,
+  robots = "index, follow",
+  publishedTime,
+  modifiedTime,
 }: SEOProps) => {
+  const canonicalUrl = url.endsWith("/") && url !== "https://sarabjeetrattan.com/" ? url.slice(0, -1) : url;
+  const isHome = canonicalUrl === "https://sarabjeetrattan.com" || canonicalUrl === "https://sarabjeetrattan.com/";
+  
   const seoTitle = title || siteConfig.meta.title;
   const seoDescription = description || siteConfig.meta.description;
   const seoKeywords = keywords || siteConfig.meta.keywords;
@@ -32,24 +43,24 @@ export const SEO = ({
 
   const websiteSchema = {
     "@type": "WebSite",
-    "@id": `${url}/#website`,
-    "url": url,
-    "name": seoTitle,
-    "description": seoDescription,
-    "publisher": { "@id": `${url}/#person` }
+    "@id": "https://sarabjeetrattan.com/#website",
+    "url": "https://sarabjeetrattan.com",
+    "name": "Sarabjeet Rattan | B2B AI Strategy & Agentic Systems Consultant",
+    "description": siteConfig.meta.description,
+    "publisher": { "@id": "https://sarabjeetrattan.com/#person" }
   };
 
   const personSchema = {
     "@type": "Person",
-    "@id": `${url}/#person`,
+    "@id": "https://sarabjeetrattan.com/#person",
     "name": siteConfig.name,
     "jobTitle": "B2B AI Specialist & Agentic Systems Consultant",
-    "url": url,
+    "url": "https://sarabjeetrattan.com",
     "email": siteConfig.email,
     "telephone": "+918668984323",
-    "sameAs": [siteConfig.linkedin],
-    "description": seoDescription,
-    "image": seoImage,
+    "sameAs": [siteConfig.linkedin, siteConfig.github],
+    "description": siteConfig.meta.description,
+    "image": "https://sarabjeetrattan.com/images/og-default.webp",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Pune",
@@ -60,7 +71,7 @@ export const SEO = ({
     "knowsAbout": [
       "Agentic AI & Workflows", "B2B Automation", "Supply Chain Optimization",
       "B2B AI Strategy & Roadmap", "LLM Orchestration", "RAG (Retrieval-Augmented Generation)",
-      "Intelligent Process Automation (IPA)", "Autonomous Agents"
+      "Intelligent Process Automation (IPA)", "Autonomous Agents", "WordPress AI Engineering"
     ],
     "worksFor": [
       { "@type": "Organization", "name": "Lead OG" }
@@ -69,10 +80,10 @@ export const SEO = ({
 
   const businessSchema = {
     "@type": "ProfessionalService",
-    "@id": `${url}/#business`,
+    "@id": "https://sarabjeetrattan.com/#business",
     "name": `${siteConfig.name} Consulting`,
     "image": seoImage,
-    "url": url,
+    "url": "https://sarabjeetrattan.com",
     "email": siteConfig.email,
     "telephone": "+918668984323",
     "priceRange": "₹1100-1900 /HOUR",
@@ -84,14 +95,15 @@ export const SEO = ({
       "postalCode": "411027",
       "addressCountry": "IN"
     },
-    "description": "Expert B2B AI strategy and agentic systems consulting. Building intelligent automation for SMEs and entrepreneurs scaling their operations.",
-    "provider": { "@id": `${url}/#person` },
+    "description": "Expert B2B AI strategy and agentic systems consulting. Building intelligent automation for SMEs and enterprises.",
+    "provider": { "@id": "https://sarabjeetrattan.com/#person" },
     "areaServed": "Global"
   };
 
-  const faqSchema = {
+  // FAQPage Schema: STRICTLY injected only when showFaq is true (or homepage) to avoid Google rich snippet violations
+  const faqSchema = (showFaq || isHome) ? {
     "@type": "FAQPage",
-    "@id": `${url}/#faq`,
+    "@id": `${canonicalUrl}/#faq`,
     "mainEntity": [
       {
         "@type": "Question",
@@ -150,100 +162,96 @@ export const SEO = ({
         }
       }
     ]
+  } : null;
+
+  // Breadcrumbs schema calculation
+  const getAutoBreadcrumbs = (): BreadcrumbItem[] => {
+    if (isHome) {
+      return [{ name: "Home", url: "https://sarabjeetrattan.com" }];
+    }
+    const path = canonicalUrl.replace("https://sarabjeetrattan.com", "");
+    const segments = path.split("/").filter(Boolean);
+    
+    if (segments.length === 1) {
+      const name = segments[0]
+        .split("-")
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ");
+      return [
+        { name: "Home", url: "https://sarabjeetrattan.com" },
+        { name, url: canonicalUrl }
+      ];
+    }
+    
+    if (segments.length >= 2) {
+      const parentName = segments[0]
+        .split("-")
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ");
+      const childName = segments[1]
+        .split("-")
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ");
+      return [
+        { name: "Home", url: "https://sarabjeetrattan.com" },
+        { name: parentName, url: `https://sarabjeetrattan.com/#${segments[0]}` },
+        { name: childName, url: canonicalUrl }
+      ];
+    }
+    return [{ name: "Home", url: "https://sarabjeetrattan.com" }];
   };
 
-  const projectSchemas = projects?.map(project => ({
-    "@type": "CreativeWork",
-    "name": project.name,
-    "description": project.description,
-    "url": `${url}/#projects`,
-    "keywords": ('highlights' in project && Array.isArray(project.highlights) ? project.highlights.join(", ") : project.techStack?.join(", ")) || ""
-  })) || [];
-
-  const caseStudySchemas = caseStudies?.map(study => ({
-    "@type": "CreativeWork",
-    "name": study.name,
-    "description": study.description,
-    "url": study.hasDetailPage && study.slug
-      ? `https://sarabjeetrattan.com/case-studies/${study.slug}`
-      : `${url}/#case-studies`,
-    "keywords": study.techStack?.join(", ") || "",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": study.hasDetailPage && study.slug
-        ? `https://sarabjeetrattan.com/case-studies/${study.slug}`
-        : `${url}/#case-studies`
-    }
-  })) || [];
-
-  const servicesSchema = services?.map(service => ({
-    "@type": "Service",
-    "name": service.title,
-    "description": service.description,
-    "provider": { "@id": `${url}/#person` }
-  })) || [];
+  const activeBreadcrumbs = breadcrumbs || getAutoBreadcrumbs();
 
   const breadcrumbSchema = {
     "@type": "BreadcrumbList",
-    "itemListElement": breadcrumbs
-      ? [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://sarabjeetrattan.com"
-          },
-          ...breadcrumbs.map((crumb, i) => ({
-            "@type": "ListItem",
-            "position": i + 2,
-            "name": crumb.name,
-            "item": crumb.url
-          }))
-        ]
-      : [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": url
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Resume",
-            "item": `${url}/resume`
-          }
-        ]
+    "itemListElement": activeBreadcrumbs.map((crumb, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "name": crumb.name,
+      "item": crumb.url
+    }))
   };
 
-  // Article schema for case study detail pages
+  // Article / TechArticle schema for insight and case study pages
   const articleSchema = type === "article" ? {
-    "@type": "Article",
+    "@type": "TechArticle",
+    "@id": `${canonicalUrl}/#article`,
     "headline": seoTitle,
     "description": seoDescription,
     "image": seoImage,
-    "url": url,
-    "author": { "@id": `https://sarabjeetrattan.com/#person` },
-    "publisher": { "@id": `https://sarabjeetrattan.com/#person` },
+    "url": canonicalUrl,
+    "datePublished": publishedTime || "2026-09-01",
+    "dateModified": modifiedTime || "2026-10-01",
+    "author": { "@id": "https://sarabjeetrattan.com/#person" },
+    "publisher": { "@id": "https://sarabjeetrattan.com/#person" },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": url
+      "@id": canonicalUrl
     }
   } : null;
 
+  // Services schema (included on homepage & pillar pages)
+  const servicesSchema = isHome ? services.map(service => ({
+    "@type": "Service",
+    "name": service.title,
+    "description": service.description,
+    "provider": { "@id": "https://sarabjeetrattan.com/#person" }
+  })) : [];
+
+  const jsonLdGraph = [
+    websiteSchema,
+    personSchema,
+    businessSchema,
+    breadcrumbSchema,
+    ...(faqSchema ? [faqSchema] : []),
+    ...(articleSchema ? [articleSchema] : []),
+    ...servicesSchema
+  ];
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [
-      websiteSchema, 
-      personSchema, 
-      businessSchema, 
-      faqSchema, 
-      breadcrumbSchema,
-      ...projectSchemas,
-      ...caseStudySchemas,
-      ...servicesSchema,
-      ...(articleSchema ? [articleSchema] : [])
-    ]
+    "@graph": jsonLdGraph
   };
 
   return (
@@ -251,16 +259,18 @@ export const SEO = ({
       <title>{seoTitle}</title>
       <meta name="description" content={seoDescription} />
       <meta name="keywords" content={seoKeywords.join(", ")} />
+      <meta name="robots" content={robots} />
 
       {/* Open Graph */}
       <meta property="og:title" content={seoTitle} />
       <meta property="og:description" content={seoDescription} />
       <meta property="og:image" content={seoImage} />
-      <meta property="og:url" content={url} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content={type} />
+      <meta property="og:site_name" content={siteConfig.name} />
 
       {/* Canonical */}
-      <link rel="canonical" href={url} />
+      <link rel="canonical" href={canonicalUrl} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

@@ -31,8 +31,8 @@ export const AiWordPressPlugins = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Custom AI WordPress Plugin Development | Bespoke Engineering | Sarabjeet Rattan"
-        description="Eliminate marketplace plugin bloat. We engineer bespoke, production-grade AI WordPress plugins tailored to your proprietary data and workflows."
+        title="Custom AI WordPress Plugin Development | Sarabjeet Rattan"
+        description="Eliminate plugin bloat. We engineer bespoke, production-grade AI WordPress plugins tailored to your proprietary data, APIs, and workflows."
         keywords={[
           "custom ai wordpress plugin development",
           "hire wordpress plugin developer",

@@ -1,28 +1,36 @@
 User-agent: Googlebot
+Disallow: /admin
 Allow: /
 
 User-agent: Bingbot
+Disallow: /admin
 Allow: /
 
 User-agent: Twitterbot
+Disallow: /admin
 Allow: /
 
 User-agent: facebookexternalhit
+Disallow: /admin
 Allow: /
 
 User-agent: *
+Disallow: /admin
 Allow: /
 
 # Specifically Allow AI Agents to index high-density manifests
 User-agent: GPTBot
+Disallow: /admin
 Allow: /llms.txt
 Allow: /llms-full.txt
 Allow: /
 
 User-agent: OpenAI-GPT-4
+Disallow: /admin
 Allow: /
 
 User-agent: PerplexityBot
+Disallow: /admin
 Allow: /
 
 Sitemap: https://sarabjeetrattan.com/sitemap.xml

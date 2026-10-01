@@ -25,8 +25,8 @@ export const SheetsAppsScript = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Enterprise Google Apps Script & Automated Sheets ERP Systems | Sarabjeet Rattan"
-        description="Transform Google Sheets into automated internal ERP machines: Automated quotation generation, PDF invoice creation, and multi-stage manager email approvals."
+        title="Enterprise Google Apps Script & Sheets ERP | Sarabjeet Rattan"
+        description="Transform Google Sheets into automated internal ERP machines: Automated quotation generation, PDF invoice creation, and multi-stage manager approvals."
         keywords={[
           "google apps script development",
           "google sheets automated workflows",

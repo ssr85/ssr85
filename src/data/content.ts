@@ -31,7 +31,7 @@ export const siteConfig = {
   phone: "+91-866-898-4323",
   linkedin: "https://www.linkedin.com/in/sarabjeetrattan/",
   github: "https://github.com/ssr85",
-  website: "https://www.sarabjeetrattan.com",
+  website: "https://sarabjeetrattan.com",
   meta: {
       title: "Sarabjeet Rattan | B2B AI Strategy & Agentic Systems Consultant",
     description: "B2B AI Specialist & Agentic Systems Consultant. Expert in AI strategy, intelligent automation, and scalable operations for SMEs and entrepreneurs.",

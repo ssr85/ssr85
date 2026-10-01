@@ -36,8 +36,8 @@ export const CustomSessionEngines = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="High-Velocity Scraping & Custom Session Engines (Lead OG Architecture) | Sarabjeet Rattan"
-        description="Eliminate manual prospect research and rate-limit IP bans. We build bespoke session caching engines, distributed scrapers, and automated CRM enrichment pipelines."
+        title="High-Velocity Scraping & Custom Session Engines | Sarabjeet Rattan"
+        description="Eliminate manual research and IP bans. We build bespoke session caching engines, distributed scrapers, and automated CRM enrichment pipelines."
         keywords={[
           "b2b lead scraping engine",
           "custom session cache api",

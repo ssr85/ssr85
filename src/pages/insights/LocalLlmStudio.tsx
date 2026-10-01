@@ -24,8 +24,8 @@ export const LocalLlmStudio = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Running Local LLMs with LM Studio for Autonomous Coding & Development | Sarabjeet Rattan"
-        description="Complete guide on running quantized open-weight coding models (Qwen 2.5 Coder, DeepSeek-R1, Llama 3.3) locally via LM Studio with zero API costs and 100% data privacy."
+        title="Running Local LLMs with LM Studio for Dev Workflows | Sarabjeet Rattan"
+        description="Guide to running open-weight coding models (Qwen 2.5 Coder, DeepSeek-R1) locally via LM Studio with zero API costs and full data privacy."
         keywords={[
           "local llm coding",
           "lm studio local ai setup",

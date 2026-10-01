@@ -25,8 +25,8 @@ export const CustomCrmSync = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Custom CRM Synchronization & Two-Way Integration Services | Sarabjeet Rattan"
-        description="Eliminate Zapier task limits and silent webhook failures. We build custom, stateful two-way CRM sync engines between Freshsales, HubSpot, Pipedrive, and internal databases."
+        title="Custom Two-Way CRM Synchronization Engines | Sarabjeet Rattan"
+        description="Eliminate Zapier limits. We engineer custom stateful two-way CRM sync engines for Freshsales, HubSpot, Pipedrive, and internal databases."
         keywords={[
           "custom crm synchronization",
           "freshsales hubspot api sync",
