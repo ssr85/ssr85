@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Carousel } from "@/components/ui/carousel";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 import { EngineeringGrid } from "@/components/EngineeringGrid";
-import { Target, AlertCircle, Cpu, ArrowUpRight, ChevronRight, Layers } from "lucide-react";
+import { Target, AlertCircle, Cpu, ArrowUpRight, ChevronRight, Layers, Terminal, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -121,7 +121,7 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
       <EngineeringGrid />
       <div className="container mx-auto max-w-6xl relative z-10">
         <ScrollAnimationWrapper>
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
             <div className="space-y-3">
               <span className="badge-eyebrow">
                 <Layers size={11} className="text-primary" />
@@ -158,181 +158,208 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
           </div>
         </ScrollAnimationWrapper>
 
-        {/* Desktop Interactive Layout */}
+        {/* Desktop Interactive Studio Command Console (Height-Aligned) */}
         <ScrollAnimationWrapper delay={150}>
-          <div className="hidden lg:grid grid-cols-12 gap-8 items-start">
-            {/* Left Column: Project Selector List */}
-            <div className="col-span-5 space-y-3">
-              {filteredItems.map((item, idx) => {
-                const isSelected = idx === safeDesktopIndex;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => setSelectedDesktopIndex(idx)}
-                    className={cn(
-                      "w-full text-left p-5 rounded-2xl transition-all duration-300 border relative group",
-                      isSelected
-                        ? "bg-white/[0.06] border-primary/40 shadow-xl shadow-primary/5"
-                        : "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.12]"
-                    )}
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                        0{idx + 1} // {item.category}
-                      </span>
-                      {item.keyMetrics?.[0] && (
-                        <span className="font-mono text-[11px] font-bold text-primary">
-                          {item.keyMetrics[0].value}
-                        </span>
+          <div className="hidden lg:grid grid-cols-12 gap-6 items-stretch h-[660px]">
+            {/* Left Column: Scrollable System Directory */}
+            <div className="col-span-5 flex flex-col h-full bg-white/[0.02] border border-white/[0.06] rounded-[2rem] p-4 backdrop-blur-md">
+              {/* Directory Header / Telemetry Bar */}
+              <div className="flex items-center justify-between px-3 py-2.5 mb-2 border-b border-white/[0.06]">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  <span className="font-mono text-xs font-semibold text-foreground uppercase tracking-wider">
+                    Directory ({filteredItems.length})
+                  </span>
+                </div>
+                <span className="font-mono text-[10px] text-muted-foreground">
+                  Select System
+                </span>
+              </div>
+
+              {/* Scrollable List Stream */}
+              <div className="overflow-y-auto pr-1.5 space-y-2.5 flex-1 custom-scrollbar">
+                {filteredItems.map((item, idx) => {
+                  const isSelected = idx === safeDesktopIndex;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => setSelectedDesktopIndex(idx)}
+                      className={cn(
+                        "w-full text-left p-4 rounded-xl transition-all duration-200 border relative group",
+                        isSelected
+                          ? "bg-white/[0.08] border-primary/40 shadow-lg shadow-primary/10 ring-1 ring-primary/20"
+                          : "bg-white/[0.015] border-white/[0.05] hover:bg-white/[0.04] hover:border-white/[0.1]"
                       )}
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <h4 className={cn(
-                        "text-lg font-bold tracking-tight transition-colors",
-                        isSelected ? "text-foreground" : "text-foreground/80 group-hover:text-foreground"
-                      )}>
-                        {item.name}
-                      </h4>
-                      <ArrowUpRight
-                        size={16}
-                        className={cn(
-                          "transition-transform duration-300",
-                          isSelected
-                            ? "text-primary translate-x-0.5 -translate-y-0.5"
-                            : "text-muted-foreground opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5"
+                    >
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                          0{idx + 1} // {item.category}
+                        </span>
+                        {item.keyMetrics?.[0] && (
+                          <span className={cn(
+                            "font-mono text-[10px] font-bold px-2 py-0.5 rounded-full border",
+                            isSelected 
+                              ? "text-primary bg-primary/15 border-primary/30" 
+                              : "text-muted-foreground bg-white/[0.03] border-white/[0.06]"
+                          )}>
+                            {item.keyMetrics[0].value}
+                          </span>
                         )}
-                      />
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-2 line-clamp-2 leading-relaxed">
-                      {item.description}
-                    </p>
-                  </button>
-                );
-              })}
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <h4 className={cn(
+                          "text-base font-bold tracking-tight transition-colors",
+                          isSelected ? "text-primary" : "text-foreground group-hover:text-foreground"
+                        )}>
+                          {item.name}
+                        </h4>
+                        <ArrowUpRight
+                          size={14}
+                          className={cn(
+                            "transition-transform duration-200",
+                            isSelected
+                              ? "text-primary translate-x-0.5 -translate-y-0.5"
+                              : "text-muted-foreground opacity-30 group-hover:opacity-100 group-hover:translate-x-0.5"
+                          )}
+                        />
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1 line-clamp-1 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Right Column: Deep-Dive Inspector (Double-Bezel) */}
-            <div className="col-span-7 sticky top-28">
+            {/* Right Column: Deep-Dive Inspector Chassis */}
+            <div className="col-span-7 h-full">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeItem.id}
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                  className="double-bezel p-2 rounded-[2.25rem] shadow-2xl shadow-black/40"
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                  className="double-bezel p-1.5 rounded-[2rem] shadow-2xl h-full"
                 >
-                  <div className="double-bezel-inner rounded-[calc(2.25rem-0.5rem)] p-8 md:p-10 space-y-8">
-                    {/* Header */}
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="badge-eyebrow text-[10px]">
-                          {activeItem.category}
-                        </span>
-                        {activeItem.duration && (
-                          <span className="font-mono text-xs text-muted-foreground">
-                            Cycle: <strong className="text-foreground">{activeItem.duration}</strong>
+                  <div className="double-bezel-inner rounded-[calc(2rem-0.375rem)] p-7 md:p-8 h-full flex flex-col justify-between overflow-y-auto custom-scrollbar">
+                    <div className="space-y-6">
+                      {/* Top Header */}
+                      <div className="space-y-2.5">
+                        <div className="flex items-center justify-between">
+                          <span className="badge-eyebrow text-[10px]">
+                            {activeItem.category}
                           </span>
+                          {activeItem.duration && (
+                            <span className="font-mono text-xs text-muted-foreground bg-white/[0.03] border border-white/[0.06] px-3 py-1 rounded-full">
+                              Deployment: <strong className="text-foreground">{activeItem.duration}</strong>
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+                          {activeItem.name}
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {activeItem.description}
+                        </p>
+                      </div>
+
+                      {/* Key Metrics Grid */}
+                      {activeItem.keyMetrics && activeItem.keyMetrics.length > 0 && (
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                          {activeItem.keyMetrics.map((km, i) => (
+                            <div
+                              key={i}
+                              className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center shadow-inner"
+                            >
+                              <div className="text-lg md:text-xl font-black font-mono tracking-tight text-primary">
+                                {km.value}
+                              </div>
+                              <div className="text-[9px] uppercase font-mono tracking-wider text-muted-foreground mt-0.5 truncate">
+                                {km.label}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Audience & Pain Points */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-4 border-t border-white/[0.06]">
+                        {activeItem.audience && (
+                          <div className="space-y-1.5">
+                            <div className="flex items-center gap-1.5 text-primary font-mono text-[10px] uppercase tracking-wider">
+                              <Target size={12} />
+                              <span>Target Audience</span>
+                            </div>
+                            <p className="text-xs text-foreground/85 font-medium leading-relaxed">
+                              {activeItem.audience}
+                            </p>
+                          </div>
+                        )}
+
+                        {activeItem.painPoints && activeItem.painPoints.length > 0 && (
+                          <div className="space-y-1.5">
+                            <div className="flex items-center gap-1.5 text-accent font-mono text-[10px] uppercase tracking-wider">
+                              <AlertCircle size={12} />
+                              <span>Bottlenecks Eliminated</span>
+                            </div>
+                            <ul className="space-y-1">
+                              {activeItem.painPoints.slice(0, 3).map((pp, i) => (
+                                <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5 leading-tight">
+                                  <span className="text-primary text-[8px] mt-0.5">●</span>
+                                  <span>{pp}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         )}
                       </div>
-                      <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-                        {activeItem.name}
-                      </h3>
-                      <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-                        {activeItem.description}
-                      </p>
-                    </div>
 
-                    {/* Key Metrics Grid */}
-                    {activeItem.keyMetrics && activeItem.keyMetrics.length > 0 && (
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                        {activeItem.keyMetrics.map((km, i) => (
-                          <div
-                            key={i}
-                            className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center"
-                          >
-                            <div className="text-xl md:text-2xl font-black font-mono tracking-tight text-primary">
-                              {km.value}
-                            </div>
-                            <div className="text-[10px] uppercase font-mono tracking-wider text-muted-foreground mt-1">
-                              {km.label}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Target Audience & Pain Points */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 border-t border-white/[0.06]">
-                      {activeItem.audience && (
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-1.5 text-primary font-mono text-[11px] uppercase tracking-wider">
-                            <Target size={13} />
-                            <span>Target Audience</span>
-                          </div>
-                          <p className="text-xs text-foreground/80 font-medium leading-relaxed">
-                            {activeItem.audience}
-                          </p>
+                      {/* Tech Stack Chips */}
+                      <div className="space-y-2 pt-3 border-t border-white/[0.06]">
+                        <div className="flex items-center gap-1.5 text-muted-foreground font-mono text-[10px] uppercase tracking-wider">
+                          <Cpu size={12} />
+                          <span>Architecture & Integrations</span>
                         </div>
-                      )}
-
-                      {activeItem.painPoints && activeItem.painPoints.length > 0 && (
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-1.5 text-accent font-mono text-[11px] uppercase tracking-wider">
-                            <AlertCircle size={13} />
-                            <span>Pain Points Solved</span>
-                          </div>
-                          <ul className="space-y-1">
-                            {activeItem.painPoints.slice(0, 3).map((pp, i) => (
-                              <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5">
-                                <span className="text-primary mt-0.5 text-[8px]">●</span>
-                                <span>{pp}</span>
-                              </li>
-                            ))}
-                          </ul>
+                        <div className="flex flex-wrap gap-1.5">
+                          {activeItem.techStack.map((tech, i) => (
+                            <span
+                              key={i}
+                              className="font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.06] text-foreground/85"
+                            >
+                              {tech}
+                            </span>
+                          ))}
                         </div>
-                      )}
-                    </div>
-
-                    {/* Tech Stack Chips */}
-                    <div className="space-y-3 pt-2 border-t border-white/[0.06]">
-                      <div className="flex items-center gap-1.5 text-muted-foreground font-mono text-[11px] uppercase tracking-wider">
-                        <Cpu size={13} />
-                        <span>Architecture & Tech Stack</span>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {activeItem.techStack.map((tech, i) => (
-                          <span
-                            key={i}
-                            className="font-mono text-xs px-3 py-1 rounded-lg bg-white/[0.04] border border-white/[0.08] text-foreground/90 font-medium"
-                          >
-                            {tech}
-                          </span>
-                        ))}
                       </div>
                     </div>
 
-                    {/* Action Bar */}
-                    <div className="pt-4 flex items-center gap-4">
+                    {/* Bottom Action Tray */}
+                    <div className="pt-6 mt-4 border-t border-white/[0.08] flex items-center justify-between gap-4">
                       {activeItem.type === "case-study" && activeItem.hasDetailPage && activeItem.slug ? (
                         <Link
                           to={`/case-studies/${activeItem.slug}`}
-                          className="btn-icon-pod inline-flex items-center gap-4 px-6 py-3.5 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm transition-all duration-300 group shadow-lg shadow-primary/20"
+                          className="btn-icon-pod inline-flex items-center justify-between gap-4 px-6 py-3 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs transition-all duration-200 group shadow-lg shadow-primary/20"
                         >
-                          <span>Explore Technical Architecture</span>
-                          <span className="w-6 h-6 rounded-full bg-black/20 text-primary-foreground flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-                            <ArrowUpRight size={14} />
+                          <span>Explore Architecture Blueprint</span>
+                          <span className="w-5 h-5 rounded-full bg-black/20 text-primary-foreground flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+                            <ArrowUpRight size={12} />
                           </span>
                         </Link>
                       ) : (
                         <Button
                           onClick={onOpenEnquiry}
-                          size="lg"
-                          className="rounded-full px-8 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+                          size="sm"
+                          className="rounded-full px-6 py-5 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs"
                         >
-                          Discuss Your Project <ChevronRight size={16} className="ml-1.5" />
+                          Discuss Project Scope <ChevronRight size={14} className="ml-1" />
                         </Button>
                       )}
+
+                      <span className="font-mono text-[11px] text-muted-foreground hidden sm:inline-block">
+                        SSR Systems // Production Ready
+                      </span>
                     </div>
                   </div>
                 </motion.div>
