@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Carousel } from "@/components/ui/carousel";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 import { EngineeringGrid } from "@/components/EngineeringGrid";
-import { Target, AlertCircle, Cpu, ArrowUpRight, ChevronRight, Layers, Sparkles } from "lucide-react";
+import { Target, AlertCircle, Cpu, ArrowUpRight, ChevronRight, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -24,6 +24,7 @@ type TabId = typeof tabs[number]["id"];
 export const Work = ({ onOpenEnquiry }: WorkProps) => {
   const [activeTab, setActiveTab] = useState<TabId>("all");
   const [selectedDesktopIndex, setSelectedDesktopIndex] = useState(0);
+  const [targetY, setTargetY] = useState(0);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const filteredItems = activeTab === "all"
@@ -33,6 +34,20 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
   // Keep index within bounds when switching tabs
   const safeDesktopIndex = Math.min(selectedDesktopIndex, filteredItems.length - 1);
   const activeItem = filteredItems[safeDesktopIndex] || filteredItems[0];
+
+  // Calculate and update the top alignment with the selected LHS card
+  useEffect(() => {
+    const updateTargetPosition = () => {
+      const targetEl = cardRefs.current[safeDesktopIndex];
+      if (targetEl) {
+        setTargetY(targetEl.offsetTop);
+      }
+    };
+
+    updateTargetPosition();
+    window.addEventListener("resize", updateTargetPosition);
+    return () => window.removeEventListener("resize", updateTargetPosition);
+  }, [safeDesktopIndex, activeTab, filteredItems]);
 
   // Scroll-linked Intersection Observer for LHS items
   useEffect(() => {
@@ -50,8 +65,8 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
           });
         },
         {
-          rootMargin: "-25% 0px -40% 0px",
-          threshold: 0.1,
+          rootMargin: "-20% 0px -40% 0px",
+          threshold: 0.2,
         }
       );
 
@@ -155,11 +170,11 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
   };
 
   return (
-    <section id="case-studies" className="py-24 md:py-36 px-4 bg-background relative overflow-hidden border-t border-white/[0.06]">
+    <section id="case-studies" className="py-24 md:py-36 px-4 bg-background relative border-t border-white/[0.06]">
       <EngineeringGrid />
       <div className="container mx-auto max-w-6xl relative z-10">
         <ScrollAnimationWrapper>
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
             <div className="space-y-3">
               <span className="badge-eyebrow">
                 <Layers size={11} className="text-primary" />
@@ -196,11 +211,11 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
           </div>
         </ScrollAnimationWrapper>
 
-        {/* Desktop Sticky Narrative Layout (LHS Scrolls with Page, RHS Pins & Auto-Updates) */}
-        <div className="hidden lg:grid grid-cols-12 gap-10 items-start relative">
+        {/* Desktop Top-Aligned Dynamic Tracking Layout */}
+        <div className="hidden lg:grid grid-cols-12 gap-10 items-start relative min-h-[600px] pb-20">
           
           {/* Left Column: Natural Scrolling Stream of Project Cards */}
-          <div className="col-span-5 space-y-6 pb-12">
+          <div className="col-span-5 space-y-6">
             {filteredItems.map((item, idx) => {
               const isSelected = idx === safeDesktopIndex;
               return (
@@ -211,7 +226,7 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                   className={cn(
                     "p-6 rounded-[1.75rem] transition-all duration-500 cursor-pointer border relative group",
                     isSelected
-                      ? "bg-white/[0.07] border-primary/50 shadow-2xl shadow-primary/10 ring-1 ring-primary/25 scale-[1.02] opacity-100"
+                      ? "bg-white/[0.08] border-primary/50 shadow-2xl shadow-primary/10 ring-1 ring-primary/30 scale-[1.02] opacity-100"
                       : "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.12] opacity-45 hover:opacity-85 scale-[0.99]"
                   )}
                 >
@@ -281,143 +296,149 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
             })}
           </div>
 
-          {/* Right Column: Pinned Sticky Inspector Window */}
-          <div className="col-span-7 sticky top-24 min-h-[580px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeItem.id}
-                initial={{ opacity: 0, y: 32, scale: 0.97, filter: "blur(4px)" }}
-                animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -24, scale: 0.97, filter: "blur(4px)" }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="double-bezel p-1.5 rounded-[2.25rem] shadow-2xl shadow-black/60 will-change-transform"
-              >
-                <div className="double-bezel-inner rounded-[calc(2.25rem-0.375rem)] p-7 md:p-8 space-y-6 max-h-[calc(100vh-7.5rem)] overflow-y-auto custom-scrollbar flex flex-col justify-between">
-                  <div className="space-y-6">
-                    {/* Header */}
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="badge-eyebrow text-[10px]">
-                          {activeItem.category}
-                        </span>
-                        {activeItem.duration && (
-                          <span className="font-mono text-xs text-muted-foreground bg-white/[0.03] border border-white/[0.06] px-3 py-1 rounded-full">
-                            Deployment Cycle: <strong className="text-foreground">{activeItem.duration}</strong>
+          {/* Right Column: Gliding Top-Aligned Inspector Window */}
+          <div className="col-span-7 relative h-full">
+            <motion.div
+              animate={{ y: targetY }}
+              transition={{
+                type: "spring",
+                stiffness: 140,
+                damping: 22,
+                mass: 0.7,
+              }}
+              className="will-change-transform"
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeItem.id}
+                  initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+                  transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  className="double-bezel p-1.5 rounded-[2.25rem] shadow-2xl shadow-black/60"
+                >
+                  <div className="double-bezel-inner rounded-[calc(2.25rem-0.375rem)] p-7 md:p-8 space-y-6 flex flex-col justify-between">
+                    <div className="space-y-6">
+                      {/* Header */}
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="badge-eyebrow text-[10px]">
+                            {activeItem.category}
                           </span>
+                          {activeItem.duration && (
+                            <span className="font-mono text-xs text-muted-foreground bg-white/[0.03] border border-white/[0.06] px-3 py-1 rounded-full">
+                              Deployment Cycle: <strong className="text-foreground">{activeItem.duration}</strong>
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+                          {activeItem.name}
+                        </h3>
+                        <p className="text-muted-foreground text-xs md:text-sm leading-relaxed font-light">
+                          {activeItem.description}
+                        </p>
+                      </div>
+
+                      {/* Key Metrics Grid */}
+                      {activeItem.keyMetrics && activeItem.keyMetrics.length > 0 && (
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                          {activeItem.keyMetrics.map((km, i) => (
+                            <div
+                              key={i}
+                              className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center shadow-inner"
+                            >
+                              <div className="text-xl md:text-2xl font-black font-mono tracking-tight text-primary">
+                                {km.value}
+                              </div>
+                              <div className="text-[9px] uppercase font-mono tracking-wider text-muted-foreground mt-0.5 truncate">
+                                {km.label}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Target Audience & Pain Points */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-3 border-t border-white/[0.06]">
+                        {activeItem.audience && (
+                          <div className="space-y-1.5">
+                            <div className="flex items-center gap-1.5 text-primary font-mono text-[10px] uppercase tracking-wider">
+                              <Target size={12} />
+                              <span>Target Audience</span>
+                            </div>
+                            <p className="text-xs text-foreground/85 font-medium leading-relaxed">
+                              {activeItem.audience}
+                            </p>
+                          </div>
+                        )}
+
+                        {activeItem.painPoints && activeItem.painPoints.length > 0 && (
+                          <div className="space-y-1.5">
+                            <div className="flex items-center gap-1.5 text-accent font-mono text-[10px] uppercase tracking-wider">
+                              <AlertCircle size={12} />
+                              <span>Pain Points Solved</span>
+                            </div>
+                            <ul className="space-y-1">
+                              {activeItem.painPoints.slice(0, 3).map((pp, i) => (
+                                <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5 leading-tight">
+                                  <span className="text-primary text-[8px] mt-0.5">●</span>
+                                  <span>{pp}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         )}
                       </div>
-                      <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
-                        {activeItem.name}
-                      </h3>
-                      <p className="text-muted-foreground text-xs md:text-sm leading-relaxed font-light">
-                        {activeItem.description}
-                      </p>
-                    </div>
 
-                    {/* Key Metrics Grid */}
-                    {activeItem.keyMetrics && activeItem.keyMetrics.length > 0 && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.08, duration: 0.3 }}
-                        className="grid grid-cols-2 sm:grid-cols-4 gap-2.5"
-                      >
-                        {activeItem.keyMetrics.map((km, i) => (
-                          <div
-                            key={i}
-                            className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center shadow-inner"
-                          >
-                            <div className="text-xl md:text-2xl font-black font-mono tracking-tight text-primary">
-                              {km.value}
-                            </div>
-                            <div className="text-[9px] uppercase font-mono tracking-wider text-muted-foreground mt-0.5 truncate">
-                              {km.label}
-                            </div>
-                          </div>
-                        ))}
-                      </motion.div>
-                    )}
-
-                    {/* Target Audience & Pain Points */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-3 border-t border-white/[0.06]">
-                      {activeItem.audience && (
-                        <div className="space-y-1.5">
-                          <div className="flex items-center gap-1.5 text-primary font-mono text-[10px] uppercase tracking-wider">
-                            <Target size={12} />
-                            <span>Target Audience</span>
-                          </div>
-                          <p className="text-xs text-foreground/85 font-medium leading-relaxed">
-                            {activeItem.audience}
-                          </p>
+                      {/* Architecture & Tech Stack */}
+                      <div className="space-y-2 pt-3 border-t border-white/[0.06]">
+                        <div className="flex items-center gap-1.5 text-muted-foreground font-mono text-[10px] uppercase tracking-wider">
+                          <Cpu size={12} />
+                          <span>Architecture & Integrations</span>
                         </div>
-                      )}
-
-                      {activeItem.painPoints && activeItem.painPoints.length > 0 && (
-                        <div className="space-y-1.5">
-                          <div className="flex items-center gap-1.5 text-accent font-mono text-[10px] uppercase tracking-wider">
-                            <AlertCircle size={12} />
-                            <span>Pain Points Solved</span>
-                          </div>
-                          <ul className="space-y-1">
-                            {activeItem.painPoints.slice(0, 3).map((pp, i) => (
-                              <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5 leading-tight">
-                                <span className="text-primary text-[8px] mt-0.5">●</span>
-                                <span>{pp}</span>
-                              </li>
-                            ))}
-                          </ul>
+                        <div className="flex flex-wrap gap-1.5">
+                          {activeItem.techStack.map((tech, i) => (
+                            <span
+                              key={i}
+                              className="font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.06] text-foreground/85 font-medium"
+                            >
+                              {tech}
+                            </span>
+                          ))}
                         </div>
-                      )}
-                    </div>
-
-                    {/* Architecture & Tech Stack */}
-                    <div className="space-y-2 pt-3 border-t border-white/[0.06]">
-                      <div className="flex items-center gap-1.5 text-muted-foreground font-mono text-[10px] uppercase tracking-wider">
-                        <Cpu size={12} />
-                        <span>Architecture & Integrations</span>
                       </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {activeItem.techStack.map((tech, i) => (
-                          <span
-                            key={i}
-                            className="font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.06] text-foreground/85 font-medium"
-                          >
-                            {tech}
+                    </div>
+
+                    {/* Bottom Action Tray */}
+                    <div className="pt-5 border-t border-white/[0.08] flex items-center justify-between gap-4">
+                      {activeItem.type === "case-study" && activeItem.hasDetailPage && activeItem.slug ? (
+                        <Link
+                          to={`/case-studies/${activeItem.slug}`}
+                          className="btn-icon-pod inline-flex items-center justify-between gap-4 px-6 py-3 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs transition-all duration-200 group shadow-lg shadow-primary/20"
+                        >
+                          <span>Explore Full Case Study</span>
+                          <span className="w-5 h-5 rounded-full bg-black/20 text-primary-foreground flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+                            <ArrowUpRight size={12} />
                           </span>
-                        ))}
-                      </div>
+                        </Link>
+                      ) : (
+                        <Button
+                          onClick={onOpenEnquiry}
+                          size="sm"
+                          className="rounded-full px-6 py-5 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs"
+                        >
+                          Discuss Project Requirements <ChevronRight size={14} className="ml-1" />
+                        </Button>
+                      )}
+
+                      <span className="font-mono text-[10px] text-muted-foreground hidden sm:inline-block">
+                        System {safeDesktopIndex + 1} of {filteredItems.length}
+                      </span>
                     </div>
                   </div>
-
-                  {/* Guaranteed Visible Bottom Action Tray */}
-                  <div className="pt-5 border-t border-white/[0.08] flex items-center justify-between gap-4">
-                    {activeItem.type === "case-study" && activeItem.hasDetailPage && activeItem.slug ? (
-                      <Link
-                        to={`/case-studies/${activeItem.slug}`}
-                        className="btn-icon-pod inline-flex items-center justify-between gap-4 px-6 py-3 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs transition-all duration-200 group shadow-lg shadow-primary/20"
-                      >
-                        <span>Explore Full Case Study</span>
-                        <span className="w-5 h-5 rounded-full bg-black/20 text-primary-foreground flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-                          <ArrowUpRight size={12} />
-                        </span>
-                      </Link>
-                    ) : (
-                      <Button
-                        onClick={onOpenEnquiry}
-                        size="sm"
-                        className="rounded-full px-6 py-5 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs"
-                      >
-                        Discuss Project Requirements <ChevronRight size={14} className="ml-1" />
-                      </Button>
-                    )}
-
-                    <span className="font-mono text-[10px] text-muted-foreground hidden sm:inline-block">
-                      System {safeDesktopIndex + 1} of {filteredItems.length}
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
           </div>
         </div>
 
