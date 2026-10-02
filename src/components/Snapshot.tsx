@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const iconMap: Record<string, { icon: React.ReactNode; color: string; bg: string }> = {
   Briefcase: { icon: <Briefcase className="h-6 w-6" />, color: "text-primary", bg: "bg-primary/10" },
   Code: { icon: <Code className="h-6 w-6" />, color: "text-secondary", bg: "bg-secondary/10" },
-  TrendingUp: { icon: <TrendingUp className="h-6 w-6" />, color: "text-emerald-400", bg: "bg-emerald-400/10" },
+  TrendingUp: { icon: <TrendingUp className="h-6 w-6" />, color: "text-success", bg: "bg-success/10" },
   Target: { icon: <Target className="h-6 w-6" />, color: "text-primary", bg: "bg-primary/10" },
 };
 
