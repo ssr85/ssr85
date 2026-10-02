@@ -54,20 +54,15 @@ export const CustomAiSolutions = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Custom AI Solutions & Autonomous Systems | Sarabjeet Rattan"
-        description="Bespoke enterprise AI solutions: Hire an AI engineer for custom RAG pipelines, multi-agent orchestration (LangGraph/CrewAI), local LLM deployment with LM Studio, and autonomous business workflows."
+        title="Custom AI Solutions & Agentic Systems | Sarabjeet Rattan"
+        description="Enterprise LLM orchestration, local LM Studio pipelines, and multi-agent systems designed for complex business logic. Fixed-scope builds from $500."
         keywords={[
           "custom ai solutions",
-          "hire ai engineer",
-          "enterprise ai agent development",
-          "custom rag pipeline architecture",
-          "build ai agent from scratch",
-          "hire python ai developer",
-          "local llm coding",
-          "self hosted ai model deployment",
-          "lm studio local ai setup",
+          "enterprise ai agents",
+          "rag pipeline architecture",
+          "local llm deployment",
           "multi agent orchestration",
-          "custom session storage engine",
+          "ai automation engineer",
         ]}
         faqItems={aiFaqs}
         url="https://sarabjeetrattan.com/custom-ai-solutions"

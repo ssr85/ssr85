@@ -21,10 +21,18 @@ export type Database = {
           created_at: string
           email: string
           id: string
+          lead_status: string
+          lead_type: string
           name: string
-          phone: string
+          phone: string | null
           recaptcha_score: number | null
+          referring_query: string | null
           requirement: string
+          source_url: string | null
+          target_service: string | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
         }
         Insert: {
           client_ip?: string | null
@@ -32,10 +40,18 @@ export type Database = {
           created_at?: string
           email: string
           id?: string
+          lead_status?: string
+          lead_type?: string
           name: string
-          phone: string
+          phone?: string | null
           recaptcha_score?: number | null
+          referring_query?: string | null
           requirement: string
+          source_url?: string | null
+          target_service?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
         }
         Update: {
           client_ip?: string | null
@@ -43,10 +59,18 @@ export type Database = {
           created_at?: string
           email?: string
           id?: string
+          lead_status?: string
+          lead_type?: string
           name?: string
-          phone?: string
+          phone?: string | null
           recaptcha_score?: number | null
+          referring_query?: string | null
           requirement?: string
+          source_url?: string | null
+          target_service?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
         }
         Relationships: []
       }

@@ -75,6 +75,9 @@ export const ResumeDownloadModal = ({ isOpen, onClose }: ResumeDownloadModalProp
         return;
       }
 
+      const urlParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : new URLSearchParams();
+      const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
+
       const response = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -82,7 +85,15 @@ export const ResumeDownloadModal = ({ isOpen, onClose }: ResumeDownloadModalProp
           name: data.name,
           email: data.email,
           phone: data.phone,
-          requirement: "Resume Download Request",
+          requirement: "Interactive Resume PDF Download Request",
+          leadType: "RESUME_DOWNLOAD",
+          targetService: "executive-resume",
+          leadStatus: "NEW",
+          sourceUrl: currentPath,
+          utmSource: urlParams.get("utm_source") || undefined,
+          utmMedium: urlParams.get("utm_medium") || undefined,
+          utmCampaign: urlParams.get("utm_campaign") || undefined,
+          referringQuery: urlParams.get("q") || urlParams.get("query") || undefined,
           recaptchaToken,
         }),
       });

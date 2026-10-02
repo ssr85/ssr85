@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Send, Sparkles, X, Calendar, ExternalLink } from "lucide-react";
+import { Loader2, Send, Sparkles, Calendar, ExternalLink } from "lucide-react";
 import { executeRecaptcha } from "@/lib/recaptcha";
 
 const enquirySchema = z.object({
@@ -82,6 +82,9 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
         return;
       }
 
+      const urlParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : new URLSearchParams();
+      const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
+
       const response = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -89,8 +92,16 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
           name: data.name,
           email: data.email,
           phone: data.phone,
-          companyName: data.companyName || "",
+          companyName: data.companyName || undefined,
           requirement: data.requirement,
+          leadType: "GENERAL_ENQUIRY",
+          leadStatus: "NEW",
+          sourceUrl: currentPath,
+          gclid: urlParams.get("gclid") || undefined,
+          utmSource: urlParams.get("utm_source") || undefined,
+          utmMedium: urlParams.get("utm_medium") || undefined,
+          utmCampaign: urlParams.get("utm_campaign") || undefined,
+          referringQuery: urlParams.get("q") || urlParams.get("query") || undefined,
           recaptchaToken,
         }),
       });
@@ -102,8 +113,8 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
       }
 
       // Dispatch GA4 / Google Ads conversion event
-      if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: Function }).gtag === "function") {
-        (window as unknown as { gtag: Function }).gtag("event", "generate_lead", {
+      if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag === "function") {
+        (window as unknown as { gtag: (...args: unknown[]) => void }).gtag("event", "generate_lead", {
           event_category: "Direct Contact Form",
           event_label: "homepage_enquiry_modal",
           value: 1,

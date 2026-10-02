@@ -194,17 +194,15 @@ export const N8nWorkflows = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="n8n Workflow Automation Consultant & Engineering | Sarabjeet Rattan"
-        description="Hire an n8n automation expert: Top 10 custom n8n workflows for high-growth startups, self-hosted enterprise setups, AI agent integrations, and two-way CRM sync."
+        title="n8n Workflow Automation Consultant | Sarabjeet Rattan"
+        description="Cut SaaS costs with self-hosted n8n workflows, custom API integrations, and automated lead routing. Production-ready automation in 14 days."
         keywords={[
           "n8n workflow automation",
           "n8n consultant",
           "hire n8n expert",
-          "n8n self hosted enterprise setup",
-          "n8n ai agent workflows",
-          "automate b2b operations with n8n",
+          "n8n enterprise automation",
           "zapier alternative n8n",
-          "custom n8n node development",
+          "n8n crm sync",
         ]}
         faqItems={n8nFaqs}
         url="https://sarabjeetrattan.com/n8n-workflows"

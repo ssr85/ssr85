@@ -35,20 +35,14 @@ export const siteConfig = {
   website: "https://sarabjeetrattan.com",
   meta: {
     title: "Sarabjeet Rattan | B2B AI Strategy & Automation Consultant",
-    description: "B2B AI Specialist & Automation Consultant. Expert in AI strategy, multi-agent systems, custom CRM integrations, and intelligent automation for enterprises.",
+    description: "Expert B2B AI strategy, agentic workflows, and custom automation systems for scaling enterprises. Over 16 years engineering proven growth.",
     keywords: [
-      "B2B AI Specialist India",
+      "B2B AI Strategy",
       "AI Automation Consultant",
       "Agentic Systems",
-      "B2B AI Solutions",
-      "Agentic AI Consulting",
-      "AI Strategy Consultant",
-      "Fractional AI Officer",
-      "Enterprise AI Workflow Automation",
-      "Hire AI Strategy Consultant",
-      "Pune AI Consultant",
-      "Intelligent Automation",
-      "B2B AI Strategy",
+      "Custom AI Solutions",
+      "Workflow Automation",
+      "Enterprise AI Engineer",
     ]
   }
 };

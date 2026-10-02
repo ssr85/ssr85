@@ -57,20 +57,15 @@ export const CustomBusinessAutomation = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Bespoke Business Automation & CRM Engineering | Sarabjeet Rattan"
-        description="Custom operational software & B2B automation consulting: Enterprise Google Apps Script workflows, two-way CRM sync without Zapier (Freshsales, HubSpot), automated ERP sheets, and custom quotation pipelines."
+        title="Custom Business Automation & CRM Sync | Sarabjeet Rattan"
+        description="Automate B2B operations with two-way CRM sync, Google Sheets workflows, and custom backend integrations. Enterprise pipelines from $500."
         keywords={[
           "custom business automation",
-          "b2b workflow automation consultant",
-          "zapier alternative custom integration",
-          "google apps script development",
-          "custom crm integration services",
-          "hubspot freshsales two way sync",
-          "google sheets automated erp",
-          "google sheets automated workflows",
-          "two way crm sync without zapier",
-          "automated quoting and invoicing sheets",
-          "business process automation services",
+          "two way crm sync",
+          "google apps script developer",
+          "b2b workflow automation",
+          "zapier alternative integration",
+          "crm webhook sync",
         ]}
         faqItems={automationFaqs}
         url="https://sarabjeetrattan.com/custom-business-automation"

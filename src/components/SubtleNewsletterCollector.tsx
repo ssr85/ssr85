@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -63,45 +62,29 @@ export const SubtleNewsletterCollector = () => {
         typeof window !== "undefined" ? window.location.search : ""
       );
 
-      const leadPayload = {
-        name: "Subscriber",
-        email: cleanEmail,
-        phone: "N/A",
-        service_category: "engineering-newsletter",
-        budget_range: "N/A",
-        estimated_start_timeline: "Newsletter Subscriber",
-        requirement: `Newsletter subscription from ${currentPath}`,
-        source_url: currentPath,
-        utm_source: urlParams.get("utm_source") || null,
-        utm_medium: urlParams.get("utm_medium") || null,
-        utm_campaign: urlParams.get("utm_campaign") || null,
-        referring_query: urlParams.get("q") || urlParams.get("query") || null,
-        lead_status: "NEW",
-      };
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: "Newsletter Subscriber",
+          email: cleanEmail,
+          phone: "N/A",
+          requirement: `Newsletter subscription initiated from ${currentPath}`,
+          targetService: "engineering-newsletter",
+          leadType: "NEWSLETTER",
+          leadStatus: "NEW",
+          sourceUrl: currentPath,
+          utmSource: urlParams.get("utm_source") || undefined,
+          utmMedium: urlParams.get("utm_medium") || undefined,
+          utmCampaign: urlParams.get("utm_campaign") || undefined,
+          referringQuery: urlParams.get("q") || urlParams.get("query") || undefined,
+          recaptchaToken: "DIRECT_NEWSLETTER_SUBSCRIBE",
+        }),
+      });
 
-      // 1. Insert into Supabase service_leads
-      const { error: dbError } = await supabase
-        .from("service_leads")
-        .insert([leadPayload]);
-      if (dbError) {
-        console.warn("Direct Supabase insert note:", dbError.message);
-      }
-
-      // 2. Relay to enquiry API for email notification
-      try {
-        await fetch("/api/enquiry", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: "Newsletter Subscriber",
-            email: cleanEmail,
-            phone: "N/A",
-            requirement: `[Newsletter Signup from: ${currentPath}]`,
-            recaptchaToken: "DIRECT_NEWSLETTER_SUBSCRIBE",
-          }),
-        });
-      } catch (apiErr) {
-        console.warn("Enquiry API relay note:", apiErr);
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.error || "Subscription failed");
       }
 
       // 3. Dispatch GA4 event

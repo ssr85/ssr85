@@ -26,8 +26,12 @@ import {
   Calendar,
   Layers,
   Inbox,
+  Upload,
+  FileUp,
+  SlidersHorizontal,
 } from "lucide-react";
 import { toast } from "sonner";
+import { parseGscCsv, categorizeKeywordTier, calculateRankMathScore } from "@/lib/seo/rankmath-analyzer";
 
 // Allowed executive emails (supports with and without dot in gmail)
 const ALLOWED_ADMIN_EMAILS = [
@@ -47,6 +51,8 @@ export const AdminDashboard = () => {
 
   // Dashboard Data State
   const [activeTab, setActiveTab] = useState<"overview" | "leads" | "keywords" | "queue">("overview");
+  const [keywordFilter, setKeywordFilter] = useState<"all" | "striking" | "top3">("striking");
+  const [isUploadingCsv, setIsUploadingCsv] = useState(false);
   /* eslint-disable @typescript-eslint/no-explicit-any */
   const [leads, setLeads] = useState<Record<string, any>[]>([]);
   const [keywords, setKeywords] = useState<Record<string, any>[]>([]);
@@ -126,9 +132,9 @@ export const AdminDashboard = () => {
   const fetchDashboardData = async () => {
     setIsRefreshing(true);
     try {
-      // 1. Fetch Service Leads
+      // 1. Fetch Inbound Enquiries & Service Leads
       const { data: leadsData } = await supabase
-        .from("service_leads")
+        .from("enquiries")
         .select("*")
         .order("created_at", { ascending: false });
       if (leadsData) setLeads(leadsData);
@@ -150,6 +156,45 @@ export const AdminDashboard = () => {
       console.error("Error loading dashboard data:", err);
     } finally {
       setIsRefreshing(false);
+    }
+  };
+
+  const handleGscCsvUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploadingCsv(true);
+    try {
+      const text = await file.text();
+      const parsed = parseGscCsv(text);
+      if (parsed.length === 0) {
+        toast.error("Could not parse queries. Please verify GSC CSV format.");
+        return;
+      }
+
+      setKeywords(parsed);
+      toast.success(`Loaded & scored ${parsed.length} GSC queries with RankMath index!`);
+
+      try {
+        await supabase.from("keyword_metrics").upsert(
+          parsed.slice(0, 100).map((k) => ({
+            query: k.query,
+            impressions: k.impressions,
+            clicks: k.clicks,
+            ctr: k.ctr,
+            average_position: k.average_position,
+            updated_at: new Date().toISOString(),
+          }))
+        );
+      } catch (dbErr) {
+        console.warn("Supabase upsert skipped (running in active state):", dbErr);
+      }
+    } catch (err) {
+      console.error("CSV upload error:", err);
+      toast.error("Failed to read CSV file.");
+    } finally {
+      setIsUploadingCsv(false);
+      e.target.value = "";
     }
   };
 
@@ -257,7 +302,7 @@ export const AdminDashboard = () => {
   const updateLeadStatus = async (leadId: string, newStatus: string) => {
     try {
       const { error } = await supabase
-        .from("service_leads")
+        .from("enquiries")
         .update({ lead_status: newStatus })
         .eq("id", leadId);
       if (error) throw error;
@@ -602,10 +647,11 @@ export const AdminDashboard = () => {
                   <thead className="bg-muted/40 border-b border-border/70 font-mono text-muted-foreground">
                     <tr>
                       <th className="p-3.5">Date</th>
-                      <th className="p-3.5">Name / Email</th>
-                      <th className="p-3.5">Target Service</th>
+                      <th className="p-3.5">Lead Type</th>
+                      <th className="p-3.5">Name / Email / Company</th>
+                      <th className="p-3.5">Service Context</th>
                       <th className="p-3.5">Requirement</th>
-                      <th className="p-3.5">Source / Query</th>
+                      <th className="p-3.5">Source / UTMs</th>
                       <th className="p-3.5">Status Action</th>
                     </tr>
                   </thead>
@@ -615,16 +661,51 @@ export const AdminDashboard = () => {
                         <td className="p-3.5 font-mono text-muted-foreground whitespace-nowrap">
                           {new Date(lead.created_at).toLocaleDateString()}
                         </td>
+                        <td className="p-3.5 whitespace-nowrap">
+                          <span
+                            className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider ${
+                              lead.lead_type === "CONSULTATION"
+                                ? "bg-primary/15 text-primary border border-primary/20"
+                                : lead.lead_type === "NEWSLETTER"
+                                ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/20"
+                                : lead.lead_type === "RESUME_DOWNLOAD"
+                                ? "bg-purple-500/15 text-purple-400 border border-purple-500/20"
+                                : "bg-blue-500/15 text-blue-400 border border-blue-500/20"
+                            }`}
+                          >
+                            {lead.lead_type || "ENQUIRY"}
+                          </span>
+                        </td>
                         <td className="p-3.5">
                           <div className="font-semibold text-foreground">{lead.name}</div>
-                          <div className="text-primary">{lead.email}</div>
-                          {lead.phone && <div className="text-muted-foreground">{lead.phone}</div>}
+                          <div className="text-primary font-mono text-[11px]">{lead.email}</div>
+                          {lead.company_name && (
+                            <div className="text-foreground/80 font-mono text-[10px]">🏢 {lead.company_name}</div>
+                          )}
+                          {lead.phone && lead.phone !== "N/A" && (
+                            <div className="text-muted-foreground font-mono text-[10px]">{lead.phone}</div>
+                          )}
                         </td>
-                        <td className="p-3.5 font-mono">{lead.target_service}</td>
-                        <td className="p-3.5 max-w-xs">{lead.requirement}</td>
+                        <td className="p-3.5 font-mono text-xs">
+                          {lead.target_service ? (
+                            <span className="px-2 py-0.5 rounded bg-muted text-foreground border border-border text-[11px]">
+                              {lead.target_service}
+                            </span>
+                          ) : (
+                            <span className="text-muted-foreground text-[11px]">General</span>
+                          )}
+                        </td>
+                        <td className="p-3.5 max-w-xs text-muted-foreground text-xs leading-relaxed">
+                          <p className="line-clamp-3">{lead.requirement}</p>
+                        </td>
                         <td className="p-3.5 font-mono text-muted-foreground text-[11px]">
-                          <div>{lead.source_url}</div>
-                          {lead.referring_query && <div className="text-success">Q: {lead.referring_query}</div>}
+                          <div>{lead.source_url || "/"}</div>
+                          {lead.utm_source && (
+                            <div className="text-primary text-[10px]">UTM: {lead.utm_source}</div>
+                          )}
+                          {lead.referring_query && (
+                            <div className="text-success text-[10px]">Q: {lead.referring_query}</div>
+                          )}
                         </td>
                         <td className="p-3.5 whitespace-nowrap">
                           <select
@@ -636,6 +717,7 @@ export const AdminDashboard = () => {
                             <option value="CONTACTED">CONTACTED</option>
                             <option value="QUALIFIED">QUALIFIED</option>
                             <option value="CONVERTED">CONVERTED</option>
+                            <option value="ARCHIVED">ARCHIVED</option>
                           </select>
                         </td>
                       </tr>
@@ -650,11 +732,68 @@ export const AdminDashboard = () => {
         {/* TAB 3: KEYWORDS */}
         {activeTab === "keywords" && (
           <div className="space-y-4">
-            <h2 className="text-xl font-bold text-foreground">Google Search Console Performance & Striking Distance</h2>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h2 className="text-xl font-bold text-foreground">RankMath GSC Intelligence & Striking Distance</h2>
+                <p className="text-xs text-muted-foreground">Scored queries in positions 4–20 prioritized for topic silo promotion.</p>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground font-semibold text-xs shadow-md hover:bg-primary/90 transition-colors">
+                  <FileUp className="w-3.5 h-3.5" />
+                  {isUploadingCsv ? "Scoring..." : "Upload GSC Queries.csv"}
+                  <input
+                    type="file"
+                    accept=".csv"
+                    className="hidden"
+                    onChange={handleGscCsvUpload}
+                    disabled={isUploadingCsv}
+                  />
+                </label>
+              </div>
+            </div>
+
+            {/* Filter Pills */}
+            <div className="flex items-center gap-2 pt-1 font-mono text-xs">
+              <button
+                onClick={() => setKeywordFilter("striking")}
+                className={`px-3 py-1.5 rounded-lg border transition-all ${
+                  keywordFilter === "striking"
+                    ? "bg-primary text-primary-foreground border-primary font-bold shadow-sm"
+                    : "bg-card border-border/80 text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                Striking Distance (Pos 4–20) ({strikingDistanceQueries.length})
+              </button>
+              <button
+                onClick={() => setKeywordFilter("top3")}
+                className={`px-3 py-1.5 rounded-lg border transition-all ${
+                  keywordFilter === "top3"
+                    ? "bg-primary text-primary-foreground border-primary font-bold shadow-sm"
+                    : "bg-card border-border/80 text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                Top 3 Rankings ({keywords.filter((k) => k.average_position <= 3.5).length})
+              </button>
+              <button
+                onClick={() => setKeywordFilter("all")}
+                className={`px-3 py-1.5 rounded-lg border transition-all ${
+                  keywordFilter === "all"
+                    ? "bg-primary text-primary-foreground border-primary font-bold shadow-sm"
+                    : "bg-card border-border/80 text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                All Queries ({keywords.length})
+              </button>
+            </div>
+
             {keywords.length === 0 ? (
-              <div className="p-12 text-center rounded-2xl border border-border/60 bg-card/40">
-                <Search className="w-10 h-10 text-muted-foreground mx-auto mb-3 opacity-40" />
-                <p className="text-sm text-muted-foreground">No queries in database yet. Drop Queries.csv to run import.</p>
+              <div className="p-12 text-center rounded-2xl border border-dashed border-border/80 bg-card/40 space-y-3">
+                <Search className="w-10 h-10 text-muted-foreground mx-auto opacity-40" />
+                <p className="text-sm font-semibold text-foreground">No queries in engine yet.</p>
+                <p className="text-xs text-muted-foreground max-w-sm mx-auto">
+                  Click "Upload GSC Queries.csv" above to ingest your Google Search Console performance export and calculate RankMath opportunity scores.
+                </p>
               </div>
             ) : (
               <div className="overflow-x-auto border border-border/70 rounded-2xl bg-card">
@@ -662,35 +801,76 @@ export const AdminDashboard = () => {
                   <thead className="bg-muted/40 border-b border-border/70 font-mono text-muted-foreground">
                     <tr>
                       <th className="p-3.5">Query</th>
+                      <th className="p-3.5">RankMath Tier</th>
+                      <th className="p-3.5">Opportunity Score</th>
                       <th className="p-3.5">Position</th>
                       <th className="p-3.5">Impressions</th>
                       <th className="p-3.5">Clicks</th>
                       <th className="p-3.5">CTR</th>
-                      <th className="p-3.5">Status</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border/50 font-mono">
-                    {keywords.map((kw) => {
-                      const isStriking = kw.average_position >= 4.5 && kw.average_position <= 20.5;
-                      return (
-                        <tr key={kw.id} className="hover:bg-muted/20">
-                          <td className="p-3.5 font-sans font-medium text-foreground">{kw.query}</td>
-                          <td className="p-3.5 text-primary font-bold">#{kw.average_position.toFixed(1)}</td>
-                          <td className="p-3.5">{kw.impressions}</td>
-                          <td className="p-3.5">{kw.clicks}</td>
-                          <td className="p-3.5">{((kw.ctr || 0) * 100).toFixed(1)}%</td>
-                          <td className="p-3.5">
-                            {isStriking ? (
-                              <span className="px-2 py-0.5 rounded bg-success/10 text-success font-bold text-[10px]">
-                                STRIKING (Pos 5-20)
+                    {keywords
+                      .filter((kw) => {
+                        if (keywordFilter === "striking") {
+                          return kw.average_position >= 4.0 && kw.average_position <= 20.5;
+                        }
+                        if (keywordFilter === "top3") {
+                          return kw.average_position <= 3.5;
+                        }
+                        return true;
+                      })
+                      .map((kw, idx) => {
+                        const tier = kw.tier || categorizeKeywordTier(kw.average_position);
+                        const score = kw.opportunity_score !== undefined
+                          ? kw.opportunity_score
+                          : calculateRankMathScore({
+                              position: kw.average_position,
+                              impressions: kw.impressions,
+                              ctr: kw.ctr || 0,
+                              clicks: kw.clicks || 0,
+                            });
+
+                        return (
+                          <tr key={kw.id || idx} className="hover:bg-muted/20">
+                            <td className="p-3.5 font-sans font-medium text-foreground">{kw.query}</td>
+                            <td className="p-3.5">
+                              {tier === "TOP_3" && (
+                                <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 font-bold text-[10px]">
+                                  TOP 3 DEFEND
+                                </span>
+                              )}
+                              {tier === "STRIKING_PAGE_1" && (
+                                <span className="px-2 py-0.5 rounded bg-primary/10 text-primary font-bold text-[10px]">
+                                  STRIKING P1 (Pos 4-10)
+                                </span>
+                              )}
+                              {tier === "STRIKING_PAGE_2" && (
+                                <span className="px-2 py-0.5 rounded bg-blue-500/10 text-blue-500 font-bold text-[10px]">
+                                  STRIKING P2 (Pos 11-20)
+                                </span>
+                              )}
+                              {tier === "FAIR" && (
+                                <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-bold text-[10px]">
+                                  FAIR (Pos 21-50)
+                                </span>
+                              )}
+                              {tier === "POOR" && (
+                                <span className="text-muted-foreground text-[10px]">POOR (&gt;50)</span>
+                              )}
+                            </td>
+                            <td className="p-3.5 font-bold text-foreground">
+                              <span className="px-2 py-0.5 rounded bg-muted text-foreground">
+                                {score.toFixed(1)}
                               </span>
-                            ) : (
-                              <span className="text-muted-foreground text-[10px]">Indexed</span>
-                            )}
-                          </td>
-                        </tr>
-                      );
-                    })}
+                            </td>
+                            <td className="p-3.5 text-primary font-bold">#{kw.average_position.toFixed(1)}</td>
+                            <td className="p-3.5">{kw.impressions.toLocaleString()}</td>
+                            <td className="p-3.5 font-bold text-foreground">{kw.clicks}</td>
+                            <td className="p-3.5">{((kw.ctr || 0) * 100).toFixed(1)}%</td>
+                          </tr>
+                        );
+                      })}
                   </tbody>
                 </table>
               </div>

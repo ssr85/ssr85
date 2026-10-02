@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import {
   Dialog,
   DialogContent,
@@ -21,7 +20,6 @@ import {
   Calendar,
   Mail,
   MessageSquare,
-  Clock,
   ArrowRight,
   ExternalLink,
 } from "lucide-react";
@@ -70,48 +68,37 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
       const urlParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : new URLSearchParams();
       const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
 
-      const leadPayload = {
-        name: name.trim(),
-        email: email.trim(),
-        phone: phone.trim() || null,
-        company_name: company.trim() || null,
-        target_service: defaultService,
-        requirement: requirement.trim(),
-        source_url: currentPath,
-        utm_source: urlParams.get("utm_source") || null,
-        utm_medium: urlParams.get("utm_medium") || null,
-        utm_campaign: urlParams.get("utm_campaign") || null,
-        referring_query: urlParams.get("q") || urlParams.get("query") || null,
-        lead_status: "NEW",
-      };
+      // Send lead through unified backend capture engine
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim() || "N/A",
+          companyName: company.trim() || undefined,
+          requirement: requirement.trim(),
+          targetService: defaultService,
+          leadType: "CONSULTATION",
+          leadStatus: "NEW",
+          sourceUrl: currentPath,
+          gclid: urlParams.get("gclid") || undefined,
+          utmSource: urlParams.get("utm_source") || undefined,
+          utmMedium: urlParams.get("utm_medium") || undefined,
+          utmCampaign: urlParams.get("utm_campaign") || undefined,
+          referringQuery: urlParams.get("q") || urlParams.get("query") || undefined,
+          recaptchaToken: "DIRECT_SERVICE_LEAD",
+        }),
+      });
 
-      // 1. Insert lead directly into Supabase service_leads table
-      const { error: dbError } = await supabase.from("service_leads").insert([leadPayload]);
-      if (dbError) {
-        console.warn("Direct Supabase insert note:", dbError.message);
-      }
-
-      // 2. Also send notification through enquiry API for instant email delivery
-      try {
-        await fetch("/api/enquiry", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: name.trim(),
-            email: email.trim(),
-            phone: phone.trim() || "N/A",
-            companyName: company.trim() || undefined,
-            requirement: `[Target Service: ${defaultService} | Source: ${currentPath}]\n\n${requirement.trim()}`,
-            recaptchaToken: "DIRECT_SERVICE_LEAD",
-          }),
-        });
-      } catch (apiErr) {
-        console.warn("Enquiry API relay note:", apiErr);
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || "Failed to submit inquiry");
       }
 
       // 3. Dispatch GA4 / Google Ads conversion event
-      if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: Function }).gtag === "function") {
-        (window as unknown as { gtag: Function }).gtag("event", "generate_lead", {
+      if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag === "function") {
+        (window as unknown as { gtag: (...args: unknown[]) => void }).gtag("event", "generate_lead", {
           event_category: "Service Consultation",
           event_label: defaultService,
           value: 1,
