@@ -8,11 +8,12 @@ import React, { lazy, Suspense } from "react";
 import Index from "./pages/Index";
 import { Analytics } from "@vercel/analytics/react";
 
-import { SubtleNewsletterCollector } from "@/components/SubtleNewsletterCollector";
+import { UnifiedActionDock } from "@/components/UnifiedActionDock";
 
 const Resume = lazy(() => import("./pages/Resume"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
+const ScopeEstimator = lazy(() => import("./pages/ScopeEstimator"));
 
 // Core Pillars
 const AiWordPressDevelopment = lazy(() => import("./pages/AiWordPressDevelopment"));
@@ -106,6 +107,10 @@ export const routes = [
     path: "/insights/headless-wordpress-vite-architecture",
     element: <HeadlessWordPressVite />,
   },
+  {
+    path: "/tools/architecture-scope-estimator",
+    element: <ScopeEstimator />,
+  },
   ...caseStudyRoutes,
   {
     path: "*",
@@ -132,7 +137,7 @@ const App = () => {
               <Outlet />
             </Suspense>
           </div>
-          <SubtleNewsletterCollector />
+          <UnifiedActionDock />
           <Analytics />
         </TooltipProvider>
       </ThemeProvider>
