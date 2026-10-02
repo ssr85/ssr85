@@ -52,13 +52,58 @@ export const Footer = () => {
     <footer ref={footerRef} className="py-20 md:py-28 px-4 border-t border-white/[0.08] bg-background relative overflow-hidden">
       <EngineeringGrid />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-6xl mx-auto space-y-16">
-          {/* Main Footer Links Columns - 2-col on mobile, 4-col on md+ */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 text-sm">
-            {/* Column 1: Core Pillars */}
+        <div className="max-w-7xl mx-auto space-y-16">
+          {/* Main Footer Links Columns - 2-col on mobile, 3-col on tablet, 5-col on desktop */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6 text-sm">
+            {/* Column 1: Quick Links */}
             <div className="space-y-4 text-center md:text-left">
               <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center justify-center md:justify-start gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                Quick Links
+              </div>
+              <ul className="space-y-2.5 text-muted-foreground text-xs">
+                <li>
+                  <Link to="/" className="hover:text-primary transition-colors">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <a href="/#case-studies" className="hover:text-primary transition-colors">
+                    Case Studies
+                  </a>
+                </li>
+                <li>
+                  <a href="/#snapshot" className="hover:text-primary transition-colors">
+                    Technical Expertise
+                  </a>
+                </li>
+                <li>
+                  <a href="/#strengths" className="hover:text-primary transition-colors">
+                    Core Strengths
+                  </a>
+                </li>
+                <li>
+                  <Link to="/resume" className="hover:text-primary transition-colors">
+                    Executive Resume
+                  </Link>
+                </li>
+                <li>
+                  <a
+                    href="https://calendly.com/srt10/20"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary font-semibold hover:underline inline-flex items-center gap-1"
+                  >
+                    Schedule 20-Min Call
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 2: Engineering Pillars */}
+            <div className="space-y-4 text-center md:text-left">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center justify-center md:justify-start gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                 Core Systems
               </div>
               <ul className="space-y-2.5 text-muted-foreground text-xs">
@@ -82,14 +127,59 @@ export const Footer = () => {
                     Business & CRM Automation
                   </Link>
                 </li>
+                <li>
+                  <Link to="/case-studies/lead-og" className="hover:text-primary transition-colors">
+                    Case: Lead OG Engine
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/case-studies/linked-in" className="hover:text-primary transition-colors">
+                    Case: LinkedIn Agentic AI
+                  </Link>
+                </li>
               </ul>
             </div>
 
-            {/* Column 2: WordPress Insights */}
+            {/* Column 3: AI & Multi-Agent Tech */}
+            <div className="space-y-4 text-center md:text-left">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center justify-center md:justify-start gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                AI Architecture
+              </div>
+              <ul className="space-y-2.5 text-xs text-muted-foreground">
+                <li>
+                  <Link to="/insights/multi-agent-orchestration-from-scratch" className="hover:text-primary transition-colors">
+                    Multi-Agent Systems
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/insights/local-llm-lm-studio-workflow" className="hover:text-primary transition-colors">
+                    Local LLMs & LM Studio
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/insights/custom-session-storage-engines" className="hover:text-primary transition-colors">
+                    High-Velocity Scraping
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/n8n-workflows#workflows-grid" className="hover:text-primary transition-colors">
+                    Top 10 n8n Blueprints
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/n8n-workflows#enterprise-architecture" className="hover:text-primary transition-colors">
+                    Self-Hosted n8n Node Graph
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 4: WP & Operational Automation */}
             <div className="space-y-4 text-center md:text-left">
               <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center justify-center md:justify-start gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                WP Engineering
+                WP & Operations
               </div>
               <ul className="space-y-2.5 text-xs text-muted-foreground">
                 <li>
@@ -99,37 +189,12 @@ export const Footer = () => {
                 </li>
                 <li>
                   <Link to="/insights/automated-search-analytics-reporting" className="hover:text-primary transition-colors">
-                    Automated GSC / GA4 Alerts
+                    Automated GSC/GA4 Alerts
                   </Link>
                 </li>
                 <li>
                   <Link to="/insights/headless-wordpress-vite-architecture" className="hover:text-primary transition-colors">
-                    Headless WordPress + Vite
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Column 3: AI & Automation */}
-            <div className="space-y-4 text-center md:text-left">
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center justify-center md:justify-start gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                Autonomous Tech
-              </div>
-              <ul className="space-y-2.5 text-xs text-muted-foreground">
-                <li>
-                  <Link to="/insights/local-llm-lm-studio-workflow" className="hover:text-primary transition-colors">
-                    Local LLMs with LM Studio
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/insights/multi-agent-orchestration-from-scratch" className="hover:text-primary transition-colors">
-                    Multi-Agent Orchestration
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/insights/custom-session-storage-engines" className="hover:text-primary transition-colors">
-                    High-Velocity Scraping
+                    Headless WP + Vite SSG
                   </Link>
                 </li>
                 <li>
@@ -145,59 +210,79 @@ export const Footer = () => {
               </ul>
             </div>
 
-            {/* Column 4: Connect & Telemetry */}
-            <div className="space-y-4 text-center md:text-left flex flex-col items-center md:items-start">
+            {/* Column 5: Connect & Calendly */}
+            <div className="space-y-4 text-center md:text-left col-span-2 sm:col-span-1 flex flex-col items-center md:items-start">
               <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center justify-center md:justify-start gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                Connect
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Connect & Booking
               </div>
               
               <div className="flex items-center justify-center md:justify-start gap-2 pt-1 flex-wrap">
                 <a
                   href={`tel:${siteConfig.phone}`}
-                  className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/80 hover:text-primary hover:border-primary/40 hover:bg-primary/10 flex items-center justify-center transition-all duration-200"
+                  className="w-8 h-8 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/80 hover:text-primary hover:border-primary/40 hover:bg-primary/10 flex items-center justify-center transition-all duration-200"
                   aria-label="Phone"
+                  title={`Call: ${siteConfig.phone}`}
                 >
-                  <Phone size={14} />
+                  <Phone size={13} />
                 </a>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/80 hover:text-primary hover:border-primary/40 hover:bg-primary/10 flex items-center justify-center transition-all duration-200"
+                  className="w-8 h-8 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/80 hover:text-primary hover:border-primary/40 hover:bg-primary/10 flex items-center justify-center transition-all duration-200"
                   aria-label="Email"
+                  title={`Email: ${siteConfig.email}`}
                 >
-                  <Mail size={14} />
+                  <Mail size={13} />
                 </a>
                 <a
                   href={siteConfig.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/80 hover:text-primary hover:border-primary/40 hover:bg-primary/10 flex items-center justify-center transition-all duration-200"
+                  className="w-8 h-8 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/80 hover:text-primary hover:border-primary/40 hover:bg-primary/10 flex items-center justify-center transition-all duration-200"
                   aria-label="LinkedIn"
+                  title="LinkedIn Profile"
                 >
-                  <Linkedin size={14} />
+                  <Linkedin size={13} />
                 </a>
                 <a
                   href={siteConfig.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/80 hover:text-primary hover:border-primary/40 hover:bg-primary/10 flex items-center justify-center transition-all duration-200"
+                  className="w-8 h-8 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/80 hover:text-primary hover:border-primary/40 hover:bg-primary/10 flex items-center justify-center transition-all duration-200"
                   aria-label="GitHub"
+                  title="GitHub Profile"
                 >
-                  <Github size={14} />
+                  <Github size={13} />
                 </a>
                 <a
                   href={siteConfig.calendly}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20 flex items-center justify-center transition-all duration-200"
+                  className="w-8 h-8 rounded-xl bg-primary/15 border border-primary/30 text-primary hover:bg-primary/25 flex items-center justify-center transition-all duration-200"
                   aria-label="Book a 20-min Call on Calendly"
                   title="Book a 20-min Call on Calendly"
                 >
-                  <Calendar size={14} />
+                  <Calendar size={13} />
                 </a>
               </div>
 
-              <div className="pt-2 flex justify-center md:justify-start">
+              {/* Direct Booking Pill Card */}
+              <div className="w-full pt-1">
+                <a
+                  href={siteConfig.calendly}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full block p-3 rounded-xl bg-gradient-to-br from-primary/10 via-card to-card border border-primary/25 hover:border-primary/50 transition-all text-left group"
+                >
+                  <div className="text-[11px] font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
+                    <span>1-on-1 Discovery Call</span>
+                    <span className="text-[9px] font-mono text-primary uppercase">20 Min</span>
+                  </div>
+                  <p className="text-[10px] text-muted-foreground mt-0.5">Direct technical discussion with builder.</p>
+                </a>
+              </div>
+
+              <div className="pt-1 flex justify-center md:justify-start">
                 <Link
                   to="/resume"
                   className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.12] text-xs text-muted-foreground hover:text-foreground transition-all font-mono"
@@ -227,6 +312,10 @@ export const Footer = () => {
               <span>•</span>
               <a href="/llms.txt" target="_blank" className="hover:text-primary transition-colors">
                 llms.txt
+              </a>
+              <span>•</span>
+              <a href="/llms-full.txt" target="_blank" className="hover:text-primary transition-colors">
+                llms-full.txt
               </a>
             </div>
             
