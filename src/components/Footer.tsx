@@ -185,7 +185,7 @@ export const Footer = () => {
               <div className="pt-2">
                 <a
                   href="/resume"
-                  className="btn-icon-pod inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.12] text-xs text-muted-foreground hover:text-foreground transition-all font-mono"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.12] text-xs text-muted-foreground hover:text-foreground transition-all font-mono"
                 >
                   <FileText size={12} className="text-primary" />
                   <span>Executive Resume</span>
@@ -217,7 +217,7 @@ export const Footer = () => {
             
             <button
               onClick={scrollToTop}
-              className="btn-icon-pod inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] hover:border-white/[0.15] text-foreground/80 hover:text-foreground text-xs font-mono transition-all group"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] hover:border-white/[0.15] text-foreground/80 hover:text-foreground text-xs font-mono transition-all group"
             >
               <span>Back to Top</span>
               <ChevronUp size={13} className="text-primary group-hover:-translate-y-0.5 transition-transform" />

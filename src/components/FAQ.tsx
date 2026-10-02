@@ -126,10 +126,10 @@ export const FAQ = ({ onOpenEnquiry }: FAQProps) => {
                 </p>
                 <button
                   onClick={onOpenEnquiry}
-                  className="btn-icon-pod inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-xs font-semibold text-foreground transition-all group"
+                  className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-xs font-semibold text-foreground transition-all group"
                 >
                   <span>Ask Directly</span>
-                  <span className="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
+                  <span className="btn-icon-pod bg-primary/20 text-primary">
                     <ArrowRight size={12} />
                   </span>
                 </button>

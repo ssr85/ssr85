@@ -149,10 +149,10 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
             {item.type === "case-study" && item.hasDetailPage && item.slug ? (
               <Link
                 to={`/case-studies/${item.slug}`}
-                className="btn-icon-pod inline-flex w-full items-center justify-between px-5 py-3 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.15] text-foreground text-xs font-semibold transition-all group"
+                className="inline-flex w-full items-center justify-between px-5 py-3 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.15] text-foreground text-xs font-semibold transition-all group"
               >
                 <span>Read Full Case Study</span>
-                <span className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+                <span className="btn-icon-pod bg-primary/20 text-primary">
                   <ArrowUpRight size={14} />
                 </span>
               </Link>
@@ -352,7 +352,7 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                               <div className="text-xl md:text-2xl font-black font-mono tracking-tight text-primary">
                                 {km.value}
                               </div>
-                              <div className="text-[9px] uppercase font-mono tracking-wider text-muted-foreground mt-0.5 truncate">
+                              <div className="text-[9px] uppercase font-mono tracking-wider text-muted-foreground mt-0.5 leading-tight text-balance">
                                 {km.label}
                               </div>
                             </div>
@@ -416,11 +416,11 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                       {activeItem.type === "case-study" && activeItem.hasDetailPage && activeItem.slug ? (
                         <Link
                           to={`/case-studies/${activeItem.slug}`}
-                          className="btn-icon-pod inline-flex items-center justify-between gap-4 px-6 py-3 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs transition-all duration-200 group shadow-lg shadow-primary/20"
+                          className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs transition-all duration-200 group shadow-lg shadow-primary/20 shrink-0"
                         >
                           <span>Explore Full Case Study</span>
-                          <span className="w-5 h-5 rounded-full bg-black/20 text-primary-foreground flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-                            <ArrowUpRight size={12} />
+                          <span className="btn-icon-pod bg-black/20 text-primary-foreground">
+                            <ArrowUpRight size={13} />
                           </span>
                         </Link>
                       ) : (

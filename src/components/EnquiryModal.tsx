@@ -258,7 +258,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="btn-icon-pod rounded-full px-6 py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs shadow-lg shadow-primary/20 transition-all group"
+              className="rounded-full px-6 py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs shadow-lg shadow-primary/20 transition-all group"
             >
               {isSubmitting ? (
                 <>
@@ -268,7 +268,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               ) : (
                 <>
                   <span>Send Requirements</span>
-                  <span className="w-5 h-5 rounded-full bg-black/20 text-primary-foreground flex items-center justify-center group-hover:translate-x-0.5 transition-transform ml-2">
+                  <span className="btn-icon-pod bg-black/20 text-primary-foreground ml-2">
                     <Send size={11} />
                   </span>
                 </>
