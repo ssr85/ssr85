@@ -31,11 +31,25 @@ export const siteConfig = {
   phone: "+91-866-898-4323",
   linkedin: "https://www.linkedin.com/in/sarabjeetrattan/",
   github: "https://github.com/ssr85",
+  calendly: "https://calendly.com/srt10/20",
   website: "https://sarabjeetrattan.com",
   meta: {
-      title: "Sarabjeet Rattan | B2B AI Strategy & Agentic Systems Consultant",
-    description: "B2B AI Specialist & Agentic Systems Consultant. Expert in AI strategy, intelligent automation, and scalable operations for SMEs and entrepreneurs.",
-    keywords: ["B2B AI Specialist India", "Agentic Systems", "B2B AI Solutions", "Agentic AI Consulting", "AI Strategy Consultant", "Pune AI Consultant", "Intelligent Automation", "B2B AI Strategy"]
+    title: "Sarabjeet Rattan | B2B AI Strategy & Automation Consultant",
+    description: "B2B AI Specialist & Automation Consultant. Expert in AI strategy, multi-agent systems, custom CRM integrations, and intelligent automation for enterprises.",
+    keywords: [
+      "B2B AI Specialist India",
+      "AI Automation Consultant",
+      "Agentic Systems",
+      "B2B AI Solutions",
+      "Agentic AI Consulting",
+      "AI Strategy Consultant",
+      "Fractional AI Officer",
+      "Enterprise AI Workflow Automation",
+      "Hire AI Strategy Consultant",
+      "Pune AI Consultant",
+      "Intelligent Automation",
+      "B2B AI Strategy",
+    ]
   }
 };
 
@@ -462,6 +476,12 @@ export const services = [
     description: "Multi-agent orchestration, local LLM deployment via LM Studio, and high-velocity proprietary scraping pipelines built from scratch.",
     icon: "Code",
     link: "/custom-ai-solutions",
+  },
+  {
+    title: "n8n Workflow Automation",
+    description: "Top 10 startup workflows, self-hosted enterprise setups, AI agent integrations, and two-way CRM sync with zero SaaS limits.",
+    icon: "Workflow",
+    link: "/n8n-workflows",
   },
   {
     title: "AI WordPress & Plugin Engineering",

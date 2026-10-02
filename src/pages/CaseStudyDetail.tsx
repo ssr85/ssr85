@@ -663,6 +663,97 @@ const CaseStudyDetail = ({ slug: propSlug }: CaseStudyDetailProps) => {
           </div>
         </section>
 
+        {/* Related Architecture & Automation Insights */}
+        {study.slug === "lead-og" && (
+          <section id="related-insights" className="container mx-auto max-w-4xl px-4 mb-16">
+            <div className="p-8 rounded-2xl bg-card/60 border border-border/60 space-y-6">
+              <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-bold">
+                <Sparkles className="w-4 h-4" /> Deep-Dive Engineering Guides
+              </div>
+              <h2 className="text-xl md:text-2xl font-bold tracking-tight">
+                Related Architectural Insights & Automation
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                <Link
+                  to="/insights/custom-session-storage-engines"
+                  className="p-4 rounded-xl bg-background/80 border border-border/60 hover:border-primary/50 transition-colors space-y-2 group block"
+                >
+                  <span className="text-[10px] font-mono font-bold text-primary uppercase">Scraping Engine</span>
+                  <div className="font-bold text-foreground group-hover:text-primary transition-colors text-sm">
+                    Bespoke Session Engines & Scraping
+                  </div>
+                  <p className="text-muted-foreground">Detailed breakdown of headless session pooling and CAPTCHA avoidance.</p>
+                </Link>
+                <Link
+                  to="/insights/custom-crm-sync-engines"
+                  className="p-4 rounded-xl bg-background/80 border border-border/60 hover:border-primary/50 transition-colors space-y-2 group block"
+                >
+                  <span className="text-[10px] font-mono font-bold text-blue-500 uppercase">CRM Sync</span>
+                  <div className="font-bold text-foreground group-hover:text-primary transition-colors text-sm">
+                    Two-Way CRM Sync Engines
+                  </div>
+                  <p className="text-muted-foreground">Architecting bi-directional Freshsales & HubSpot webhook sync relays.</p>
+                </Link>
+                <Link
+                  to="/n8n-workflows"
+                  className="p-4 rounded-xl bg-background/80 border border-border/60 hover:border-primary/50 transition-colors space-y-2 group block"
+                >
+                  <span className="text-[10px] font-mono font-bold text-success uppercase">n8n Automation</span>
+                  <div className="font-bold text-foreground group-hover:text-primary transition-colors text-sm">
+                    Top 10 n8n Startup Workflows
+                  </div>
+                  <p className="text-muted-foreground">Self-hosted workflow nodes for automated prospect routing and alerts.</p>
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {study.slug === "linked-in" && (
+          <section id="related-insights" className="container mx-auto max-w-4xl px-4 mb-16">
+            <div className="p-8 rounded-2xl bg-card/60 border border-border/60 space-y-6">
+              <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-bold">
+                <Sparkles className="w-4 h-4" /> Deep-Dive Engineering Guides
+              </div>
+              <h2 className="text-xl md:text-2xl font-bold tracking-tight">
+                Related Multi-Agent Systems & Architecture
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                <Link
+                  to="/insights/multi-agent-orchestration-from-scratch"
+                  className="p-4 rounded-xl bg-background/80 border border-border/60 hover:border-primary/50 transition-colors space-y-2 group block"
+                >
+                  <span className="text-[10px] font-mono font-bold text-primary uppercase">Autonomous Agents</span>
+                  <div className="font-bold text-foreground group-hover:text-primary transition-colors text-sm">
+                    Multi-Agent Orchestration from Scratch
+                  </div>
+                  <p className="text-muted-foreground">Building deterministic agent loops with Supabase Edge Functions.</p>
+                </Link>
+                <Link
+                  to="/insights/local-llm-lm-studio-workflow"
+                  className="p-4 rounded-xl bg-background/80 border border-border/60 hover:border-primary/50 transition-colors space-y-2 group block"
+                >
+                  <span className="text-[10px] font-mono font-bold text-blue-500 uppercase">Local AI</span>
+                  <div className="font-bold text-foreground group-hover:text-primary transition-colors text-sm">
+                    Local LLMs with LM Studio & Ollama
+                  </div>
+                  <p className="text-muted-foreground">Zero cloud API bill development using quantized local models.</p>
+                </Link>
+                <Link
+                  to="/n8n-workflows"
+                  className="p-4 rounded-xl bg-background/80 border border-border/60 hover:border-primary/50 transition-colors space-y-2 group block"
+                >
+                  <span className="text-[10px] font-mono font-bold text-success uppercase">n8n Automation</span>
+                  <div className="font-bold text-foreground group-hover:text-primary transition-colors text-sm">
+                    Top 10 n8n Startup Workflows
+                  </div>
+                  <p className="text-muted-foreground">Self-hosted workflow nodes for automated prospect routing and alerts.</p>
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* CTA */}
         <section className="container mx-auto max-w-4xl px-4 mb-8">
           <div className="text-center p-10 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 border border-border/40 rounded-2xl space-y-6">

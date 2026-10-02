@@ -30,7 +30,9 @@ export const LocalLlmStudio = () => {
           "local llm coding",
           "lm studio local ai setup",
           "run local models for development",
-          "lm studio api integration",
+          "run qwen 2.5 coder offline",
+          "lm studio python api integration",
+          "local coding assistant without api costs",
           "local openai compatible server",
           "qwen 2.5 coder local setup",
         ]}
@@ -59,7 +61,7 @@ export const LocalLlmStudio = () => {
           </p>
 
           {/* Infographic: Local LLM vs Cloud API Architecture */}
-          <div className="my-10 p-6 md:p-8 rounded-2xl border border-border/80 bg-card/90 backdrop-blur-md shadow-2xl">
+          <div id="vram-flow" className="my-10 p-6 md:p-8 rounded-2xl border border-border/80 bg-card/90 backdrop-blur-md shadow-2xl">
             <h3 className="font-bold text-base text-foreground mb-4 flex items-center gap-2">
               <HardDrive className="w-5 h-5 text-primary" /> Local LLM Inference & VRAM Allocation Flow
             </h3>
@@ -89,7 +91,7 @@ export const LocalLlmStudio = () => {
           </div>
 
           <section className="space-y-8 text-sm text-muted-foreground leading-relaxed">
-            <div>
+            <div id="hardware-matrix">
               <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
                 Hardware Matrix & Recommended Local Coding Models
               </h2>
@@ -131,7 +133,7 @@ export const LocalLlmStudio = () => {
               </table>
             </div>
 
-            <div className="space-y-4">
+            <div id="server-configuration" className="space-y-4">
               <h3 className="text-xl font-bold text-foreground">
                 Step 1: Configuring LM Studio Local Server Settings
               </h3>
@@ -142,12 +144,24 @@ export const LocalLlmStudio = () => {
               </ul>
             </div>
 
-            <div className="space-y-4">
+            <div id="connecting-custom-agents" className="space-y-4">
               <h3 className="text-xl font-bold text-foreground">
                 Step 2: Connecting Custom Scripts & Coding Agents
               </h3>
               <p>
-                Because LM Studio exposes a drop-in 100% compatible OpenAI API, you can point standard SDKs directly to your local workstation:
+                Because LM Studio exposes a drop-in 100% compatible OpenAI API, you can point standard SDKs directly to your local workstation. In our{" "}
+                <Link to="/insights/multi-agent-orchestration-from-scratch" className="text-primary font-semibold hover:underline">
+                  deterministic multi-agent systems
+                </Link>{" "}
+                and{" "}
+                <Link to="/insights/custom-session-storage-engines" className="text-primary font-semibold hover:underline">
+                  bespoke session caching engines
+                </Link>
+                , this replaces external token costs with private, local inference. Explore our full{" "}
+                <Link to="/custom-ai-solutions" className="text-primary font-semibold hover:underline">
+                  Custom AI Solutions practice
+                </Link>{" "}
+                to engineer enterprise-grade offline agents.
               </p>
 
               <div className="p-4 rounded-xl bg-card border border-border/80 font-mono text-xs overflow-x-auto text-foreground">

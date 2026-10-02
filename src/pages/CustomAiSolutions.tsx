@@ -36,20 +36,40 @@ export const CustomAiSolutions = () => {
     setIsLeadModalOpen(true);
   };
 
+  const aiFaqs = [
+    {
+      question: "What is the difference between an AI wrapper and a custom agentic system?",
+      answer: "An AI wrapper simply forwards prompts to an external API like ChatGPT with basic formatting. A custom agentic system executes multi-step business logic autonomously using LangGraph or CrewAI with state persistence, vector database retrieval, tool execution, and human-in-the-loop checkpoints."
+    },
+    {
+      question: "How do you deploy local LLMs securely for development and operations?",
+      answer: "We deploy open-weight models (Qwen 2.5 Coder, DeepSeek-R1, Llama 3) via LM Studio and custom local OpenAI-compatible inference servers, ensuring 100% data privacy with zero token fees."
+    },
+    {
+      question: "Can custom AI systems integrate with our existing CRM and database?",
+      answer: "Yes. We engineer secure REST API connectors and edge functions that synchronize extracted intelligence directly into PostgreSQL, Supabase, Freshsales, or HubSpot in real time."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
         title="Custom AI Solutions & Autonomous Systems | Sarabjeet Rattan"
-        description="Bespoke AI systems: Local LLM deployment with LM Studio, multi-agent orchestration, custom vector databases, and proprietary lead scraping engines."
+        description="Bespoke enterprise AI solutions: Hire an AI engineer for custom RAG pipelines, multi-agent orchestration (LangGraph/CrewAI), local LLM deployment with LM Studio, and autonomous business workflows."
         keywords={[
           "custom ai solutions",
           "hire ai engineer",
+          "enterprise ai agent development",
+          "custom rag pipeline architecture",
           "build ai agent from scratch",
+          "hire python ai developer",
           "local llm coding",
+          "self hosted ai model deployment",
           "lm studio local ai setup",
           "multi agent orchestration",
           "custom session storage engine",
         ]}
+        faqItems={aiFaqs}
         url="https://sarabjeetrattan.com/custom-ai-solutions"
       />
 

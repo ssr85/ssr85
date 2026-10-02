@@ -41,6 +41,9 @@ export const CustomSessionEngines = () => {
         keywords={[
           "b2b lead scraping engine",
           "custom session cache api",
+          "high velocity web scraping without blocking",
+          "distributed prospect enrichment engine",
+          "supabase edge function web scraping",
           "automated prospect research",
           "crm deduplication engine",
           "high velocity web scraping architecture",
@@ -91,11 +94,11 @@ export const CustomSessionEngines = () => {
           </header>
 
           {/* 1. THE PROBLEM */}
-          <section className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
+          <section id="scraping-bottlenecks-and-bans" className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
             <div className="flex items-center gap-2 text-red-500 font-mono text-xs uppercase tracking-wider font-bold">
               <ShieldAlert className="w-4 h-4" /> The Business Problem
             </div>
-            <h2 className="text-2xl font-bold text-foreground">
+            <h2 id="why-manual-bdr-research-stalls" className="text-2xl font-bold text-foreground">
               Why Off-The-Shelf Scraping & Manual BDR Research Stalls Growth
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs text-muted-foreground">
@@ -121,15 +124,15 @@ export const CustomSessionEngines = () => {
           </section>
 
           {/* 2. THE SOLUTION & ARCHITECTURE */}
-          <section className="space-y-6">
+          <section id="session-cache-solution-architecture" className="space-y-6">
             <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-bold">
               <CheckCircle2 className="w-4 h-4" /> The Engineered Solution (Lead OG Engine)
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+            <h2 id="distributed-session-cache-pipeline" className="text-2xl sm:text-3xl font-bold text-foreground">
               Distributed Session Cache & AI Agentic Research Pipeline
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              We engineered the Lead OG engine—a multi-layered architecture featuring distributed headless browser pools, in-memory session recycling, AI contact enrichment, and atomic CRM deduplication.
+              We engineered the Lead OG engine—detailed in our <Link to="/case-studies/lead-og" className="text-primary font-semibold hover:underline">Lead OG Case Study</Link>—a multi-layered architecture featuring distributed headless browser pools, in-memory session recycling, AI contact enrichment, and atomic CRM deduplication integrated with <Link to="/custom-ai-solutions" className="text-primary font-semibold hover:underline">Custom AI Solutions</Link>.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
@@ -156,20 +159,20 @@ export const CustomSessionEngines = () => {
                   <RefreshCw className="w-4 h-4" /> 3. Atomic CRM Sync
                 </div>
                 <div className="text-muted-foreground font-sans">
-                  Real-time synchronization into Freshsales/HubSpot with strict cryptographic deduplication and lead scoring tags.
+                  Real-time synchronization into Freshsales/HubSpot with strict cryptographic deduplication via <Link to="/insights/custom-crm-sync-engines" className="text-foreground underline">custom CRM sync engines</Link> or <Link to="/n8n-workflows" className="text-foreground underline">n8n webhooks</Link>.
                 </div>
               </div>
             </div>
           </section>
 
           {/* INTERACTIVE ROI / EFFICIENCY CALCULATOR */}
-          <section className="p-8 rounded-2xl border border-primary/30 bg-primary/[0.03] space-y-6">
+          <section id="automated-prospecting-calculator" className="p-8 rounded-2xl border border-primary/30 bg-primary/[0.03] space-y-6">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div>
                 <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-bold">
                   <Activity className="w-4 h-4" /> Efficiency Impact
                 </div>
-                <h3 className="text-xl font-bold text-foreground mt-1">
+                <h3 id="prospecting-roi-calculator" className="text-xl font-bold text-foreground mt-1">
                   Automated Prospecting ROI Calculator
                 </h3>
               </div>
@@ -214,11 +217,11 @@ export const CustomSessionEngines = () => {
           </section>
 
           {/* 3. HOW WE HELP */}
-          <section className="p-8 rounded-2xl border border-border/80 bg-card/60 space-y-6">
+          <section id="custom-scraping-deliverables" className="p-8 rounded-2xl border border-border/80 bg-card/60 space-y-6">
             <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-bold">
               <Zap className="w-4 h-4" /> Engagement Deliverables
             </div>
-            <h2 className="text-2xl font-bold text-foreground">
+            <h2 id="scraping-pipeline-engineering-phases" className="text-2xl font-bold text-foreground">
               How We Engineer Your Custom Data Scraping Pipeline
             </h2>
 

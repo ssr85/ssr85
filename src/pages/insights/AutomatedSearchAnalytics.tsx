@@ -33,8 +33,11 @@ export const AutomatedSearchAnalytics = () => {
         description="Automate daily Google Search Console and GA4 ingestion. Track striking-distance queries (Pos 5–20) with proactive executive email alerts."
         keywords={[
           "automated search console reporting",
+          "python google search console api script",
           "automated google analytics email alerts",
           "gsc striking distance automation",
+          "automate gsc striking distance queries",
+          "ga4 automated reporting email",
           "automated seo reporting services",
           "google search console api consultant",
         ]}
@@ -83,11 +86,11 @@ export const AutomatedSearchAnalytics = () => {
           </header>
 
           {/* 1. THE PROBLEM */}
-          <section className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
+          <section id="search-analytics-challenges" className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
             <div className="flex items-center gap-2 text-red-500 font-mono text-xs uppercase tracking-wider font-bold">
               <ShieldAlert className="w-4 h-4" /> 1. The Critical Problem Solved
             </div>
-            <h2 className="text-2xl font-bold text-foreground">
+            <h2 id="why-manual-seo-reporting-fails" className="text-2xl font-bold text-foreground">
               Why Manual SEO Reporting Fails Growth Teams
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs text-muted-foreground">
@@ -113,15 +116,15 @@ export const AutomatedSearchAnalytics = () => {
           </section>
 
           {/* 2. THE SOLUTION & WHAT WE ENGINEER */}
-          <section className="space-y-6">
+          <section id="search-analytics-architecture" className="space-y-6">
             <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-bold">
               <Terminal className="w-4 h-4" /> 2. What We Engineered (The Solution)
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+            <h2 id="autonomous-search-flywheel" className="text-2xl sm:text-3xl font-bold text-foreground">
               Autonomous Search Flywheel Architecture
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              We connect directly to Google Search Console and GA4 APIs using lightweight serverless cron jobs, calculate opportunity priority scores, and dispatch weekly prioritized executive action summaries.
+              We connect directly to Google Search Console and GA4 APIs using lightweight serverless cron jobs or <Link to="/n8n-workflows" className="text-primary font-semibold hover:underline">automated n8n webhook nodes</Link>, calculate opportunity priority scores, and dispatch weekly prioritized executive action summaries. Reports can stream directly into <Link to="/insights/google-sheets-apps-script-enterprise" className="text-primary font-semibold hover:underline">Google Sheets Enterprise systems</Link> or pair with <Link to="/ai-wordpress-development" className="text-primary font-semibold hover:underline">AI WordPress infrastructure</Link>.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
@@ -153,11 +156,11 @@ export const AutomatedSearchAnalytics = () => {
           </section>
 
           {/* 3. MEASURABLE BUSINESS BENEFITS */}
-          <section className="p-8 rounded-2xl border border-success/20 bg-success/[0.02] space-y-6">
+          <section id="measurable-seo-benefits" className="p-8 rounded-2xl border border-success/20 bg-success/[0.02] space-y-6">
             <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-bold">
               <TrendingUp className="w-4 h-4" /> 3. Measurable Business Benefits
             </div>
-            <h2 className="text-2xl font-bold text-foreground">
+            <h2 id="growth-acceleration-metrics" className="text-2xl font-bold text-foreground">
               Growth Acceleration & Operational Efficiency
             </h2>
 
@@ -165,7 +168,7 @@ export const AutomatedSearchAnalytics = () => {
               <div className="p-4 rounded-xl bg-background/60 border border-border/60 space-y-1.5">
                 <div className="font-bold text-success text-sm">15+ Hours Saved Monthly</div>
                 <p className="text-muted-foreground leading-relaxed">
-                  Completely eliminates manual spreadsheet pulling and data formatting for marketing teams and executives.
+                  Completely eliminates manual spreadsheet pulling and data formatting via our <Link to="/custom-business-automation" className="text-primary hover:underline">business automation pipelines</Link>.
                 </p>
               </div>
               <div className="p-4 rounded-xl bg-background/60 border border-border/60 space-y-1.5">

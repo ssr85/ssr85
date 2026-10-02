@@ -39,19 +39,40 @@ export const CustomBusinessAutomation = () => {
     setIsLeadModalOpen(true);
   };
 
+  const automationFaqs = [
+    {
+      question: "Why should we replace Zapier or Make with custom CRM sync engines?",
+      answer: "Zapier and Make become unreliable and prohibitively expensive at scale. They suffer from execution rate limits, cannot maintain transaction consistency, and lack intelligent retry queues. A custom two-way sync engine provides idempotent webhook processing, automatic deduplication, and zero ongoing task fees."
+    },
+    {
+      question: "How does Google Sheets function as an Enterprise ERP system?",
+      answer: "By layering Google Apps Script and secure REST webhooks over Google Sheets, we build automated quote generators, PDF invoice creation workflows, and multi-tier approval mechanisms that integrate directly into your CRM without complex software licenses."
+    },
+    {
+      question: "Can you synchronize Freshsales and HubSpot bi-directionally without duplicates?",
+      answer: "Yes. We engineer stateful sync proxies that match contacts via composite keys (email + domain + phone), maintain local synchronization state caches, and use optimistic locking to prevent circular update loops."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
         title="Bespoke Business Automation & CRM Engineering | Sarabjeet Rattan"
-        description="Custom operational software: Enterprise Google Apps Script workflows, two-way CRM sync engines (Freshsales, HubSpot), and automated quotation pipelines."
+        description="Custom operational software & B2B automation consulting: Enterprise Google Apps Script workflows, two-way CRM sync without Zapier (Freshsales, HubSpot), automated ERP sheets, and custom quotation pipelines."
         keywords={[
           "custom business automation",
+          "b2b workflow automation consultant",
+          "zapier alternative custom integration",
           "google apps script development",
           "custom crm integration services",
+          "hubspot freshsales two way sync",
+          "google sheets automated erp",
           "google sheets automated workflows",
           "two way crm sync without zapier",
           "automated quoting and invoicing sheets",
+          "business process automation services",
         ]}
+        faqItems={automationFaqs}
         url="https://sarabjeetrattan.com/custom-business-automation"
       />
 

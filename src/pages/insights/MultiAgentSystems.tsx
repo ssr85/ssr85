@@ -30,8 +30,11 @@ export const MultiAgentSystems = () => {
         keywords={[
           "custom ai agent development",
           "multi agent system from scratch",
+          "crewai production deployment",
+          "langgraph multi agent workflow architecture",
           "langgraph crewai architecture",
           "hire ai agent developer",
+          "autonomous ai agent engineering",
           "human in the loop ai agent",
         ]}
         url="https://sarabjeetrattan.com/insights/multi-agent-orchestration-from-scratch"
@@ -79,7 +82,7 @@ export const MultiAgentSystems = () => {
           </header>
 
           {/* 1. THE PROBLEM */}
-          <section className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
+          <section id="agent-script-flaws" className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
             <div className="flex items-center gap-2 text-red-500 font-mono text-xs uppercase tracking-wider font-bold">
               <ShieldAlert className="w-4 h-4" /> The Business Problem
             </div>
@@ -109,7 +112,7 @@ export const MultiAgentSystems = () => {
           </section>
 
           {/* 2. THE SOLUTION & ARCHITECTURE */}
-          <section className="space-y-6">
+          <section id="multi-agent-state-machine" className="space-y-6">
             <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-bold">
               <CheckCircle2 className="w-4 h-4" /> The Engineered Solution
             </div>
@@ -117,7 +120,23 @@ export const MultiAgentSystems = () => {
               Role-Specialized Multi-Agent State Machine
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              We divide complex business operations into focused, single-responsibility agents coordinated through a persistent state graph with explicit gating rules.
+              Engineered within our comprehensive{" "}
+              <Link to="/custom-ai-solutions" className="text-primary font-semibold hover:underline">
+                Custom AI Solutions practice
+              </Link>
+              , this architecture is proven in production in our{" "}
+              <Link to="/case-studies/linked-in" className="text-primary font-semibold hover:underline">
+                Trello-driven LinkedIn automation case study
+              </Link>
+              . For scaling operations, these agents can be deployed across{" "}
+              <Link to="/n8n-workflows" className="text-primary font-semibold hover:underline">
+                n8n workflow automation
+              </Link>{" "}
+              and private{" "}
+              <Link to="/insights/local-llm-lm-studio-workflow" className="text-primary font-semibold hover:underline">
+                local LLM inference servers
+              </Link>{" "}
+              with zero runaway API loops.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
@@ -143,7 +162,7 @@ export const MultiAgentSystems = () => {
           </section>
 
           {/* 3. HOW WE HELP */}
-          <section className="p-8 rounded-2xl border border-border/80 bg-card/60 space-y-6">
+          <section id="engagement-deliverables" className="p-8 rounded-2xl border border-border/80 bg-card/60 space-y-6">
             <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-bold">
               <Zap className="w-4 h-4" /> Engagement Deliverables
             </div>

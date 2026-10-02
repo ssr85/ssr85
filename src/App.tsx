@@ -16,6 +16,7 @@ const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
 const AiWordPressDevelopment = lazy(() => import("./pages/AiWordPressDevelopment"));
 const CustomAiSolutions = lazy(() => import("./pages/CustomAiSolutions"));
 const CustomBusinessAutomation = lazy(() => import("./pages/CustomBusinessAutomation"));
+const N8nWorkflows = lazy(() => import("./pages/N8nWorkflows"));
 
 // Deep Cluster Insight Guides
 const AiWordPressPlugins = lazy(() => import("./pages/insights/AiWordPressPlugins"));
@@ -53,7 +54,7 @@ export const routes = [
     path: "/resume",
     element: <Resume />,
   },
-  // Pillars
+  // Pillars & High-Intent Services
   {
     path: "/ai-wordpress-development",
     element: <AiWordPressDevelopment />,
@@ -65,6 +66,10 @@ export const routes = [
   {
     path: "/custom-business-automation",
     element: <CustomBusinessAutomation />,
+  },
+  {
+    path: "/n8n-workflows",
+    element: <N8nWorkflows />,
   },
   // Insights / Cluster Guides
   {

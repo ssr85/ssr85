@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Send, Sparkles, X } from "lucide-react";
+import { Loader2, Send, Sparkles, X, Calendar, ExternalLink } from "lucide-react";
 import { executeRecaptcha } from "@/lib/recaptcha";
 
 const enquirySchema = z.object({
@@ -101,6 +101,15 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
         throw new Error(responseData.error || "Failed to send enquiry");
       }
 
+      // Dispatch GA4 / Google Ads conversion event
+      if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: Function }).gtag === "function") {
+        (window as unknown as { gtag: Function }).gtag("event", "generate_lead", {
+          event_category: "Direct Contact Form",
+          event_label: "homepage_enquiry_modal",
+          value: 1,
+        });
+      }
+
       toast({
         title: "Enquiry Received",
         description: "Thank you for reaching out. I will review your requirements and get back to you shortly.",
@@ -142,6 +151,22 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-6 md:p-8 pt-4">
+          {/* Quick Calendly Shortcut */}
+          <div className="flex items-center justify-between p-3 rounded-xl bg-primary/10 border border-primary/20 text-xs">
+            <div className="flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-primary shrink-0" />
+              <span className="text-foreground font-medium">Prefer to pick a live 20-min slot?</span>
+            </div>
+            <a
+              href="https://calendly.com/srt10/20"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-semibold text-primary hover:underline shrink-0"
+            >
+              Book on Calendly <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+
           {/* Name & Phone in 2-col on desktop */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">

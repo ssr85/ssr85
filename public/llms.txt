@@ -7,6 +7,7 @@
 ## Core Service Pillars
 - [AI WordPress Development](https://sarabjeetrattan.com/ai-wordpress-development): Bespoke WordPress engineering, custom PHP/AI plugins, headless React/Vite frontends, autonomous GEO/AEO schemas, and lead invariant engines.
 - [Custom AI Solutions](https://sarabjeetrattan.com/custom-ai-solutions): Multi-agent systems from scratch, local LLMs with LM Studio, custom vector databases, and proprietary scraping session engines.
+- [n8n Workflow Automation](https://sarabjeetrattan.com/n8n-workflows): Top 10 startup workflows, self-hosted enterprise setups, AI agent integrations, and two-way CRM sync with unlimited executions.
 - [Custom Business Automation](https://sarabjeetrattan.com/custom-business-automation): Bespoke operational software, enterprise Google Apps Script workflows, two-way CRM sync engines (Freshsales, HubSpot), and automated quotation pipelines.
 
 ## In-Depth Insight Guides

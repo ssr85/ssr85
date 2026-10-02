@@ -6,6 +6,11 @@ export interface BreadcrumbItem {
   url: string;
 }
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface SEOProps {
   title?: string;
   description?: string;
@@ -15,6 +20,7 @@ export interface SEOProps {
   type?: "website" | "article" | "profile";
   breadcrumbs?: BreadcrumbItem[];
   showFaq?: boolean;
+  faqItems?: FaqItem[];
   robots?: string;
   publishedTime?: string;
   modifiedTime?: string;
@@ -29,6 +35,7 @@ export const SEO = ({
   type = "website",
   breadcrumbs,
   showFaq = false,
+  faqItems,
   robots = "index, follow",
   publishedTime,
   modifiedTime,
@@ -58,7 +65,11 @@ export const SEO = ({
     "url": "https://sarabjeetrattan.com",
     "email": siteConfig.email,
     "telephone": "+918668984323",
-    "sameAs": [siteConfig.linkedin, siteConfig.github],
+    "sameAs": [
+      siteConfig.linkedin,
+      siteConfig.github,
+      "https://sarabjeetrattan.com"
+    ],
     "description": siteConfig.meta.description,
     "image": "https://sarabjeetrattan.com/images/og-default.webp",
     "address": {
@@ -69,9 +80,28 @@ export const SEO = ({
       "addressCountry": "IN"
     },
     "knowsAbout": [
-      "Agentic AI & Workflows", "B2B Automation", "Supply Chain Optimization",
-      "B2B AI Strategy & Roadmap", "LLM Orchestration", "RAG (Retrieval-Augmented Generation)",
-      "Intelligent Process Automation (IPA)", "Autonomous Agents", "WordPress AI Engineering"
+      { "@type": "Thing", "name": "Artificial Intelligence", "sameAs": "https://www.wikidata.org/wiki/Q11660" },
+      { "@type": "Thing", "name": "Intelligent Agent", "sameAs": "https://www.wikidata.org/wiki/Q1142726" },
+      { "@type": "Thing", "name": "Large Language Model", "sameAs": "https://www.wikidata.org/wiki/Q115305900" },
+      { "@type": "Thing", "name": "Retrieval-Augmented Generation", "sameAs": "https://www.wikidata.org/wiki/Q121362277" },
+      { "@type": "Thing", "name": "WordPress", "sameAs": "https://www.wikidata.org/wiki/Q13166" },
+      { "@type": "Thing", "name": "Customer Relationship Management", "sameAs": "https://www.wikidata.org/wiki/Q485643" },
+      { "@type": "Thing", "name": "Business Process Automation", "sameAs": "https://www.wikidata.org/wiki/Q5001911" },
+      { "@type": "Thing", "name": "Headless Content Management System", "sameAs": "https://www.wikidata.org/wiki/Q48995961" },
+      { "@type": "Thing", "name": "Google Apps Script", "sameAs": "https://www.wikidata.org/wiki/Q5583799" },
+      { "@type": "Thing", "name": "Web Scraping", "sameAs": "https://www.wikidata.org/wiki/Q665452" },
+      "AI Automation Consulting",
+      "Fractional AI Strategy",
+      "Enterprise AI Agent Development",
+      "Two-Way CRM Synchronization",
+      "B2B Automation",
+      "Supply Chain Optimization",
+      "B2B AI Strategy & Roadmap",
+      "LLM Orchestration",
+      "Intelligent Process Automation (IPA)",
+      "Autonomous Agents",
+      "WordPress AI Engineering",
+      "Headless WordPress Engineering"
     ],
     "worksFor": [
       { "@type": "Organization", "name": "Lead OG" }
@@ -100,68 +130,51 @@ export const SEO = ({
     "areaServed": "Global"
   };
 
-  // FAQPage Schema: STRICTLY injected only when showFaq is true (or homepage) to avoid Google rich snippet violations
-  const faqSchema = (showFaq || isHome) ? {
+  // FAQPage Schema: Page-specific if faqItems provided, otherwise homepage fallback if showFaq/isHome
+  const activeFaqItems = faqItems && faqItems.length > 0 
+    ? faqItems 
+    : (showFaq || isHome) ? [
+      {
+        question: "What is Agentic AI and how does it benefit B2B operations?",
+        answer: "Agentic AI refers to autonomous systems capable of executing complex business logic with minimal human intervention. For B2B, this means faster lead processing, automated CRM synchronization, and self-correcting workflows that reduce operational overhead."
+      },
+      {
+        question: "What's the difference between AI automation and agentic AI?",
+        answer: "Traditional automation follows fixed, predefined rules. Agentic AI uses LLM-driven agents that reason, make decisions, and adapt their actions based on context, enabling more resilient workflows that handle exceptions without constant human intervention."
+      },
+      {
+        question: "What industries do you serve with your consultancy?",
+        answer: "I specialize in high-growth B2B sectors, focusing on AI-driven enterprise automation and agentic workflows that solve operational bottlenecks for SMEs and entrepreneurs."
+      },
+      {
+        question: "How do you bridge the gap between business logic and agentic systems?",
+        answer: "I translate abstract operational vision into executable technical roadmaps. By engineering custom LLM orchestration and RAG pipelines, I ensure that AI systems respect complex B2B business rules while delivering scalable impact."
+      },
+      {
+        question: "What is agentic AI consulting and how does it work for B2B?",
+        answer: "Agentic AI consulting means designing autonomous AI systems that execute complex business workflows with human-in-the-loop oversight using CrewAI, LangChain, and RAG pipelines."
+      },
+      {
+        question: "How does CrewAI automate LinkedIn content scheduling?",
+        answer: "I engineered a Trello-driven LinkedIn automation system using CrewAI that orchestrates research and drafting agents with an approve-to-publish workflow."
+      },
+      {
+        question: "Why hire an AI strategy consultant in Pune?",
+        answer: "Based in Pune with 16+ years of operational leadership spanning AI strategy, agentic systems, and intelligent automation across 250+ clients in 4 continents."
+      }
+    ] : null;
+
+  const faqSchema = activeFaqItems ? {
     "@type": "FAQPage",
     "@id": `${canonicalUrl}/#faq`,
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is Agentic AI and how does it benefit B2B operations?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Agentic AI refers to autonomous systems capable of executing complex business logic with minimal human intervention. For B2B, this means faster lead processing, automated CRM synchronization, and self-correcting workflows that reduce operational overhead."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What's the difference between AI automation and agentic AI?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Traditional automation follows fixed, predefined rules. Agentic AI uses LLM-driven agents that reason, make decisions, and adapt their actions based on context, enabling more resilient workflows that handle exceptions without constant human intervention."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What industries do you serve with your consultancy?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "I specialize in high-growth B2B sectors, focusing on AI-driven enterprise automation and agentic workflows that solve operational bottlenecks for SMEs and entrepreneurs."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do you bridge the gap between business logic and agentic systems?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "I translate abstract operational vision into executable technical roadmaps. By engineering custom LLM orchestration and RAG pipelines, I ensure that AI systems respect complex B2B business rules while delivering scalable impact."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is agentic AI consulting and how does it work for B2B?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Agentic AI consulting means designing autonomous AI systems that execute complex business workflows with human-in-the-loop oversight using CrewAI, LangChain, and RAG pipelines."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How does CrewAI automate LinkedIn content scheduling?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "I engineered a Trello-driven LinkedIn automation system using CrewAI that orchestrates research and drafting agents with an approve-to-publish workflow."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Why hire an AI strategy consultant in Pune?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Based in Pune with 16+ years of operational leadership spanning AI strategy, agentic systems, and intelligent automation across 250+ clients in 4 continents."
-        }
+    "mainEntity": activeFaqItems.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
       }
-    ]
+    }))
   } : null;
 
   // Breadcrumbs schema calculation

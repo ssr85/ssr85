@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { siteConfig } from "@/data/content";
-import { Mail, FileText, ChevronUp, Phone, Linkedin, Github, Terminal } from "lucide-react";
+import { Mail, FileText, ChevronUp, Phone, Linkedin, Github, Terminal, Calendar } from "lucide-react";
 import { EngineeringGrid } from "@/components/EngineeringGrid";
 import { cn } from "@/lib/utils";
 import { useThrottledScroll } from "@/hooks/use-throttle";
@@ -70,6 +70,11 @@ export const Footer = () => {
                 <li>
                   <Link to="/ai-wordpress-development" className="hover:text-primary transition-colors">
                     AI WordPress Engineering
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/n8n-workflows" className="hover:text-primary transition-colors">
+                    n8n Workflow Automation
                   </Link>
                 </li>
                 <li>
@@ -179,6 +184,16 @@ export const Footer = () => {
                   aria-label="GitHub"
                 >
                   <Github size={14} />
+                </a>
+                <a
+                  href={siteConfig.calendly}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20 flex items-center justify-center transition-all duration-200"
+                  aria-label="Book a 20-min Call on Calendly"
+                  title="Book a 20-min Call on Calendly"
+                >
+                  <Calendar size={14} />
                 </a>
               </div>
 

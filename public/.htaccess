@@ -2,6 +2,10 @@
   RewriteEngine On
   RewriteBase /
 
+  # 301 Redirect www to non-www
+  RewriteCond %{HTTP_HOST} ^www\.sarabjeetrattan\.com [NC]
+  RewriteRule ^(.*)$ https://sarabjeetrattan.com/$1 [L,R=301]
+
   # Serve existing files/directories directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d

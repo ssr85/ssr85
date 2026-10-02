@@ -250,15 +250,20 @@ export const AiWordPressDevelopment = () => {
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
         title="AI WordPress Development & Custom Engineering | Sarabjeet Rattan"
-        description="Bespoke WordPress engineering: Custom AI plugins, lead invariant hubs, headless Vite/React frontends, autonomous GEO schemas, and B2B calculators."
+        description="Hire a specialist for bespoke WordPress engineering: Custom AI plugins, hire WordPress plugin developer services, headless Vite/React SSG, sub-500ms Core Web Vitals, and B2B calculators."
         keywords={[
           "ai wordpress development",
           "custom wordpress plugin development",
+          "hire wordpress plugin developer",
+          "wordpress api integration specialist",
           "headless wordpress react vite",
+          "wordpress core web vitals optimization",
+          "custom woocommerce plugin development",
           "wordpress lead invariant engine",
           "autonomous aeo geo schema wordpress",
           "custom b2b wordpress calculator",
         ]}
+        faqItems={faqs.map((f) => ({ question: f.q, answer: f.a }))}
         url="https://sarabjeetrattan.com/ai-wordpress-development"
       />
 

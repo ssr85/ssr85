@@ -27,10 +27,50 @@ Allow: /
 
 User-agent: OpenAI-GPT-4
 Disallow: /admin
+Allow: /llms.txt
+Allow: /llms-full.txt
 Allow: /
 
 User-agent: PerplexityBot
 Disallow: /admin
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /
+
+User-agent: ClaudeBot
+Disallow: /admin
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /
+
+User-agent: anthropic-ai
+Disallow: /admin
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /
+
+User-agent: Claude-Web
+Disallow: /admin
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /
+
+User-agent: Google-Extended
+Disallow: /admin
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /
+
+User-agent: Applebot-Extended
+Disallow: /admin
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /
+
+User-agent: Cohere-ai
+Disallow: /admin
+Allow: /llms.txt
+Allow: /llms-full.txt
 Allow: /
 
 Sitemap: https://sarabjeetrattan.com/sitemap.xml

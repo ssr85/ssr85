@@ -21,6 +21,7 @@ import {
   Database,
   ArrowRight,
   TrendingUp,
+  Workflow,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -88,6 +89,17 @@ export const CommandMenu = ({
             <div className="flex flex-col">
               <span className="font-semibold text-foreground">AI WordPress Engineering</span>
               <span className="text-[10px] text-muted-foreground">Bespoke plugins from scratch & headless React</span>
+            </div>
+          </CommandItem>
+
+          <CommandItem
+            onSelect={() => handleSelect(() => navigateTo("/n8n-workflows"))}
+            className="flex items-center gap-2.5"
+          >
+            <Workflow className="w-4 h-4 text-primary" />
+            <div className="flex flex-col">
+              <span className="font-semibold text-foreground">n8n Workflow Automation</span>
+              <span className="text-[10px] text-muted-foreground">Top 10 startup workflows & self-hosted setups</span>
             </div>
           </CommandItem>
 

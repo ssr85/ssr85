@@ -34,8 +34,11 @@ export const HeadlessWordPressVite = () => {
         keywords={[
           "headless wordpress react",
           "vite headless wordpress setup",
+          "decoupled wordpress nextjs vs vite",
           "sub 500ms wordpress speed",
+          "sub second wordpress page load",
           "headless cms performance",
+          "headless wordpress ssg setup",
           "decoupled wordpress vite",
         ]}
         url="https://sarabjeetrattan.com/insights/headless-wordpress-vite-architecture"
@@ -83,7 +86,7 @@ export const HeadlessWordPressVite = () => {
           </header>
 
           {/* 1. THE PROBLEM */}
-          <section className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
+          <section id="monolithic-wordpress-flaws" className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
             <div className="flex items-center gap-2 text-red-500 font-mono text-xs uppercase tracking-wider font-bold">
               <ShieldAlert className="w-4 h-4" /> 1. The Critical Problem Solved
             </div>
@@ -113,7 +116,7 @@ export const HeadlessWordPressVite = () => {
           </section>
 
           {/* 2. THE SOLUTION & WHAT WE ENGINEER */}
-          <section className="space-y-6">
+          <section id="headless-ssg-architecture" className="space-y-6">
             <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-bold">
               <Terminal className="w-4 h-4" /> 2. What We Engineered (The Solution)
             </div>
@@ -121,7 +124,19 @@ export const HeadlessWordPressVite = () => {
               Decoupled Headless SSG Architecture
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              We decouple WordPress into a headless CMS API, pre-rendering every page into pure static HTML + React bundles that load in under 300ms from global edge CDN networks.
+              Engineered as part of our core{" "}
+              <Link to="/ai-wordpress-development" className="text-primary font-semibold hover:underline">
+                AI WordPress development practice
+              </Link>
+              , we decouple WordPress into a headless CMS API. Pre-rendering every page into pure static HTML + React bundles that load in under 300ms from global edge CDNs, this architecture integrates seamlessly with{" "}
+              <Link to="/insights/ai-wordpress-plugin-development" className="text-primary font-semibold hover:underline">
+                bespoke AI WordPress plugins
+              </Link>{" "}
+              and{" "}
+              <Link to="/insights/automated-search-analytics-reporting" className="text-primary font-semibold hover:underline">
+                automated Google Search Console intelligence
+              </Link>{" "}
+              for measurable traffic velocity.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
@@ -153,7 +168,7 @@ export const HeadlessWordPressVite = () => {
           </section>
 
           {/* 3. MEASURABLE BUSINESS BENEFITS */}
-          <section className="p-8 rounded-2xl border border-success/20 bg-success/[0.02] space-y-6">
+          <section id="performance-gains" className="p-8 rounded-2xl border border-success/20 bg-success/[0.02] space-y-6">
             <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-bold">
               <TrendingUp className="w-4 h-4" /> 3. Measurable Business Benefits
             </div>

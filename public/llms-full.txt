@@ -35,7 +35,15 @@
   - Vector database integrations (pgvector, Supabase, Pinecone) for specialized RAG pipelines.
   - Proprietary web scraping engines with custom session management.
 
-### 3. Custom Business Automation (https://sarabjeetrattan.com/custom-business-automation)
+### 3. n8n Workflow Automation (https://sarabjeetrattan.com/n8n-workflows)
+- **Specialty**: Self-hosted n8n architecture, AI agent integrations, and zero-task-limit operational pipelines.
+- **Key Capabilities**:
+  - Top 10 startup workflows: Lead capture + AI enrichment, dynamic onboarding drips, multi-channel social publishing, ticket triage.
+  - Two-way CRM synchronization (Freshsales, HubSpot) with idempotent webhook processing and deduplication.
+  - Self-hosted hardened VPS deployments (Docker Compose, Hetzner, AWS) with zero recurring task fees.
+  - Native AI agent tool-calling, pgvector search, and private LLM inference connectors.
+
+### 4. Custom Business Automation (https://sarabjeetrattan.com/custom-business-automation)
 - **Specialty**: Bespoke operational workflows and zero-dependency integrations.
 - **Key Capabilities**:
   - Two-way CRM synchronization between Freshsales, HubSpot, Pipedrive, and internal databases.

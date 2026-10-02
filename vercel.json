@@ -4,6 +4,19 @@
   "framework": "vite",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.sarabjeetrattan.com"
+        }
+      ],
+      "destination": "https://sarabjeetrattan.com/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/((?!assets/|images/|fonts/|favicon|.*\\..*).*)",
@@ -11,3 +24,4 @@
     }
   ]
 }
+

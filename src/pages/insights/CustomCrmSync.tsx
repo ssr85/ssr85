@@ -31,6 +31,9 @@ export const CustomCrmSync = () => {
           "custom crm synchronization",
           "freshsales hubspot api sync",
           "two way crm integration without zapier",
+          "freshsales api webhook integration",
+          "hubspot custom bi-directional sync",
+          "crm data deduplication script",
           "crm webhook replay engine",
           "custom crm integration services",
         ]}
@@ -79,7 +82,7 @@ export const CustomCrmSync = () => {
           </header>
 
           {/* 1. THE PROBLEM */}
-          <section className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
+          <section id="no-code-breakdown" className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
             <div className="flex items-center gap-2 text-red-500 font-mono text-xs uppercase tracking-wider font-bold">
               <ShieldAlert className="w-4 h-4" /> The Business Problem
             </div>
@@ -109,7 +112,7 @@ export const CustomCrmSync = () => {
           </section>
 
           {/* 2. THE SOLUTION & ARCHITECTURE */}
-          <section className="space-y-6">
+          <section id="self-healing-sync-architecture" className="space-y-6">
             <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-bold">
               <CheckCircle2 className="w-4 h-4" /> The Engineered Solution
             </div>
@@ -117,7 +120,23 @@ export const CustomCrmSync = () => {
               Stateful, Self-Healing Sync Architecture
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              We engineer stateful sync engines that use cryptographic deduplication hashes, vector clocks to prevent circular updates, and dead-letter queues with exponential backoff retries.
+              Built as part of our{" "}
+              <Link to="/custom-business-automation" className="text-primary font-semibold hover:underline">
+                Bespoke Business Automation practice
+              </Link>
+              , this approach powers our{" "}
+              <Link to="/case-studies/lead-og" className="text-primary font-semibold hover:underline">
+                Lead OG B2B lead enrichment case study
+              </Link>
+              . We engineer stateful sync engines that use cryptographic deduplication hashes, vector clocks to prevent circular updates, and dead-letter queues. For multi-app workflows, these connect directly to{" "}
+              <Link to="/n8n-workflows" className="text-primary font-semibold hover:underline">
+                n8n workflow automation engines
+              </Link>{" "}
+              and{" "}
+              <Link to="/insights/google-sheets-apps-script-enterprise" className="text-primary font-semibold hover:underline">
+                Google Sheets ERP automation
+              </Link>
+              .
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
@@ -143,7 +162,7 @@ export const CustomCrmSync = () => {
           </section>
 
           {/* 3. HOW WE HELP */}
-          <section className="p-8 rounded-2xl border border-border/80 bg-card/60 space-y-6">
+          <section id="custom-crm-deliverables" className="p-8 rounded-2xl border border-border/80 bg-card/60 space-y-6">
             <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-bold">
               <Zap className="w-4 h-4" /> Engagement Deliverables
             </div>

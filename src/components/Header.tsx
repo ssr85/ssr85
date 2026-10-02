@@ -12,6 +12,7 @@ import {
   Sparkles,
   Bot,
   Search,
+  Workflow,
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -49,6 +50,18 @@ const solutions = [
       { label: "Custom AI Plugins", href: "/insights/ai-wordpress-plugin-development" },
       { label: "Headless Vite Architecture", href: "/insights/headless-wordpress-vite-architecture" },
       { label: "Automated Search Analytics", href: "/insights/automated-search-analytics-reporting" },
+    ],
+  },
+  {
+    title: "n8n Workflow Automation",
+    description: "Self-hosted enterprise workflows, AI agent pipelines, and unlimited zero-task-fee automations.",
+    href: "/n8n-workflows",
+    icon: Workflow,
+    tag: "Self-Hosted",
+    sublinks: [
+      { label: "Top 10 Startup Workflows", href: "/n8n-workflows#workflows-grid" },
+      { label: "Interactive Node Graph", href: "/n8n-workflows#enterprise-architecture" },
+      { label: "Self-Hosted ROI Calculator", href: "/n8n-workflows#savings-calculator" },
     ],
   },
   {
@@ -219,7 +232,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 6, scale: 0.98 }}
                       transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[720px] z-50 pointer-events-auto"
+                      className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[860px] max-w-[95vw] z-50 pointer-events-auto"
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleMouseLeave}
                     >
@@ -232,7 +245,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                             <span className="badge-eyebrow">100% Custom Architecture</span>
                           </div>
 
-                          <div className="grid grid-cols-3 gap-3">
+                          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
                             {solutions.map((item) => {
                               const IconComponent = item.icon;
                               return (

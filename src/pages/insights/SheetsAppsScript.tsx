@@ -30,6 +30,9 @@ export const SheetsAppsScript = () => {
         keywords={[
           "google apps script development",
           "google sheets automated workflows",
+          "google sheets invoice generator script",
+          "apps script trigger execution limit fix",
+          "automate google drive to sheets",
           "automated quote generation sheets",
           "apps script automation consultant",
           "google sheets erp system",
@@ -79,11 +82,11 @@ export const SheetsAppsScript = () => {
           </header>
 
           {/* 1. THE PROBLEM */}
-          <section className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
+          <section id="spreadsheet-operational-bottlenecks" className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
             <div className="flex items-center gap-2 text-red-500 font-mono text-xs uppercase tracking-wider font-bold">
               <ShieldAlert className="w-4 h-4" /> The Business Problem
             </div>
-            <h2 className="text-2xl font-bold text-foreground">
+            <h2 id="hidden-costs-of-manual-spreadsheets" className="text-2xl font-bold text-foreground">
               The Hidden Costs of Manual Spreadsheet Operations
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs text-muted-foreground">
@@ -103,21 +106,21 @@ export const SheetsAppsScript = () => {
                 <div className="font-bold text-foreground text-sm flex items-center gap-1.5">
                   <XCircle className="w-4 h-4 text-red-500" /> Siloed Data
                 </div>
-                <p>Order data remains trapped in isolated spreadsheets without automated sync to accounting or ERP tools.</p>
+                <p>Order data remains trapped in isolated spreadsheets without automated sync to accounting or CRM databases.</p>
               </div>
             </div>
           </section>
 
           {/* 2. THE SOLUTION & ARCHITECTURE */}
-          <section className="space-y-6">
+          <section id="sheets-erp-architecture" className="space-y-6">
             <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-bold">
               <CheckCircle2 className="w-4 h-4" /> The Engineered Solution
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+            <h2 id="automated-spreadsheet-erp-systems" className="text-2xl sm:text-3xl font-bold text-foreground">
               Automated Spreadsheets-as-an-ERP Architecture
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              We engineer custom Google Apps Script automation that validates input data, automatically builds branded PDF documents via Google Docs/Drive templates, and sends 1-click interactive approval emails to leadership.
+              We engineer custom Google Apps Script automation that validates input data, automatically builds branded PDF documents via Google Docs/Drive templates, and sends 1-click interactive approval emails to leadership. For complex webhook orchestration, these sheets can plug directly into <Link to="/n8n-workflows" className="text-primary font-semibold hover:underline">self-hosted n8n automation pipelines</Link> or our <Link to="/insights/custom-crm-sync-engines" className="text-primary font-semibold hover:underline">Custom CRM Two-Way Sync Engines</Link>.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
@@ -136,18 +139,18 @@ export const SheetsAppsScript = () => {
               <div className="p-4 rounded-xl bg-card border border-border/80 space-y-1.5">
                 <div className="text-success font-bold">Two-Way API Relays</div>
                 <div className="text-muted-foreground font-sans">
-                  Automatically syncs approved orders with Freshsales, QuickBooks, or internal PostgreSQL databases.
+                  Automatically syncs approved orders with Freshsales, QuickBooks, or <Link to="/insights/automated-search-analytics-reporting" className="text-foreground underline">automated search analytics dashboards</Link>.
                 </div>
               </div>
             </div>
           </section>
 
           {/* 3. HOW WE HELP */}
-          <section className="p-8 rounded-2xl border border-border/80 bg-card/60 space-y-6">
+          <section id="spreadsheet-automation-deliverables" className="p-8 rounded-2xl border border-border/80 bg-card/60 space-y-6">
             <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-bold">
               <Zap className="w-4 h-4" /> Engagement Deliverables
             </div>
-            <h2 className="text-2xl font-bold text-foreground">
+            <h2 id="delivery-phases" className="text-2xl font-bold text-foreground">
               How We Deliver Your Spreadsheet Automation
             </h2>
 
@@ -156,7 +159,7 @@ export const SheetsAppsScript = () => {
                 <div className="text-xs font-mono text-primary font-bold">Week 1: Template Audit</div>
                 <h3 className="font-bold text-foreground text-sm">Workflow & Formula Design</h3>
                 <p className="text-xs text-muted-foreground">
-                  We audit your existing spreadsheet templates, structure clean schemas, and define approval logic.
+                  We audit your existing spreadsheet templates, structure clean schemas, and define approval logic as part of our <Link to="/custom-business-automation" className="text-primary hover:underline">business automation methodology</Link>.
                 </p>
               </div>
               <div className="space-y-2">

@@ -37,8 +37,11 @@ export const AiWordPressPlugins = () => {
           "custom ai wordpress plugin development",
           "hire wordpress plugin developer",
           "bespoke wordpress php plugin",
+          "wordpress openai rest api integration",
+          "hire custom php developer wordpress",
           "wordpress openai api integration",
           "secure wordpress rest api plugin",
+          "custom wordpress plugin development cost",
         ]}
         url="https://sarabjeetrattan.com/insights/ai-wordpress-plugin-development"
         type="article"
@@ -85,7 +88,7 @@ export const AiWordPressPlugins = () => {
           </header>
 
           {/* 1. THE PROBLEM */}
-          <section className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
+          <section id="marketplace-plugin-flaws" className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
             <div className="flex items-center gap-2 text-red-500 font-mono text-xs uppercase tracking-wider font-bold">
               <ShieldAlert className="w-4 h-4" /> 1. The Critical Problem Solved
             </div>
@@ -115,7 +118,7 @@ export const AiWordPressPlugins = () => {
           </section>
 
           {/* 2. THE SOLUTION & WHAT WE ENGINEER */}
-          <section className="space-y-6">
+          <section id="custom-plugin-architecture" className="space-y-6">
             <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-bold">
               <Terminal className="w-4 h-4" /> 2. What We Engineered (The Solution)
             </div>
@@ -123,7 +126,19 @@ export const AiWordPressPlugins = () => {
               Custom Plugin Architecture Built from Scratch
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              We engineer dedicated WordPress plugins built specifically for your exact data model, custom post types, and API requirements with zero unnecessary dependencies.
+              As part of our specialized{" "}
+              <Link to="/ai-wordpress-development" className="text-primary font-semibold hover:underline">
+                AI WordPress development practice
+              </Link>
+              , we engineer dedicated plugins tailored specifically to your data model and REST API endpoints. Paired with decoupled{" "}
+              <Link to="/insights/headless-wordpress-vite-architecture" className="text-primary font-semibold hover:underline">
+                Headless WordPress with Vite SSG
+              </Link>
+              , these custom backends can also trigger{" "}
+              <Link to="/n8n-workflows" className="text-primary font-semibold hover:underline">
+                n8n automated content workflows
+              </Link>{" "}
+              with zero third-party dependencies.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
@@ -155,7 +170,7 @@ export const AiWordPressPlugins = () => {
           </section>
 
           {/* 3. MEASURABLE BUSINESS BENEFITS */}
-          <section className="p-8 rounded-2xl border border-success/20 bg-success/[0.02] space-y-6">
+          <section id="measurable-business-benefits" className="p-8 rounded-2xl border border-success/20 bg-success/[0.02] space-y-6">
             <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-bold">
               <TrendingUp className="w-4 h-4" /> 3. Measurable Business Benefits
             </div>
