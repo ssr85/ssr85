@@ -165,10 +165,10 @@ export const UnifiedActionDock = () => {
             type="button"
             onClick={() => setIsEstimatorOpen(true)}
             aria-label="Get Project Scope Estimation"
-            className="group flex items-center justify-center gap-0 group-hover:gap-2 h-10 w-10 group-hover:w-auto px-2.5 group-hover:px-3.5 rounded-full bg-primary/10 hover:bg-primary text-primary hover:text-primary-foreground transition-all duration-300 ease-out border border-primary/25 shadow-sm shrink-0"
+            className="group flex items-center h-10 px-3 rounded-full bg-primary/10 hover:bg-primary text-primary hover:text-primary-foreground transition-all duration-300 ease-out border border-primary/25 shadow-sm overflow-hidden"
           >
             <ActionIcon className="w-4 h-4 shrink-0 transition-transform duration-300 group-hover:scale-110" />
-            <span className="overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300 ease-out whitespace-nowrap opacity-0 group-hover:opacity-100 text-xs font-semibold">
+            <span className="inline-block max-w-0 opacity-0 group-hover:max-w-[200px] group-hover:opacity-100 group-hover:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300 ease-in-out text-xs font-semibold">
               {actionLabel}
             </span>
           </button>
@@ -178,14 +178,14 @@ export const UnifiedActionDock = () => {
             type="button"
             onClick={() => setIsNewsletterModalOpen(true)}
             aria-label="Newsletter Subscription"
-            className="group flex items-center justify-center gap-0 group-hover:gap-2 h-10 w-10 group-hover:w-auto px-2.5 group-hover:px-3.5 rounded-full bg-muted/80 hover:bg-primary/20 text-muted-foreground hover:text-primary transition-all duration-300 ease-out border border-border/70 shadow-sm shrink-0"
+            className="group flex items-center h-10 px-3 rounded-full bg-muted/80 hover:bg-primary/20 text-muted-foreground hover:text-primary transition-all duration-300 ease-out border border-border/70 shadow-sm overflow-hidden"
           >
             {isSubscribed ? (
               <CheckCircle2 className="w-4 h-4 shrink-0 text-success" />
             ) : (
               <Mail className="w-4 h-4 shrink-0 transition-transform duration-300 group-hover:scale-110" />
             )}
-            <span className="overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300 ease-out whitespace-nowrap opacity-0 group-hover:opacity-100 text-xs font-semibold">
+            <span className="inline-block max-w-0 opacity-0 group-hover:max-w-[220px] group-hover:opacity-100 group-hover:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300 ease-in-out text-xs font-semibold">
               {isSubscribed ? "Subscribed" : "Newsletter Subscription"}
             </span>
           </button>
