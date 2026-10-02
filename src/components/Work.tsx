@@ -149,10 +149,10 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
             {item.type === "case-study" && item.hasDetailPage && item.slug ? (
               <Link
                 to={`/case-studies/${item.slug}`}
-                className="inline-flex w-full items-center justify-between px-5 py-3 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.15] text-foreground text-xs font-semibold transition-all group"
+                className="inline-flex w-full items-center justify-between px-5 py-3 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-semibold shadow-lg shadow-primary/20 transition-all group"
               >
-                <span>Read Full Case Study</span>
-                <span className="btn-icon-pod bg-primary/20 text-primary">
+                <span>Explore Full Case Study</span>
+                <span className="btn-icon-pod bg-black/20 text-primary-foreground">
                   <ArrowUpRight size={14} />
                 </span>
               </Link>
@@ -162,7 +162,7 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
                 onClick={onOpenEnquiry}
                 className="w-full rounded-full text-xs bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-5"
               >
-                Let's Discuss Requirements <ChevronRight size={14} className="ml-1" />
+                Discuss Project Requirements <ChevronRight size={14} className="ml-1" />
               </Button>
             )}
           </div>
