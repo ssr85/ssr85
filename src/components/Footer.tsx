@@ -53,11 +53,11 @@ export const Footer = () => {
       <EngineeringGrid />
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto space-y-16">
-          {/* Main Footer Links Columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-sm">
+          {/* Main Footer Links Columns - 2-col on mobile, 4-col on md+ */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 text-sm">
             {/* Column 1: Core Pillars */}
-            <div className="space-y-4">
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center gap-2">
+            <div className="space-y-4 text-center md:text-left">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center justify-center md:justify-start gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                 Core Systems
               </div>
@@ -81,8 +81,8 @@ export const Footer = () => {
             </div>
 
             {/* Column 2: WordPress Insights */}
-            <div className="space-y-4">
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center gap-2">
+            <div className="space-y-4 text-center md:text-left">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center justify-center md:justify-start gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
                 WP Engineering
               </div>
@@ -106,8 +106,8 @@ export const Footer = () => {
             </div>
 
             {/* Column 3: AI & Automation */}
-            <div className="space-y-4">
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center gap-2">
+            <div className="space-y-4 text-center md:text-left">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center justify-center md:justify-start gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent" />
                 Autonomous Tech
               </div>
@@ -141,13 +141,13 @@ export const Footer = () => {
             </div>
 
             {/* Column 4: Connect & Telemetry */}
-            <div className="space-y-4">
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center gap-2">
+            <div className="space-y-4 text-center md:text-left flex flex-col items-center md:items-start">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-foreground flex items-center justify-center md:justify-start gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                 Connect
               </div>
               
-              <div className="flex items-center gap-2 pt-1">
+              <div className="flex items-center justify-center md:justify-start gap-2 pt-1 flex-wrap">
                 <a
                   href={`tel:${siteConfig.phone}`}
                   className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/80 hover:text-primary hover:border-primary/40 hover:bg-primary/10 flex items-center justify-center transition-all duration-200"
@@ -182,7 +182,7 @@ export const Footer = () => {
                 </a>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-2 flex justify-center md:justify-start">
                 <a
                   href="/resume"
                   className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.12] text-xs text-muted-foreground hover:text-foreground transition-all font-mono"
