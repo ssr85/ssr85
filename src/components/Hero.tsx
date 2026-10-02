@@ -85,8 +85,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
           <div className="lg:col-span-7 flex flex-col items-start justify-between min-h-full">
             <div className="space-y-6 md:space-y-8">
               <h1
-                className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.12] tracking-tight animate-hero-fade"
-                style={{ animationDelay: "0.15s" }}
+                className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.12] tracking-tight"
               >
                 Engineering <br />
                 <span className="relative inline-flex items-center h-[1.3em] overflow-hidden align-top">
@@ -113,8 +112,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
               </h1>
 
               <p
-                className="text-base md:text-xl text-muted-foreground leading-relaxed max-w-xl animate-hero-fade font-normal"
-                style={{ animationDelay: "0.3s" }}
+                className="text-base md:text-xl text-muted-foreground leading-relaxed max-w-xl font-normal"
               >
                 B2B AI Strategy & Agentic Systems Consultant bridging enterprise operations with autonomous LLM orchestration and custom software pipelines.
               </p>

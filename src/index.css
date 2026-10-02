@@ -151,7 +151,7 @@
 
   /* Micro Monospace Eyebrow Badge */
   .badge-eyebrow {
-    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-mono font-semibold uppercase tracking-[0.2em] bg-primary/10 border border-primary/20 text-primary transition-all duration-200;
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-[0.2em] bg-primary/10 border border-primary/20 text-blue-700 dark:text-primary transition-all duration-200;
   }
 
   /* Button-in-Button Trailing Icon Pod */

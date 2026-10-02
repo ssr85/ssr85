@@ -82,18 +82,32 @@ ${urls}
 function optimizeHtml(filePath) {
   let content = fs.readFileSync(filePath, 'utf8');
 
-  const styleRegex = /<link[^>]*rel="stylesheet"[^>]*>/g;
-  const styleTags = content.match(styleRegex);
+  // Find linked CSS files and inline them to eliminate render-blocking requests
+  const styleHrefRegex = /<link[^>]*rel="stylesheet"[^>]*href="([^"]+)"[^>]*\/?>/g;
+  let inlinedStyles = '';
+  let match;
 
+  while ((match = styleHrefRegex.exec(content)) !== null) {
+    const cssPath = match[1];
+    if (cssPath.startsWith('/assets/') && cssPath.endsWith('.css')) {
+      const localCssPath = path.join(distDir, cssPath.replace(/^\//, ''));
+      if (fs.existsSync(localCssPath)) {
+        const cssContent = fs.readFileSync(localCssPath, 'utf8');
+        inlinedStyles += `<style>${cssContent}</style>`;
+      }
+    }
+  }
+
+  const styleRegex = /<link[^>]*rel="stylesheet"[^>]*\/?>/g;
   const fontPreloadRegex = /<link[^>]*rel="preload"[^>]*as="style"[^>]*onload="[^"]*"[^>]*\/?>/g;
   const fontPreloadTags = content.match(fontPreloadRegex);
-
   const noscriptRegex = /<noscript>\s*<link[^>]*href="[^"]*fonts\.googleapis\.com[^"]*"[^>]*>\s*<\/noscript>/g;
   const noscriptTags = content.match(noscriptRegex);
 
-  if (!styleTags && !fontPreloadTags && !noscriptTags) return;
-
-  if (styleTags) content = content.replace(styleRegex, '');
+  // Remove external stylesheet link if inlined
+  if (inlinedStyles) {
+    content = content.replace(styleRegex, '');
+  }
   if (fontPreloadTags) content = content.replace(fontPreloadRegex, '');
   if (noscriptTags) content = content.replace(noscriptRegex, '');
 
@@ -103,10 +117,10 @@ function optimizeHtml(filePath) {
   const tagsToInsert = [
     '<meta charset="UTF-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+    inlinedStyles || '',
     ...(fontPreloadTags || []),
-    ...(noscriptTags || []),
-    ...(styleTags || [])
-  ].map(tag => tag.trim()).join('\n    ');
+    ...(noscriptTags || [])
+  ].filter(Boolean).map(tag => tag.trim()).join('\n    ');
 
   // Remove duplicate charset/viewport if present further down
   content = content.replace(/<meta charset="UTF-8">/g, '');
@@ -116,7 +130,7 @@ function optimizeHtml(filePath) {
   content = content.slice(0, insertIndex) + '\n    ' + tagsToInsert + '\n' + content.slice(insertIndex);
 
   fs.writeFileSync(filePath, content, 'utf8');
-  console.log(`Optimized tag order for: ${filePath}`);
+  console.log(`Optimized and inlined CSS for: ${filePath}`);
 }
 
 processHtmlFiles(distDir);

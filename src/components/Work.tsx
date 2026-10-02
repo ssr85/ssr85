@@ -97,7 +97,9 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
       <div
         className={cn(
           "double-bezel p-1.5 rounded-[2rem] transition-all duration-300",
-          isActive ? "opacity-100 scale-[1.01] shadow-2xl shadow-primary/10" : "opacity-60 scale-[0.98]"
+          isActive
+            ? "scale-[1.01] shadow-2xl shadow-primary/10 border-primary/40"
+            : "scale-[0.98] border-white/[0.06]"
         )}
       >
         <div className="double-bezel-inner rounded-[calc(2rem-0.375rem)] p-6 space-y-6">
