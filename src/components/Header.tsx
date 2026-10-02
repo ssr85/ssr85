@@ -513,9 +513,9 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
 
       {/* Command Palette (Cmd+K) Modal */}
       <CommandMenu
-        isOpen={isCommandMenuOpen}
-        onClose={() => setIsCommandMenuOpen(false)}
-        onOpenEnquiry={onOpenEnquiry}
+        open={isCommandMenuOpen}
+        onOpenChange={setIsCommandMenuOpen}
+        onOpenLeadModal={onOpenEnquiry}
       />
     </>
   );
