@@ -39,3 +39,8 @@ design-system/
 trace.json
 *.tsbuildinfo
 supabase/.temp/
+
+# Google Service Account Credentials
+scripts/seo-engine/*.json
+*service-account*.json
+*credentials*.json

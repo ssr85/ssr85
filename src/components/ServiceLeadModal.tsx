@@ -25,6 +25,7 @@ import {
   ArrowRight,
   ExternalLink,
 } from "lucide-react";
+import { siteConfig } from "@/data/content";
 
 interface ServiceLeadModalProps {
   isOpen: boolean;
@@ -210,7 +211,7 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
                       Email Direct
                     </a>
                     <a
-                      href="https://linkedin.com/in/sarabjeet-rattan"
+                      href={siteConfig.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1 text-center text-xs font-semibold px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition-colors"
@@ -274,7 +275,7 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
                 </a>
 
                 <a
-                  href="https://linkedin.com/in/sarabjeet-rattan"
+                  href={siteConfig.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3.5 rounded-xl bg-card border border-border/70 hover:border-blue-500/50 transition-all group flex items-center justify-between"
