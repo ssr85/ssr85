@@ -183,13 +183,13 @@ export const Footer = () => {
               </div>
 
               <div className="pt-2 flex justify-center md:justify-start">
-                <a
-                  href="/resume"
+                <Link
+                  to="/resume"
                   className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.12] text-xs text-muted-foreground hover:text-foreground transition-all font-mono"
                 >
                   <FileText size={12} className="text-primary" />
                   <span>Executive Resume</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

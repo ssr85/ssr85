@@ -28,6 +28,8 @@ const SheetsAppsScript = lazy(() => import("./pages/insights/SheetsAppsScript"))
 const HeadlessWordPressVite = lazy(() => import("./pages/insights/HeadlessWordPressVite"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 
+import { ScrollRestoration } from "@/components/ScrollRestoration";
+
 import { caseStudies } from "./data/content";
 
 // Expand case study routes for SSG pre-rendering (only those with full pages)
@@ -111,6 +113,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
         <TooltipProvider>
+          <ScrollRestoration />
           <Toaster />
           <Sonner />
           <div className="app-content">
