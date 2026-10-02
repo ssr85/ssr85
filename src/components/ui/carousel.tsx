@@ -77,19 +77,23 @@ export function Carousel({
         </div>
       </div>
 
-      <div className="flex justify-center gap-2 mt-6">
+      <div className="flex justify-center items-center gap-1.5 mt-6">
         {items.map((_, index) => (
           <button
             key={index}
             onClick={() => scrollTo(index)}
-            className={cn(
-              "h-2 w-2 rounded-full transition-all duration-300",
-              index === activeIndex
-                ? cn("bg-primary w-6", activeDotClassName)
-                : cn("bg-muted-foreground/30 hover:bg-muted-foreground/50", dotClassName)
-            )}
+            className="p-2 flex items-center justify-center min-w-[28px] min-h-[28px] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full transition-transform active:scale-95"
             aria-label={`Go to slide ${index + 1}`}
-          />
+          >
+            <span
+              className={cn(
+                "h-2 w-2 rounded-full transition-all duration-300 pointer-events-none block",
+                index === activeIndex
+                  ? cn("bg-primary w-6", activeDotClassName)
+                  : cn("bg-muted-foreground/30 hover:bg-muted-foreground/50", dotClassName)
+              )}
+            />
+          </button>
         ))}
       </div>
     </div>

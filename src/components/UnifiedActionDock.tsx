@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
-import { ArchitectureEstimatorModal } from "@/components/tools/ArchitectureEstimatorModal";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { ProjectType } from "@/lib/calculator/estimator-engine";
-import { supabase } from "@/integrations/supabase/client";
+import type { ProjectType } from "@/lib/calculator/estimator-engine";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+
+const ArchitectureEstimatorModal = lazy(() =>
+  import("@/components/tools/ArchitectureEstimatorModal").then((m) => ({
+    default: m.ArchitectureEstimatorModal,
+  }))
+);
 import {
   Zap,
   Sparkles,
@@ -21,7 +25,6 @@ import {
   FileSpreadsheet,
   Mail,
   Send,
-  X,
   CheckCircle2,
   Loader2,
   ShieldCheck,
@@ -108,34 +111,31 @@ export const UnifiedActionDock = () => {
 
     try {
       const currentPath = location.pathname;
-      const leadPayload = {
-        name: "Subscriber",
-        email: cleanEmail,
-        phone: "N/A",
-        service_category: "engineering-newsletter",
-        budget_range: "N/A",
-        estimated_start_timeline: "Newsletter Subscriber",
-        requirement: `Newsletter subscription from ${currentPath}`,
-        source_url: currentPath,
-        lead_status: "NEW",
-      };
+      const urlParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : new URLSearchParams();
 
-      await supabase.from("service_leads").insert([leadPayload]);
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: "Newsletter Subscriber",
+          email: cleanEmail,
+          phone: "N/A",
+          requirement: `Newsletter subscription from ${currentPath}`,
+          targetService: "engineering-newsletter",
+          leadType: "NEWSLETTER",
+          leadStatus: "NEW",
+          sourceUrl: currentPath,
+          utmSource: urlParams.get("utm_source") || undefined,
+          utmMedium: urlParams.get("utm_medium") || undefined,
+          utmCampaign: urlParams.get("utm_campaign") || undefined,
+          referringQuery: urlParams.get("q") || urlParams.get("query") || undefined,
+          recaptchaToken: "DIRECT_NEWSLETTER_SUBSCRIBE",
+        }),
+      });
 
-      try {
-        await fetch("/api/enquiry", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: "Newsletter Subscriber",
-            email: cleanEmail,
-            phone: "N/A",
-            requirement: `[Newsletter Signup from: ${currentPath}]`,
-            recaptchaToken: "DIRECT_NEWSLETTER_SUBSCRIBE",
-          }),
-        });
-      } catch {
-        // silent fallback
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.error || "Subscription failed");
       }
 
       setIsSubscribed(true);
@@ -192,12 +192,16 @@ export const UnifiedActionDock = () => {
         </div>
       </aside>
 
-      {/* 1. ARCHITECTURE & SCOPE ESTIMATOR MODAL */}
-      <ArchitectureEstimatorModal
-        isOpen={isEstimatorOpen}
-        onClose={() => setIsEstimatorOpen(false)}
-        defaultProjectType={defaultProjectType}
-      />
+      {/* 1. ARCHITECTURE & SCOPE ESTIMATOR MODAL (Lazy loaded on demand) */}
+      {isEstimatorOpen && (
+        <Suspense fallback={null}>
+          <ArchitectureEstimatorModal
+            isOpen={isEstimatorOpen}
+            onClose={() => setIsEstimatorOpen(false)}
+            defaultProjectType={defaultProjectType}
+          />
+        </Suspense>
+      )}
 
       {/* 2. NEWSLETTER MODAL ("Get our latest, in your inbox") */}
       <Dialog open={isNewsletterModalOpen} onOpenChange={setIsNewsletterModalOpen}>

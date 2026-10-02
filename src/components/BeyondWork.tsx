@@ -1,7 +1,9 @@
+import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { beyondWork } from "@/data/content";
 import { Plane, BookOpen, Dumbbell, GraduationCap, Compass } from "lucide-react";
 import { StaggeredCard, ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
-import RotatingEarth from "@/components/ui/wireframe-dotted-globe";
+
+const RotatingEarth = lazy(() => import("@/components/ui/wireframe-dotted-globe"));
 
 const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
   Plane: { icon: <Plane className="h-5 w-5 text-primary" />, color: "bg-primary/10 border-primary/20" },
@@ -11,8 +13,32 @@ const iconMap: Record<string, { icon: React.ReactNode; color: string }> = {
 };
 
 export const BeyondWork = () => {
+  const [shouldLoadGlobe, setShouldLoadGlobe] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    // Only load globe for larger viewports (> 1024px) when approaching viewport
+    if (typeof window === "undefined" || window.innerWidth < 1024) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadGlobe(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="beyond-work" className="py-24 md:py-36 px-4 bg-background relative overflow-hidden border-t border-white/[0.06]">
+    <section ref={sectionRef} id="beyond-work" className="py-24 md:py-36 px-4 bg-background relative overflow-hidden border-t border-white/[0.06]">
       <div className="container mx-auto relative z-10 max-w-6xl">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16">
           <ScrollAnimationWrapper>
@@ -30,19 +56,25 @@ export const BeyondWork = () => {
             </div>
           </ScrollAnimationWrapper>
           
-          {/* Rotating Dotted Globe Canvas Container with pointer-events-none */}
-          <div className="flex justify-start items-center select-none pointer-events-none">
+          {/* Rotating Dotted Globe Canvas Container - Desktop only, lazy-mounted */}
+          <div className="hidden lg:flex justify-start items-center select-none pointer-events-none">
             <div 
               className="w-36 h-36 md:w-48 md:h-48 transform" 
               style={{ transform: "rotate(336.5deg)" }}
             >
-              <RotatingEarth 
-                width={200} 
-                height={200} 
-                className="w-full h-full pointer-events-none" 
-                transparent={true} 
-                hideControls={true} 
-              />
+              {shouldLoadGlobe ? (
+                <Suspense fallback={<div className="w-[200px] h-[200px]" />}>
+                  <RotatingEarth 
+                    width={200} 
+                    height={200} 
+                    className="w-full h-full pointer-events-none" 
+                    transparent={true} 
+                    hideControls={true} 
+                  />
+                </Suspense>
+              ) : (
+                <div className="w-[200px] h-[200px]" />
+              )}
             </div>
           </div>
         </div>

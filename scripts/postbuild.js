@@ -100,13 +100,19 @@ function optimizeHtml(filePath) {
   const headStart = content.indexOf('<head>');
   if (headStart === -1) return;
 
-  const insertIndex = headStart + '<head>'.length;
   const tagsToInsert = [
+    '<meta charset="UTF-8">',
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
     ...(fontPreloadTags || []),
     ...(noscriptTags || []),
     ...(styleTags || [])
   ].map(tag => tag.trim()).join('\n    ');
 
+  // Remove duplicate charset/viewport if present further down
+  content = content.replace(/<meta charset="UTF-8">/g, '');
+  content = content.replace(/<meta name="viewport" content="width=device-width, initial-scale=1.0">/g, '');
+
+  const insertIndex = headStart + '<head>'.length;
   content = content.slice(0, insertIndex) + '\n    ' + tagsToInsert + '\n' + content.slice(insertIndex);
 
   fs.writeFileSync(filePath, content, 'utf8');

@@ -10,7 +10,34 @@
     <link rel="icon" href="/favicon.webp" type="image/webp" />
     <link rel="apple-touch-icon" href="/favicon.ico" />
     <script>
-    (function(){var g="%VITE_GA_MEASUREMENT_ID%";if(!g||!g.startsWith("G-"))return;var d=window.requestIdleCallback||function(fn){setTimeout(fn,2e3)};d(function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id="+g;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config",g)})})();
+    (function(){
+      var g="%VITE_GA_MEASUREMENT_ID%";
+      if(!g||!g.startsWith("G-"))return;
+      var loaded=false;
+      function initGA(){
+        if(loaded)return;
+        loaded=true;
+        var s=document.createElement("script");
+        s.async=true;
+        s.src="https://www.googletagmanager.com/gtag/js?id="+g;
+        document.head.appendChild(s);
+        window.dataLayer=window.dataLayer||[];
+        function gtag(){dataLayer.push(arguments)}
+        gtag("js",new Date());
+        gtag("config",g);
+      }
+      var events=["pointerdown","scroll","touchstart","keydown"];
+      function onInteract(){
+        initGA();
+        events.forEach(function(e){window.removeEventListener(e,onInteract,{passive:true})});
+      }
+      events.forEach(function(e){window.addEventListener(e,onInteract,{passive:true})});
+      if(window.requestIdleCallback){
+        window.requestIdleCallback(function(){setTimeout(initGA,3500)});
+      }else{
+        setTimeout(initGA,4000);
+      }
+    })();
     </script>
   </head>
 
