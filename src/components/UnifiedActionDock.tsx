@@ -159,7 +159,7 @@ export const UnifiedActionDock = () => {
 
   return (
     <>
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 max-w-[95vw] sm:max-w-fit animate-in fade-in slide-in-from-bottom-5 duration-500">
+      <div className="fixed bottom-4 right-4 z-40 max-w-[calc(100vw-2rem)] sm:max-w-fit animate-in fade-in slide-in-from-bottom-5 duration-500">
         <div className="flex items-center gap-1.5 p-1.5 rounded-full bg-card/90 backdrop-blur-2xl border border-border/80 shadow-2xl shadow-black/15 text-xs text-foreground">
           {/* 1. Contextual Interactive Tool Trigger */}
           <button
