@@ -348,7 +348,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                 type="button"
                 onClick={() => setIsCommandMenuOpen(true)}
                 className="flex items-center gap-2 px-3 py-1 text-xs text-muted-foreground hover:text-foreground bg-black/[0.03] dark:bg-white/[0.04] hover:bg-muted/60 border border-black/5 dark:border-white/10 rounded-full transition-all duration-200 group shadow-sm active:scale-95"
-                aria-label="Search site (Cmd+K)"
+                aria-label="Search"
               >
                 <Search className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
                 <span className="text-[11px] font-medium">Search</span>
@@ -397,7 +397,7 @@ export const Header = ({ onOpenEnquiry }: HeaderProps) => {
                 type="button"
                 onClick={() => setIsCommandMenuOpen(true)}
                 className="p-2 text-muted-foreground hover:text-foreground bg-muted/40 border border-border/40 rounded-full transition-colors active:scale-95"
-                aria-label="Search site (Cmd+K)"
+                aria-label="Search"
               >
                 <Search size={16} />
               </button>

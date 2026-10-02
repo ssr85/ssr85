@@ -257,12 +257,12 @@ export const Work = ({ onOpenEnquiry }: WorkProps) => {
 
                   {/* Card Title & Icon */}
                   <div className="flex items-center justify-between mb-2">
-                    <h4 className={cn(
+                    <h3 className={cn(
                       "text-xl font-bold tracking-tight transition-colors",
                       isSelected ? "text-primary" : "text-foreground"
                     )}>
                       {item.name}
-                    </h4>
+                    </h3>
                     <ArrowUpRight
                       size={16}
                       className={cn(

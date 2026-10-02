@@ -33,9 +33,9 @@
       }
       events.forEach(function(e){window.addEventListener(e,onInteract,{passive:true})});
       if(window.requestIdleCallback){
-        window.requestIdleCallback(function(){setTimeout(initGA,3500)});
+        window.requestIdleCallback(function(){setTimeout(initGA,8000)});
       }else{
-        setTimeout(initGA,4000);
+        setTimeout(initGA,8000);
       }
     })();
     </script>
