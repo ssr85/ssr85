@@ -55,6 +55,20 @@ export const UnifiedActionDock = () => {
   const { actionLabel, defaultProjectType, icon: ActionIcon } = (() => {
     const path = location.pathname;
 
+    if (path.includes("woocommerce")) {
+      return {
+        actionLabel: "WooCommerce Scope",
+        defaultProjectType: "AI_WORDPRESS" as ProjectType,
+        icon: Code2,
+      };
+    }
+    if (path.includes("striking-distance") || path.includes("search-analytics")) {
+      return {
+        actionLabel: "SEO Engine Scope",
+        defaultProjectType: "N8N_AUTOMATION" as ProjectType,
+        icon: Zap,
+      };
+    }
     if (path.includes("n8n")) {
       return {
         actionLabel: "n8n Estimation",

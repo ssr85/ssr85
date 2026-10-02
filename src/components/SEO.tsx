@@ -85,6 +85,10 @@ export const SEO = ({
       { "@type": "Thing", "name": "Large Language Model", "sameAs": "https://www.wikidata.org/wiki/Q115305900" },
       { "@type": "Thing", "name": "Retrieval-Augmented Generation", "sameAs": "https://www.wikidata.org/wiki/Q121362277" },
       { "@type": "Thing", "name": "WordPress", "sameAs": "https://www.wikidata.org/wiki/Q13166" },
+      { "@type": "Thing", "name": "WooCommerce", "sameAs": "https://www.wikidata.org/wiki/Q10855212" },
+      { "@type": "Thing", "name": "Application Programming Interface", "sameAs": "https://www.wikidata.org/wiki/Q165147" },
+      { "@type": "Thing", "name": "Search Engine Optimization", "sameAs": "https://www.wikidata.org/wiki/Q180711" },
+      { "@type": "Thing", "name": "Web Performance", "sameAs": "https://www.wikidata.org/wiki/Q7978712" },
       { "@type": "Thing", "name": "Customer Relationship Management", "sameAs": "https://www.wikidata.org/wiki/Q485643" },
       { "@type": "Thing", "name": "Business Process Automation", "sameAs": "https://www.wikidata.org/wiki/Q5001911" },
       { "@type": "Thing", "name": "Headless Content Management System", "sameAs": "https://www.wikidata.org/wiki/Q48995961" },
@@ -101,7 +105,11 @@ export const SEO = ({
       "Intelligent Process Automation (IPA)",
       "Autonomous Agents",
       "WordPress AI Engineering",
-      "Headless WordPress Engineering"
+      "Headless WordPress Engineering",
+      "WooCommerce Database Optimization",
+      "Custom REST API & Webhook Engineering",
+      "Keyword Insights & Topic Silo SEO",
+      "Striking Distance Keyword Automation"
     ],
     "worksFor": [
       { "@type": "Organization", "name": "Lead OG" }

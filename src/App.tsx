@@ -24,6 +24,8 @@ const N8nWorkflows = lazy(() => import("./pages/N8nWorkflows"));
 // Deep Cluster Insight Guides
 const AiWordPressPlugins = lazy(() => import("./pages/insights/AiWordPressPlugins"));
 const AutomatedSearchAnalytics = lazy(() => import("./pages/insights/AutomatedSearchAnalytics"));
+const StrikingKeywordInsights = lazy(() => import("./pages/insights/StrikingKeywordInsights"));
+const WooCommercePerformance = lazy(() => import("./pages/insights/WooCommercePerformance"));
 const LocalLlmStudio = lazy(() => import("./pages/insights/LocalLlmStudio"));
 const MultiAgentSystems = lazy(() => import("./pages/insights/MultiAgentSystems"));
 const CustomSessionEngines = lazy(() => import("./pages/insights/CustomSessionEngines"));
@@ -82,6 +84,14 @@ export const routes = [
   {
     path: "/insights/automated-search-analytics-reporting",
     element: <AutomatedSearchAnalytics />,
+  },
+  {
+    path: "/insights/striking-distance-keyword-insights-system",
+    element: <StrikingKeywordInsights />,
+  },
+  {
+    path: "/insights/woocommerce-database-checkout-optimization",
+    element: <WooCommercePerformance />,
   },
   {
     path: "/insights/local-llm-lm-studio-workflow",
