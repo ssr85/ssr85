@@ -98,7 +98,7 @@ export const Hero = ({ onOpenEnquiry }: HeroProps) => {
                         animate={{ y: "0%", opacity: 1 }}
                         exit={{ y: "-100%", opacity: 0 }}
                         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                        className="inline-block text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-400 to-secondary whitespace-nowrap py-1"
+                        className="inline-block text-3xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary via-sky-400 to-secondary whitespace-nowrap py-1"
                       >
                         {heroTags[tagIndex]}
                       </motion.span>
