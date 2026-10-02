@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { createClient, User } from "@supabase/supabase-js";
+import { User } from "@supabase/supabase-js";
+import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,11 +28,6 @@ import {
   Inbox,
 } from "lucide-react";
 import { toast } from "sonner";
-
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || import.meta.env.VITE_PUBLIC_SUPABASE_URL || "";
-const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "";
-
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Allowed executive emails (supports with and without dot in gmail)
 const ALLOWED_ADMIN_EMAILS = [
@@ -153,9 +149,7 @@ export const AdminDashboard = () => {
       });
 
       if (error) {
-        // If password login fails, offer Magic Link OTP
-        toast.info("Password login failed. Trying Magic Link OTP instead...");
-        await sendMagicLink();
+        toast.error(`Sign in error: ${error.message}`);
       } else if (data?.user) {
         verifyAndSetUser(data.user);
         toast.success("Welcome, Sarabjeet!");
@@ -168,10 +162,18 @@ export const AdminDashboard = () => {
   };
 
   const sendMagicLink = async () => {
+    if (!isEmailAllowed(emailInput.trim())) {
+      toast.error("This email is not authorized for admin access.");
+      return;
+    }
+
     setIsLoggingIn(true);
     try {
       const { error } = await supabase.auth.signInWithOtp({
         email: emailInput.trim(),
+        options: {
+          shouldCreateUser: false,
+        },
       });
       if (error) throw error;
       setIsOtpSent(true);

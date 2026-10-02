@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Dialog,
   DialogContent,
@@ -13,11 +13,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Send, CheckCircle2, ShieldCheck, Sparkles, Loader2 } from "lucide-react";
-
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || import.meta.env.VITE_PUBLIC_SUPABASE_URL || "";
-const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "";
-
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 interface ServiceLeadModalProps {
   isOpen: boolean;
