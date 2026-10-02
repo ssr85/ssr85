@@ -8,6 +8,8 @@ import React, { lazy, Suspense } from "react";
 import Index from "./pages/Index";
 import { Analytics } from "@vercel/analytics/react";
 
+import { SubtleNewsletterCollector } from "@/components/SubtleNewsletterCollector";
+
 const Resume = lazy(() => import("./pages/Resume"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
@@ -130,6 +132,7 @@ const App = () => {
               <Outlet />
             </Suspense>
           </div>
+          <SubtleNewsletterCollector />
           <Analytics />
         </TooltipProvider>
       </ThemeProvider>
