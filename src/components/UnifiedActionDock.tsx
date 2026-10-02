@@ -54,35 +54,35 @@ export const UnifiedActionDock = () => {
 
     if (path.includes("n8n")) {
       return {
-        actionLabel: "Get Estimation",
+        actionLabel: "n8n Estimation",
         defaultProjectType: "N8N_AUTOMATION" as ProjectType,
         icon: Zap,
       };
     }
     if (path.includes("wordpress") || path.includes("ai-wordpress")) {
       return {
-        actionLabel: "Get Estimation",
+        actionLabel: "AI Plugin Scope",
         defaultProjectType: "AI_WORDPRESS" as ProjectType,
         icon: Code2,
       };
     }
     if (path.includes("multi-agent") || path.includes("custom-ai")) {
       return {
-        actionLabel: "Get Estimation",
+        actionLabel: "AI Agent Scope",
         defaultProjectType: "CUSTOM_AI_AGENT" as ProjectType,
         icon: Cpu,
       };
     }
     if (path.includes("crm") || path.includes("sync")) {
       return {
-        actionLabel: "Get Estimation",
+        actionLabel: "CRM Sync Scope",
         defaultProjectType: "CRM_SYNC_ENGINE" as ProjectType,
         icon: RefreshCw,
       };
     }
     if (path.includes("sheets") || path.includes("apps-script")) {
       return {
-        actionLabel: "Get Estimation",
+        actionLabel: "Sheets ERP Scope",
         defaultProjectType: "APPS_SCRIPT_ERP" as ProjectType,
         icon: FileSpreadsheet,
       };
