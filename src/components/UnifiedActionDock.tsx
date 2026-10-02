@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ArchitectureEstimatorModal } from "@/components/tools/ArchitectureEstimatorModal";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { ProjectType } from "@/lib/calculator/estimator-engine";
 import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import {
@@ -17,42 +24,29 @@ import {
   X,
   CheckCircle2,
   Loader2,
-  ChevronRight,
+  ShieldCheck,
+  Calculator,
 } from "lucide-react";
 
 export const UnifiedActionDock = () => {
   const location = useLocation();
   const [isEstimatorOpen, setIsEstimatorOpen] = useState(false);
-  const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
+  const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isDockVisible, setIsDockVisible] = useState(false);
 
   useEffect(() => {
-    // Check if previously subscribed or dismissed
     const subscribed = localStorage.getItem("ssr_newsletter_subscribed");
     if (subscribed) setIsSubscribed(true);
 
-    const dismissedAt = localStorage.getItem("ssr_action_dock_dismissed_at");
-    if (dismissedAt) {
-      const daysSinceDismiss =
-        (Date.now() - parseInt(dismissedAt, 10)) / (1000 * 60 * 60 * 24);
-      if (daysSinceDismiss < 3) return; // Snooze for 3 days
-    }
-
-    // Reveal gently after 2.5 seconds
     const timer = setTimeout(() => {
       setIsDockVisible(true);
-    }, 2500);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
-
-  const handleDismiss = () => {
-    setIsDockVisible(false);
-    localStorage.setItem("ssr_action_dock_dismissed_at", Date.now().toString());
-  };
 
   // Determine contextual action based on path
   const { actionLabel, defaultProjectType, icon: ActionIcon } = (() => {
@@ -60,44 +54,44 @@ export const UnifiedActionDock = () => {
 
     if (path.includes("n8n")) {
       return {
-        actionLabel: "Estimate n8n Setup Scope",
+        actionLabel: "Get Estimation",
         defaultProjectType: "N8N_AUTOMATION" as ProjectType,
         icon: Zap,
       };
     }
     if (path.includes("wordpress") || path.includes("ai-wordpress")) {
       return {
-        actionLabel: "Custom AI Plugin Architecture",
+        actionLabel: "Get Estimation",
         defaultProjectType: "AI_WORDPRESS" as ProjectType,
         icon: Code2,
       };
     }
     if (path.includes("multi-agent") || path.includes("custom-ai")) {
       return {
-        actionLabel: "Multi-Agent System Blueprint",
+        actionLabel: "Get Estimation",
         defaultProjectType: "CUSTOM_AI_AGENT" as ProjectType,
         icon: Cpu,
       };
     }
     if (path.includes("crm") || path.includes("sync")) {
       return {
-        actionLabel: "2-Way CRM Sync Blueprint",
+        actionLabel: "Get Estimation",
         defaultProjectType: "CRM_SYNC_ENGINE" as ProjectType,
         icon: RefreshCw,
       };
     }
     if (path.includes("sheets") || path.includes("apps-script")) {
       return {
-        actionLabel: "Google Sheets ERP Scope",
+        actionLabel: "Get Estimation",
         defaultProjectType: "APPS_SCRIPT_ERP" as ProjectType,
         icon: FileSpreadsheet,
       };
     }
 
     return {
-      actionLabel: "Estimate Architecture & Timeline",
+      actionLabel: "Get Estimation",
       defaultProjectType: "N8N_AUTOMATION" as ProjectType,
-      icon: Sparkles,
+      icon: Calculator,
     };
   })();
 
@@ -146,7 +140,8 @@ export const UnifiedActionDock = () => {
 
       setIsSubscribed(true);
       localStorage.setItem("ssr_newsletter_subscribed", "true");
-      setIsNewsletterOpen(false);
+      setIsNewsletterModalOpen(false);
+      setNewsletterEmail("");
       toast.success("Subscribed! Real engineering insights coming to your inbox.");
     } catch {
       toast.error("Subscription failed. Please try again.");
@@ -159,89 +154,110 @@ export const UnifiedActionDock = () => {
 
   return (
     <>
-      <div className="fixed bottom-4 right-4 z-40 max-w-[calc(100vw-2rem)] sm:max-w-fit animate-in fade-in slide-in-from-bottom-5 duration-500">
-        <div className="flex items-center gap-1.5 p-1.5 rounded-full bg-card/90 backdrop-blur-2xl border border-border/80 shadow-2xl shadow-black/15 text-xs text-foreground">
-          {/* 1. Contextual Interactive Tool Trigger */}
+      {/* Sleek Floating Dock on Bottom-Right */}
+      <aside
+        aria-label="Quick Tools & Updates"
+        className="fixed bottom-5 right-5 z-40 animate-in fade-in slide-in-from-bottom-3 duration-500"
+      >
+        <div className="flex items-center gap-2 p-1.5 rounded-full bg-card/90 backdrop-blur-2xl border border-border/80 shadow-2xl shadow-black/15">
+          {/* ICON 1: ESTIMATOR (Expands on Hover) */}
           <button
             type="button"
             onClick={() => setIsEstimatorOpen(true)}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary font-semibold transition-all border border-primary/25 shadow-sm group"
+            aria-label="Get Project Scope Estimation"
+            className="group flex items-center gap-2 p-2.5 rounded-full bg-primary/10 hover:bg-primary text-primary hover:text-primary-foreground transition-all duration-300 ease-out border border-primary/25 shadow-sm"
           >
-            <ActionIcon className="w-3.5 h-3.5 text-primary" />
-            <span className="truncate max-w-[180px] sm:max-w-none">{actionLabel}</span>
-            <ChevronRight className="w-3 h-3 text-primary transition-transform duration-200 group-hover:translate-x-0.5" />
+            <ActionIcon className="w-4 h-4 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+            <span className="overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300 ease-out whitespace-nowrap opacity-0 group-hover:opacity-100 text-xs font-semibold pr-1">
+              {actionLabel}
+            </span>
           </button>
 
-          <div className="h-4 w-px bg-border/80 mx-0.5" />
-
-          {/* 2. Subtle Newsletter Popover / Trigger */}
-          {isNewsletterOpen ? (
-            <form onSubmit={handleSubscribe} className="flex items-center gap-1">
-              <Input
-                type="email"
-                placeholder="name@company.com"
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                autoFocus
-                className="h-7 text-xs px-2.5 w-40 sm:w-48 rounded-full border-border/70 bg-background/80"
-              />
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="h-7 px-2.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold flex items-center justify-center hover:bg-primary/90 transition-colors"
-              >
-                {isSubmitting ? (
-                  <Loader2 className="w-3 h-3 animate-spin" />
-                ) : (
-                  <Send className="w-3 h-3" />
-                )}
-              </button>
-              <button
-                type="button"
-                onClick={() => setIsNewsletterOpen(false)}
-                className="p-1 text-muted-foreground hover:text-foreground"
-              >
-                <X className="w-3.5 h-3.5" />
-              </button>
-            </form>
-          ) : (
-            <button
-              type="button"
-              onClick={() => setIsNewsletterOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-full hover:bg-muted/60 text-muted-foreground hover:text-foreground transition-colors font-medium"
-            >
-              {isSubscribed ? (
-                <>
-                  <CheckCircle2 className="w-3.5 h-3.5 text-success" />
-                  <span className="hidden sm:inline">Subscribed</span>
-                </>
-              ) : (
-                <>
-                  <Mail className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">Get Insights</span>
-                </>
-              )}
-            </button>
-          )}
-
-          {/* Close / Dismiss Dock */}
+          {/* ICON 2: KEEP UPDATED (Expands on Hover) */}
           <button
             type="button"
-            onClick={handleDismiss}
-            aria-label="Dismiss dock"
-            className="p-1.5 rounded-full text-muted-foreground/60 hover:text-foreground hover:bg-muted/60 transition-colors"
+            onClick={() => setIsNewsletterModalOpen(true)}
+            aria-label="Keep Updated via Newsletter"
+            className="group flex items-center gap-2 p-2.5 rounded-full bg-muted/80 hover:bg-primary/20 text-muted-foreground hover:text-primary transition-all duration-300 ease-out border border-border/70 shadow-sm"
           >
-            <X className="w-3 h-3" />
+            {isSubscribed ? (
+              <CheckCircle2 className="w-4 h-4 shrink-0 text-success" />
+            ) : (
+              <Mail className="w-4 h-4 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+            )}
+            <span className="overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300 ease-out whitespace-nowrap opacity-0 group-hover:opacity-100 text-xs font-semibold pr-1">
+              {isSubscribed ? "Subscribed" : "Keep Updated"}
+            </span>
           </button>
         </div>
-      </div>
+      </aside>
 
-      {/* Estimator Dialog */}
+      {/* 1. ARCHITECTURE & SCOPE ESTIMATOR MODAL */}
       <ArchitectureEstimatorModal
         isOpen={isEstimatorOpen}
         onClose={() => setIsEstimatorOpen(false)}
         defaultProjectType={defaultProjectType}
       />
+
+      {/* 2. NEWSLETTER MODAL ("Get our latest, in your inbox") */}
+      <Dialog open={isNewsletterModalOpen} onOpenChange={setIsNewsletterModalOpen}>
+        <DialogContent className="sm:max-w-[420px] p-0 overflow-hidden border-border/80 bg-background/95 backdrop-blur-2xl shadow-2xl">
+          <div className="p-6 sm:p-7 space-y-5">
+            <DialogHeader className="text-left space-y-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono uppercase tracking-wider w-fit">
+                <Sparkles className="w-3.5 h-3.5" />
+                Architecture & Engineering Insights
+              </div>
+              <DialogTitle className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+                Get our latest, in your inbox.
+              </DialogTitle>
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                Autonomous workflows, n8n production blueprints, and enterprise AI teardowns. No spam. Unsubscribe anytime.
+              </p>
+            </DialogHeader>
+
+            <form onSubmit={handleSubscribe} className="space-y-4 pt-1">
+              <div className="space-y-2">
+                <div className="relative flex items-center">
+                  <Mail className="w-4 h-4 text-muted-foreground absolute left-3.5 pointer-events-none" />
+                  <Input
+                    type="email"
+                    placeholder="name@company.com"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    disabled={isSubmitting}
+                    required
+                    autoFocus
+                    className="pl-10 h-11 text-xs sm:text-sm rounded-xl border-border/80 bg-card focus-visible:ring-primary/40"
+                  />
+                </div>
+              </div>
+
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full h-11 rounded-xl font-semibold text-xs sm:text-sm shadow-md shadow-primary/20 gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
+              >
+                {isSubmitting ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <>
+                    <span>Subscribe to Insights</span>
+                    <Send className="w-3.5 h-3.5" />
+                  </>
+                )}
+              </Button>
+
+              <div className="flex items-center justify-between text-[11px] text-muted-foreground px-1 pt-1">
+                <span className="flex items-center gap-1">
+                  <ShieldCheck className="w-3.5 h-3.5 text-primary" /> 100% Privacy
+                </span>
+                <span>Zero Sales Spam</span>
+              </div>
+            </form>
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
