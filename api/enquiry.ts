@@ -75,6 +75,15 @@ export interface EnquiryRequest {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   // Only allow POST
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -150,12 +159,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // 3. Send Notification Email via Gmail
-    const mailOptions = {
-      from: GMAIL_USER,
-      to: 'sarabjit.rattan@gmail.com',
-      subject: `[${cleanLeadType}] ${cleanTargetService ? `(${cleanTargetService}) ` : ''}Lead from ${cleanName}`,
-      replyTo: cleanEmail,
-      text: `
+    let emailPromise: Promise<unknown> = Promise.resolve();
+    try {
+      if (GMAIL_USER && GMAIL_APP_PASSWORD) {
+        const mailOptions = {
+          from: GMAIL_USER,
+          to: 'sarabjit.rattan@gmail.com',
+          subject: `[${cleanLeadType}] ${cleanTargetService ? `(${cleanTargetService}) ` : ''}Lead from ${cleanName}`,
+          replyTo: cleanEmail,
+          text: `
 Lead Type: ${cleanLeadType}
 Target Service: ${cleanTargetService || 'N/A'}
 Name: ${cleanName}
@@ -174,19 +186,22 @@ ${cleanRequirement}
 Client IP: ${clientIP}
 Timestamp: ${new Date().toISOString()}
 Sent via Portfolio Vercel Backend Engine
-      `.trim(),
-    };
+          `.trim(),
+        };
 
-    let emailPromise = Promise.resolve();
-    if (GMAIL_USER && GMAIL_APP_PASSWORD) {
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: GMAIL_USER,
-          pass: GMAIL_APP_PASSWORD,
-        },
-      });
-      emailPromise = transporter.sendMail(mailOptions);
+        const transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: GMAIL_USER,
+            pass: GMAIL_APP_PASSWORD,
+          },
+        });
+        emailPromise = transporter.sendMail(mailOptions).catch((mailErr) => {
+          console.warn('Mail send failed:', mailErr);
+        });
+      }
+    } catch (transErr) {
+      console.warn('Nodemailer setup error:', transErr);
     }
 
     // 4. Save to Google Sheets (Webhook)
