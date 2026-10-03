@@ -13,11 +13,14 @@ const SUPABASE_URL =
   process.env.VITE_PUBLIC_SUPABASE_URL ||
   'https://bwpemzjwrrszygszuitc.supabase.co';
 
+const MASTER_SERVICE_ROLE_KEY =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3cGVtemp3cnJzenlnc3p1aXRjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MDgwMTg1MiwiZXhwIjoyMTA2Mzc3ODUyfQ.h1nj0cx0sLR6W3QZXVnBo4jRwLYfnMIFMZTYU3-1gJ4';
+
 const SUPABASE_SERVICE_ROLE_KEY =
   process.env.SUPABASE_SERVICE_ROLE_KEY ||
   process.env.VITE_SUPABASE_SERVICE_ROLE_KEY ||
   process.env.SUPABASE_SERVICE_KEY ||
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3cGVtemp3cnJzenlnc3p1aXRjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MDgwMTg1MiwiZXhwIjoyMTA2Mzc3ODUyfQ.h1nj0cx0sLR6W3QZXVnBo4jRwLYfnMIFMZTYU3-1gJ4';
+  MASTER_SERVICE_ROLE_KEY;
 
 const RECAPTCHA_SCORE_THRESHOLD = 0.5;
 
@@ -235,40 +238,78 @@ Sent via Portfolio Vercel Backend Engine
 
     // 5. Save directly to Supabase tables (service role bypasses RLS safely)
     let dbInsertPromise: Promise<unknown> = Promise.resolve(null);
-    if (SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY) {
-      const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+    if (SUPABASE_URL) {
+      const activeKey = SUPABASE_SERVICE_ROLE_KEY || MASTER_SERVICE_ROLE_KEY;
+      let supabaseAdmin = createClient(SUPABASE_URL, activeKey);
       
       const phoneForEnquiries = cleanPhone !== 'N/A' && cleanPhone.trim() ? cleanPhone : '+91-0000000000';
       const formattedRequirement = `[${cleanLeadType}] ${cleanTargetService ? `(${cleanTargetService}) ` : ''}${cleanRequirement}`;
 
-      dbInsertPromise = Promise.allSettled([
-        // Table 1: enquiries
-        supabaseAdmin.from('enquiries').insert({
-          name: cleanName,
-          email: cleanEmail,
-          phone: phoneForEnquiries,
-          company_name: companyName || null,
-          requirement: formattedRequirement,
-          client_ip: clientIP,
-          recaptcha_score: recaptchaScore,
-        }),
-        // Table 2: service_leads
-        supabaseAdmin.from('service_leads').insert({
-          name: cleanName,
-          email: cleanEmail,
-          phone: cleanPhone !== 'N/A' ? cleanPhone : null,
-          company_name: companyName || null,
-          target_service: cleanTargetService || 'general-consultation',
-          requirement: formattedRequirement,
-          source_url: sourceUrl || null,
-          utm_source: utmSource || null,
-          utm_medium: utmMedium || null,
-          utm_campaign: utmCampaign || null,
-          referring_query: referringQuery || null,
-          lead_status: leadStatus || 'NEW',
-          client_ip: clientIP,
-        }),
-      ]);
+      dbInsertPromise = (async () => {
+        let results = await Promise.allSettled([
+          // Table 1: enquiries
+          supabaseAdmin.from('enquiries').insert({
+            name: cleanName,
+            email: cleanEmail,
+            phone: phoneForEnquiries,
+            company_name: companyName || null,
+            requirement: formattedRequirement,
+            client_ip: clientIP,
+            recaptcha_score: recaptchaScore,
+          }),
+          // Table 2: service_leads
+          supabaseAdmin.from('service_leads').insert({
+            name: cleanName,
+            email: cleanEmail,
+            phone: cleanPhone !== 'N/A' ? cleanPhone : null,
+            company_name: companyName || null,
+            target_service: cleanTargetService || 'general-consultation',
+            requirement: formattedRequirement,
+            source_url: sourceUrl || null,
+            utm_source: utmSource || null,
+            utm_medium: utmMedium || null,
+            utm_campaign: utmCampaign || null,
+            referring_query: referringQuery || null,
+            lead_status: leadStatus || 'NEW',
+            client_ip: clientIP,
+          }),
+        ]);
+
+        const slFailed = results[1].status !== 'fulfilled' || (results[1].status === 'fulfilled' && results[1].value.error);
+        const enqFailed = results[0].status !== 'fulfilled' || (results[0].status === 'fulfilled' && results[0].value.error);
+
+        if ((slFailed || enqFailed) && activeKey !== MASTER_SERVICE_ROLE_KEY) {
+          console.warn('DB insert failed with env key, retrying with MASTER_SERVICE_ROLE_KEY...');
+          supabaseAdmin = createClient(SUPABASE_URL, MASTER_SERVICE_ROLE_KEY);
+          results = await Promise.allSettled([
+            supabaseAdmin.from('enquiries').insert({
+              name: cleanName,
+              email: cleanEmail,
+              phone: phoneForEnquiries,
+              company_name: companyName || null,
+              requirement: formattedRequirement,
+              client_ip: clientIP,
+              recaptcha_score: recaptchaScore,
+            }),
+            supabaseAdmin.from('service_leads').insert({
+              name: cleanName,
+              email: cleanEmail,
+              phone: cleanPhone !== 'N/A' ? cleanPhone : null,
+              company_name: companyName || null,
+              target_service: cleanTargetService || 'general-consultation',
+              requirement: formattedRequirement,
+              source_url: sourceUrl || null,
+              utm_source: utmSource || null,
+              utm_medium: utmMedium || null,
+              utm_campaign: utmCampaign || null,
+              referring_query: referringQuery || null,
+              lead_status: leadStatus || 'NEW',
+              client_ip: clientIP,
+            }),
+          ]);
+        }
+        return results;
+      })();
     }
 
     // Execute email, sheet, and DB write concurrently

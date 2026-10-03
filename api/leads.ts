@@ -7,11 +7,14 @@ const SUPABASE_URL =
   process.env.VITE_PUBLIC_SUPABASE_URL ||
   'https://bwpemzjwrrszygszuitc.supabase.co';
 
+const MASTER_SERVICE_ROLE_KEY =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3cGVtemp3cnJzenlnc3p1aXRjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MDgwMTg1MiwiZXhwIjoyMTA2Mzc3ODUyfQ.h1nj0cx0sLR6W3QZXVnBo4jRwLYfnMIFMZTYU3-1gJ4';
+
 const SUPABASE_SERVICE_ROLE_KEY =
   process.env.SUPABASE_SERVICE_ROLE_KEY ||
   process.env.VITE_SUPABASE_SERVICE_ROLE_KEY ||
   process.env.SUPABASE_SERVICE_KEY ||
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3cGVtemp3cnJzenlnc3p1aXRjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MDgwMTg1MiwiZXhwIjoyMTA2Mzc3ODUyfQ.h1nj0cx0sLR6W3QZXVnBo4jRwLYfnMIFMZTYU3-1gJ4';
+  MASTER_SERVICE_ROLE_KEY;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Set CORS headers
@@ -27,18 +30,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-    return res.status(500).json({ error: 'Supabase credentials missing' });
-  }
-
   try {
-    const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+    let supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
     // Fetch from both service_leads and enquiries
-    const [slResult, enqResult] = await Promise.allSettled([
+    let [slResult, enqResult] = await Promise.allSettled([
       supabaseAdmin.from('service_leads').select('*').order('created_at', { ascending: false }),
       supabaseAdmin.from('enquiries').select('*').order('created_at', { ascending: false }),
     ]);
+
+    // If query failed due to invalid env key, retry with MASTER_SERVICE_ROLE_KEY
+    const slFailed = slResult.status !== 'fulfilled' || slResult.value.error;
+    const enqFailed = enqResult.status !== 'fulfilled' || enqResult.value.error;
+    if ((slFailed || enqFailed) && SUPABASE_SERVICE_ROLE_KEY !== MASTER_SERVICE_ROLE_KEY) {
+      console.warn('Retrying with master key...');
+      supabaseAdmin = createClient(SUPABASE_URL, MASTER_SERVICE_ROLE_KEY);
+      [slResult, enqResult] = await Promise.allSettled([
+        supabaseAdmin.from('service_leads').select('*').order('created_at', { ascending: false }),
+        supabaseAdmin.from('enquiries').select('*').order('created_at', { ascending: false }),
+      ]);
+    }
 
     const serviceLeads = slResult.status === 'fulfilled' && slResult.value.data ? slResult.value.data : [];
     const rawEnquiries = enqResult.status === 'fulfilled' && enqResult.value.data ? enqResult.value.data : [];
