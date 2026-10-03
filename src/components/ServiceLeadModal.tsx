@@ -24,6 +24,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { siteConfig } from "@/data/content";
+import { trackGoogleAdsConversion } from "@/lib/conversion";
 
 interface ServiceLeadModalProps {
   isOpen: boolean;
@@ -106,14 +107,11 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
         throw new Error(errorData.error || "Failed to submit inquiry");
       }
 
-      // 3. Dispatch GA4 / Google Ads conversion event
-      if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag === "function") {
-        (window as unknown as { gtag: (...args: unknown[]) => void }).gtag("event", "generate_lead", {
-          event_category: "Service Consultation",
-          event_label: effectiveService,
-          value: 1,
-        });
-      }
+      // 3. Dispatch GA4 & Google Ads "Book appointment" conversion event
+      trackGoogleAdsConversion({
+        eventLabel: `service_modal_${effectiveService}`,
+        value: 1.0,
+      });
 
       setIsSuccess(true);
       toast.success("Inquiry received! Sarabjeet will review your project within 24 hours.");
@@ -194,6 +192,7 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
                     href="https://calendly.com/srt10/20"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackGoogleAdsConversion({ eventLabel: "service_modal_success_calendly_click" })}
                     className="inline-flex items-center justify-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-md shadow-primary/20"
                   >
                     <Calendar className="w-3.5 h-3.5" />
@@ -246,6 +245,7 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
                   href="https://calendly.com/srt10/20"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackGoogleAdsConversion({ eventLabel: "service_modal_tab_calendly_click" })}
                   className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-primary text-primary-foreground font-semibold text-sm shadow-md shadow-primary/25 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 transition-all group"
                 >
                   <span>Select Time on Calendly</span>

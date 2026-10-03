@@ -11,6 +11,7 @@ import {
   ComplexityLevel,
 } from "@/lib/calculator/estimator-engine";
 import { siteConfig } from "@/data/content";
+import { trackGoogleAdsConversion } from "@/lib/conversion";
 import { toast } from "sonner";
 import {
   Sparkles,
@@ -353,6 +354,7 @@ Generated from https://sarabjeetrattan.com/tools/architecture-scope-estimator`;
                   href={calendlyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackGoogleAdsConversion({ eventLabel: "scope_estimator_page_calendly_click" })}
                   className="flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl bg-primary text-primary-foreground font-semibold text-sm shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all group text-center"
                 >
                   <Calendar className="w-4 h-4" />

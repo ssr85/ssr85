@@ -12,19 +12,24 @@
     <script>
     (function(){
       var g="%VITE_GA_MEASUREMENT_ID%";
-      if(!g||!g.startsWith("G-"))return;
+      var adsId="AW-18490594666";
+      var tagId = (g && g.startsWith("G-")) ? g : adsId;
       var loaded=false;
       function initGA(){
         if(loaded)return;
         loaded=true;
         var s=document.createElement("script");
         s.async=true;
-        s.src="https://www.googletagmanager.com/gtag/js?id="+g;
+        s.src="https://www.googletagmanager.com/gtag/js?id="+tagId;
         document.head.appendChild(s);
         window.dataLayer=window.dataLayer||[];
         function gtag(){dataLayer.push(arguments)}
+        window.gtag=gtag;
         gtag("js",new Date());
-        gtag("config",g);
+        if(g && g.startsWith("G-")) {
+          gtag("config",g);
+        }
+        gtag("config",adsId);
       }
       var events=["pointerdown","scroll","touchstart","keydown"];
       function onInteract(){
@@ -33,9 +38,9 @@
       }
       events.forEach(function(e){window.addEventListener(e,onInteract,{passive:true})});
       if(window.requestIdleCallback){
-        window.requestIdleCallback(function(){setTimeout(initGA,8000)});
+        window.requestIdleCallback(function(){setTimeout(initGA,2500)});
       }else{
-        setTimeout(initGA,8000);
+        setTimeout(initGA,2500);
       }
     })();
     </script>

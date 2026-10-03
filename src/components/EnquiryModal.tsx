@@ -8,8 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Send, Sparkles, Calendar, ExternalLink } from "lucide-react";
 import { executeRecaptcha } from "@/lib/recaptcha";
+import { trackGoogleAdsConversion } from "@/lib/conversion";
 
 const enquirySchema = z.object({
   name: z
@@ -112,14 +112,11 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
         throw new Error(responseData.error || "Failed to send enquiry");
       }
 
-      // Dispatch GA4 / Google Ads conversion event
-      if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag === "function") {
-        (window as unknown as { gtag: (...args: unknown[]) => void }).gtag("event", "generate_lead", {
-          event_category: "Direct Contact Form",
-          event_label: "homepage_enquiry_modal",
-          value: 1,
-        });
-      }
+      // Dispatch GA4 & Google Ads "Book appointment" conversion event
+      trackGoogleAdsConversion({
+        eventLabel: "enquiry_modal_submission",
+        value: 1.0,
+      });
 
       toast({
         title: "Enquiry Received",
@@ -172,6 +169,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               href="https://calendly.com/srt10/20"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackGoogleAdsConversion({ eventLabel: "calendly_shortcut_click" })}
               className="inline-flex items-center gap-1 font-semibold text-primary hover:underline shrink-0"
             >
               Book on Calendly <ExternalLink className="w-3 h-3" />

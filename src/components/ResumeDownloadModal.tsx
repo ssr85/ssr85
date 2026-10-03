@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, FileDown } from "lucide-react";
 import { executeRecaptcha } from "@/lib/recaptcha";
+import { trackGoogleAdsConversion } from "@/lib/conversion";
 
 const downloadSchema = z.object({
   name: z
@@ -125,6 +126,7 @@ export const ResumeDownloadModal = ({ isOpen, onClose }: ResumeDownloadModalProp
       }
       
       // Success - close modal and navigate to resume page
+      trackGoogleAdsConversion({ eventLabel: "resume_download", value: 1.0 });
       reset();
       onClose();
       navigate("/resume");

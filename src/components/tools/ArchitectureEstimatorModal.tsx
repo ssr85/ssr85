@@ -13,6 +13,7 @@ import {
   ComplexityLevel,
 } from "@/lib/calculator/estimator-engine";
 import { siteConfig } from "@/data/content";
+import { trackGoogleAdsConversion } from "@/lib/conversion";
 import {
   Sparkles,
   Zap,
@@ -325,6 +326,7 @@ Generated from https://sarabjeetrattan.com/tools/architecture-scope-estimator`;
                 href={calendlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackGoogleAdsConversion({ eventLabel: "estimator_modal_calendly_click" })}
                 className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-primary text-primary-foreground font-semibold text-xs sm:text-sm shadow-md shadow-primary/25 hover:bg-primary/90 transition-all group text-center"
               >
                 <Calendar className="w-4 h-4" />

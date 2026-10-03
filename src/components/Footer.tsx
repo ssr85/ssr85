@@ -6,6 +6,8 @@ import { EngineeringGrid } from "@/components/EngineeringGrid";
 import { cn } from "@/lib/utils";
 import { useThrottledScroll } from "@/hooks/use-throttle";
 
+import { trackGoogleAdsConversion } from "@/lib/conversion";
+
 const ResumeDownloadModal = lazy(() =>
   import("@/components/ResumeDownloadModal").then((m) => ({ default: m.ResumeDownloadModal }))
 );
@@ -92,6 +94,7 @@ export const Footer = () => {
                     href="https://calendly.com/srt10/20"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackGoogleAdsConversion({ eventLabel: "footer_calendly_click" })}
                     className="text-primary font-semibold hover:underline inline-flex items-center gap-1"
                   >
                     Schedule 20-Min Call
