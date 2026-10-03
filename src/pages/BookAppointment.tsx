@@ -78,9 +78,10 @@ export const BookAppointment = () => {
           )}
 
           {/* Calendly Live Embedded Scheduler */}
-          <div className="p-2 sm:p-4 rounded-3xl bg-card/60 border border-border/80 shadow-2xl backdrop-blur-xl">
+          <div className="p-1 sm:p-3 md:p-4 rounded-3xl bg-card/60 border border-border/80 shadow-2xl backdrop-blur-xl overflow-hidden">
             <CalendlyEmbed
-              minHeight="720px"
+              minHeight="750px"
+              className="w-full min-h-[920px] md:min-h-[760px]"
               onBookingComplete={() => setIsBooked(true)}
             />
           </div>

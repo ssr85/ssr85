@@ -13,6 +13,7 @@ interface CalendlyEmbedProps {
   onBookingComplete?: (eventData: unknown) => void;
   className?: string;
   minHeight?: string;
+  height?: string;
 }
 
 export const CalendlyEmbed: React.FC<CalendlyEmbedProps> = ({
@@ -20,7 +21,8 @@ export const CalendlyEmbed: React.FC<CalendlyEmbedProps> = ({
   prefill,
   onBookingComplete,
   className = "",
-  minHeight = "650px",
+  minHeight = "720px",
+  height = "100%",
 }) => {
   const { resolvedTheme } = useTheme();
   const [isLoading, setIsLoading] = useState(true);
@@ -130,7 +132,7 @@ export const CalendlyEmbed: React.FC<CalendlyEmbedProps> = ({
     <div
       ref={containerRef}
       className={`relative w-full overflow-hidden rounded-2xl border border-border/80 bg-card shadow-inner ${className}`}
-      style={{ minHeight }}
+      style={{ minHeight, height }}
     >
       {isLoading && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-card/80 backdrop-blur-sm z-10 space-y-3">
@@ -147,7 +149,7 @@ export const CalendlyEmbed: React.FC<CalendlyEmbedProps> = ({
         frameBorder="0"
         title="Schedule 20-Min Architecture Discovery with Sarabjeet Rattan"
         className="w-full h-full border-0"
-        style={{ minHeight }}
+        style={{ minHeight, height }}
         onLoad={() => setIsLoading(false)}
       />
     </div>
