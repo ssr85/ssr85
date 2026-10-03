@@ -14,6 +14,7 @@ const Resume = lazy(() => import("./pages/Resume"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
 const ScopeEstimator = lazy(() => import("./pages/ScopeEstimator"));
+const BookAppointment = lazy(() => import("./pages/BookAppointment"));
 
 // Core Pillars
 const AiWordPressDevelopment = lazy(() => import("./pages/AiWordPressDevelopment"));
@@ -125,6 +126,14 @@ export const routes = [
   {
     path: "/tools/architecture-scope-estimator",
     element: <ScopeEstimator />,
+  },
+  {
+    path: "/book",
+    element: <BookAppointment />,
+  },
+  {
+    path: "/schedule",
+    element: <BookAppointment />,
   },
   ...caseStudyRoutes,
   {

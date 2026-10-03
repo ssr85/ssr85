@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { siteConfig } from "@/data/content";
 import { trackGoogleAdsConversion } from "@/lib/conversion";
+import { CalendlyEmbed } from "@/components/CalendlyEmbed";
 
 interface ServiceLeadModalProps {
   isOpen: boolean;
@@ -125,7 +126,7 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[540px] p-0 overflow-hidden border-border/80 bg-background/95 backdrop-blur-xl shadow-2xl">
+      <DialogContent className="sm:max-w-[620px] p-0 overflow-hidden border-border/80 bg-background/95 backdrop-blur-xl shadow-2xl">
         <div className="p-6 md:p-8">
           <DialogHeader className="mb-6 text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono uppercase tracking-wider mb-2 w-fit">
@@ -223,76 +224,43 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
               </Button>
             </div>
           ) : activeTab === "call" ? (
-            <div className="py-4 space-y-5">
-              {/* Primary Calendly Booking Card */}
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-card to-card border border-primary/30 space-y-4 shadow-lg shadow-primary/5">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="space-y-1">
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/20 text-primary text-[10px] font-mono uppercase font-bold tracking-wider">
-                      <Sparkles className="w-3 h-3" /> Instant Schedule
-                    </div>
-                    <h4 className="font-bold text-foreground text-base">20-Minute Architecture Discovery</h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed">
-                      Discuss your technical stack, AI agent requirements, or custom automation architecture 1-on-1 with Sarabjeet.
-                    </p>
+            <div className="py-2 space-y-4">
+              <div className="flex items-center justify-between px-1">
+                <div className="space-y-0.5">
+                  <div className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-primary" />
+                    Select a Convenient 20-Min Slot
                   </div>
-                  <div className="w-12 h-12 rounded-xl bg-primary/15 border border-primary/25 flex items-center justify-center text-primary shrink-0">
-                    <Calendar className="w-6 h-6" />
-                  </div>
+                  <p className="text-[11px] text-muted-foreground">
+                    Real-time availability directly synced with Sarabjeet's calendar.
+                  </p>
                 </div>
-
                 <a
                   href="https://calendly.com/srt10/20"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackGoogleAdsConversion({ eventLabel: "service_modal_tab_calendly_click" })}
-                  className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-primary text-primary-foreground font-semibold text-sm shadow-md shadow-primary/25 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 transition-all group"
+                  className="text-[11px] text-primary hover:underline flex items-center gap-1 shrink-0 font-medium"
                 >
-                  <span>Select Time on Calendly</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  Open full page <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
 
-              {/* Alternative Direct Channels */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <a
-                  href="mailto:sarabjitrattan@gmail.com?subject=Architecture%20Discovery%20Call%20Request"
-                  className="p-3.5 rounded-xl bg-card border border-border/70 hover:border-primary/50 transition-all group flex items-center justify-between"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                      <Mail className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-xs text-foreground">Email Scheduler</div>
-                      <div className="text-[10px] text-muted-foreground">sarabjitrattan@gmail.com</div>
-                    </div>
-                  </div>
-                  <ExternalLink className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
-                </a>
+              {/* Embedded Interactive Calendly Widget */}
+              <CalendlyEmbed
+                minHeight="540px"
+                prefill={{
+                  name: name.trim() || undefined,
+                  email: email.trim() || undefined,
+                }}
+                onBookingComplete={() => {
+                  toast.success("Meeting confirmed! Looking forward to discussing your project.");
+                  setIsSuccess(true);
+                }}
+              />
 
-                <a
-                  href={siteConfig.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3.5 rounded-xl bg-card border border-border/70 hover:border-blue-500/50 transition-all group flex items-center justify-between"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-2 rounded-lg bg-blue-500/10 text-blue-500">
-                      <ExternalLink className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-xs text-foreground">LinkedIn Message</div>
-                      <div className="text-[10px] text-muted-foreground">Direct Chat with Builder</div>
-                    </div>
-                  </div>
-                  <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-blue-500 transition-colors" />
-                </a>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-muted/40 border border-border/40 text-xs text-muted-foreground flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-primary shrink-0" />
-                <span>Zero sales reps. Direct, confidential architectural assessment with the engineer.</span>
+              <div className="p-3 rounded-xl bg-muted/40 border border-border/40 text-[11px] text-muted-foreground flex items-center gap-2">
+                <ShieldCheck className="w-3.5 h-3.5 text-primary shrink-0" />
+                <span>Zero sales reps. Direct, confidential 1-on-1 architectural assessment.</span>
               </div>
             </div>
           ) : (

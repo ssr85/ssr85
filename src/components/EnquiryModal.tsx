@@ -10,6 +10,8 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { executeRecaptcha } from "@/lib/recaptcha";
 import { trackGoogleAdsConversion } from "@/lib/conversion";
+import { Sparkles, Calendar, MessageSquare, ExternalLink, Send, Loader2, ShieldCheck } from "lucide-react";
+import { CalendlyEmbed } from "@/components/CalendlyEmbed";
 
 const enquirySchema = z.object({
   name: z
@@ -47,6 +49,7 @@ interface EnquiryModalProps {
 }
 
 export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
+  const [activeTab, setActiveTab] = useState<"form" | "calendar">("form");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -54,6 +57,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<EnquiryFormData>({
     resolver: zodResolver(enquirySchema),
@@ -65,6 +69,8 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
       requirement: "",
     },
   });
+
+  const formData = watch();
 
   const onSubmit = async (data: EnquiryFormData) => {
     setIsSubmitting(true);
@@ -139,9 +145,9 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-lg p-0 overflow-hidden bg-background/95 backdrop-blur-2xl border border-border/80 shadow-2xl rounded-[2rem]">
+      <DialogContent className="sm:max-w-[620px] p-0 overflow-hidden bg-background/95 backdrop-blur-2xl border border-border/80 shadow-2xl rounded-[2rem]">
         {/* Double Bezel Outer / Header */}
-        <div className="p-6 md:p-8 bg-gradient-to-b from-muted/50 to-transparent border-b border-border/60">
+        <div className="p-6 md:p-8 pb-4 bg-gradient-to-b from-muted/50 to-transparent border-b border-border/60">
           <DialogHeader className="space-y-2">
             <div className="flex items-center gap-2">
               <span className="badge-eyebrow text-[10px]">
@@ -153,28 +159,77 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               Initiate Discussion.
             </DialogTitle>
             <DialogDescription className="text-muted-foreground text-xs md:text-sm font-light leading-relaxed">
-              Share your project or architectural requirements. I typically respond within 24 hours.
+              Share your project or schedule a dedicated 20-minute architecture discovery call.
             </DialogDescription>
           </DialogHeader>
+
+          {/* Modal Tabs */}
+          <div className="flex rounded-xl bg-muted/60 p-1 mt-4 border border-border/40">
+            <button
+              type="button"
+              onClick={() => setActiveTab("form")}
+              className={`flex-1 flex items-center justify-center gap-2 py-2 text-xs font-semibold rounded-lg transition-all ${
+                activeTab === "form"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <MessageSquare className="w-3.5 h-3.5 text-primary" />
+              Submit Scope Form
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab("calendar")}
+              className={`flex-1 flex items-center justify-center gap-2 py-2 text-xs font-semibold rounded-lg transition-all ${
+                activeTab === "calendar"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <Calendar className="w-3.5 h-3.5 text-blue-500" />
+              Live Calendar Booking
+            </button>
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-6 md:p-8 pt-4">
-          {/* Quick Calendly Shortcut */}
-          <div className="flex items-center justify-between p-3 rounded-xl bg-primary/10 border border-primary/20 text-xs">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-primary shrink-0" />
-              <span className="text-foreground font-medium">Prefer to pick a live 20-min slot?</span>
+        {activeTab === "calendar" ? (
+          <div className="p-6 md:p-8 pt-4 space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-muted-foreground font-mono">
+                Select a slot below (syncs live with Sarabjeet's calendar)
+              </span>
+              <a
+                href="https://calendly.com/srt10/20"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-medium text-primary hover:underline flex items-center gap-1"
+              >
+                Open in new tab <ExternalLink className="w-3 h-3" />
+              </a>
             </div>
-            <a
-              href="https://calendly.com/srt10/20"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackGoogleAdsConversion({ eventLabel: "calendly_shortcut_click" })}
-              className="inline-flex items-center gap-1 font-semibold text-primary hover:underline shrink-0"
-            >
-              Book on Calendly <ExternalLink className="w-3 h-3" />
-            </a>
+
+            <CalendlyEmbed
+              minHeight="540px"
+              prefill={{
+                name: formData.name || undefined,
+                email: formData.email || undefined,
+              }}
+              onBookingComplete={() => {
+                toast({
+                  title: "Appointment Confirmed!",
+                  description: "Your session is locked in. Looking forward to our conversation.",
+                });
+                onClose();
+              }}
+            />
+
+            <div className="p-3 rounded-xl bg-muted/40 border border-border/40 text-[11px] text-muted-foreground flex items-center gap-2">
+              <ShieldCheck className="w-3.5 h-3.5 text-primary shrink-0" />
+              <span>Conversions tracked automatically upon confirmed slot reservation.</span>
+            </div>
           </div>
+        ) : (
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-6 md:p-8 pt-4">
 
           {/* Name & Phone in 2-col on desktop */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -310,6 +365,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
             </Button>
           </div>
         </form>
+        )}
       </DialogContent>
     </Dialog>
   );
