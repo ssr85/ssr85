@@ -1,27 +1,65 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { createClient } from '@supabase/supabase-js';
 
-const SUPABASE_URL =
-  (process.env.SUPABASE_URL && !process.env.SUPABASE_URL.includes('ecpmdlsrqyliuukqhyhg') ? process.env.SUPABASE_URL : null) ||
-  process.env.VITE_SUPABASE_URL ||
-  process.env.VITE_PUBLIC_SUPABASE_URL ||
-  'https://bwpemzjwrrszygszuitc.supabase.co';
-
-const MASTER_SERVICE_ROLE_KEY =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3cGVtemp3cnJzenlnc3p1aXRjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MDgwMTg1MiwiZXhwIjoyMTA2Mzc3ODUyfQ.h1nj0cx0sLR6W3QZXVnBo4jRwLYfnMIFMZTYU3-1gJ4';
-
-const SUPABASE_SERVICE_ROLE_KEY =
-  (process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.SUPABASE_SERVICE_ROLE_KEY.length > 50 ? process.env.SUPABASE_SERVICE_ROLE_KEY : null) ||
-  MASTER_SERVICE_ROLE_KEY;
+const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || 'https://bwpemzjwrrszygszuitc.supabase.co';
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
+  }
+
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+    return res.status(500).json({ error: 'Server configuration error: missing Supabase credentials' });
+  }
+
+  // Handle lead status updates via PATCH or POST
+  if (req.method === 'PATCH' || req.method === 'POST') {
+    try {
+      const { id, lead_status, status } = req.body || {};
+      const newStatus = lead_status || status;
+
+      if (!id || !newStatus) {
+        return res.status(400).json({ error: 'Missing lead id or lead_status' });
+      }
+
+      const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+
+      // Attempt update on both service_leads and enquiries tables
+      const [slUpdate, enqUpdate] = await Promise.allSettled([
+        supabaseAdmin.from('service_leads').update({ lead_status: newStatus }).eq('id', id),
+        supabaseAdmin.from('enquiries').update({ lead_status: newStatus }).eq('id', id),
+      ]);
+
+      const isSlSuccess = slUpdate.status === 'fulfilled' && !slUpdate.value.error;
+      const isEnqSuccess = enqUpdate.status === 'fulfilled' && !enqUpdate.value.error;
+
+      if (!isSlSuccess && !isEnqSuccess) {
+        const errDetail =
+          (slUpdate.status === 'fulfilled' && slUpdate.value.error?.message) ||
+          (enqUpdate.status === 'fulfilled' && enqUpdate.value.error?.message) ||
+          'Failed to update lead in database';
+        return res.status(500).json({ error: errDetail });
+      }
+
+      return res.status(200).json({
+        success: true,
+        message: `Lead status updated to ${newStatus}`,
+        updatedId: id,
+        newStatus,
+      });
+    } catch (updateErr) {
+      console.error('Error updating lead status in /api/leads:', updateErr);
+      return res.status(500).json({
+        error: 'Failed to update lead',
+        details: updateErr instanceof Error ? updateErr.message : String(updateErr),
+      });
+    }
   }
 
   if (req.method !== 'GET') {
@@ -29,25 +67,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    let supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+    const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
     // Fetch from both service_leads and enquiries
-    let [slResult, enqResult] = await Promise.allSettled([
+    const [slResult, enqResult] = await Promise.allSettled([
       supabaseAdmin.from('service_leads').select('*').order('created_at', { ascending: false }),
       supabaseAdmin.from('enquiries').select('*').order('created_at', { ascending: false }),
     ]);
-
-    // If query failed due to invalid env key, retry with MASTER_SERVICE_ROLE_KEY
-    const slFailed = slResult.status !== 'fulfilled' || slResult.value.error;
-    const enqFailed = enqResult.status !== 'fulfilled' || enqResult.value.error;
-    if ((slFailed || enqFailed) && SUPABASE_SERVICE_ROLE_KEY !== MASTER_SERVICE_ROLE_KEY) {
-      console.warn('Retrying with master key...');
-      supabaseAdmin = createClient(SUPABASE_URL, MASTER_SERVICE_ROLE_KEY);
-      [slResult, enqResult] = await Promise.allSettled([
-        supabaseAdmin.from('service_leads').select('*').order('created_at', { ascending: false }),
-        supabaseAdmin.from('enquiries').select('*').order('created_at', { ascending: false }),
-      ]);
-    }
 
     const serviceLeads = slResult.status === 'fulfilled' && slResult.value.data ? slResult.value.data : [];
     const rawEnquiries = enqResult.status === 'fulfilled' && enqResult.value.data ? enqResult.value.data : [];

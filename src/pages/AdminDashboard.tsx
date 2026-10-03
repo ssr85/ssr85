@@ -321,16 +321,33 @@ export const AdminDashboard = () => {
 
   const updateLeadStatus = async (leadId: string, newStatus: string) => {
     try {
-      const { error } = await supabase
-        .from("service_leads")
-        .update({ lead_status: newStatus })
-        .eq("id", leadId);
-      if (error) throw error;
+      // 1. Update via serverless executive API (uses service_role key to bypass RLS)
+      const res = await fetch("/api/leads", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: leadId, lead_status: newStatus }),
+      });
+
+      if (!res.ok) {
+        // Fallback to direct client if API fails
+        const { error: directError } = await supabase
+          .from("service_leads")
+          .update({ lead_status: newStatus })
+          .eq("id", leadId);
+        if (directError) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.error || directError.message || `HTTP ${res.status}`);
+        }
+      }
+
       setLeads((prev) =>
         prev.map((l) => (l.id === leadId ? { ...l, lead_status: newStatus } : l))
       );
       toast.success(`Lead status updated to ${newStatus}`);
     } catch (err: unknown) {
+      console.error("Error updating lead status:", err);
       toast.error(err instanceof Error ? err.message : "Failed to update lead");
     }
   };
