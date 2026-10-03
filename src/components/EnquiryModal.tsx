@@ -142,9 +142,9 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-lg p-0 overflow-hidden bg-[#070a0f] border border-white/[0.12] shadow-2xl rounded-[2rem]">
+      <DialogContent className="sm:max-w-lg p-0 overflow-hidden bg-background/95 backdrop-blur-2xl border border-border/80 shadow-2xl rounded-[2rem]">
         {/* Double Bezel Outer / Header */}
-        <div className="p-6 md:p-8 bg-gradient-to-b from-white/[0.04] to-transparent border-b border-white/[0.08]">
+        <div className="p-6 md:p-8 bg-gradient-to-b from-muted/50 to-transparent border-b border-border/60">
           <DialogHeader className="space-y-2">
             <div className="flex items-center gap-2">
               <span className="badge-eyebrow text-[10px]">
@@ -189,7 +189,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                 placeholder="e.g. Alex Walker"
                 {...register("name")}
                 aria-invalid={!!errors.name}
-                className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl"
+                className="bg-card border-border/80 focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl"
               />
               {errors.name && <p className="text-[11px] text-destructive">{errors.name.message}</p>}
             </div>
@@ -203,7 +203,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                 placeholder="+14155552671"
                 {...register("phone")}
                 aria-invalid={!!errors.phone}
-                className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl font-mono"
+                className="bg-card border-border/80 focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl font-mono"
               />
               {errors.phone && <p className="text-[11px] text-destructive">{errors.phone.message}</p>}
             </div>
@@ -221,7 +221,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                 placeholder="alex@enterprise.com"
                 {...register("email")}
                 aria-invalid={!!errors.email}
-                className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl"
+                className="bg-card border-border/80 focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl"
               />
               {errors.email && <p className="text-[11px] text-destructive">{errors.email.message}</p>}
             </div>
@@ -235,7 +235,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                 placeholder="Enterprise Inc."
                 {...register("companyName")}
                 aria-invalid={!!errors.companyName}
-                className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl"
+                className="bg-card border-border/80 focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl"
               />
               {errors.companyName && <p className="text-[11px] text-destructive">{errors.companyName.message}</p>}
             </div>
@@ -252,7 +252,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
               rows={4}
               {...register("requirement")}
               aria-invalid={!!errors.requirement}
-              className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl resize-none"
+              className="bg-card border-border/80 focus:border-primary/50 text-foreground placeholder:text-muted-foreground text-sm rounded-xl resize-none"
             />
             {errors.requirement && <p className="text-[11px] text-destructive">{errors.requirement.message}</p>}
           </div>
@@ -281,13 +281,13 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
           </p>
 
           {/* Action Buttons */}
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/[0.08]">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-border/60">
             <Button
               type="button"
               variant="outline"
               onClick={onClose}
               disabled={isSubmitting}
-              className="rounded-full px-5 text-xs border-white/[0.1] hover:bg-white/[0.05]"
+              className="rounded-full px-5 text-xs"
             >
               Cancel
             </Button>
