@@ -19,7 +19,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!assets/|images/|fonts/|favicon|.*\\..*).*)",
+      "source": "/((?!api/|assets/|images/|fonts/|favicon|.*\\..*).*)",
       "destination": "/index.html"
     }
   ]

@@ -322,7 +322,7 @@ export const AdminDashboard = () => {
   const updateLeadStatus = async (leadId: string, newStatus: string) => {
     try {
       const { error } = await supabase
-        .from("enquiries")
+        .from("service_leads")
         .update({ lead_status: newStatus })
         .eq("id", leadId);
       if (error) throw error;
