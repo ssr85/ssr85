@@ -2,7 +2,11 @@
 
 **Account ID:** `907-843-6805` (Normalized: `9078436805`)
 **Daily Budget:** ₹300.00 / day
-**Targeting Locations:** United States, United Kingdom, Canada, Australia (Presence Only)
+**Targeting Locations:**
+* **India Urban (Tier-1 Tech Hubs):** Bengaluru, Mumbai, Delhi, Gurugram, Noida, Hyderabad, Pune, Chennai
+* **EU Core Markets:** Germany (`DE`), Netherlands (`NL`), Ireland (`IE`), Sweden (`SE`), France (`FR`)
+* **Western & Tier-1 Global:** United States, United Kingdom, Canada, Australia, Singapore, UAE
+* **Targeting Mode:** Presence Only (People in or regularly in your targeted locations)
 **Network:** Google Search Network Only (Search Partners & Display Expansion: **DISABLED**)
 **Bidding Strategy:** Maximize Clicks with Max CPC Bid Cap = **₹45.00** (~$0.55)
 

@@ -8,7 +8,11 @@ This document provides ready-to-import campaign assets, Responsive Search Ads (R
 * **Campaign Objective:** Leads
 * **Campaign Type:** Search Network
 * **Networks:** Google Search only (Disable Search Partners & Display Network)
-* **Location:** United States, United Kingdom, Canada, Australia, Germany (Tier 1 B2B / High Purchasing Power)
+* **Locations:**
+  * **India Urban (Tier-1 Tech Hubs):** Bengaluru, Mumbai, Delhi, Gurugram, Noida, Hyderabad, Pune, Chennai
+  * **EU Priority:** Germany (`DE`), Netherlands (`NL`), Ireland (`IE`), Sweden (`SE`), France (`FR`)
+  * **Western & Global:** United States, United Kingdom, Canada, Australia, Singapore, UAE
+* **Location Targeting Mode:** Presence only
 * **Languages:** English
 * **Bidding Strategy:** Maximize Clicks with Max CPC Bid Cap ($2.50–$3.50) initially $\to$ Switch to Target CPA after 30 conversions.
 
