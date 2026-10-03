@@ -30,20 +30,27 @@ interface ServiceLeadModalProps {
   onClose: () => void;
   defaultService?: string;
   serviceTitle?: string;
+  initialService?: string;
+  initialRequirement?: string;
 }
 
 export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
   isOpen,
   onClose,
-  defaultService = "custom-ai-solutions",
-  serviceTitle = "Custom Engineering Consultation",
+  defaultService,
+  serviceTitle,
+  initialService,
+  initialRequirement = "",
 }) => {
+  const effectiveTitle = serviceTitle || initialService || "Custom Engineering Consultation";
+  const effectiveService = defaultService || initialService || serviceTitle || "custom-engineering";
+
   const [activeTab, setActiveTab] = useState<"form" | "call">("form");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
-  const [requirement, setRequirement] = useState("");
+  const [requirement, setRequirement] = useState(initialRequirement);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -51,8 +58,11 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
     if (isOpen) {
       setIsSuccess(false);
       setActiveTab("form");
+      if (initialRequirement && !requirement) {
+        setRequirement(initialRequirement);
+      }
     }
-  }, [isOpen]);
+  }, [isOpen, initialRequirement]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,7 +88,7 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
           phone: phone.trim() || "N/A",
           companyName: company.trim() || undefined,
           requirement: requirement.trim(),
-          targetService: defaultService,
+          targetService: effectiveService,
           leadType: "CONSULTATION",
           leadStatus: "NEW",
           sourceUrl: currentPath,
@@ -100,7 +110,7 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
       if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag === "function") {
         (window as unknown as { gtag: (...args: unknown[]) => void }).gtag("event", "generate_lead", {
           event_category: "Service Consultation",
-          event_label: defaultService,
+          event_label: effectiveService,
           value: 1,
         });
       }
@@ -125,7 +135,7 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
               Direct Engineering Inquiry
             </div>
             <DialogTitle className="text-2xl font-bold tracking-tight text-foreground">
-              {serviceTitle}
+              {effectiveTitle}
             </DialogTitle>
             <DialogDescription className="text-muted-foreground text-sm mt-1">
               Discuss your architecture, technical bottlenecks, or custom software requirements directly with Sarabjeet Rattan.

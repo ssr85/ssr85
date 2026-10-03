@@ -239,6 +239,8 @@ export const WooCommercePerformance = () => {
         isOpen={isLeadModalOpen}
         onClose={() => setIsLeadModalOpen(false)}
         initialService="WooCommerce Database & Checkout Performance Overhaul"
+        serviceTitle="WooCommerce Performance & Checkout Speed Overhaul"
+        initialRequirement="Looking for a high-concurrency WooCommerce performance audit, checkout speed optimization, and database cleanup for our store."
       />
     </div>
   );

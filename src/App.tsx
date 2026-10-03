@@ -32,6 +32,7 @@ const CustomSessionEngines = lazy(() => import("./pages/insights/CustomSessionEn
 const CustomCrmSync = lazy(() => import("./pages/insights/CustomCrmSync"));
 const SheetsAppsScript = lazy(() => import("./pages/insights/SheetsAppsScript"));
 const HeadlessWordPressVite = lazy(() => import("./pages/insights/HeadlessWordPressVite"));
+const EuGdprCompliance = lazy(() => import("./pages/insights/EuGdprCompliance"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 
 import { ScrollRestoration } from "@/components/ScrollRestoration";
@@ -116,6 +117,10 @@ export const routes = [
   {
     path: "/insights/headless-wordpress-vite-architecture",
     element: <HeadlessWordPressVite />,
+  },
+  {
+    path: "/insights/eu-gdpr-compliance-ecommerce-websites",
+    element: <EuGdprCompliance />,
   },
   {
     path: "/tools/architecture-scope-estimator",

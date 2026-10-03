@@ -217,6 +217,7 @@ export const HeadlessWordPressVite = () => {
         onClose={() => setIsLeadModalOpen(false)}
         defaultService="headless-wordpress-vite-ssg"
         serviceTitle="Headless WordPress & React/Vite Consultation"
+        initialRequirement="Looking to modernize our legacy WordPress site into a decoupled Headless React/Vite architecture with sub-500ms TTFB and perfect Core Web Vitals."
       />
     </div>
   );

@@ -683,6 +683,7 @@ export const AiWordPressDevelopment = () => {
         onClose={() => setIsLeadModalOpen(false)}
         defaultService={selectedService}
         serviceTitle="WordPress Engineering & Custom Plugin Consultation"
+        initialRequirement="Looking for custom full-stack WordPress engineering, bespoke AI plugin development, or custom REST API infrastructure."
       />
     </div>
   );

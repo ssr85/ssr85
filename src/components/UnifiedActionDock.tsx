@@ -55,6 +55,13 @@ export const UnifiedActionDock = () => {
   const { actionLabel, defaultProjectType, icon: ActionIcon } = (() => {
     const path = location.pathname;
 
+    if (path.includes("gdpr") || path.includes("consent")) {
+      return {
+        actionLabel: "GDPR Audit Scope",
+        defaultProjectType: "AI_WORDPRESS" as ProjectType,
+        icon: ShieldCheck,
+      };
+    }
     if (path.includes("woocommerce")) {
       return {
         actionLabel: "WooCommerce Scope",
