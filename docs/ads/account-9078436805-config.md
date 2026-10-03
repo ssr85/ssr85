@@ -51,7 +51,7 @@ Because daily budget is ₹300, we use **Exact Match only** `[...]` to guarantee
 
 ### Ad Group 4: EU GDPR Compliance & Consent Architecture
 * `[gdpr audit for ecommerce]`
-* `[hire gdpr specialist for website]`
+* `[gdpr for website]`
 * `"gdpr compliance for woocommerce"`
 * `"gdpr compliance website selling in eu"`
 * `"google consent mode v2 implementation"`

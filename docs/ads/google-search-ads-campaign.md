@@ -130,7 +130,7 @@ This document provides ready-to-import campaign assets, Responsive Search Ads (R
 ### Match-Type Keywords
 ```text
 [gdpr audit for ecommerce]
-[hire gdpr specialist for website]
+[gdpr for website]
 "gdpr compliance for woocommerce"
 "gdpr compliance website selling in eu"
 "google consent mode v2 implementation"
