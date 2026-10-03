@@ -132,12 +132,32 @@ export const AdminDashboard = () => {
   const fetchDashboardData = async () => {
     setIsRefreshing(true);
     try {
-      // 1. Fetch Inbound Enquiries & Service Leads
-      const { data: leadsData } = await supabase
-        .from("enquiries")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (leadsData) setLeads(leadsData);
+      // 1. Fetch Inbound Enquiries & Service Leads via Executive Endpoint
+      let fetchedLeads: Record<string, any>[] = [];
+      try {
+        const res = await fetch("/api/leads");
+        if (res.ok) {
+          const json = await res.json();
+          if (json?.leads && Array.isArray(json.leads)) {
+            fetchedLeads = json.leads;
+          }
+        }
+      } catch (apiErr) {
+        console.warn("API /api/leads fetch error, using direct Supabase fallback:", apiErr);
+      }
+
+      if (fetchedLeads.length === 0) {
+        const [enqRes, slRes] = await Promise.allSettled([
+          supabase.from("enquiries").select("*").order("created_at", { ascending: false }),
+          supabase.from("service_leads").select("*").order("created_at", { ascending: false }),
+        ]);
+
+        const directEnq = enqRes.status === "fulfilled" && enqRes.value.data ? enqRes.value.data : [];
+        const directSL = slRes.status === "fulfilled" && slRes.value.data ? slRes.value.data : [];
+        fetchedLeads = [...directSL, ...directEnq];
+      }
+
+      setLeads(fetchedLeads);
 
       // 2. Fetch Keyword Metrics
       const { data: kwData } = await supabase

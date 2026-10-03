@@ -209,32 +209,49 @@ Sent via Portfolio Vercel Backend Engine
         })
       : Promise.resolve(null);
 
-    // 5. Save directly to Supabase 'enquiries' table (service role bypasses RLS safely)
-    const dbInsert = SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY
-      ? createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY).from('enquiries').insert({
+    // 5. Save directly to Supabase tables (service role bypasses RLS safely)
+    let dbInsertPromise: Promise<unknown> = Promise.resolve(null);
+    if (SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY) {
+      const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+      
+      const phoneForEnquiries = cleanPhone !== 'N/A' && cleanPhone.trim() ? cleanPhone : '+91-0000000000';
+      const formattedRequirement = `[${cleanLeadType}] ${cleanTargetService ? `(${cleanTargetService}) ` : ''}${cleanRequirement}`;
+
+      dbInsertPromise = Promise.allSettled([
+        // Table 1: enquiries
+        supabaseAdmin.from('enquiries').insert({
+          name: cleanName,
+          email: cleanEmail,
+          phone: phoneForEnquiries,
+          company_name: companyName || null,
+          requirement: formattedRequirement,
+          client_ip: clientIP,
+          recaptcha_score: recaptchaScore,
+        }),
+        // Table 2: service_leads
+        supabaseAdmin.from('service_leads').insert({
           name: cleanName,
           email: cleanEmail,
           phone: cleanPhone !== 'N/A' ? cleanPhone : null,
           company_name: companyName || null,
-          requirement: cleanRequirement,
-          target_service: cleanTargetService,
-          lead_type: cleanLeadType,
-          lead_status: leadStatus,
+          target_service: cleanTargetService || 'general-consultation',
+          requirement: formattedRequirement,
           source_url: sourceUrl || null,
           utm_source: utmSource || null,
           utm_medium: utmMedium || null,
           utm_campaign: utmCampaign || null,
           referring_query: referringQuery || null,
+          lead_status: leadStatus || 'NEW',
           client_ip: clientIP,
-          recaptcha_score: recaptchaScore,
-        })
-      : Promise.resolve(null);
+        }),
+      ]);
+    }
 
     // Execute email, sheet, and DB write concurrently
     const [emailResult, sheetResult, dbResult] = await Promise.allSettled([
       emailPromise,
       sheetPromise,
-      dbInsert,
+      dbInsertPromise,
     ]);
 
     if (emailResult.status === 'rejected') {
@@ -247,8 +264,6 @@ Sent via Portfolio Vercel Backend Engine
 
     if (dbResult.status === 'rejected') {
       console.error('Supabase insert failed:', dbResult.reason);
-    } else if (dbResult.value && 'error' in dbResult.value && dbResult.value.error) {
-      console.error('Supabase insert error:', dbResult.value.error);
     }
 
     return res.status(200).json({ success: true, message: 'Enquiry received successfully' });

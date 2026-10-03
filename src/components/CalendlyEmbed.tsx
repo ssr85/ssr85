@@ -74,10 +74,18 @@ export const CalendlyEmbed: React.FC<CalendlyEmbedProps> = ({
       // Security & event verification
       if (!e.origin.includes("calendly.com")) return;
 
-      const data = e.data;
+      let data = e.data;
+      if (typeof data === "string") {
+        try {
+          data = JSON.parse(data);
+        } catch {
+          return;
+        }
+      }
+
       if (!data || typeof data !== "object") return;
 
-      const eventName = data.event;
+      const eventName = data.event || data.action || data.type;
 
       if (eventName === "calendly.event_scheduled") {
         console.log("[Calendly] Event Scheduled successfully!", data.payload);
