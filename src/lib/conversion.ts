@@ -1,5 +1,5 @@
 export const GOOGLE_ADS_ID = "AW-18490594666";
-export const GOOGLE_ADS_CONVERSION_LABEL = "AW-18490594666/ilDICOGGnI4dEOqqgPFE";
+export const GOOGLE_ADS_CONVERSION_LABEL = "AW-18490594666/4vO3CLOwm48dEOqqgPFE";
 
 declare global {
   interface Window {
