@@ -95,9 +95,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
     );
 
-    return res.status(200).json({ leads: unifiedLeads, count: unifiedLeads.length });
+    return res.status(200).json({
+      leads: unifiedLeads,
+      count: unifiedLeads.length,
+      debug: {
+        slResult,
+        enqResult,
+        url: SUPABASE_URL,
+        hasEnvKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+      },
+    });
   } catch (error) {
     console.error('API Error in /api/leads:', error);
-    return res.status(500).json({ error: 'Failed to fetch leads' });
+    return res.status(500).json({ error: 'Failed to fetch leads', details: error instanceof Error ? error.message : String(error) });
   }
 }
