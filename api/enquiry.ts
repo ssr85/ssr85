@@ -8,7 +8,7 @@ const GMAIL_USER = process.env.GMAIL_USER;
 const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
 const GOOGLE_SHEETS_WEBHOOK_URL = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
 const SUPABASE_URL =
-  process.env.SUPABASE_URL ||
+  (process.env.SUPABASE_URL && !process.env.SUPABASE_URL.includes('ecpmdlsrqyliuukqhyhg') ? process.env.SUPABASE_URL : null) ||
   process.env.VITE_SUPABASE_URL ||
   process.env.VITE_PUBLIC_SUPABASE_URL ||
   'https://bwpemzjwrrszygszuitc.supabase.co';
@@ -17,9 +17,7 @@ const MASTER_SERVICE_ROLE_KEY =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3cGVtemp3cnJzenlnc3p1aXRjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MDgwMTg1MiwiZXhwIjoyMTA2Mzc3ODUyfQ.h1nj0cx0sLR6W3QZXVnBo4jRwLYfnMIFMZTYU3-1gJ4';
 
 const SUPABASE_SERVICE_ROLE_KEY =
-  process.env.SUPABASE_SERVICE_ROLE_KEY ||
-  process.env.VITE_SUPABASE_SERVICE_ROLE_KEY ||
-  process.env.SUPABASE_SERVICE_KEY ||
+  (process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.SUPABASE_SERVICE_ROLE_KEY.length > 50 ? process.env.SUPABASE_SERVICE_ROLE_KEY : null) ||
   MASTER_SERVICE_ROLE_KEY;
 
 const RECAPTCHA_SCORE_THRESHOLD = 0.5;
