@@ -664,7 +664,9 @@ export const AdminDashboard = () => {
                         <td className="p-3.5 whitespace-nowrap">
                           <span
                             className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider ${
-                              lead.lead_type === "CONSULTATION"
+                              lead.lead_type === "CALENDLY_BOOKING"
+                                ? "bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm"
+                                : lead.lead_type === "CONSULTATION"
                                 ? "bg-primary/15 text-primary border border-primary/20"
                                 : lead.lead_type === "NEWSLETTER"
                                 ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/20"
@@ -673,7 +675,7 @@ export const AdminDashboard = () => {
                                 : "bg-blue-500/15 text-blue-400 border border-blue-500/20"
                             }`}
                           >
-                            {lead.lead_type || "ENQUIRY"}
+                            {lead.lead_type === "CALENDLY_BOOKING" ? "📅 CALENDLY CALL" : lead.lead_type || "ENQUIRY"}
                           </span>
                         </td>
                         <td className="p-3.5">

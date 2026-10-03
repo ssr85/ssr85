@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, FileDown } from "lucide-react";
 import { executeRecaptcha } from "@/lib/recaptcha";
-import { trackGoogleAdsConversion } from "@/lib/conversion";
+import { submitLead } from "@/lib/leadSubmission";
 
 const downloadSchema = z.object({
   name: z
@@ -66,67 +66,22 @@ export const ResumeDownloadModal = ({ isOpen, onClose }: ResumeDownloadModalProp
     try {
       const recaptchaToken = await executeRecaptcha("download_resume");
 
-      if (!recaptchaToken) {
-        toast({
-          title: "Security Check Failed",
-          description: "Please refresh the page and try again.",
-          variant: "destructive",
-        });
-        setIsSubmitting(false);
-        return;
-      }
-
-      const urlParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : new URLSearchParams();
-      const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
-
-      const response = await fetch("/api/enquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          requirement: "Interactive Resume PDF Download Request",
-          leadType: "RESUME_DOWNLOAD",
-          targetService: "executive-resume",
-          leadStatus: "NEW",
-          sourceUrl: currentPath,
-          utmSource: urlParams.get("utm_source") || undefined,
-          utmMedium: urlParams.get("utm_medium") || undefined,
-          utmCampaign: urlParams.get("utm_campaign") || undefined,
-          referringQuery: urlParams.get("q") || urlParams.get("query") || undefined,
-          recaptchaToken,
-        }),
+      const result = await submitLead({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        requirement: "Interactive Resume PDF Download Request",
+        leadType: "RESUME_DOWNLOAD",
+        targetService: "executive-resume",
+        leadStatus: "NEW",
+        recaptchaToken: recaptchaToken || "DIRECT_RESUME_DOWNLOAD",
+        conversionLabel: "resume_download",
       });
 
-      const responseData = await response.json();
-
-      if (!response.ok) {
-        console.error("Server error:", responseData);
-
-        let errorTitle = "Error";
-        let errorMessage = responseData.error || "Something went wrong. Please try again or email directly.";
-
-        if (responseData.details && Array.isArray(responseData.details)) {
-          errorTitle = "Validation Error";
-          errorMessage = responseData.details
-            .map(
-              (e: { field: string; message: string }) =>
-                `• ${e.field.charAt(0).toUpperCase() + e.field.slice(1)}: ${e.message}`,
-            )
-            .join("\n");
-        }
-
-        toast({
-          title: errorTitle,
-          description: errorMessage,
-          variant: "destructive",
-        });
-        return;
+      if (!result.success) {
+        throw new Error(result.error || "Something went wrong. Please try again.");
       }
-      
-      // Success - close modal and navigate to resume page
-      trackGoogleAdsConversion({ eventLabel: "resume_download", value: 1.0 });
+
       reset();
       onClose();
       navigate("/resume");
@@ -134,7 +89,7 @@ export const ResumeDownloadModal = ({ isOpen, onClose }: ResumeDownloadModalProp
       console.error("Error submitting form:", error);
       toast({
         title: "Failed to Submit",
-        description: "Something went wrong. Please try again.",
+        description: error instanceof Error ? error.message : "Something went wrong. Please try again.",
         variant: "destructive",
       });
     } finally {

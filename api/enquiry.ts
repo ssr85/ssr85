@@ -57,7 +57,7 @@ export interface EnquiryRequest {
   companyName?: string;
   requirement?: string;
   targetService?: string;
-  leadType?: 'CONSULTATION' | 'GENERAL_ENQUIRY' | 'RESUME_DOWNLOAD' | 'NEWSLETTER';
+  leadType?: 'CONSULTATION' | 'GENERAL_ENQUIRY' | 'RESUME_DOWNLOAD' | 'NEWSLETTER' | 'CALENDLY_BOOKING';
   leadStatus?: string;
   sourceUrl?: string;
   utmSource?: string;
@@ -116,7 +116,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     let recaptchaScore = 1.0;
     const isDirectBypass =
       recaptchaToken &&
-      (recaptchaToken.startsWith('DIRECT_') || recaptchaToken === 'DIRECT_SERVICE_LEAD' || recaptchaToken === 'DIRECT_NEWSLETTER_SUBSCRIBE');
+      (recaptchaToken.startsWith('DIRECT_') ||
+        recaptchaToken === 'DIRECT_SERVICE_LEAD' ||
+        recaptchaToken === 'DIRECT_NEWSLETTER_SUBSCRIBE' ||
+        recaptchaToken === 'DIRECT_RESUME_DOWNLOAD' ||
+        recaptchaToken === 'EMBEDDED_CALENDLY_EVENT');
 
     if (recaptchaToken && !isDirectBypass && RECAPTCHA_SECRET_KEY) {
       try {

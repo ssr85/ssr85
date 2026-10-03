@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
-import { trackGoogleAdsConversion } from "@/lib/conversion";
+import { submitLead } from "@/lib/leadSubmission";
 import { Loader2 } from "lucide-react";
 
 interface CalendlyEmbedProps {
@@ -82,42 +82,24 @@ export const CalendlyEmbed: React.FC<CalendlyEmbedProps> = ({
       if (eventName === "calendly.event_scheduled") {
         console.log("[Calendly] Event Scheduled successfully!", data.payload);
 
-        // 1. Dispatch Google Ads & GA4 conversion
-        trackGoogleAdsConversion({
-          eventLabel: "calendly_appointment_confirmed",
-          value: 1.0,
-        });
-
-        // 2. Log conversion to Supabase /api/enquiry
+        // Submit lead through unified dual-layer intake engine
         try {
-          const urlParams = new URLSearchParams(window.location.search);
-          const currentPath = window.location.pathname;
-
-          await fetch("/api/enquiry", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              name: prefill?.name || "Calendly Scheduled Client",
-              email: prefill?.email || "calendly-confirmed@booking.com",
-              phone: "CALENDLY_CONFIRMED",
-              requirement: "1-on-1 Architecture Discovery confirmed via embedded Calendly widget.",
-              leadType: "CALENDLY_BOOKING",
-              leadStatus: "QUALIFIED",
-              targetService: "architecture-discovery-call",
-              sourceUrl: currentPath,
-              gclid: urlParams.get("gclid") || undefined,
-              utmSource: urlParams.get("utm_source") || undefined,
-              utmMedium: urlParams.get("utm_medium") || undefined,
-              utmCampaign: urlParams.get("utm_campaign") || undefined,
-              referringQuery: urlParams.get("q") || urlParams.get("query") || undefined,
-              recaptchaToken: "EMBEDDED_CALENDLY_EVENT",
-            }),
+          await submitLead({
+            name: prefill?.name || "Calendly Client",
+            email: prefill?.email || "calendly-booking@client.com",
+            phone: "CALENDLY_CONFIRMED",
+            requirement: "1-on-1 Architecture Discovery confirmed via embedded Calendly widget.",
+            leadType: "CALENDLY_BOOKING",
+            leadStatus: "QUALIFIED",
+            targetService: "architecture-discovery-call",
+            recaptchaToken: "EMBEDDED_CALENDLY_EVENT",
+            conversionLabel: "calendly_appointment_confirmed",
           });
         } catch (err) {
-          console.error("Error logging Calendly lead:", err);
+          console.error("[Calendly] Error processing lead:", err);
         }
 
-        // 3. Trigger parent callback if provided
+        // Trigger parent callback if provided
         if (onBookingComplete) {
           onBookingComplete(data.payload);
         }

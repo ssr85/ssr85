@@ -10,6 +10,7 @@ import type { ProjectType } from "@/lib/calculator/estimator-engine";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { submitLead } from "@/lib/leadSubmission";
 
 const ArchitectureEstimatorModal = lazy(() =>
   import("@/components/tools/ArchitectureEstimatorModal").then((m) => ({
@@ -132,31 +133,20 @@ export const UnifiedActionDock = () => {
 
     try {
       const currentPath = location.pathname;
-      const urlParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : new URLSearchParams();
 
-      const response = await fetch("/api/enquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: "Newsletter Subscriber",
-          email: cleanEmail,
-          phone: "N/A",
-          requirement: `Newsletter subscription from ${currentPath}`,
-          targetService: "engineering-newsletter",
-          leadType: "NEWSLETTER",
-          leadStatus: "NEW",
-          sourceUrl: currentPath,
-          utmSource: urlParams.get("utm_source") || undefined,
-          utmMedium: urlParams.get("utm_medium") || undefined,
-          utmCampaign: urlParams.get("utm_campaign") || undefined,
-          referringQuery: urlParams.get("q") || urlParams.get("query") || undefined,
-          recaptchaToken: "DIRECT_NEWSLETTER_SUBSCRIBE",
-        }),
+      const result = await submitLead({
+        name: "Newsletter Subscriber",
+        email: cleanEmail,
+        requirement: `Newsletter subscription from ${currentPath}`,
+        targetService: "engineering-newsletter",
+        leadType: "NEWSLETTER",
+        leadStatus: "NEW",
+        recaptchaToken: "DIRECT_NEWSLETTER_SUBSCRIBE",
+        conversionLabel: "newsletter_subscription",
       });
 
-      if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.error || "Subscription failed");
+      if (!result.success) {
+        throw new Error(result.error || "Subscription failed");
       }
 
       setIsSubscribed(true);

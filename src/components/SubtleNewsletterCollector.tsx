@@ -11,6 +11,7 @@ import {
   Loader2,
   ShieldCheck,
 } from "lucide-react";
+import { submitLead } from "@/lib/leadSubmission";
 
 export const SubtleNewsletterCollector = () => {
   const [email, setEmail] = useState("");
@@ -58,33 +59,20 @@ export const SubtleNewsletterCollector = () => {
     try {
       const currentPath =
         typeof window !== "undefined" ? window.location.pathname : "/";
-      const urlParams = new URLSearchParams(
-        typeof window !== "undefined" ? window.location.search : ""
-      );
 
-      const response = await fetch("/api/enquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: "Newsletter Subscriber",
-          email: cleanEmail,
-          phone: "N/A",
-          requirement: `Newsletter subscription initiated from ${currentPath}`,
-          targetService: "engineering-newsletter",
-          leadType: "NEWSLETTER",
-          leadStatus: "NEW",
-          sourceUrl: currentPath,
-          utmSource: urlParams.get("utm_source") || undefined,
-          utmMedium: urlParams.get("utm_medium") || undefined,
-          utmCampaign: urlParams.get("utm_campaign") || undefined,
-          referringQuery: urlParams.get("q") || urlParams.get("query") || undefined,
-          recaptchaToken: "DIRECT_NEWSLETTER_SUBSCRIBE",
-        }),
+      const result = await submitLead({
+        name: "Newsletter Subscriber",
+        email: cleanEmail,
+        requirement: `Newsletter subscription initiated from ${currentPath}`,
+        targetService: "engineering-newsletter",
+        leadType: "NEWSLETTER",
+        leadStatus: "NEW",
+        recaptchaToken: "DIRECT_NEWSLETTER_SUBSCRIBE",
+        conversionLabel: "newsletter_subscription",
       });
 
-      if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.error || "Subscription failed");
+      if (!result.success) {
+        throw new Error(result.error || "Subscription failed");
       }
 
       // 3. Dispatch GA4 event

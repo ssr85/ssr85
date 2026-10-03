@@ -24,7 +24,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { siteConfig } from "@/data/content";
-import { trackGoogleAdsConversion } from "@/lib/conversion";
+import { submitLead } from "@/lib/leadSubmission";
 import { CalendlyEmbed } from "@/components/CalendlyEmbed";
 
 interface ServiceLeadModalProps {
@@ -76,43 +76,22 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
     setIsSubmitting(true);
 
     try {
-      // Capture UTM parameters from URL if present
-      const urlParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : new URLSearchParams();
-      const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
-
-      // Send lead through unified backend capture engine
-      const response = await fetch("/api/enquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: name.trim(),
-          email: email.trim(),
-          phone: phone.trim() || "N/A",
-          companyName: company.trim() || undefined,
-          requirement: requirement.trim(),
-          targetService: effectiveService,
-          leadType: "CONSULTATION",
-          leadStatus: "NEW",
-          sourceUrl: currentPath,
-          gclid: urlParams.get("gclid") || undefined,
-          utmSource: urlParams.get("utm_source") || undefined,
-          utmMedium: urlParams.get("utm_medium") || undefined,
-          utmCampaign: urlParams.get("utm_campaign") || undefined,
-          referringQuery: urlParams.get("q") || urlParams.get("query") || undefined,
-          recaptchaToken: "DIRECT_SERVICE_LEAD",
-        }),
+      const result = await submitLead({
+        name: name.trim(),
+        email: email.trim(),
+        phone: phone.trim() || undefined,
+        companyName: company.trim() || undefined,
+        requirement: requirement.trim(),
+        targetService: effectiveService,
+        leadType: "CONSULTATION",
+        leadStatus: "NEW",
+        recaptchaToken: "DIRECT_SERVICE_LEAD",
+        conversionLabel: `service_modal_${effectiveService}`,
       });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || "Failed to submit inquiry");
+      if (!result.success) {
+        throw new Error(result.error || "Failed to submit inquiry");
       }
-
-      // 3. Dispatch GA4 & Google Ads "Book appointment" conversion event
-      trackGoogleAdsConversion({
-        eventLabel: `service_modal_${effectiveService}`,
-        value: 1.0,
-      });
 
       setIsSuccess(true);
       toast.success("Inquiry received! Sarabjeet will review your project within 24 hours.");
