@@ -36,7 +36,17 @@ export const CalendlyEmbed: React.FC<CalendlyEmbedProps> = ({
   const embedUrl = React.useMemo(() => {
     try {
       const parsed = new URL(url);
-      parsed.searchParams.set("embed_domain", window.location.hostname);
+      if (typeof window !== "undefined") {
+        parsed.searchParams.set("embed_domain", window.location.hostname);
+        
+        // Pass through any custom answers like ?a1=... or UTMs from page URL
+        const pageParams = new URLSearchParams(window.location.search);
+        pageParams.forEach((val, key) => {
+          if (!parsed.searchParams.has(key)) {
+            parsed.searchParams.set(key, val);
+          }
+        });
+      }
       parsed.searchParams.set("embed_type", "Inline");
       parsed.searchParams.set("hide_gdpr_banner", "1");
       parsed.searchParams.set("background_color", backgroundColor);

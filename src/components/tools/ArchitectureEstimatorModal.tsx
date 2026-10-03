@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
@@ -134,7 +135,7 @@ Generated from https://sarabjeetrattan.com/tools/architecture-scope-estimator`;
     setTimeout(() => setIsCopied(false), 3000);
   };
 
-  const calendlyUrl = `https://calendly.com/srt10/20?a1=${estimate.calendlyPayload}`;
+  const bookingUrl = `/book?a1=${encodeURIComponent(estimate.calendlyPayload)}`;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -322,17 +323,15 @@ Generated from https://sarabjeetrattan.com/tools/architecture-scope-estimator`;
 
             {/* Action Buttons */}
             <div className="pt-2 flex flex-col sm:flex-row gap-2.5">
-              <a
-                href={calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackGoogleAdsConversion({ eventLabel: "estimator_modal_calendly_click" })}
+              <Link
+                to={bookingUrl}
+                onClick={onClose}
                 className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-primary text-primary-foreground font-semibold text-xs sm:text-sm shadow-md shadow-primary/25 hover:bg-primary/90 transition-all group text-center"
               >
                 <Calendar className="w-4 h-4" />
                 <span>Book 20-Min Discovery (Scope Pre-Attached)</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-              </a>
+              </Link>
               <a
                 href={siteConfig.linkedin}
                 target="_blank"

@@ -199,12 +199,10 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                 Select a slot below (syncs live with Sarabjeet's calendar)
               </span>
               <a
-                href="https://calendly.com/srt10/20"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/book"
                 className="text-xs font-medium text-primary hover:underline flex items-center gap-1"
               >
-                Open in new tab <ExternalLink className="w-3 h-3" />
+                Full booking page <ArrowRight className="w-3 h-3" />
               </a>
             </div>
 

@@ -189,17 +189,17 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
                   Lock in a dedicated 20-minute architecture discovery call directly on my calendar.
                 </p>
                 <div className="flex flex-col gap-2 pt-1">
-                  <a
-                    href="https://calendly.com/srt10/20"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackGoogleAdsConversion({ eventLabel: "service_modal_success_calendly_click" })}
-                    className="inline-flex items-center justify-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-md shadow-primary/20"
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsSuccess(false);
+                      setActiveTab("call");
+                    }}
+                    className="inline-flex items-center justify-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-md shadow-primary/20 cursor-pointer"
                   >
                     <Calendar className="w-3.5 h-3.5" />
-                    Book 20-Min on Calendly
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
+                    Select a Live Time Slot Now
+                  </button>
                   <div className="flex gap-2">
                     <a
                       href="mailto:sarabjitrattan@gmail.com?subject=Priority%20Engineering%20Discussion"
@@ -236,12 +236,10 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
                   </p>
                 </div>
                 <a
-                  href="https://calendly.com/srt10/20"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/book"
                   className="text-[11px] text-primary hover:underline flex items-center gap-1 shrink-0 font-medium"
                 >
-                  Open full page <ExternalLink className="w-3 h-3" />
+                  Full booking page <ArrowRight className="w-3 h-3" />
                 </a>
               </div>
 

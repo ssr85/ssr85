@@ -31,7 +31,7 @@ export const siteConfig = {
   phone: "+91-866-898-4323",
   linkedin: "https://www.linkedin.com/in/sarabjeetrattan/",
   github: "https://github.com/ssr85",
-  calendly: "https://calendly.com/srt10/20",
+  calendly: "/book",
   website: "https://sarabjeetrattan.com",
   meta: {
     title: "Sarabjeet Rattan | B2B AI Strategy & Automation Consultant",

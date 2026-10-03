@@ -127,7 +127,7 @@ Generated from https://sarabjeetrattan.com/tools/architecture-scope-estimator`;
     setTimeout(() => setIsCopied(false), 3000);
   };
 
-  const calendlyUrl = `https://calendly.com/srt10/20?a1=${estimate.calendlyPayload}`;
+  const bookingUrl = `/book?a1=${encodeURIComponent(estimate.calendlyPayload)}`;
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
@@ -350,17 +350,14 @@ Generated from https://sarabjeetrattan.com/tools/architecture-scope-estimator`;
 
               {/* Action Buttons */}
               <div className="pt-3 flex flex-col sm:flex-row gap-3">
-                <a
-                  href={calendlyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackGoogleAdsConversion({ eventLabel: "scope_estimator_page_calendly_click" })}
+                <Link
+                  to={bookingUrl}
                   className="flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl bg-primary text-primary-foreground font-semibold text-sm shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all group text-center"
                 >
                   <Calendar className="w-4 h-4" />
                   <span>Book 20-Min Architecture Discovery (Scope Attached)</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </a>
+                </Link>
                 <a
                   href={siteConfig.linkedin}
                   target="_blank"

@@ -90,15 +90,12 @@ export const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <a
-                    href="https://calendly.com/srt10/20"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackGoogleAdsConversion({ eventLabel: "footer_calendly_click" })}
+                  <Link
+                    to="/book"
                     className="text-primary font-semibold hover:underline inline-flex items-center gap-1"
                   >
                     Schedule 20-Min Call
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -257,24 +254,20 @@ export const Footer = () => {
                 >
                   <Github size={13} />
                 </a>
-                <a
-                  href={siteConfig.calendly}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/book"
                   className="w-8 h-8 rounded-xl bg-primary/15 border border-primary/30 text-primary hover:bg-primary/25 flex items-center justify-center transition-all duration-200"
-                  aria-label="Book a 20-min Call on Calendly"
-                  title="Book a 20-min Call on Calendly"
+                  aria-label="Book a 20-min Architecture Call"
+                  title="Book a 20-min Architecture Call"
                 >
                   <Calendar size={13} />
-                </a>
+                </Link>
               </div>
 
               {/* Direct Booking Pill Card */}
               <div className="w-full pt-1">
-                <a
-                  href={siteConfig.calendly}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/book"
                   className="w-full block p-3 rounded-xl bg-gradient-to-br from-primary/10 via-card to-card border border-primary/25 hover:border-primary/50 transition-all text-left group"
                 >
                   <div className="text-[11px] font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
@@ -282,7 +275,7 @@ export const Footer = () => {
                     <span className="text-[9px] font-mono text-primary uppercase">20 Min</span>
                   </div>
                   <p className="text-[10px] text-muted-foreground mt-0.5">Direct technical discussion with builder.</p>
-                </a>
+                </Link>
               </div>
 
               <div className="pt-1 flex justify-center md:justify-start">
