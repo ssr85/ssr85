@@ -24,6 +24,11 @@ export interface SEOProps {
   robots?: string;
   publishedTime?: string;
   modifiedTime?: string;
+  serviceSchema?: {
+    name: string;
+    description: string;
+    serviceType?: string;
+  };
 }
 
 export const SEO = ({ 
@@ -39,6 +44,7 @@ export const SEO = ({
   robots = "index, follow",
   publishedTime,
   modifiedTime,
+  serviceSchema,
 }: SEOProps) => {
   const canonicalUrl = url.endsWith("/") && url !== "https://sarabjeetrattan.com/" ? url.slice(0, -1) : url;
   const isHome = canonicalUrl === "https://sarabjeetrattan.com" || canonicalUrl === "https://sarabjeetrattan.com/";
@@ -252,12 +258,20 @@ export const SEO = ({
     }
   } : null;
 
-  // Services schema (included on homepage & pillar pages)
-  const servicesSchema = isHome ? services.map(service => ({
+  // Services schema (included on homepage & specific pillar pages)
+  const servicesSchema = serviceSchema ? [{
+    "@type": "Service",
+    "@id": `${canonicalUrl}/#service`,
+    "name": serviceSchema.name,
+    "description": serviceSchema.description,
+    "serviceType": serviceSchema.serviceType || serviceSchema.name,
+    "provider": { "@id": "https://sarabjeetrattan.com/#business" },
+    "areaServed": "Global"
+  }] : isHome ? services.map(service => ({
     "@type": "Service",
     "name": service.title,
     "description": service.description,
-    "provider": { "@id": "https://sarabjeetrattan.com/#person" }
+    "provider": { "@id": "https://sarabjeetrattan.com/#business" }
   })) : [];
 
   const jsonLdGraph = [

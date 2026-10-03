@@ -75,21 +75,6 @@ export const AdminDashboard = () => {
 
   const checkAuthSession = async () => {
     try {
-      // 1. Check local executive session
-      const cachedAdmin = localStorage.getItem("ssr_executive_admin_session");
-      if (cachedAdmin) {
-        try {
-          const parsedUser = JSON.parse(cachedAdmin);
-          if (parsedUser && isEmailAllowed(parsedUser.email)) {
-            verifyAndSetUser(parsedUser);
-            return;
-          }
-        } catch {
-          localStorage.removeItem("ssr_executive_admin_session");
-        }
-      }
-
-      // 2. Check Supabase auth session
       const { data } = await supabase.auth.getSession();
       if (data?.session?.user) {
         verifyAndSetUser(data.session.user);
@@ -114,16 +99,10 @@ export const AdminDashboard = () => {
   const verifyAndSetUser = (authUser: User) => {
     if (isEmailAllowed(authUser.email)) {
       setUser(authUser);
-      localStorage.setItem("ssr_executive_admin_session", JSON.stringify({
-        id: authUser.id || "admin-sarabjeet",
-        email: authUser.email,
-        aud: "authenticated",
-        role: "authenticated",
-      }));
       fetchDashboardData();
     } else {
       setUser(null);
-      localStorage.removeItem("ssr_executive_admin_session");
+      supabase.auth.signOut();
       toast.error(`Access Denied: ${authUser.email} is not authorized for executive dashboard access.`);
     }
     setLoading(false);
@@ -132,10 +111,16 @@ export const AdminDashboard = () => {
   const fetchDashboardData = async () => {
     setIsRefreshing(true);
     try {
-      // 1. Fetch Inbound Enquiries & Service Leads via Executive Endpoint
+      // 1. Fetch Inbound Enquiries & Service Leads via Authenticated Executive Endpoint
       let fetchedLeads: Record<string, any>[] = [];
       try {
-        const res = await fetch("/api/leads");
+        const { data: { session } } = await supabase.auth.getSession();
+        const headers: Record<string, string> = {};
+        if (session?.access_token) {
+          headers["Authorization"] = `Bearer ${session.access_token}`;
+        }
+
+        const res = await fetch("/api/leads", { headers });
         if (res.ok) {
           const json = await res.json();
           if (json?.leads && Array.isArray(json.leads)) {
@@ -228,25 +213,7 @@ export const AdminDashboard = () => {
 
     setIsLoggingIn(true);
 
-    // 1. Check Executive Master Passcode
-    if (passwordInput === "SarabjeetAdmin2026!" || passwordInput === "admin" || passwordInput === "ssr2026") {
-      const execUser = {
-        id: "admin-sarabjeet-master",
-        email: cleanEmail,
-        aud: "authenticated",
-        role: "authenticated",
-        app_metadata: { provider: "executive" },
-        user_metadata: { name: "Sarabjeet Rattan" },
-        created_at: new Date().toISOString(),
-      } as unknown as User;
-
-      verifyAndSetUser(execUser);
-      toast.success("Welcome back, Sarabjeet!");
-      setIsLoggingIn(false);
-      return;
-    }
-
-    // 2. Try Supabase Auth
+    // Authenticate via Supabase Auth
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email: cleanEmail,
@@ -313,7 +280,6 @@ export const AdminDashboard = () => {
   };
 
   const handleSignOut = async () => {
-    localStorage.removeItem("ssr_executive_admin_session");
     await supabase.auth.signOut();
     setUser(null);
     toast.info("Signed out of executive dashboard");
@@ -321,12 +287,18 @@ export const AdminDashboard = () => {
 
   const updateLeadStatus = async (leadId: string, newStatus: string) => {
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+      };
+      if (session?.access_token) {
+        headers["Authorization"] = `Bearer ${session.access_token}`;
+      }
+
       // 1. Update via serverless executive API (uses service_role key to bypass RLS)
       const res = await fetch("/api/leads", {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers,
         body: JSON.stringify({ id: leadId, lead_status: newStatus }),
       });
 

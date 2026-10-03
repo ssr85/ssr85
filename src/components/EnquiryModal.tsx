@@ -29,9 +29,14 @@ const enquirySchema = z.object({
     .string()
     .trim()
     .min(1, "Phone number is required")
-    .regex(
-      /^\+[1-9]\d{9,14}$/,
-      "Phone must start with + followed by country code and 10-15 digits (e.g., +919876543210)",
+    .transform((val) => val.replace(/[\s().-]/g, ""))
+    .pipe(
+      z
+        .string()
+        .regex(
+          /^\+[1-9]\d{8,14}$/,
+          "Phone must include country code (e.g., +1 415 555 2671 or +91 98765 43210)",
+        ),
     ),
   companyName: z.string().trim().max(100, "Company name must be less than 100 characters").optional().or(z.literal("")),
   requirement: z

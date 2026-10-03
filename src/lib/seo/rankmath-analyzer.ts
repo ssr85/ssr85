@@ -93,7 +93,7 @@ export function parseGscCsv(csvContent: string): KeywordMetric[] {
     const clicks = parseInt(row[clicksIdx !== -1 ? clicksIdx : 1].replace(/,/g, ""), 10) || 0;
     const impressions = parseInt(row[impIdx !== -1 ? impIdx : 2].replace(/,/g, ""), 10) || 0;
     
-    let ctrRaw = row[ctrIdx !== -1 ? ctrIdx : 3].replace(/%/g, "").trim();
+    const ctrRaw = row[ctrIdx !== -1 ? ctrIdx : 3].replace(/%/g, "").trim();
     let ctr = parseFloat(ctrRaw) || 0;
     if (ctr > 1) ctr = ctr / 100;
 
@@ -123,10 +123,10 @@ export function evaluateContentScore(params: {
   title: string;
   description: string;
   headingsCount: number;
-  wordCount: number;
+  wordCount?: number;
   hasFaqSchema?: boolean;
 }): ContentScoreResult {
-  const { focusKeyword, title, description, headingsCount, wordCount, hasFaqSchema } = params;
+  const { focusKeyword, title, description, headingsCount, wordCount: _wordCount, hasFaqSchema } = params;
   const kw = focusKeyword.toLowerCase().trim();
   const passedChecks: string[] = [];
   const failedChecks: string[] = [];

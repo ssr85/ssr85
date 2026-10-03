@@ -91,9 +91,9 @@ export const CalendlyEmbed: React.FC<CalendlyEmbedProps> = ({
         console.log("[Calendly] Event Scheduled successfully!", data.payload);
 
         // Extract invitee details from Calendly event payload if available
-        const payloadObj = (data.payload && typeof data.payload === "object") ? (data.payload as Record<string, any>) : {};
-        const invitee = payloadObj.invitee || {};
-        const eventInfo = payloadObj.event || {};
+        const payloadObj = (data.payload && typeof data.payload === "object") ? (data.payload as Record<string, unknown>) : {};
+        const invitee = (payloadObj.invitee && typeof payloadObj.invitee === "object" ? payloadObj.invitee : {}) as Record<string, string | undefined>;
+        const eventInfo = (payloadObj.event && typeof payloadObj.event === "object" ? payloadObj.event : {}) as Record<string, string | undefined>;
 
         const extractedName =
           invitee.name ||
@@ -106,7 +106,7 @@ export const CalendlyEmbed: React.FC<CalendlyEmbedProps> = ({
           prefill?.email ||
           "calendly-appointment@sarabjeetrattan.com";
 
-        const eventUri = eventInfo.uri || payloadObj.event_uri || "";
+        const eventUri = (typeof eventInfo.uri === "string" ? eventInfo.uri : null) || (typeof payloadObj.event_uri === "string" ? payloadObj.event_uri : "") || "";
         const requirementText = eventUri
           ? `1-on-1 Architecture Discovery call scheduled via Calendly. Event: ${eventUri}`
           : "1-on-1 Architecture Discovery call scheduled via embedded Calendly widget.";

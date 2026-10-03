@@ -66,6 +66,11 @@ export const CustomAiSolutions = () => {
         ]}
         faqItems={aiFaqs}
         url="https://sarabjeetrattan.com/custom-ai-solutions"
+        serviceSchema={{
+          name: "Custom AI Solutions & Autonomous Agentic Systems",
+          description: "Enterprise LLM orchestration, local LM Studio pipelines, and multi-agent systems designed for complex business logic.",
+          serviceType: "Enterprise AI Architecture & Multi-Agent Development",
+        }}
       />
 
       <Header onOpenEnquiry={() => handleOpenModal("custom-ai-solutions")} />

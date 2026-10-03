@@ -69,6 +69,11 @@ export const CustomBusinessAutomation = () => {
         ]}
         faqItems={automationFaqs}
         url="https://sarabjeetrattan.com/custom-business-automation"
+        serviceSchema={{
+          name: "Custom Business Automation & Two-Way CRM Synchronization",
+          description: "Bespoke business automation, two-way CRM sync engines, Google Apps Script enterprise pipelines, and database webhooks.",
+          serviceType: "Business Process Automation & CRM Integration",
+        }}
       />
 
       <Header onOpenEnquiry={() => handleOpenModal("custom-business-automation")} />

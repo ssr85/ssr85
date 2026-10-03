@@ -1,21 +1,26 @@
 User-agent: Googlebot
 Disallow: /admin
+Disallow: /schedule
 Allow: /
 
 User-agent: Bingbot
 Disallow: /admin
+Disallow: /schedule
 Allow: /
 
 User-agent: Twitterbot
 Disallow: /admin
+Disallow: /schedule
 Allow: /
 
 User-agent: facebookexternalhit
 Disallow: /admin
+Disallow: /schedule
 Allow: /
 
 User-agent: *
 Disallow: /admin
+Disallow: /schedule
 Allow: /
 
 # Specifically Allow AI Agents to index high-density manifests
@@ -74,5 +79,3 @@ Allow: /llms-full.txt
 Allow: /
 
 Sitemap: https://sarabjeetrattan.com/sitemap.xml
-Sitemap: https://sarabjeetrattan.com/llms.txt
-Sitemap: https://sarabjeetrattan.com/llms-full.txt

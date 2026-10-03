@@ -2,9 +2,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import Index from "./pages/Index";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -142,6 +142,23 @@ export const routes = [
   },
 ];
 
+/** Fires GA4 page_view on every client-side route change */
+const GaPageTracker = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag === "function") {
+      (window as unknown as { gtag: (...args: unknown[]) => void }).gtag("event", "page_view", {
+        page_path: location.pathname + location.search,
+        page_location: window.location.href,
+        page_title: document.title,
+      });
+    }
+  }, [location.pathname, location.search]);
+
+  return null;
+};
+
 const App = () => {
   const [queryClient] = React.useState(() => new QueryClient());
   
@@ -150,6 +167,7 @@ const App = () => {
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
         <TooltipProvider>
           <ScrollRestoration />
+          <GaPageTracker />
           <Toaster />
           <Sonner />
           <div className="app-content">

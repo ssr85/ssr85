@@ -261,6 +261,11 @@ export const AiWordPressDevelopment = () => {
         ]}
         faqItems={faqs.map((f) => ({ question: f.q, answer: f.a }))}
         url="https://sarabjeetrattan.com/ai-wordpress-development"
+        serviceSchema={{
+          name: "AI WordPress Development & Custom Plugin Engineering",
+          description: "Bespoke PHP plugins, LLM admin integrations, headless React frontends, and database performance optimization for high-growth enterprises.",
+          serviceType: "WordPress AI Engineering & Custom Development",
+        }}
       />
 
       <Header onOpenEnquiry={() => handleOpenModal("ai-wordpress-development")} />

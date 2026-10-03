@@ -97,7 +97,7 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
       toast.success("Inquiry received! Sarabjeet will review your project within 24 hours.");
     } catch (err: unknown) {
       console.error("Submission error:", err);
-      toast.error("Failed to send inquiry. Please email directly at sarabjitrattan@gmail.com");
+      toast.error("Failed to send inquiry. Please email directly at sarabjit.rattan@gmail.com");
     } finally {
       setIsSubmitting(false);
     }
@@ -181,7 +181,7 @@ export const ServiceLeadModal: React.FC<ServiceLeadModalProps> = ({
                   </button>
                   <div className="flex gap-2">
                     <a
-                      href="mailto:sarabjitrattan@gmail.com?subject=Priority%20Engineering%20Discussion"
+                      href="mailto:sarabjit.rattan@gmail.com?subject=Priority%20Engineering%20Discussion"
                       className="flex-1 text-center text-xs font-semibold px-3 py-1.5 rounded-lg bg-muted text-foreground hover:bg-muted/80 transition-colors"
                     >
                       Email Direct

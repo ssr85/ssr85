@@ -50,6 +50,7 @@ const solutions = [
       { label: "Custom AI Plugins", href: "/insights/ai-wordpress-plugin-development" },
       { label: "Headless Vite Architecture", href: "/insights/headless-wordpress-vite-architecture" },
       { label: "Automated Search Analytics", href: "/insights/automated-search-analytics-reporting" },
+      { label: "EU GDPR Compliance", href: "/insights/eu-gdpr-compliance-ecommerce-websites" },
     ],
   },
   {

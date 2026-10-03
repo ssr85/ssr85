@@ -90,6 +90,11 @@ export const Footer = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/tools/architecture-scope-estimator" className="hover:text-primary transition-colors">
+                    Scope Estimator Tool
+                  </Link>
+                </li>
+                <li>
                   <Link
                     to="/book"
                     className="text-primary font-semibold hover:underline inline-flex items-center gap-1"
@@ -159,7 +164,7 @@ export const Footer = () => {
                 </li>
                 <li>
                   <Link to="/insights/custom-session-storage-engines" className="hover:text-primary transition-colors">
-                    High-Velocity Scraping
+                    Custom Session Engines
                   </Link>
                 </li>
                 <li>
@@ -205,6 +210,11 @@ export const Footer = () => {
                 <li>
                   <Link to="/insights/google-sheets-apps-script-enterprise" className="hover:text-primary transition-colors">
                     Google Apps Script ERP
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/insights/eu-gdpr-compliance-ecommerce-websites" className="hover:text-primary transition-colors">
+                    EU GDPR Compliance Guide
                   </Link>
                 </li>
               </ul>

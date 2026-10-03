@@ -206,6 +206,11 @@ export const N8nWorkflows = () => {
         ]}
         faqItems={n8nFaqs}
         url="https://sarabjeetrattan.com/n8n-workflows"
+        serviceSchema={{
+          name: "n8n Workflow Automation & Self-Hosted Systems Engineering",
+          description: "Self-hosted enterprise n8n workflows, AI agent pipelines, two-way CRM sync, and zero-task-fee automated operations.",
+          serviceType: "n8n Automation Engineering & Workflow Orchestration",
+        }}
       />
 
       <Header onOpenEnquiry={() => handleOpenModal("n8n-workflow-automation")} />

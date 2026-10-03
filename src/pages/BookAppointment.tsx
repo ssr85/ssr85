@@ -26,7 +26,7 @@ export const BookAppointment = () => {
       <SEO
         title="Schedule a 1-on-1 Architecture Discovery Call | Sarabjeet Rattan"
         description="Book a dedicated 20-minute technical consultation directly with Sarabjeet Rattan. Discuss AI agents, n8n automation, EU GDPR compliance, and custom WordPress architecture."
-        canonicalUrl="https://sarabjeetrattan.com/book"
+        url="https://sarabjeetrattan.com/book"
       />
 
       <Header onOpenEnquiry={() => setIsLeadModalOpen(true)} />

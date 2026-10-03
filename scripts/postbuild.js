@@ -9,10 +9,14 @@ const siteUrl = 'https://sarabjeetrattan.com';
 const today = new Date().toISOString().split('T')[0];
 
 const knownRoutes = [
-  { loc: '/', priority: '1.0', changefreq: 'monthly' },
-  { loc: '/resume', priority: '0.9', changefreq: 'monthly' },
-  { loc: '/llms.txt', priority: '0.9', changefreq: 'weekly' },
-  { loc: '/llms-full.txt', priority: '0.9', changefreq: 'weekly' },
+  { loc: '/', priority: '1.0', changefreq: 'weekly' },
+  { loc: '/book', priority: '0.9', changefreq: 'weekly' },
+  { loc: '/ai-wordpress-development', priority: '0.9', changefreq: 'weekly' },
+  { loc: '/custom-ai-solutions', priority: '0.9', changefreq: 'weekly' },
+  { loc: '/custom-business-automation', priority: '0.9', changefreq: 'weekly' },
+  { loc: '/n8n-workflows', priority: '0.9', changefreq: 'weekly' },
+  { loc: '/resume', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/tools/architecture-scope-estimator', priority: '0.8', changefreq: 'monthly' },
 ];
 
 function processHtmlFiles(dir) {
@@ -41,8 +45,24 @@ function getRenderedPages(dir, baseDir = dir) {
     } else if (file.endsWith('.html') && file !== 'index.html') {
       const relativePath = path.relative(baseDir, fullPath);
       const route = '/' + relativePath.replace(/\/?index\.html$/, '').replace(/\.html$/, '');
-      if (route !== '/admin' && route !== '/404' && !route.startsWith('/admin/')) {
-        pages.push({ loc: route, priority: '0.9', changefreq: 'monthly' });
+      if (
+        route !== '/admin' &&
+        route !== '/404' &&
+        route !== '/schedule' &&
+        !route.startsWith('/admin/')
+      ) {
+        const isPillar = [
+          '/ai-wordpress-development',
+          '/custom-ai-solutions',
+          '/custom-business-automation',
+          '/n8n-workflows',
+          '/book',
+        ].includes(route);
+        pages.push({
+          loc: route,
+          priority: isPillar ? '0.9' : '0.8',
+          changefreq: isPillar ? 'weekly' : 'monthly',
+        });
       }
     }
   }
