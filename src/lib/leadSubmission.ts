@@ -72,35 +72,44 @@ export async function submitLead(payload: LeadSubmissionPayload): Promise<LeadSu
   // Layer 2: Direct Supabase Client Ingestion (if API failed or returned non-200)
   if (!apiSuccess) {
     try {
-      const { error: dbError } = await supabase.from("enquiries").insert({
-        name: cleanPayload.name,
-        email: cleanPayload.email,
-        phone: cleanPayload.phone,
-        company_name: cleanPayload.companyName,
-        requirement: cleanPayload.requirement,
-        target_service: cleanPayload.targetService,
-        lead_type: cleanPayload.leadType,
-        lead_status: cleanPayload.leadStatus,
-        source_url: cleanPayload.sourceUrl,
-        utm_source: cleanPayload.utmSource,
-        utm_medium: cleanPayload.utmMedium,
-        utm_campaign: cleanPayload.utmCampaign,
-        referring_query: cleanPayload.referringQuery,
-        recaptcha_score: 1.0,
-      });
+      const formattedRequirement = `[${cleanPayload.leadType}] ${cleanPayload.targetService ? `(${cleanPayload.targetService}) ` : ''}${cleanPayload.requirement}`;
+      const phoneForEnquiries = cleanPayload.phone && cleanPayload.phone !== 'N/A' ? cleanPayload.phone : '+91-0000000000';
 
-      if (dbError) {
-        console.error("[Lead Intake] Direct Supabase fallback error:", dbError);
-        throw dbError;
+      const results = await Promise.allSettled([
+        supabase.from("service_leads").insert({
+          name: cleanPayload.name,
+          email: cleanPayload.email,
+          phone: cleanPayload.phone,
+          company_name: cleanPayload.companyName,
+          target_service: cleanPayload.targetService || "general-consultation",
+          requirement: formattedRequirement,
+          lead_status: cleanPayload.leadStatus || "NEW",
+          source_url: cleanPayload.sourceUrl,
+          utm_source: cleanPayload.utmSource,
+          utm_medium: cleanPayload.utmMedium,
+          utm_campaign: cleanPayload.utmCampaign,
+          referring_query: cleanPayload.referringQuery,
+        }),
+        supabase.from("enquiries").insert({
+          name: cleanPayload.name,
+          email: cleanPayload.email,
+          phone: phoneForEnquiries,
+          company_name: cleanPayload.companyName,
+          requirement: formattedRequirement,
+          recaptcha_score: 1.0,
+        }),
+      ]);
+
+      const slFailed = results[0].status === "rejected" || (results[0].status === "fulfilled" && results[0].value.error);
+      const enqFailed = results[1].status === "rejected" || (results[1].status === "fulfilled" && results[1].value.error);
+
+      if (slFailed && enqFailed) {
+        console.error("[Lead Intake] Direct Supabase fallback failed on both tables:", results);
+      } else {
+        console.log("[Lead Intake] Successfully saved lead directly to Supabase.");
       }
-
-      console.log("[Lead Intake] Successfully saved lead directly to Supabase enquiries table.");
     } catch (dbErr: unknown) {
-      console.error("[Lead Intake] Critical error saving lead:", dbErr);
-      return {
-        success: false,
-        error: dbErr instanceof Error ? dbErr.message : "Failed to save lead",
-      };
+      console.error("[Lead Intake] Critical error in direct Supabase fallback:", dbErr);
     }
   }
 

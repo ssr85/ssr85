@@ -90,13 +90,34 @@ export const CalendlyEmbed: React.FC<CalendlyEmbedProps> = ({
       if (eventName === "calendly.event_scheduled") {
         console.log("[Calendly] Event Scheduled successfully!", data.payload);
 
+        // Extract invitee details from Calendly event payload if available
+        const payloadObj = (data.payload && typeof data.payload === "object") ? (data.payload as Record<string, any>) : {};
+        const invitee = payloadObj.invitee || {};
+        const eventInfo = payloadObj.event || {};
+
+        const extractedName =
+          invitee.name ||
+          (invitee.first_name ? `${invitee.first_name} ${invitee.last_name || ""}`.trim() : null) ||
+          prefill?.name ||
+          "Calendly Scheduled Client";
+
+        const extractedEmail =
+          invitee.email ||
+          prefill?.email ||
+          "calendly-appointment@sarabjeetrattan.com";
+
+        const eventUri = eventInfo.uri || payloadObj.event_uri || "";
+        const requirementText = eventUri
+          ? `1-on-1 Architecture Discovery call scheduled via Calendly. Event: ${eventUri}`
+          : "1-on-1 Architecture Discovery call scheduled via embedded Calendly widget.";
+
         // Submit lead through unified dual-layer intake engine
         try {
           await submitLead({
-            name: prefill?.name || "Calendly Client",
-            email: prefill?.email || "calendly-booking@client.com",
+            name: extractedName,
+            email: extractedEmail,
             phone: "CALENDLY_CONFIRMED",
-            requirement: "1-on-1 Architecture Discovery confirmed via embedded Calendly widget.",
+            requirement: requirementText,
             leadType: "CALENDLY_BOOKING",
             leadStatus: "QUALIFIED",
             targetService: "architecture-discovery-call",
