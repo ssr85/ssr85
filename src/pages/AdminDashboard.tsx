@@ -184,11 +184,11 @@ export const AdminDashboard = () => {
         await supabase.from("keyword_metrics").upsert(
           parsed.slice(0, 100).map((k) => ({
             query: k.query,
+            page_url: (k as { page_url?: string }).page_url || "/",
             impressions: k.impressions,
             clicks: k.clicks,
             ctr: k.ctr,
             average_position: k.average_position,
-            updated_at: new Date().toISOString(),
           }))
         );
       } catch (dbErr) {

@@ -10,10 +10,95 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.5"
+    PostgrestVersion: "14.18"
+  }
+  graphql_public: {
+    Tables: {
+      [_ in never]: never
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      graphql: {
+        Args: {
+          extensions?: Json
+          operationName?: string
+          query?: string
+          variables?: Json
+        }
+        Returns: Json
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
   }
   public: {
     Tables: {
+      content_queue: {
+        Row: {
+          action_type: Database["public"]["Enums"]["content_action_type"]
+          brief_data: Json | null
+          created_at: string
+          draft_content_markdown: string | null
+          existing_page_url: string | null
+          id: string
+          primary_keywords: string[]
+          priority_score: number
+          published_post_id: string | null
+          published_url: string | null
+          review_notes: string | null
+          secondary_keywords: string[] | null
+          seo_meta: Json | null
+          status: Database["public"]["Enums"]["content_lifecycle_status"]
+          target_slug: string | null
+          target_topic: string
+          updated_at: string
+        }
+        Insert: {
+          action_type?: Database["public"]["Enums"]["content_action_type"]
+          brief_data?: Json | null
+          created_at?: string
+          draft_content_markdown?: string | null
+          existing_page_url?: string | null
+          id?: string
+          primary_keywords?: string[]
+          priority_score?: number
+          published_post_id?: string | null
+          published_url?: string | null
+          review_notes?: string | null
+          secondary_keywords?: string[] | null
+          seo_meta?: Json | null
+          status?: Database["public"]["Enums"]["content_lifecycle_status"]
+          target_slug?: string | null
+          target_topic: string
+          updated_at?: string
+        }
+        Update: {
+          action_type?: Database["public"]["Enums"]["content_action_type"]
+          brief_data?: Json | null
+          created_at?: string
+          draft_content_markdown?: string | null
+          existing_page_url?: string | null
+          id?: string
+          primary_keywords?: string[]
+          priority_score?: number
+          published_post_id?: string | null
+          published_url?: string | null
+          review_notes?: string | null
+          secondary_keywords?: string[] | null
+          seo_meta?: Json | null
+          status?: Database["public"]["Enums"]["content_lifecycle_status"]
+          target_slug?: string | null
+          target_topic?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       enquiries: {
         Row: {
           client_ip: string | null
@@ -21,15 +106,133 @@ export type Database = {
           created_at: string
           email: string
           id: string
-          lead_status: string
-          lead_type: string
           name: string
           phone: string | null
           recaptcha_score: number | null
+          requirement: string
+        }
+        Insert: {
+          client_ip?: string | null
+          company_name?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          phone?: string | null
+          recaptcha_score?: number | null
+          requirement: string
+        }
+        Update: {
+          client_ip?: string | null
+          company_name?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          phone?: string | null
+          recaptcha_score?: number | null
+          requirement?: string
+        }
+        Relationships: []
+      }
+      keyword_metrics: {
+        Row: {
+          ads_monthly_volume: number | null
+          average_position: number
+          clicks: number
+          country: string | null
+          created_at: string
+          ctr: number
+          device: string | null
+          id: string
+          impressions: number
+          page_url: string
+          query: string
+          recorded_date: string
+        }
+        Insert: {
+          ads_monthly_volume?: number | null
+          average_position?: number
+          clicks?: number
+          country?: string | null
+          created_at?: string
+          ctr?: number
+          device?: string | null
+          id?: string
+          impressions?: number
+          page_url: string
+          query: string
+          recorded_date?: string
+        }
+        Update: {
+          ads_monthly_volume?: number | null
+          average_position?: number
+          clicks?: number
+          country?: string | null
+          created_at?: string
+          ctr?: number
+          device?: string | null
+          id?: string
+          impressions?: number
+          page_url?: string
+          query?: string
+          recorded_date?: string
+        }
+        Relationships: []
+      }
+      page_performance: {
+        Row: {
+          active_users: number
+          avg_engagement_time_sec: number | null
+          bounce_rate: number | null
+          conversions: number | null
+          created_at: string
+          engagement_rate: number | null
+          id: string
+          page_path: string
+          page_views: number
+          recorded_date: string
+        }
+        Insert: {
+          active_users?: number
+          avg_engagement_time_sec?: number | null
+          bounce_rate?: number | null
+          conversions?: number | null
+          created_at?: string
+          engagement_rate?: number | null
+          id?: string
+          page_path: string
+          page_views?: number
+          recorded_date?: string
+        }
+        Update: {
+          active_users?: number
+          avg_engagement_time_sec?: number | null
+          bounce_rate?: number | null
+          conversions?: number | null
+          created_at?: string
+          engagement_rate?: number | null
+          id?: string
+          page_path?: string
+          page_views?: number
+          recorded_date?: string
+        }
+        Relationships: []
+      }
+      service_leads: {
+        Row: {
+          client_ip: string | null
+          company_name: string | null
+          created_at: string
+          email: string
+          id: string
+          lead_status: string
+          name: string
+          phone: string | null
           referring_query: string | null
           requirement: string
           source_url: string | null
-          target_service: string | null
+          target_service: string
           utm_campaign: string | null
           utm_medium: string | null
           utm_source: string | null
@@ -41,14 +244,12 @@ export type Database = {
           email: string
           id?: string
           lead_status?: string
-          lead_type?: string
           name: string
           phone?: string | null
-          recaptcha_score?: number | null
           referring_query?: string | null
           requirement: string
           source_url?: string | null
-          target_service?: string | null
+          target_service: string
           utm_campaign?: string | null
           utm_medium?: string | null
           utm_source?: string | null
@@ -60,14 +261,12 @@ export type Database = {
           email?: string
           id?: string
           lead_status?: string
-          lead_type?: string
           name?: string
           phone?: string | null
-          recaptcha_score?: number | null
           referring_query?: string | null
           requirement?: string
           source_url?: string | null
-          target_service?: string | null
+          target_service?: string
           utm_campaign?: string | null
           utm_medium?: string | null
           utm_source?: string | null
@@ -110,6 +309,14 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
+      content_action_type: "CREATE" | "IMPROVE" | "CONSOLIDATE"
+      content_lifecycle_status:
+        | "DISCOVERED"
+        | "PLANNED"
+        | "DRAFTED"
+        | "IN_REVIEW"
+        | "PUBLISHED"
+        | "ARCHIVED"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -235,9 +442,21 @@ export type CompositeTypes<
     : never
 
 export const Constants = {
+  graphql_public: {
+    Enums: {},
+  },
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      content_action_type: ["CREATE", "IMPROVE", "CONSOLIDATE"],
+      content_lifecycle_status: [
+        "DISCOVERED",
+        "PLANNED",
+        "DRAFTED",
+        "IN_REVIEW",
+        "PUBLISHED",
+        "ARCHIVED",
+      ],
     },
   },
 } as const

@@ -69,11 +69,12 @@ export async function submitLead(payload: LeadSubmissionPayload): Promise<LeadSu
     console.warn("[Lead Intake] API engine unreachable (likely local/static preview). Triggering direct fallback.", apiErr);
   }
 
+  let fallbackSuccess = false;
+
   // Layer 2: Direct Supabase Client Ingestion (if API failed or returned non-200)
   if (!apiSuccess) {
     try {
       const formattedRequirement = `[${cleanPayload.leadType}] ${cleanPayload.targetService ? `(${cleanPayload.targetService}) ` : ''}${cleanPayload.requirement}`;
-      const phoneForEnquiries = cleanPayload.phone && cleanPayload.phone !== 'N/A' ? cleanPayload.phone : '+91-0000000000';
 
       const results = await Promise.allSettled([
         supabase.from("service_leads").insert({
@@ -93,35 +94,45 @@ export async function submitLead(payload: LeadSubmissionPayload): Promise<LeadSu
         supabase.from("enquiries").insert({
           name: cleanPayload.name,
           email: cleanPayload.email,
-          phone: phoneForEnquiries,
+          phone: cleanPayload.phone,
           company_name: cleanPayload.companyName,
           requirement: formattedRequirement,
           recaptcha_score: 1.0,
         }),
       ]);
 
-      const slFailed = results[0].status === "rejected" || (results[0].status === "fulfilled" && results[0].value.error);
-      const enqFailed = results[1].status === "rejected" || (results[1].status === "fulfilled" && results[1].value.error);
+      const slSuccess = results[0].status === "fulfilled" && !results[0].value.error;
+      const enqSuccess = results[1].status === "fulfilled" && !results[1].value.error;
 
-      if (slFailed && enqFailed) {
-        console.error("[Lead Intake] Direct Supabase fallback failed on both tables:", results);
+      if (slSuccess || enqSuccess) {
+        fallbackSuccess = true;
+        console.log("[Lead Intake] Successfully saved lead directly to Supabase via fallback.");
       } else {
-        console.log("[Lead Intake] Successfully saved lead directly to Supabase.");
+        console.error("[Lead Intake] Direct Supabase fallback failed on both tables:", results);
       }
     } catch (dbErr: unknown) {
       console.error("[Lead Intake] Critical error in direct Supabase fallback:", dbErr);
     }
   }
 
-  // Fire Google Ads & GA4 conversions
-  trackGoogleAdsConversion({
-    eventLabel: payload.conversionLabel || `lead_${cleanPayload.leadType.toLowerCase()}`,
-    value: 1.0,
-  });
+  const isSuccess = apiSuccess || fallbackSuccess;
+
+  if (isSuccess) {
+    // Fire Google Ads & GA4 conversions
+    trackGoogleAdsConversion({
+      eventLabel: payload.conversionLabel || `lead_${cleanPayload.leadType.toLowerCase()}`,
+      value: 1.0,
+    });
+
+    return {
+      success: true,
+      channel: apiSuccess ? "api_engine" : "supabase_direct",
+      message: "Lead processed successfully",
+    };
+  }
 
   return {
-    success: true,
-    channel: apiSuccess ? "api_engine" : "supabase_direct",
-    message: "Lead processed successfully",
+    success: false,
+    error: "Unable to submit inquiry at this moment. Please email directly or try again.",
   };
 }

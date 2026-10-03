@@ -4,7 +4,6 @@ export const GOOGLE_ADS_CONVERSION_LABEL = "AW-18490594666/4vO3CLOwm48dEOqqgPFE"
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
-    dataLayer?: unknown[];
   }
 }
 

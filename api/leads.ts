@@ -59,7 +59,20 @@ async function authenticateAdmin(
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  const origin = req.headers.origin as string | undefined;
+  const allowedOrigins = [
+    'https://sarabjeetrattan.com',
+    'https://www.sarabjeetrattan.com',
+    'http://localhost:5173',
+    'http://localhost:3000',
+  ];
+
+  if (origin && (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app'))) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', 'https://sarabjeetrattan.com');
+  }
+
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-admin-key');
 
@@ -181,12 +194,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).json({
       leads: unifiedLeads,
       count: unifiedLeads.length,
-      debug: {
-        slResult,
-        enqResult,
-        url: SUPABASE_URL,
-        hasEnvKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
-      },
     });
   } catch (error) {
     console.error('API Error in /api/leads:', error);

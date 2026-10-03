@@ -69,7 +69,20 @@ export interface EnquiryRequest {
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  const origin = req.headers.origin as string | undefined;
+  const allowedOrigins = [
+    'https://sarabjeetrattan.com',
+    'https://www.sarabjeetrattan.com',
+    'http://localhost:5173',
+    'http://localhost:3000',
+  ];
+
+  if (origin && (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app'))) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', 'https://sarabjeetrattan.com');
+  }
+
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
