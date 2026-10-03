@@ -124,40 +124,39 @@ This document provides ready-to-import campaign assets, Responsive Search Ads (R
 
 ---
 
-## Ad Group 4: n8n Workflow Automation & Two-Way CRM Sync
-**Target URL:** `https://sarabjeetrattan.com/n8n-workflows`
+## Ad Group 4: EU GDPR Compliance & Cookie Architecture for Websites
+**Target URL:** `https://sarabjeetrattan.com/insights/eu-gdpr-compliance-ecommerce-websites`
 
 ### Match-Type Keywords
 ```text
-[n8n workflow automation services]
-[hire n8n consultant]
-[n8n self hosted enterprise setup]
-[two way crm sync n8n]
-[zapier alternative n8n consultant]
-"n8n consultant"
-"hire n8n automation expert"
-"n8n workflow developer"
-"self hosted n8n migration"
+[gdpr audit for ecommerce]
+[hire gdpr specialist for website]
+"gdpr compliance for woocommerce"
+"gdpr compliance website selling in eu"
+"google consent mode v2 implementation"
+"eu gdpr website compliance service"
+"cookie consent developer"
+"fix gdpr compliance website"
 ```
 
 ### Responsive Search Ad (RSA)
-* **Pin 1:** `n8n Workflow Automation Pro` *(29 chars)*
-* **Pin 2:** `Cut Zapier Costs by 80%` *(26 chars)*
-* **Pin 3:** `Self-Hosted & Production-Ready` *(30 chars)*
+* **Pin 1:** `EU GDPR Compliance Dev` *(23 chars)*
+* **Pin 2:** `Sell in EU Without Fines` *(24 chars)*
+* **Pin 3:** `Google Consent Mode v2` *(22 chars)*
 * **Headlines (Max 30 chars):**
-  1. `n8n Workflow Automation Pro` (29)
-  2. `Cut Zapier Costs by 80%` (26)
-  3. `Self-Hosted Enterprise Setup` (29)
-  4. `Two-Way CRM Synchronization` (29)
-  5. `Automated Lead Routing Engine` (30)
-  6. `Zapier to n8n Migration` (25)
-  7. `Custom n8n Node Development` (29)
-  8. `Workflows Live in 14 Days` (26)
+  1. `EU GDPR Compliance Dev` (23)
+  2. `Sell in EU Without Fines` (24)
+  3. `Google Consent Mode v2` (22)
+  4. `GDPR Audit for eCommerce` (24)
+  5. `Zero-Leak Cookie Consent` (23)
+  6. `GDPR Dev | 16+ Yrs Exp` (22)
+  7. `Fix Non-Compliant Stores` (24)
+  8. `Fixed-Scope GDPR Setup` (22)
 * **Descriptions (Max 90 chars):**
-  1. `Stop paying $500+/mo for Zapier. We engineer self-hosted, enterprise-grade n8n pipelines.` (90)
-  2. `Two-way CRM syncing, AI agent routing, and automated invoicing deployed in 14 days.` (87)
-  3. `Complete workflow design, deployment, and monitoring. Fixed-scope packages from $500.` (89)
-  4. `Resilient backend automations that never drop a lead or invoice. Book a discovery call.` (90)
+  1. `Selling to EU customers? Ensure 100% legal compliance with bulletproof data architecture.` (89)
+  2. `Google Consent Mode v2 & zero-leak script blocking for WooCommerce & React stores.` (82)
+  3. `Avoid €20M penalties. We engineer audit-proof GDPR consent layers and privacy pipelines.` (88)
+  4. `Fixed-scope implementation in 48 to 72 hours. Protect your store & tracking accuracy.` (86)
 
 ---
 

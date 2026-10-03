@@ -17,12 +17,12 @@ graph TD
     C1 --> AG1["Ad Group 1: WordPress AI & REST API Dev"]
     C1 --> AG2["Ad Group 2: WooCommerce Checkout Speed"]
     C1 --> AG3["Ad Group 3: Headless React & Clean Architecture"]
-    C1 --> AG4["Ad Group 4: n8n Workflow Automation"]
+    C1 --> AG4["Ad Group 4: EU GDPR Compliance for Websites"]
 
     AG1 --> L1["Landing: /ai-wordpress-development"]
     AG2 --> L2["Landing: /insights/woocommerce-database-checkout-optimization"]
     AG3 --> L3["Landing: /insights/headless-wordpress-vite-architecture"]
-    AG4 --> L4["Landing: /n8n-workflows"]
+    AG4 --> L4["Landing: /insights/eu-gdpr-compliance-ecommerce-websites"]
 ```
 
 ---
@@ -49,11 +49,15 @@ Because daily budget is ₹300, we use **Exact Match only** `[...]` to guarantee
 * `[convert elementor to custom code]`
 * `[enterprise wordpress refactoring]`
 
-### Ad Group 4: n8n Workflow Automation
-* `[n8n workflow automation services]`
-* `[hire n8n consultant]`
-* `[n8n self hosted enterprise setup]`
-* `[two way crm sync n8n]`
+### Ad Group 4: EU GDPR Compliance & Consent Architecture
+* `[gdpr audit for ecommerce]`
+* `[hire gdpr specialist for website]`
+* `"gdpr compliance for woocommerce"`
+* `"gdpr compliance website selling in eu"`
+* `"google consent mode v2 implementation"`
+* `"eu gdpr website compliance service"`
+* `"cookie consent developer"`
+* `"fix gdpr compliance website"`
 
 ---
 
@@ -144,20 +148,20 @@ reddit
   3. `Keep WordPress CMS backend while delivering a lightning-fast React frontend.`
   4. `Custom API layer and zero plugin bloat. Discuss your headless migration today.`
 
-### RSA 4: n8n Workflow Automation Pro
-* **Final URL:** `https://sarabjeetrattan.com/n8n-workflows`
-* **Path 1 / Path 2:** `n8n` / `automation`
+### RSA 4: EU GDPR Compliance for Websites Selling in EU
+* **Final URL:** `https://sarabjeetrattan.com/insights/eu-gdpr-compliance-ecommerce-websites`
+* **Path 1 / Path 2:** `gdpr` / `compliance`
 * **Headlines:**
-  1. `n8n Workflow Automation Pro`
-  2. `Cut Zapier Costs by 80%`
-  3. `Self-Hosted Enterprise Setup`
-  4. `Two-Way CRM Synchronization`
-  5. `Automated Lead Routing Engine`
-  6. `Zapier to n8n Migration`
-  7. `Custom n8n Node Development`
-  8. `Workflows Live in 14 Days`
+  1. `EU GDPR Compliance Dev` *(Pinned: Pos 1)*
+  2. `Sell in EU Without Fines`
+  3. `Google Consent Mode v2`
+  4. `GDPR Audit for eCommerce`
+  5. `Zero-Leak Cookie Consent`
+  6. `GDPR Dev | 16+ Yrs Exp`
+  7. `Fix Non-Compliant Stores`
+  8. `Fixed-Scope GDPR Setup`
 * **Descriptions:**
-  1. `Stop paying $500+/mo for Zapier. We engineer self-hosted, enterprise-grade n8n pipelines.`
-  2. `Two-way CRM syncing, AI agent routing, and automated invoicing deployed in 14 days.`
-  3. `Complete workflow design, deployment, and monitoring. Fixed-scope packages from $500.`
-  4. `Resilient backend automations that never drop a lead or invoice. Book a discovery call.`
+  1. `Selling to EU customers? Ensure 100% legal compliance with bulletproof data architecture.`
+  2. `Google Consent Mode v2 & zero-leak script blocking for WooCommerce & React stores.`
+  3. `Avoid €20M penalties. We engineer audit-proof GDPR consent layers and privacy pipelines.`
+  4. `Fixed-scope implementation in 48 to 72 hours. Protect your store & tracking accuracy.`
