@@ -300,6 +300,57 @@ export const CustomCrmSync = () => {
             </Accordion>
           </section>
 
+          {/* Connected Topic Silo Links */}
+          <section className="pt-4 border-t border-border/60 space-y-4">
+            <h3 className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
+              Connected Architecture Nodes
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <Link
+                to="/n8n-workflows"
+                className="p-4 rounded-xl border border-border hover:border-primary/50 transition-colors group bg-card flex flex-col justify-between"
+              >
+                <div>
+                  <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
+                    n8n Workflow Engine
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Self-hosted n8n pipelines for lead routing and automated CRM synchronization.
+                  </div>
+                </div>
+              </Link>
+              <Link
+                to="/custom-business-automation"
+                className="p-4 rounded-xl border border-border hover:border-primary/50 transition-colors group bg-card flex flex-col justify-between"
+              >
+                <div>
+                  <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
+                    Business Automation
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Bespoke internal ERP pipelines, quotation workflows, and webhooks.
+                  </div>
+                </div>
+              </Link>
+              <Link
+                to="/tools/architecture-scope-estimator"
+                className="p-4 rounded-xl border border-border hover:border-primary/50 transition-colors group bg-card flex flex-col justify-between"
+              >
+                <div>
+                  <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
+                    Scope Estimator
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Calculate two-way CRM integration timelines and tech stack.
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </section>
+
           {/* 5. CALL TO ACTION */}
           <section className="pt-4">
             <LeadCaptureBanner

@@ -197,29 +197,47 @@ export const StrikingKeywordInsights = () => {
             <h3 className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
               Connected Topical Silo Nodes
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <Link
                 to="/insights/automated-search-analytics-reporting"
-                className="p-4 rounded-xl border border-border hover:border-primary/50 transition-colors group bg-card"
+                className="p-4 rounded-xl border border-border hover:border-primary/50 transition-colors group bg-card flex flex-col justify-between"
               >
-                <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
-                  Automated GSC & GA4 Reporting Pipeline
-                  <ArrowRight className="w-4 h-4" />
-                </div>
-                <div className="text-xs text-muted-foreground mt-1">
-                  Automate daily search console telemetry and executive email alerts.
+                <div>
+                  <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
+                    GSC & GA4 Pipeline
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Automate daily search console telemetry and executive alerts.
+                  </div>
                 </div>
               </Link>
               <Link
                 to="/n8n-workflows"
-                className="p-4 rounded-xl border border-border hover:border-primary/50 transition-colors group bg-card"
+                className="p-4 rounded-xl border border-border hover:border-primary/50 transition-colors group bg-card flex flex-col justify-between"
               >
-                <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
-                  Enterprise n8n Workflow Automation
-                  <ArrowRight className="w-4 h-4" />
+                <div>
+                  <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
+                    n8n Automation
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Custom backend orchestration pipelines for operations.
+                  </div>
                 </div>
-                <div className="text-xs text-muted-foreground mt-1">
-                  Custom backend orchestration pipelines for high-growth operations.
+              </Link>
+              <Link
+                to="/tools/architecture-scope-estimator"
+                className="p-4 rounded-xl border border-border hover:border-primary/50 transition-colors group bg-card flex flex-col justify-between"
+              >
+                <div>
+                  <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
+                    Scope Estimator
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Calculate delivery timelines and safety controls.
+                  </div>
                 </div>
               </Link>
             </div>

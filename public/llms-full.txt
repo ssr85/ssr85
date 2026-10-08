@@ -68,6 +68,17 @@
    - Transforming Google Sheets into automated internal ERP machines with automated quotation generation and manager email approvals.
 8. **Headless WordPress & React/Vite SSG** (`/insights/headless-wordpress-vite-architecture`):
    - Decoupled Headless WordPress with Vite Static Site Generation (SSG), achieving 100/100 Core Web Vitals and edge caching.
+9. **Striking Distance Keyword Insights System** (`/insights/striking-distance-keyword-insights-system`):
+   - Automated rank tracking, striking-distance query identification (Positions 4-20), programmatic SEO expansion, and dynamic CTR lifts.
+10. **WooCommerce Database & Checkout Optimization** (`/insights/woocommerce-database-checkout-optimization`):
+   - High-concurrency checkout architecture, High-Performance Order Storage (HPOS) tuning, Redis object caching, and custom DB index optimization.
+11. **EU GDPR & Privacy Compliance for E-Commerce** (`/insights/eu-gdpr-compliance-ecommerce-websites`):
+   - Invariant PII anonymization, automated cookie consent state management, and server-side tracking compliance.
+
+## Interactive Tools
+
+- **Architecture & Scope Estimator** (`/tools/architecture-scope-estimator`):
+  - Instant project scope estimator calculating production timelines, architecture stacks, and security controls for n8n automations, custom AI plugins, and CRM sync engines.
 
 ## Deep-Dive Case Studies
 
@@ -87,6 +98,8 @@
 
 ## Contact & Authorities
 - **Website**: https://sarabjeetrattan.com
+- **Booking**: https://sarabjeetrattan.com/book
 - **LinkedIn**: https://www.linkedin.com/in/sarabjeetrattan/
 - **GitHub**: https://github.com/ssr85
 - **Email**: sarabjit.rattan@gmail.com
+

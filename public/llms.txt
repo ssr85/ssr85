@@ -13,6 +13,9 @@
 ## In-Depth Insight Guides
 - [AI WordPress Plugin Development](https://sarabjeetrattan.com/insights/ai-wordpress-plugin-development): Bespoke, production-grade AI WordPress plugins tailored to proprietary workflows without marketplace bloat.
 - [Automated Search Console & GA4 Intelligence](https://sarabjeetrattan.com/insights/automated-search-analytics-reporting): Automated daily GSC/GA4 data ingestion and striking-distance query alerts.
+- [Striking Distance Keyword Intelligence](https://sarabjeetrattan.com/insights/striking-distance-keyword-insights-system): Automated topic clustering, striking-distance optimization (Positions 4-20), and dynamic CTR expansion.
+- [WooCommerce Database & Checkout Optimization](https://sarabjeetrattan.com/insights/woocommerce-database-checkout-optimization): High-concurrency checkout scaling, Redis caching, HPOS migration, and order query indexing.
+- [EU GDPR & Data Compliance for E-Commerce](https://sarabjeetrattan.com/insights/eu-gdpr-compliance-ecommerce-websites): Invariant PII scrubbing, consent modes, and server-side tracking compliance.
 - [Running Local LLMs with LM Studio](https://sarabjeetrattan.com/insights/local-llm-lm-studio-workflow): Quantized open-weight coding models (Qwen 2.5 Coder, DeepSeek-R1) via LM Studio with 0 API costs.
 - [Custom Multi-Agent Systems](https://sarabjeetrattan.com/insights/multi-agent-orchestration-from-scratch): Deterministic multi-agent architectures with human-in-the-loop validation.
 - [High-Velocity Scraping & Session Engines](https://sarabjeetrattan.com/insights/custom-session-storage-engines): Bespoke session caching, distributed scrapers, and CRM enrichment pipelines.
@@ -20,11 +23,14 @@
 - [Enterprise Google Apps Script](https://sarabjeetrattan.com/insights/google-sheets-apps-script-enterprise): Sheets-as-an-ERP automation, quote creation, and multi-stage manager approvals.
 - [Headless WordPress with Vite & React SSG](https://sarabjeetrattan.com/insights/headless-wordpress-vite-architecture): Decoupled Headless WordPress achieving sub-500ms TTFB and 100/100 Core Web Vitals.
 
-## Case Studies
+## Interactive Tools & Case Studies
+- [Architecture & Scope Estimator](https://sarabjeetrattan.com/tools/architecture-scope-estimator): Interactive engineering estimator for delivery timelines, production stack, and safety controls.
 - [Lead OG](https://sarabjeetrattan.com/case-studies/lead-og): High-velocity B2B lead organization, automated prospect research, and Freshsales CRM sync.
 - [LinkedIn Automation](https://sarabjeetrattan.com/case-studies/linked-in): Trello-driven CrewAI orchestration for topic research and content generation.
 
-## Professional Profiles
+## Professional Profiles & Booking
 - [Home](https://sarabjeetrattan.com/): Primary showcase of B2B AI solutions, services, and client testimonials.
+- [Book Discovery Call](https://sarabjeetrattan.com/book): Direct 20-minute 1-on-1 technical architecture discovery session.
 - [Resume](https://sarabjeetrattan.com/resume): 16+ years operational leadership, technical competencies, and executive track record.
 - [Sitemap](https://sarabjeetrattan.com/sitemap.xml): XML index for search engines.
+

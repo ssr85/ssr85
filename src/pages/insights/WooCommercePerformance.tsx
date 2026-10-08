@@ -195,29 +195,47 @@ export const WooCommercePerformance = () => {
             <h3 className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
               Connected Architecture Nodes
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <Link
                 to="/insights/custom-session-storage-engines"
-                className="p-4 rounded-xl border border-border hover:border-primary/50 transition-colors group bg-card"
+                className="p-4 rounded-xl border border-border hover:border-primary/50 transition-colors group bg-card flex flex-col justify-between"
               >
-                <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
-                  Custom Session Storage & Cart State Engine
-                  <ArrowRight className="w-4 h-4" />
-                </div>
-                <div className="text-xs text-muted-foreground mt-1">
-                  Decouple user session states from SQL databases for instant speed.
+                <div>
+                  <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
+                    Session & Cart Engine
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Decouple user session states from SQL for instant speed.
+                  </div>
                 </div>
               </Link>
               <Link
                 to="/ai-wordpress-development"
-                className="p-4 rounded-xl border border-border hover:border-primary/50 transition-colors group bg-card"
+                className="p-4 rounded-xl border border-border hover:border-primary/50 transition-colors group bg-card flex flex-col justify-between"
               >
-                <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
-                  Custom AI & WordPress Engineering
-                  <ArrowRight className="w-4 h-4" />
+                <div>
+                  <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
+                    AI WordPress Pillar
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    High-performance custom plugins and REST endpoints.
+                  </div>
                 </div>
-                <div className="text-xs text-muted-foreground mt-1">
-                  High-performance custom plugins, REST endpoints, and vector search.
+              </Link>
+              <Link
+                to="/tools/architecture-scope-estimator"
+                className="p-4 rounded-xl border border-border hover:border-primary/50 transition-colors group bg-card flex flex-col justify-between"
+              >
+                <div>
+                  <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
+                    Scope Estimator
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Estimate e-commerce optimization timelines and stack.
+                  </div>
                 </div>
               </Link>
             </div>
