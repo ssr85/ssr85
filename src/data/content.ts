@@ -48,32 +48,107 @@ export const siteConfig = {
   }
 };
 
-export const snapshotCards = [
+export interface SnapshotCard {
+  title: string;
+  focus: string;
+  description: string;
+  icon: string;
+  extendedSummary: string;
+  capabilities: string[];
+  metrics: { label: string; value: string }[];
+  technologies: string[];
+  ctaText: string;
+  ctaHref: string;
+}
+
+export const snapshotCards: SnapshotCard[] = [
   {
     title: "B2B Agentic Systems",
     focus: "Auto-ReAct / LLM Ops",
     description:
-      "Designing self-correcting workflows and intelligent agents that navigate complex B2B business logic autonomously.",
+      "Building autonomous agents for automating insight-based content production, real-time market and traffic analysis, and actionable strategic recommendations.",
     icon: "Briefcase",
+    extendedSummary:
+      "Grounded in BITS Pilani Product Management in Generative & Agentic AI. Architecting deterministic multi-agent swarms with human-in-the-loop oversight to convert raw market signals into strategic intelligence and high-ranking content pipelines.",
+    capabilities: [
+      "Multi-agent research-to-publish orchestration with Human-in-the-Loop (HITL) approval gates",
+      "Real-time search & traffic trend extraction with automated competitive gap analysis",
+      "Deterministic self-correcting tool calling and structured schema validation with 0% unchecked hallucinations",
+    ],
+    metrics: [
+      { label: "Task Determinism", value: "99.4%" },
+      { label: "Academic Foundation", value: "BITS Pilani AI PM" },
+      { label: "Research Time Saved", value: "70%" },
+    ],
+    technologies: ["LangGraph", "CrewAI", "Python", "FastAPI", "Claude 3.7 / GPT-4o", "pgvector", "n8n"],
+    ctaText: "Explore Agentic Architecture →",
+    ctaHref: "#case-studies",
   },
   {
     title: "Technical Leverage",
-    focus: "System Integration",
+    focus: "Systems & Decoupled Ops",
     description:
-      "Bridging the operations-technology gap by engineering custom solutions to the operational bottlenecks encountered while scaling international B2B enterprises.",
+      "Engineering high-throughput AI engines, resilient operation queues, and decoupled architectures for legacy systems/websites.",
     icon: "Code",
+    extendedSummary:
+      "Engineering content engines grounded in real-world connected data, automated market/traffic ingestion, and custom solutions delivered as decoupled micro-services or lightweight plugins that integrate seamlessly without rip-and-replace debt.",
+    capabilities: [
+      "Autonomous content engines grounded in real-world connected data and search intelligence",
+      "Resilient asynchronous job queues (BullMQ/Redis) with automatic retries and dead-letter fault tolerance",
+      "Decoupled headless web architectures and plugins modernizing legacy systems with sub-second performance",
+    ],
+    metrics: [
+      { label: "Data Pipeline Sync", value: "100% Real-Time" },
+      { label: "Edge Performance", value: "Sub-Second" },
+      { label: "Integration Model", value: "Decoupled / Zero Debt" },
+    ],
+    technologies: ["Node.js / TypeScript", "Next.js / React", "BullMQ / Redis", "Supabase / PostgreSQL", "REST / Webhooks"],
+    ctaText: "View Technical Case Studies →",
+    ctaHref: "#case-studies",
   },
   {
-    title: "Proven Impact",
-    focus: "Scale & Efficiency",
-    description: "Demonstrated success in driving exponential growth, optimizing unit economics, and establishing rigorous KPIs for scale.",
+    title: "Global Industrial Operations",
+    focus: "12 Countries / Sales",
+    description:
+      "Directing cross-border B2B expansion across 12 countries in 4 continents, optimizing industrial workflows & unit economics.",
     icon: "TrendingUp",
+    extendedSummary:
+      "Grounded in scaling OG Hemp across 12 international markets and Skaizen Technotrades industrial water & process automation, driving end-to-end supply chain margins, B2B distribution, and international regulatory compliance.",
+    capabilities: [
+      "Cross-border GTM execution and regulatory compliance across North America, Europe, Asia, and Australasia",
+      "Industrial workflow & resource optimization (achieved 30-40% cost and water consumption reductions)",
+      "High-stakes B2B partnership negotiations and white-labelled sustainable product development",
+    ],
+    metrics: [
+      { label: "Global Reach", value: "12 Countries Supplied" },
+      { label: "B2B Clients", value: "250+ Engagements" },
+      { label: "Client Loyalty", value: "60% Repeat Rate" },
+    ],
+    technologies: ["Global GTM", "Industrial Automation", "Supply Chain Optimization", "B2B Compliance", "Unit Economics"],
+    ctaText: "View Full Career Resume →",
+    ctaHref: "/resume",
   },
   {
-    title: "Current Thesis",
-    focus: "Agent-Led Enterprise",
-    description: "Advising and building tech-enabled, forward-thinking enterprises backed by robust global distribution networks.",
+    title: "Strategic AI Advisory",
+    focus: "Leadership & Roadmap",
+    description:
+      "Advising forward-thinking founders and enterprises on AI readiness, executive roadmaps, and transforming legacy workflows into high-margin agentic operations.",
     icon: "Target",
+    extendedSummary:
+      "16+ years bridging commercial business acumen (MIB London, B.E. Engineering, Symbiosis Design Thinking) with bleeding-edge AI transformation, operational redesign, and executive leadership.",
+    capabilities: [
+      "Enterprise AI Readiness Audits and bespoke multi-year agentic transformation roadmaps",
+      "Monolith-to-Agentic Deconstruction: converting manual operational handoffs into autonomous micro-agents",
+      "Strict Data Governance, GDPR/compliance safeguards, and privacy-first model deployments",
+    ],
+    metrics: [
+      { label: "Career Span", value: "16+ Yrs" },
+      { label: "Rapid MVP", value: "2–4 Wks" },
+      { label: "Bottleneck Decimation", value: "40%" },
+    ],
+    technologies: ["Fractional AI Leadership", "Architecture Design", "GDPR & Governance", "Design Thinking", "PRD & Roadmapping"],
+    ctaText: "Book Strategic Consultation →",
+    ctaHref: "#services",
   },
 ];
 

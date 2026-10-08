@@ -35,7 +35,7 @@ const Index = () => {
           <Stats />
         </ScrollAnimationWrapper>
         <ScrollAnimationWrapper delay={100}>
-          <Snapshot />
+          <Snapshot onOpenEnquiry={openEnquiry} />
         </ScrollAnimationWrapper>
         <Work onOpenEnquiry={openEnquiry} />
         <ScrollAnimationWrapper delay={100}>
