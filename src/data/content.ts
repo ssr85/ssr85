@@ -34,15 +34,16 @@ export const siteConfig = {
   calendly: "/book",
   website: "https://sarabjeetrattan.com",
   meta: {
-    title: "Sarabjeet Rattan | B2B AI Strategy & Automation Consultant",
-    description: "Expert B2B AI strategy, agentic workflows, and custom automation systems for scaling enterprises. Over 16 years engineering proven growth.",
+    title: "B2B AI Strategy, Agentic Systems & Workflow Automation",
+    description: "Engineering B2B AI strategy, autonomous agentic workflows, two-way CRM sync engines, and high-performance decoupled web applications for scaling enterprises.",
     keywords: [
       "B2B AI Strategy",
-      "AI Automation Consultant",
-      "Agentic Systems",
-      "Custom AI Solutions",
-      "Workflow Automation",
-      "Enterprise AI Engineer",
+      "Agentic Systems Consultant",
+      "Custom AI Automation",
+      "Enterprise Workflow Automation",
+      "Two-Way CRM Synchronization",
+      "Headless Web Architecture",
+      "B2B Process Automation",
     ]
   }
 };
@@ -206,7 +207,7 @@ export const workItems: WorkItem[] = [
       }
     ],
     seo: {
-      metaTitle: "Lead OG Case Study | Agentic B2B Lead Research Engine — Sarabjeet Rattan",
+      metaTitle: "Agentic B2B Lead Research Engine: Lead OG Case Study",
       metaDescription: "How I architected a high-velocity B2B AI solution for automated lead research and CRM synchronization using Supabase, Tavily API, and Freshsales.",
       keywords: ["Lead OG", "B2B AI", "CRM Automation", "Agentic Research", "Freshsales API"],
     },
@@ -280,7 +281,7 @@ export const workItems: WorkItem[] = [
       }
     ],
     seo: {
-      metaTitle: "LinkedIn Case Study | CrewAI Content Automation Engine — Sarabjeet Rattan",
+      metaTitle: "CrewAI Content Automation Engine: LinkedIn Case Study",
       metaDescription: "How I engineered a Trello-driven LinkedIn automation system using CrewAI for intelligent content drafting with human-in-the-loop publishing.",
       keywords: ["LinkedIn Automation", "CrewAI", "Content Automation", "Trello Integration", "HITL"],
     },

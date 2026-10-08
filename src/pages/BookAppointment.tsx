@@ -24,8 +24,8 @@ export const BookAppointment = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Schedule a 1-on-1 Architecture Discovery Call | Sarabjeet Rattan"
-        description="Book a dedicated 20-minute technical consultation directly with Sarabjeet Rattan. Discuss AI agents, n8n automation, EU GDPR compliance, and custom WordPress architecture."
+        title="Schedule a B2B AI & Automation Architecture Discovery Call"
+        description="Schedule a 20-minute technical architecture consultation. Discuss custom AI agent workflows, two-way CRM sync, n8n automation, and headless WordPress setups."
         url="https://sarabjeetrattan.com/book"
       />
 

@@ -25,15 +25,14 @@ export const MultiAgentSystems = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Custom Multi-Agent Orchestration & Systems | Sarabjeet Rattan"
-        description="We architect deterministic multi-agent systems: Specialized research, extraction, synthesis, and human-in-the-loop validation with zero infinite loops."
+        title="Multi-Agent AI Systems Architecture & LLM Orchestration"
+        description="Architecting autonomous multi-agent AI systems with CrewAI, LangChain, and stateful RAG pipelines for complex B2B workflow and research automation."
         keywords={[
+          "multi agent ai systems architecture",
+          "llm orchestration workflows",
           "custom ai agent development",
-          "multi agent system from scratch",
           "crewai production deployment",
-          "langgraph multi agent workflow architecture",
-          "langgraph crewai architecture",
-          "hire ai agent developer",
+          "langgraph multi agent architecture",
           "autonomous ai agent engineering",
           "human in the loop ai agent",
         ]}

@@ -25,17 +25,16 @@ export const SheetsAppsScript = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Enterprise Google Apps Script & Sheets ERP | Sarabjeet Rattan"
-        description="Transform Google Sheets into automated internal ERP machines: Automated quotation generation, PDF invoice creation, and multi-stage manager approvals."
+        title="Google Sheets ERP Systems & Apps Script Automation Engine"
+        description="Transform Google Sheets into a secure business ERP: automated PDF invoice generation, multi-tier approvals, and bi-directional CRM REST API webhooks."
         keywords={[
-          "google apps script development",
+          "google sheets erp systems",
+          "google apps script automation",
           "google sheets automated workflows",
           "google sheets invoice generator script",
-          "apps script trigger execution limit fix",
-          "automate google drive to sheets",
-          "automated quote generation sheets",
           "apps script automation consultant",
-          "google sheets erp system",
+          "automated quote generation sheets",
+          "google sheets cr m api integration",
         ]}
         url="https://sarabjeetrattan.com/insights/google-sheets-apps-script-enterprise"
         type="article"

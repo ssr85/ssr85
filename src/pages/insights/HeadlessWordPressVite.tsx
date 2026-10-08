@@ -21,26 +21,53 @@ import {
   TrendingUp,
   Gauge,
   Lock,
+  Database,
+  HelpCircle,
 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export const HeadlessWordPressVite = () => {
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
 
+  const headlessFaqs = [
+    {
+      question: "Why choose Vite React SSG over Next.js for headless WordPress?",
+      answer: "Vite SSG compiles static HTML, CSS, and minimal JavaScript without requiring a continuous Node.js server runtime. This eliminates serverless cold starts, reduces hosting costs to near-zero, and allows assets to be distributed instantly from global Edge CDNs.",
+    },
+    {
+      question: "How are content updates in WordPress synchronized to the Vite frontend?",
+      answer: "WordPress post publish and update hooks trigger secure outgoing webhooks to a CI/CD build pipeline (such as GitHub Actions or Vercel Deploy Hooks), rebuilding static assets and purging CDN edge cache in under 30 seconds.",
+    },
+    {
+      question: "How does decoupled WordPress handle search engine indexing and metadata?",
+      answer: "All page title tags, meta descriptions, Open Graph cards, and JSON-LD schemas (such as TechArticle and FAQPage) are pre-rendered directly into the static HTML files at build time, ensuring immediate discovery and full indexation by search bots.",
+    },
+    {
+      question: "Does headless WordPress support dynamic features like contact forms and search?",
+      answer: "Yes. Dynamic functions such as contact forms, search queries, and enquiry modals connect via lightweight serverless API endpoints or direct REST/GraphQL integrations without slowing down initial page loads.",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Headless WordPress & React/Vite SSG Engineering | Sarabjeet Rattan"
-        description="Achieve sub-500ms TTFB and 100/100 Core Web Vitals with decoupled Headless WordPress powered by React, Vite Static Site Generation (SSG), and Edge CDNs."
+        title="Headless WordPress React SSG & Vite Build Architecture"
+        description="Decoupled Headless WordPress engineering using React and Vite SSG. Build lightning-fast static frontends with sub-300ms TTFB and 100/100 Core Web Vitals."
         keywords={[
-          "headless wordpress react",
-          "vite headless wordpress setup",
+          "headless wordpress react ssg",
+          "vite headless wordpress architecture",
+          "decoupled wordpress static site",
+          "sub 300ms wordpress speed",
+          "headless wordpress rest api ssg",
           "decoupled wordpress nextjs vs vite",
-          "sub 500ms wordpress speed",
-          "sub second wordpress page load",
-          "headless cms performance",
-          "headless wordpress ssg setup",
-          "decoupled wordpress vite",
+          "headless cms performance optimization",
         ]}
+        faqItems={headlessFaqs}
         url="https://sarabjeetrattan.com/insights/headless-wordpress-vite-architecture"
         type="article"
       />
@@ -62,7 +89,7 @@ export const HeadlessWordPressVite = () => {
           <header className="space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
-              Frontend Architecture • Sub-500ms Speed
+              Decoupled Architecture • Sub-300ms Speed
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground leading-[1.15]">
@@ -84,6 +111,60 @@ export const HeadlessWordPressVite = () => {
               </Button>
             </div>
           </header>
+
+          {/* AEO DIRECT ANSWER BLOCK */}
+          <section className="p-6 rounded-2xl border border-primary/20 bg-primary/[0.02] space-y-3">
+            <h2 className="text-lg sm:text-xl font-bold text-foreground flex items-center gap-2">
+              <Zap className="w-5 h-5 text-primary" /> What is Headless WordPress with Vite React SSG?
+            </h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Headless WordPress with Vite React SSG is a decoupled web architecture where WordPress functions solely as a backend headless CMS API, while a lightweight React frontend is pre-rendered into pure static HTML at build time using Vite. This architecture eliminates MySQL database queries and server-side PHP execution on visitor requests, delivering sub-300ms Time-To-First-Byte (TTFB) and perfect 100/100 Core Web Vitals across Edge CDNs.
+            </p>
+          </section>
+
+          {/* DOM-BASED ARCHITECTURE INFOGRAPHIC */}
+          <section className="space-y-4">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-muted-foreground">
+              <Layers className="w-4 h-4 text-primary" /> Decoupled Deployment Pipeline Architecture
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-5 rounded-xl border border-border/80 bg-card/60 space-y-2 relative overflow-hidden">
+                <div className="flex items-center gap-2 text-foreground font-semibold text-sm">
+                  <Database className="w-4 h-4 text-primary" /> 1. Headless WordPress CMS
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Editorial team manages content in familiar WP Admin. Custom REST & GraphQL endpoints serve structured content payloads.
+                </p>
+                <div className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded w-fit">
+                  Private Network / Locked
+                </div>
+              </div>
+
+              <div className="p-5 rounded-xl border border-primary/40 bg-primary/[0.04] space-y-2 relative overflow-hidden shadow-sm">
+                <div className="flex items-center gap-2 text-foreground font-semibold text-sm">
+                  <Cpu className="w-4 h-4 text-primary" /> 2. Vite React SSG Build
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Webhook triggers automated static compilation. Pre-renders full semantic HTML, JSON-LD schemas, and optimized CSS bundles.
+                </p>
+                <div className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded w-fit">
+                  &lt; 30s Build &amp; Deploy
+                </div>
+              </div>
+
+              <div className="p-5 rounded-xl border border-border/80 bg-card/60 space-y-2 relative overflow-hidden">
+                <div className="flex items-center gap-2 text-foreground font-semibold text-sm">
+                  <Globe className="w-4 h-4 text-primary" /> 3. Global Edge CDN
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Pre-rendered static files distributed across 300+ global edge nodes. Zero PHP execution lag and 100/100 Core Web Vitals.
+                </p>
+                <div className="text-[10px] font-mono text-success bg-success/10 px-2 py-0.5 rounded w-fit">
+                  Sub-300ms Global TTFB
+                </div>
+              </div>
+            </div>
+          </section>
 
           {/* 1. THE PROBLEM */}
           <section id="monolithic-wordpress-flaws" className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
@@ -198,11 +279,34 @@ export const HeadlessWordPressVite = () => {
             </div>
           </section>
 
-          {/* 4. CALL TO ACTION */}
+          {/* 4. VISIBLE FREQUENTLY ASKED QUESTIONS (MIRRORED IN FAQ SCHEMA) */}
+          <section id="headless-faqs" className="p-8 rounded-2xl border border-border bg-card/40 space-y-6">
+            <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-bold">
+              <HelpCircle className="w-4 h-4" /> Frequently Asked Questions
+            </div>
+            <h2 className="text-2xl font-bold text-foreground">
+              Headless WordPress &amp; Vite SSG Architecture FAQ
+            </h2>
+
+            <Accordion type="single" collapsible className="w-full">
+              {headlessFaqs.map((faq, idx) => (
+                <AccordionItem key={idx} value={`item-${idx}`} className="border-border/60">
+                  <AccordionTrigger className="text-left text-sm font-semibold text-foreground hover:text-primary">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs text-muted-foreground leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </section>
+
+          {/* 5. CALL TO ACTION */}
           <section className="pt-4">
             <LeadCaptureBanner
               title="Ready to Modernize Your WordPress Performance?"
-              subtitle="Get sub-500ms global load times and impenetrable security while keeping your existing WordPress editorial workflow."
+              subtitle="Get sub-300ms global load times and impenetrable security while keeping your existing WordPress editorial workflow."
               buttonText="Plan Headless Decoupled Migration"
               onOpenLeadModal={() => setIsLeadModalOpen(true)}
             />
@@ -217,7 +321,7 @@ export const HeadlessWordPressVite = () => {
         onClose={() => setIsLeadModalOpen(false)}
         defaultService="headless-wordpress-vite-ssg"
         serviceTitle="Headless WordPress & React/Vite Consultation"
-        initialRequirement="Looking to modernize our legacy WordPress site into a decoupled Headless React/Vite architecture with sub-500ms TTFB and perfect Core Web Vitals."
+        initialRequirement="Looking to modernize our legacy WordPress site into a decoupled Headless React/Vite architecture with sub-300ms TTFB and perfect Core Web Vitals."
       />
     </div>
   );

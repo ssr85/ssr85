@@ -21,26 +21,53 @@ import {
   Terminal,
   Database,
   Clock,
+  HelpCircle,
+  Layers,
+  BarChart3,
 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export const AutomatedSearchAnalytics = () => {
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
 
+  const searchFaqs = [
+    {
+      question: "What are striking-distance keywords and why should they be tracked?",
+      answer: "Striking-distance keywords rank on Google Search Positions 4 to 20. Because Google already recognizes topical relevance for these queries, minor content, title, or internal link optimizations can lift them into the Top 3 for exponential organic traffic growth.",
+    },
+    {
+      question: "How frequently does the automated search analytics ingestion script run?",
+      answer: "Ingestion jobs run daily on a serverless cron schedule to extract fresh Google Search Console search analytics and GA4 event data into a central PostgreSQL/Supabase database.",
+    },
+    {
+      question: "What metrics are included in the automated executive alert email?",
+      answer: "Alerts highlight week-over-week impression and click trends, newly ranking queries in the top 20, high-impression low-CTR anomalies, and prioritized weekly content optimization action items.",
+    },
+    {
+      question: "Does automated GSC data extraction impact website loading speed?",
+      answer: "No. The ingestion script runs completely out-of-band on external cloud workers querying Google APIs directly, placing zero load on your website server or CMS database.",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Automated Search Console & GA4 Intelligence | Sarabjeet Rattan"
-        description="Automate daily Google Search Console and GA4 ingestion. Track striking-distance queries (Pos 5–20) with proactive executive email alerts."
+        title="Automated Google Search Console & GA4 Reporting Pipeline"
+        description="Automate daily Google Search Console and GA4 data ingestion. Detect striking-distance keywords (Positions 4-20) and receive scheduled executive email alerts."
         keywords={[
-          "automated search console reporting",
-          "python google search console api script",
-          "automated google analytics email alerts",
+          "automated google search console reporting",
           "gsc striking distance automation",
-          "automate gsc striking distance queries",
-          "ga4 automated reporting email",
-          "automated seo reporting services",
-          "google search console api consultant",
+          "ga4 automated email alerts",
+          "google search console api script",
+          "automated search analytics reporting",
+          "rankmath striking distance intelligence",
         ]}
+        faqItems={searchFaqs}
         url="https://sarabjeetrattan.com/insights/automated-search-analytics-reporting"
         type="article"
       />
@@ -66,7 +93,7 @@ export const AutomatedSearchAnalytics = () => {
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground leading-[1.15]">
-              Automated Search Console & GA4 Intelligence: Proactive Revenue Alerts
+              Automated Search Console &amp; GA4 Intelligence: Proactive Revenue Alerts
             </h1>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -84,6 +111,60 @@ export const AutomatedSearchAnalytics = () => {
               </Button>
             </div>
           </header>
+
+          {/* AEO DIRECT ANSWER BLOCK */}
+          <section className="p-6 rounded-2xl border border-primary/20 bg-primary/[0.02] space-y-3">
+            <h2 className="text-lg sm:text-xl font-bold text-foreground flex items-center gap-2">
+              <Search className="w-5 h-5 text-primary" /> What is Automated Search Console and GA4 Ingestion?
+            </h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Automated Search Console and GA4 ingestion is a scheduled backend pipeline that queries official Google APIs daily, storing raw search performance in a database. It identifies striking-distance keywords (Positions 4 to 20), tracks click-through rate anomalies, and sends automated executive email summaries without manual spreadsheet exports.
+            </p>
+          </section>
+
+          {/* DOM-BASED ARCHITECTURE INFOGRAPHIC */}
+          <section className="space-y-4">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-muted-foreground">
+              <BarChart3 className="w-4 h-4 text-primary" /> Autonomous Search Analytics Pipeline
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-5 rounded-xl border border-border/80 bg-card/60 space-y-2 relative overflow-hidden">
+                <div className="flex items-center gap-2 text-foreground font-semibold text-sm">
+                  <Database className="w-4 h-4 text-primary" /> 1. Daily Ingestion Cron
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Queries GSC and GA4 APIs daily with JWT service accounts, storing normalized query metrics into PostgreSQL / Supabase.
+                </p>
+                <div className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded w-fit">
+                  Automated Daily Fetch
+                </div>
+              </div>
+
+              <div className="p-5 rounded-xl border border-primary/40 bg-primary/[0.04] space-y-2 relative overflow-hidden shadow-sm">
+                <div className="flex items-center gap-2 text-foreground font-semibold text-sm">
+                  <TrendingUp className="w-4 h-4 text-primary" /> 2. Striking-Distance Math
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Opportunity scoring engine isolates keywords in positions 4–20 with high impressions and calculates prioritization weights.
+                </p>
+                <div className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded w-fit">
+                  Pos 4–20 Opportunity Scoring
+                </div>
+              </div>
+
+              <div className="p-5 rounded-xl border border-border/80 bg-card/60 space-y-2 relative overflow-hidden">
+                <div className="flex items-center gap-2 text-foreground font-semibold text-sm">
+                  <Mail className="w-4 h-4 text-primary" /> 3. Executive Email Digests
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Dispatches concise weekly HTML emails with 3 prioritized content optimizations and weekly impression deltas.
+                </p>
+                <div className="text-[10px] font-mono text-success bg-success/10 px-2 py-0.5 rounded w-fit">
+                  Weekly Executive Action
+                </div>
+              </div>
+            </div>
+          </section>
 
           {/* 1. THE PROBLEM */}
           <section id="search-analytics-challenges" className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
@@ -161,7 +242,7 @@ export const AutomatedSearchAnalytics = () => {
               <TrendingUp className="w-4 h-4" /> 3. Measurable Business Benefits
             </div>
             <h2 id="growth-acceleration-metrics" className="text-2xl font-bold text-foreground">
-              Growth Acceleration & Operational Efficiency
+              Growth Acceleration &amp; Operational Efficiency
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
@@ -186,7 +267,30 @@ export const AutomatedSearchAnalytics = () => {
             </div>
           </section>
 
-          {/* 4. CALL TO ACTION */}
+          {/* 4. VISIBLE FREQUENTLY ASKED QUESTIONS (MIRRORED IN FAQ SCHEMA) */}
+          <section id="search-faqs" className="p-8 rounded-2xl border border-border bg-card/40 space-y-6">
+            <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-bold">
+              <HelpCircle className="w-4 h-4" /> Frequently Asked Questions
+            </div>
+            <h2 className="text-2xl font-bold text-foreground">
+              Automated Search Console &amp; GA4 Intelligence FAQ
+            </h2>
+
+            <Accordion type="single" collapsible className="w-full">
+              {searchFaqs.map((faq, idx) => (
+                <AccordionItem key={idx} value={`item-${idx}`} className="border-border/60">
+                  <AccordionTrigger className="text-left text-sm font-semibold text-foreground hover:text-primary">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs text-muted-foreground leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </section>
+
+          {/* 5. CALL TO ACTION */}
           <section className="pt-4">
             <LeadCaptureBanner
               title="Ready to Automate Your Search Intelligence?"

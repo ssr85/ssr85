@@ -36,18 +36,16 @@ export const CustomSessionEngines = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="High-Velocity Scraping & Custom Session Engines | Sarabjeet Rattan"
-        description="Eliminate manual research and IP bans. We build bespoke session caching engines, distributed scrapers, and automated CRM enrichment pipelines."
+        title="Custom Session Management & High-Concurrency Token Storage"
+        description="Engineering high-performance custom session engines with Redis cluster caching, stateless JWT validation, and distributed session deduplication."
         keywords={[
+          "custom session management engine",
+          "high concurrency token storage",
           "b2b lead scraping engine",
           "custom session cache api",
-          "high velocity web scraping without blocking",
           "distributed prospect enrichment engine",
-          "supabase edge function web scraping",
-          "automated prospect research",
+          "supabase edge function scraping",
           "crm deduplication engine",
-          "high velocity web scraping architecture",
-          "lead og architecture",
         ]}
         url="https://sarabjeetrattan.com/insights/custom-session-storage-engines"
         type="article"

@@ -17,26 +17,54 @@ import {
   Sparkles,
   Database,
   Layers,
+  HelpCircle,
+  Cpu,
+  Workflow,
 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export const CustomCrmSync = () => {
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
 
+  const crmFaqs = [
+    {
+      question: "How does the sync engine prevent duplicate contact records across CRMs?",
+      answer: "Incoming records are matched against composite identifiers (normalized email, sanitized phone number, and company domain) and verified against a persistent record ledger before initiating creates or updates.",
+    },
+    {
+      question: "How does the system recover from CRM API rate limits or network outages?",
+      answer: "All incoming webhooks are stored in an append-only event queue. When a third-party API encounters a 429 rate limit or 5xx server error, the engine pauses and retries with exponential backoff and jitter without dropping payloads.",
+    },
+    {
+      question: "Can the sync engine translate custom fields and different lifecycle stages?",
+      answer: "Yes. Custom transformation schemas map complex nested attributes, picklist values, deal stage lifecycles, and ISO timestamps between disparate CRM data models.",
+    },
+    {
+      question: "What is the maintenance and operational cost compared to Zapier or Make?",
+      answer: "While Zapier costs $100–$500+ every month as task volumes rise, a custom serverless sync engine runs on lightweight cloud workers for less than $10/month with zero per-task execution fees.",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Custom Two-Way CRM Synchronization Engines | Sarabjeet Rattan"
-        description="Eliminate Zapier limits. We engineer custom stateful two-way CRM sync engines for Freshsales, HubSpot, Pipedrive, and internal databases."
+        title="Two-Way CRM Sync Engine: Bidirectional Webhook Pipeline"
+        description="Engineer custom two-way CRM sync engines for Freshsales and HubSpot. Eliminate Zapier limits with composite key deduplication and stateful webhook queues."
         keywords={[
-          "custom crm synchronization",
-          "freshsales hubspot api sync",
-          "two way crm integration without zapier",
-          "freshsales api webhook integration",
-          "hubspot custom bi-directional sync",
+          "two way crm sync engine",
+          "bidirectional crm sync without zapier",
+          "freshsales hubspot sync api",
+          "crm webhook deduplication",
+          "custom crm integration architecture",
           "crm data deduplication script",
-          "crm webhook replay engine",
-          "custom crm integration services",
+          "crm webhook replay queue",
         ]}
+        faqItems={crmFaqs}
         url="https://sarabjeetrattan.com/insights/custom-crm-sync-engines"
         type="article"
       />
@@ -80,6 +108,60 @@ export const CustomCrmSync = () => {
               </Button>
             </div>
           </header>
+
+          {/* AEO DIRECT ANSWER BLOCK */}
+          <section className="p-6 rounded-2xl border border-primary/20 bg-primary/[0.02] space-y-3">
+            <h2 className="text-lg sm:text-xl font-bold text-foreground flex items-center gap-2">
+              <RefreshCw className="w-5 h-5 text-primary" /> How Does a Two-Way CRM Synchronization Engine Work?
+            </h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              A custom two-way CRM synchronization engine is a stateful backend service that orchestrates bi-directional data flow between CRMs (such as Freshsales and HubSpot) and internal databases. It uses composite key normalization, transaction ledgers, and retry queues to prevent circular sync loops, eliminate duplicate contacts, and maintain data consistency across systems.
+            </p>
+          </section>
+
+          {/* DOM-BASED ARCHITECTURE INFOGRAPHIC */}
+          <section className="space-y-4">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-muted-foreground">
+              <Workflow className="w-4 h-4 text-primary" /> Stateful Bidirectional Relay Architecture
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-5 rounded-xl border border-border/80 bg-card/60 space-y-2 relative overflow-hidden">
+                <div className="flex items-center gap-2 text-foreground font-semibold text-sm">
+                  <Database className="w-4 h-4 text-primary" /> 1. Ingestion &amp; Deduplication
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Real-time webhook listeners parse payloads and match composite keys (email, phone, domain) against persistent mapping tables.
+                </p>
+                <div className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded w-fit">
+                  Idempotent Ingestion
+                </div>
+              </div>
+
+              <div className="p-5 rounded-xl border border-primary/40 bg-primary/[0.04] space-y-2 relative overflow-hidden shadow-sm">
+                <div className="flex items-center gap-2 text-foreground font-semibold text-sm">
+                  <Cpu className="w-4 h-4 text-primary" /> 2. Vector Clock Reconciliation
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Prevents circular update loops and resolves simultaneous multi-user CRM edits automatically using state hashes.
+                </p>
+                <div className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded w-fit">
+                  Zero Circular Loops
+                </div>
+              </div>
+
+              <div className="p-5 rounded-xl border border-border/80 bg-card/60 space-y-2 relative overflow-hidden">
+                <div className="flex items-center gap-2 text-foreground font-semibold text-sm">
+                  <RefreshCw className="w-4 h-4 text-primary" /> 3. Stateful Relay &amp; Retry
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Transforms schemas and dispatches API payloads with dead-letter retry queues and exponential backoff on 429 rate limits.
+                </p>
+                <div className="text-[10px] font-mono text-success bg-success/10 px-2 py-0.5 rounded w-fit">
+                  99.99% Guaranteed Delivery
+                </div>
+              </div>
+            </div>
+          </section>
 
           {/* 1. THE PROBLEM */}
           <section id="no-code-breakdown" className="p-8 rounded-2xl border border-red-500/20 bg-red-500/[0.02] space-y-4">
@@ -195,7 +277,30 @@ export const CustomCrmSync = () => {
             </div>
           </section>
 
-          {/* 4. CALL TO ACTION */}
+          {/* 4. VISIBLE FREQUENTLY ASKED QUESTIONS (MIRRORED IN FAQ SCHEMA) */}
+          <section id="crm-faqs" className="p-8 rounded-2xl border border-border bg-card/40 space-y-6">
+            <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-bold">
+              <HelpCircle className="w-4 h-4" /> Frequently Asked Questions
+            </div>
+            <h2 className="text-2xl font-bold text-foreground">
+              Custom Two-Way CRM Synchronization FAQ
+            </h2>
+
+            <Accordion type="single" collapsible className="w-full">
+              {crmFaqs.map((faq, idx) => (
+                <AccordionItem key={idx} value={`item-${idx}`} className="border-border/60">
+                  <AccordionTrigger className="text-left text-sm font-semibold text-foreground hover:text-primary">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs text-muted-foreground leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </section>
+
+          {/* 5. CALL TO ACTION */}
           <section className="pt-4">
             <LeadCaptureBanner
               title="Ready to Eliminate CRM Sync Failures & Zapier Limits?"

@@ -82,17 +82,16 @@ export const EuGdprCompliance = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="EU GDPR Compliance for Websites Selling in the EU | Technical Engineering Guide"
-        description="Comprehensive technical and legal guide to EU GDPR compliance for international eCommerce stores. Learn Article 3(2) extraterritorial scope, Google Consent Mode v2, and zero-leak cookie architecture."
+        title="EU GDPR Compliance Architecture for Web Apps & Analytics"
+        description="Technical guide to engineering EU GDPR compliance: consent mode v2 implementation, zero-cookie analytics, automated data erasure, and audit logging."
         keywords={[
-          "eu gdpr compliance for websites",
-          "gdpr compliance for woocommerce",
-          "selling in eu gdpr requirements",
+          "eu gdpr compliance architecture",
           "google consent mode v2 implementation",
-          "gdpr cookie consent developer",
-          "gdpr article 3 2 extraterritorial",
-          "ecommerce gdpr audit",
+          "gdpr compliance for woocommerce",
           "zero leak cookie blocking",
+          "selling in eu gdpr requirements",
+          "gdpr article 3 2 extraterritorial",
+          "ecommerce gdpr audit developer",
         ]}
         url="https://sarabjeetrattan.com/insights/eu-gdpr-compliance-ecommerce-websites"
         type="article"

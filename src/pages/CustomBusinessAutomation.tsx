@@ -20,7 +20,14 @@ import {
   Database,
   Building2,
   Sliders,
+  HelpCircle,
 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export const CustomBusinessAutomation = () => {
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
@@ -57,20 +64,21 @@ export const CustomBusinessAutomation = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Custom Business Automation & CRM Sync | Sarabjeet Rattan"
-        description="Automate B2B operations with two-way CRM sync, Google Sheets workflows, and custom backend integrations. Enterprise pipelines from $500."
+        title="Custom B2B Workflow Automation & Two-Way CRM Integration"
+        description="Custom B2B business process automation: two-way CRM synchronization, Google Apps Script enterprise pipelines, and bespoke backend webhook integrations."
         keywords={[
-          "custom business automation",
-          "two way crm sync",
-          "google apps script developer",
-          "b2b workflow automation",
+          "custom b2b workflow automation",
+          "business process automation",
+          "two way crm integration service",
+          "google apps script erp automation",
           "zapier alternative integration",
           "crm webhook sync",
+          "custom business automation services",
         ]}
         faqItems={automationFaqs}
         url="https://sarabjeetrattan.com/custom-business-automation"
         serviceSchema={{
-          name: "Custom Business Automation & Two-Way CRM Synchronization",
+          name: "Custom B2B Workflow Automation & Two-Way CRM Synchronization",
           description: "Bespoke business automation, two-way CRM sync engines, Google Apps Script enterprise pipelines, and database webhooks.",
           serviceType: "Business Process Automation & CRM Integration",
         }}
@@ -309,6 +317,31 @@ export const CustomBusinessAutomation = () => {
             >
               Discuss How to Automate These Hours
             </Button>
+          </div>
+        </section>
+
+        {/* Frequently Asked Questions */}
+        <section id="automation-faqs" className="container mx-auto px-4 max-w-5xl mt-20">
+          <div className="p-8 rounded-2xl border border-border bg-card/40 space-y-6">
+            <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-bold">
+              <HelpCircle className="w-4 h-4" /> Frequently Asked Questions
+            </div>
+            <h2 className="text-2xl font-bold text-foreground">
+              B2B Business Automation &amp; CRM Sync FAQ
+            </h2>
+
+            <Accordion type="single" collapsible className="w-full">
+              {automationFaqs.map((faq, idx) => (
+                <AccordionItem key={idx} value={`item-${idx}`} className="border-border/60">
+                  <AccordionTrigger className="text-left text-sm font-semibold text-foreground hover:text-primary">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs text-muted-foreground leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </section>
 

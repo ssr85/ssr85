@@ -24,17 +24,16 @@ export const LocalLlmStudio = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="Running Local LLMs with LM Studio for Dev Workflows | Sarabjeet Rattan"
-        description="Guide to running open-weight coding models (Qwen 2.5 Coder, DeepSeek-R1) locally via LM Studio with zero API costs and full data privacy."
+        title="Local LLM Architecture & Private On-Premise AI Deployment"
+        description="Deploy secure, private on-premise local LLMs for enterprise data processing without recurring cloud API fees or sensitive data compliance risks."
         keywords={[
-          "local llm coding",
-          "lm studio local ai setup",
-          "run local models for development",
-          "run qwen 2.5 coder offline",
-          "lm studio python api integration",
-          "local coding assistant without api costs",
+          "local llm architecture",
+          "private on premise ai deployment",
+          "lm studio enterprise setup",
+          "local llm coding workflows",
+          "offline ai model orchestration",
           "local openai compatible server",
-          "qwen 2.5 coder local setup",
+          "qwen 2.5 coder enterprise setup",
         ]}
         url="https://sarabjeetrattan.com/insights/local-llm-lm-studio-workflow"
         type="article"

@@ -27,15 +27,15 @@ export const WooCommercePerformance = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title="WooCommerce Checkout Speed Optimization | Sarabjeet Rattan"
-        description="Eliminate slow checkout bottlenecks, high TTFB, and database bloat in WooCommerce. Custom SQL indexes, REST API tuning, and transient cleanup."
+        title="WooCommerce Database Optimization & High Concurrency Scaling"
+        description="Optimize high-traffic WooCommerce databases: InnoDB buffer tuning, query index remediation, wp_options cleanup, and Redis object caching architecture."
         keywords={[
-          "woocommerce checkout speed",
-          "woocommerce performance optimization",
+          "woocommerce database optimization",
+          "woocommerce high concurrency scaling",
           "fix woocommerce high ttfb",
           "woocommerce database bloat",
-          "woocommerce rest api speed",
-          "woocommerce speed engineer",
+          "woocommerce checkout speed optimization",
+          "woocommerce redis object cache",
         ]}
         url="https://sarabjeetrattan.com/insights/woocommerce-database-checkout-optimization"
         type="article"

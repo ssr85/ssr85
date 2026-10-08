@@ -57,8 +57,8 @@ const Resume = () => {
   return (
     <div className="min-h-screen bg-gray-100 print:min-h-0 print:bg-transparent">
       <SEO
-        title="Resume | Sarabjeet Rattan"
-        description="Professional resume of Sarabjeet Rattan, B2B AI Specialist & Operations Leader. Expert in Agentic Systems and Intelligent Automation."
+        title="B2B AI & Systems Engineering Resume | Experience"
+        description="Professional engineering resume: 16+ years in B2B AI strategy, autonomous agentic systems, two-way CRM sync, and enterprise workflow automation."
         url="https://sarabjeetrattan.com/resume"
       />
       {/* ── Print Toolbar ─────────────────────────────────────────────────── */}
