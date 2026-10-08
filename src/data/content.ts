@@ -86,7 +86,7 @@ export const snapshotCards: SnapshotCard[] = [
   },
   {
     title: "Technical Leverage",
-    focus: "Systems & Decoupled Ops",
+    focus: "Decoupled Systems",
     description:
       "Engineering high-throughput AI engines, resilient operation queues, and decoupled architectures for legacy systems/websites.",
     icon: "Code",
