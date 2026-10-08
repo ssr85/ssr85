@@ -108,7 +108,7 @@ export const snapshotCards: SnapshotCard[] = [
   },
   {
     title: "Global Industrial Operations",
-    focus: "12 Countries / Sales",
+    focus: "Sales Exposure",
     description:
       "Directing cross-border B2B expansion across 12 countries in 4 continents, optimizing industrial workflows & unit economics.",
     icon: "TrendingUp",
