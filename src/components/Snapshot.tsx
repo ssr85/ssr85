@@ -135,12 +135,11 @@ export const Snapshot = ({ onOpenEnquiry }: SnapshotProps) => {
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <span className={cn(
-                            "text-[11px] font-medium transition-colors hidden sm:inline-block",
-                            isExpanded ? "text-primary font-semibold" : "text-muted-foreground/70 group-hover:text-foreground"
-                          )}>
-                            {isExpanded ? "Collapse Spec" : "Expand Spec"}
-                          </span>
+                          {isExpanded && (
+                            <span className="text-[11px] font-medium transition-colors text-primary font-semibold hidden sm:inline-block">
+                              Collapse Spec
+                            </span>
+                          )}
                           <div className={cn(
                             "w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 border border-foreground/10",
                             isExpanded
