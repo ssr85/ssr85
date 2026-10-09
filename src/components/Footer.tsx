@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useThrottledScroll } from "@/hooks/use-throttle";
 
 import { trackGoogleAdsConversion } from "@/lib/conversion";
+import { showCookiePreferences } from "@/lib/cookieconsent";
 
 const ResumeDownloadModal = lazy(() =>
   import("@/components/ResumeDownloadModal").then((m) => ({ default: m.ResumeDownloadModal }))
@@ -310,6 +311,14 @@ export const Footer = () => {
                 className="hover:text-primary transition-colors"
               >
                 Resume PDF
+              </button>
+              <span>•</span>
+              <button
+                onClick={showCookiePreferences}
+                className="hover:text-primary transition-colors cursor-pointer"
+                title="Manage EU GDPR & Cookie Consent Preferences"
+              >
+                Cookie Preferences
               </button>
               <span>•</span>
               <a href="/sitemap.xml" target="_blank" className="hover:text-primary transition-colors">

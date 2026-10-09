@@ -30,6 +30,7 @@ export default defineConfig(() => {
               if (id.includes("motion") || id.includes("framer-motion")) return "motion";
               if (id.includes("@supabase/supabase-js")) return "supabase";
               if (id.includes("@radix-ui/")) return "radix";
+              if (id.includes("vanilla-cookieconsent")) return "consent";
               if (id.includes("lenis")) return "lenis";
               if (
                 id.includes("node_modules/react/") ||

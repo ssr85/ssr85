@@ -14,7 +14,11 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "seo:index": "tsx scripts/seo-engine/force-index.ts",
-    "seo:sync": "tsx scripts/seo-engine/sync-live-gsc.ts"
+    "seo:sync": "tsx scripts/seo-engine/sync-live-gsc.ts",
+    "ads:auth": "tsx scripts/ads-engine/get-refresh-token.ts",
+    "ads:sync": "tsx scripts/ads-engine/fetch-ads-data.ts",
+    "ads:negatives": "tsx scripts/ads-engine/add-negatives.ts",
+    "ads:report": "tsx scripts/ads-engine/send-daily-report.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -70,6 +74,7 @@
     "sonner": "^1.7.4",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
+    "vanilla-cookieconsent": "^3.1.0",
     "vaul": "^0.9.9",
     "zod": "^3.25.76"
   },
@@ -90,9 +95,9 @@
     "google-auth-library": "^11.1.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
-    "tsx": "^4.19.3",
     "vite": "^5.4.19",
     "vite-plugin-sitemap": "^0.8.2",
     "vite-react-ssg": "0.9.1-beta.1"

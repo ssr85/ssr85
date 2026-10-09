@@ -22,6 +22,12 @@
       "source": "/((?!api/|assets/|images/|fonts/|favicon|.*\\..*).*)",
       "destination": "/index.html"
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/ads-daily-report",
+      "schedule": "30 14 * * *"
+    }
   ]
 }
 

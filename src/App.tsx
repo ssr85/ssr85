@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import { Analytics } from "@vercel/analytics/react";
 
 import { UnifiedActionDock } from "@/components/UnifiedActionDock";
+import { initCookieConsent } from "@/lib/cookieconsent";
 
 const Resume = lazy(() => import("./pages/Resume"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -161,6 +162,10 @@ const GaPageTracker = () => {
 
 const App = () => {
   const [queryClient] = React.useState(() => new QueryClient());
+  
+  useEffect(() => {
+    initCookieConsent();
+  }, []);
   
   return (
     <QueryClientProvider client={queryClient}>

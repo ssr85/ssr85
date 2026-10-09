@@ -40,7 +40,8 @@ trace.json
 *.tsbuildinfo
 supabase/.temp/
 
-# Google Service Account Credentials
+# Google Service Account Credentials & OAuth Secrets
 scripts/seo-engine/*.json
 *service-account*.json
 *credentials*.json
+client_secret_*.json

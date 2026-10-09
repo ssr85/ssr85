@@ -222,3 +222,236 @@
   background: hsl(var(--primary) / 0.4);
 }
 
+/* CookieConsent Design System Integration */
+#cc-main {
+  --cc-font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cc-modal-border-radius: 0.875rem;
+  --cc-btn-border-radius: 0.625rem;
+  --cc-modal-margin: 1.25rem;
+  --cc-z-index: 99999;
+  --cc-bg: hsl(0 0% 100%);
+  --cc-primary-color: hsl(222 47% 11%);
+  --cc-secondary-color: hsl(220 15% 45%);
+  --cc-btn-primary-bg: hsl(221 83% 53%);
+  --cc-btn-primary-color: hsl(0 0% 100%);
+  --cc-btn-primary-hover-bg: hsl(221 83% 45%);
+  --cc-btn-secondary-bg: hsl(210 20% 94%);
+  --cc-btn-secondary-color: hsl(222 47% 11%);
+  --cc-btn-secondary-hover-bg: hsl(220 15% 88%);
+  --cc-separator-border-color: hsl(220 15% 88%);
+  --cc-cookie-category-block-bg: hsl(210 20% 96%);
+  --cc-cookie-category-block-border: hsl(220 15% 88%);
+  --cc-overlay-bg: rgba(0, 0, 0, 0.6);
+}
+
+.dark #cc-main,
+.dark.cc--darkmode {
+  --cc-bg: hsl(224 35% 7%);
+  --cc-primary-color: hsl(210 20% 96%);
+  --cc-secondary-color: hsl(215 15% 65%);
+  --cc-btn-primary-bg: hsl(199 92% 60%);
+  --cc-btn-primary-color: hsl(224 45% 4%);
+  --cc-btn-primary-hover-bg: hsl(199 92% 50%);
+  --cc-btn-secondary-bg: hsl(224 25% 12%);
+  --cc-btn-secondary-color: hsl(210 20% 96%);
+  --cc-btn-secondary-hover-bg: hsl(224 20% 18%);
+  --cc-separator-border-color: hsl(224 20% 16%);
+  --cc-cookie-category-block-bg: hsl(224 30% 9%);
+  --cc-cookie-category-block-border: hsl(224 20% 16%);
+  --cc-overlay-bg: rgba(0, 0, 0, 0.75);
+}
+
+#cc-main .cm,
+#cc-main .pm {
+  border: 1px solid hsl(var(--border) / 0.8);
+  backdrop-filter: blur(16px);
+}
+
+/* Floating Bottom Pill - Center Aligned in Viewport */
+#cc-main .cm--bar.cm--bottom {
+  bottom: 1.25rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+  max-width: min(880px, calc(100vw - 2rem));
+  height: 52px !important;
+  min-height: 52px !important;
+  box-sizing: border-box;
+  border-radius: 9999px;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.35), 0 0 0 1px hsl(var(--border) / 0.8);
+  background: hsl(var(--card) / 0.92) !important;
+  backdrop-filter: blur(24px);
+  border: 1px solid hsl(var(--border) / 0.8);
+  padding: 0.375rem 0.5rem 0.375rem 1.25rem !important;
+  transform: translateY(0);
+}
+
+#cc-main .cm--bar.cm--inline .cm__body {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+  gap: 1.25rem;
+  padding: 0 !important;
+  height: 100% !important;
+  max-width: 100%;
+}
+
+#cc-main .cm__texts {
+  flex: 1 1 auto;
+  padding: 0 !important;
+  margin: 0 !important;
+  min-width: 0;
+}
+
+#cc-main .cm__desc {
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 0.775rem;
+  line-height: 1.35;
+  color: hsl(var(--foreground));
+  max-height: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#cc-main .cm__btns {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 0.375rem !important;
+  flex-shrink: 0 !important;
+  min-width: auto !important;
+}
+
+#cc-main .cm__btn-group {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 0.375rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#cc-main .cm__btn-group+.cm__btn-group,
+#cc-main .cm__btn+.cm__btn {
+  margin: 0 !important;
+}
+
+#cc-main .cm__btn--close {
+  display: none !important;
+}
+
+#cc-main .cm__btn {
+  height: 38px !important;
+  min-height: 38px !important;
+  box-sizing: border-box !important;
+  border-radius: 9999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+  flex: 0 0 auto !important;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 1. REJECT Button */
+#cc-main .cm__btn[data-role="necessary"] {
+  order: 1 !important;
+  background: #2563eb !important;
+  border: 1px solid #2563eb !important;
+  color: #ffffff !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  padding: 0 1rem !important;
+  min-width: fit-content !important;
+  width: auto !important;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 8px -1px rgba(37, 99, 235, 0.35);
+}
+#cc-main .cm__btn[data-role="necessary"]:hover {
+  background: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
+}
+
+/* 2. ACCEPT Button */
+#cc-main .cm__btn[data-role="all"] {
+  order: 2 !important;
+  background: #10b981 !important;
+  border: 1px solid #10b981 !important;
+  color: #ffffff !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  padding: 0 1.1rem !important;
+  min-width: fit-content !important;
+  width: auto !important;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 8px -1px rgba(16, 185, 129, 0.35);
+}
+#cc-main .cm__btn[data-role="all"]:hover {
+  background: #059669 !important;
+  border-color: #059669 !important;
+}
+
+/* 3. Gear Icon Button (Settings) */
+#cc-main .cm__btn[data-role="show"],
+#cc-main .cm__btn--secondary {
+  order: 3 !important;
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  min-height: 38px !important;
+  padding: 0 !important;
+  border-radius: 9999px !important;
+  background: hsl(var(--muted) / 0.8) !important;
+  border: 1px solid hsl(var(--border) / 0.8) !important;
+  color: hsl(var(--muted-foreground)) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+#cc-main .cm__btn[data-role="show"]:hover,
+#cc-main .cm__btn--secondary:hover {
+  background: hsl(var(--primary) / 0.15) !important;
+  border-color: hsl(var(--primary) / 0.3) !important;
+  color: hsl(var(--primary)) !important;
+  transform: rotate(30deg);
+}
+
+@media screen and (max-width: 768px) {
+  #cc-main .cm--bar.cm--bottom {
+    bottom: 5rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    max-width: none;
+    width: calc(100% - 1.5rem);
+    height: auto !important;
+    border-radius: 1rem;
+    padding: 0.75rem 1rem !important;
+  }
+  #cc-main .cm--bar.cm--inline .cm__body {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.6rem !important;
+  }
+  #cc-main .cm__desc {
+    white-space: normal;
+  }
+  #cc-main .cm__btns {
+    width: 100%;
+    justify-content: flex-end !important;
+  }
+}
+
+
+
