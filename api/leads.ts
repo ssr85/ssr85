@@ -20,7 +20,7 @@ function isEmailAllowed(email?: string | null): boolean {
 
 async function authenticateAdmin(
   req: VercelRequest,
-  supabaseAdmin: ReturnType<typeof createClient>
+  supabaseAdmin: any
 ): Promise<{ authorized: boolean; reason?: string; status: number }> {
   const adminSecret = process.env.ADMIN_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
   const adminKeyHeader = req.headers['x-admin-key'] as string | undefined;
@@ -41,7 +41,8 @@ async function authenticateAdmin(
   }
 
   try {
-    const { data: { user }, error } = await supabaseAdmin.auth.getUser(token);
+    const { data, error } = await (supabaseAdmin.auth as any).getUser(token);
+    const user = data?.user;
     if (error || !user?.email) {
       return { authorized: false, reason: 'Invalid or expired session token', status: 403 };
     }
