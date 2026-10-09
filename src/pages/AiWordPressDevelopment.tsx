@@ -356,7 +356,7 @@ export const AiWordPressDevelopment = () => {
               {/* Right: Custom AI Engineering */}
               <div className="p-6 rounded-xl border border-success/30 bg-success/[0.03] space-y-4 shadow-sm">
                 <div className="flex items-center gap-2 text-success font-mono text-xs uppercase tracking-wider font-semibold">
-                  <CheckCircle2 className="w-4 h-4" /> Bespoke Engineering (Sarabjeet Rattan)
+                  <CheckCircle2 className="w-4 h-4" /> Bespoke AI Engineering
                 </div>
                 <ul className="space-y-3 text-sm text-foreground/90">
                   <li className="flex items-start gap-2">
